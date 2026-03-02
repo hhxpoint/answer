@@ -302,7 +302,6 @@ Page({
 
 
 
-  // ================= 清理资源 =================
   cleanup() {
     this.stopRecordingTimer();
     if (this.recorderManager && this.data.isRecording) this.recorderManager.stop();
