@@ -1,0 +1,16 @@
+<view class="detail-container">
+  <!-- 美化后的标签 -->
+  <view class="header-tag">
+    <text class="tag-star">✨</text>
+    <text class="tag-text">今日推荐</text>
+  </view>
+
+  <view class="card-wrapper">
+    <qa-card title="{{currentQA.question}}" content="{{currentQA.answer}}"></qa-card>
+  </view>
+
+  <view class="action-bar">
+    <button class="btn-next" bindtap="onNext">换一个看看</button>
+    <button class="btn-share" open-type="share">分享</button>
+  </view>
+</view>

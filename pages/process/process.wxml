@@ -1,0 +1,113 @@
+<view class="page-container">
+
+  <!-- 氛围层：抽象书架光影 -->
+  <view class="ambient-bookshelf">
+    <view class="line"></view>
+    <view class="line"></view>
+  </view>
+
+  <!-- 氛围层：温暖的壁炉底光 -->
+  <view class="ambient-fire">
+    <view class="glow glow-1"></view>
+    <view class="glow glow-2"></view>
+    <view class="glow glow-3"></view>
+  </view>
+
+  <!-- 核心操作卡片 (毛玻璃悬浮) -->
+  <view class="glass-board">
+
+    <!-- 顶部导航区 -->
+    <view class="header">
+      <view class="title-box">
+        <text class="emoji">📖</text>
+        <text class="title">图像工坊</text>
+      </view>
+      <view class="btn-save" bindtap="saveImage">
+        <text>保存作品</text>
+      </view>
+    </view>
+
+    <!-- 画布呈现区 (画架概念) -->
+    <view class="canvas-frame">
+      <canvas type="2d" id="mainCanvas" class="main-canvas" disable-scroll="true" bindtouchstart="onCanvasTouchStart"
+        bindtouchmove="onCanvasTouchMove" bindtouchend="onCanvasTouchEnd">
+      </canvas>
+
+      <!-- 优雅的加载动画 -->
+      <view class="loading-overlay" wx:if="{{processing}}">
+        <view class="loader"></view>
+        <text class="loader-text">匠心处理中...</text>
+      </view>
+    </view>
+
+    <!-- 底部控制面板 -->
+    <view class="control-panel">
+
+      <!-- 柔和的模式切换药丸 (Pill Switcher) -->
+      <view class="mode-switcher">
+        <view class="switch-item {{mode === 'remove' ? 'active' : ''}}" bindtap="switchMode" data-mode="remove">
+          <text>✨ 隐去痕迹</text>
+        </view>
+        <view class="switch-item {{mode === 'add' ? 'active' : ''}}" bindtap="switchMode" data-mode="add">
+          <text>🖋️ 留下印记</text>
+        </view>
+        <view class="switch-slider {{mode === 'add' ? 'slide-right' : ''}}"></view>
+      </view>
+
+      <!-- 动态工具区：去水印模式 -->
+      <view class="tools-container" wx:if="{{mode === 'remove'}}">
+        <view class="quick-actions">
+          <view class="action-btn" bindtap="chooseImage">
+            <view class="icon-circle">🖼️</view>
+            <text>选图</text>
+          </view>
+          <view class="action-btn" bindtap="undoMask">
+            <view class="icon-circle">↩️</view>
+            <text>撤回</text>
+          </view>
+          <view class="action-btn" bindtap="clearMask">
+            <view class="icon-circle">🗑️</view>
+            <text>清空</text>
+          </view>
+        </view>
+
+        <view class="slider-box">
+          <text class="slider-label">画笔粗细</text>
+          <slider class="custom-slider" min="5" max="50" step="1" value="{{brushSize}}" activeColor="#d4a373"
+            backgroundColor="#faeddd" block-color="#fff" block-size="24" bindchange="onBrushSizeChange" />
+          <text class="slider-value">{{brushSize}}</text>
+        </view>
+
+        <button class="primary-btn" bindtap="removeWatermark">开始施展魔法</button>
+      </view>
+
+      <!-- 动态工具区：加水印模式 -->
+      <view class="tools-container" wx:else>
+        <view class="quick-actions">
+          <view class="action-btn" bindtap="chooseImage">
+            <view class="icon-circle">🖼️</view>
+            <text>选图</text>
+          </view>
+          <view class="action-btn" bindtap="addTextWatermark">
+            <view class="icon-circle">📝</view>
+            <text>文字</text>
+          </view>
+          <view class="action-btn" bindtap="addImageWatermark">
+            <view class="icon-circle">🏷️</view>
+            <text>贴图</text>
+          </view>
+        </view>
+
+        <view class="slider-box">
+          <text class="slider-label">若隐若现</text>
+          <slider class="custom-slider" min="0" max="100" step="1" value="{{watermarkOpacity}}" activeColor="#d4a373"
+            backgroundColor="#faeddd" block-color="#fff" block-size="24" bindchange="onOpacityChange" />
+          <text class="slider-value">{{watermarkOpacity}}%</text>
+        </view>
+
+        <button class="primary-btn" bindtap="applyWatermark">烙下印记</button>
+      </view>
+
+    </view>
+  </view>
+</view>

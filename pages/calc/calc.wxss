@@ -1,0 +1,159 @@
+/* pages/calc/calc.wxss */
+
+/* 全局容器：使用你截图中的淡紫色/粉色背景 */
+.calc-container {
+  height: 100vh;
+  background-color: #fce4ec;
+  /* 浅粉/紫 */
+  display: flex;
+  flex-direction: column;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+/* 顶部状态栏 */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10rpx 20rpx;
+}
+
+.mode-tag {
+  font-size: 24rpx;
+  color: #888;
+  padding: 6rpx 20rpx;
+  background: #fff;
+  border-radius: 20rpx;
+}
+
+.mode-tag.adv-active {
+  color: #fff;
+  background: #ff4081;
+}
+
+.mode-switch-btn {
+  font-size: 26rpx;
+  color: #ff4081;
+  font-weight: bold;
+}
+
+/* 显示区域：深色背景，圆角阴影 */
+.display-area {
+  background-color: #333;
+  height: 240rpx;
+  border-radius: 30rpx;
+  margin: 30rpx 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 30rpx;
+  box-shadow: 0 10rpx 30rpx rgba(0, 0, 0, 0.2);
+}
+
+.expr-line {
+  color: #4caf50;
+  /* 绿色表达式 */
+  text-align: right;
+  font-size: 36rpx;
+  min-height: 40rpx;
+  margin-bottom: 10rpx;
+}
+
+.result-line {
+  color: #fff;
+  text-align: right;
+  font-size: 80rpx;
+  font-weight: bold;
+}
+
+/* 键盘区域 */
+.keyboard {
+  flex: 1;
+}
+
+.btn-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+/* 按钮通用样式 */
+.btn {
+  width: 160rpx;
+  height: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20rpx;
+  font-size: 34rpx;
+  font-weight: bold;
+  box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.1);
+  transition: transform 0.1s active;
+}
+
+.btn:active {
+  transform: scale(0.95);
+  opacity: 0.8;
+}
+
+/* 各种按钮配色 */
+.btn-num {
+  background-color: #fff;
+  color: #333;
+}
+
+.btn-opt {
+  background-color: #ffa726;
+  color: #fff;
+}
+
+/* 橙色 */
+.btn-sci {
+  background-color: #cfd8dc;
+  color: #37474f;
+  font-size: 28rpx;
+}
+
+/* 灰色 */
+.btn-ac {
+  background-color: #ff5252;
+  color: #fff;
+}
+
+/* 红色 */
+.btn-equal {
+  background-color: #66bb6a;
+  color: #fff;
+}
+
+/* 绿色 */
+.btn-bottom {
+  background-color: #e1bee7;
+  color: #6a1b9a;
+  font-size: 30rpx;
+}
+
+/* 淡紫色 */
+
+/* --- 核心动画部分 --- */
+.advanced-panel {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /* 带有轻微回弹效果 */
+  overflow: hidden;
+}
+
+.panel-show {
+  max-height: 300rpx;
+  opacity: 1;
+  transform: translateY(0);
+  margin-bottom: 20rpx;
+}
+
+.panel-hide {
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-40rpx);
+  pointer-events: none;
+  /* 隐藏时禁止点击 */
+}

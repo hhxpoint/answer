@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "搜索知识点",
+  "usingComponents": {
+    "qa-card": "/components/qa-card/qa-card"
+  }
+}

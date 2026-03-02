@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "开始答题",
+  "usingComponents": {
+    "qa-card": "/components/qa-card/qa-card"
+  }
+}

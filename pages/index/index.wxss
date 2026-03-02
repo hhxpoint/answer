@@ -1,0 +1,140 @@
+page {
+  background: linear-gradient(180deg, #a8c0ff 0%, #fbc2eb 100%);
+  min-height: 100%;
+}
+
+.container {
+  padding: 40rpx;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60rpx;
+}
+
+.title {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.subtitle {
+  font-size: 28rpx;
+  color: #888;
+  margin-top: 10rpx;
+}
+
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40rpx;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 24rpx;
+  padding: 40rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 10rpx 30rpx rgba(0, 0, 0, 0.05);
+}
+
+.card-icon {
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 30rpx;
+}
+
+.card-title {
+  font-size: 36rpx;
+  color: #333;
+  font-weight: bold;
+}
+.banner {
+  margin: 40rpx;
+  padding: 60rpx 40rpx;
+  background: linear-gradient(135deg, #6dd5fa, #2980b9);
+  border-radius: 30rpx;
+  color: white;
+  text-align: left;
+  box-shadow: 0 10rpx 30rpx rgba(0, 0, 0, 0.1);
+}
+
+.banner-title {
+  font-size: 48rpx;
+  font-weight: bold;
+}
+
+.banner-sub {
+  margin-top: 10rpx;
+  font-size: 28rpx;
+  opacity: 0.9;
+}
+.card {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:active {
+  transform: scale(0.96);
+  box-shadow: 0 6rpx 20rpx rgba(0, 0, 0, 0.15);
+}
+
+.swiper {
+  height: 300rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+  margin: 20rpx 40rpx;
+}
+
+.swiper-img {
+  width: 100%;
+  height: 100%;
+}
+
+page {
+  background: linear-gradient(180deg, #a8c0ff 0%, #fbc2eb 100%);
+}
+
+page[theme="dark"] {
+  background: linear-gradient(180deg, #1e1e1e 0%, #000000 100%);
+}
+
+.banner[theme="dark"] {
+  background: linear-gradient(135deg, #3a3a3a, #1f1f1f);
+}
+
+.card[theme="dark"] {
+  background: #2a2a2a;
+  color: #eee;
+}
+
+.recommend-item[theme="dark"] {
+  background: #2a2a2a;
+  color: #eee;
+}
+
+
+/* 底部蓝色区域样式 */
+.bottom-banner {
+  background-color: #a8c0ff;
+  /* 这里使用你想要的蓝色，或者用渐变 */
+  /* 如果你想用渐变，可以写：background: linear-gradient(135deg, #a8c0ff 0%, #7da9c4 100%); */
+  padding: 30rpx 40rpx;
+  /* 这里的 40rpx 确保里面的卡片和上面的对齐 */
+  margin-top: 20rpx;
+  /* 与上方内容拉开一点距离 */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 确保里面的卡片依然好看 */
+.bottom-banner .card {
+  margin-bottom: 0;
+  /* 取消底边距，因为 banner 已经有 padding 了 */
+  background: #ffffff;
+}
+
+/* 如果你想让整个底条在视觉上更沉稳，可以加个阴影 */
+.bottom-banner {
+  box-shadow: 0 -5rpx 20rpx rgba(168, 192, 255, 0.1);
+}

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "算法合集",
+  "usingComponents": {
+    "qa-card": "/components/qa-card/qa-card"
+  }
+}

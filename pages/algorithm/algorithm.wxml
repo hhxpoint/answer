@@ -1,0 +1,175 @@
+<view class="cabin-galaxy-container">
+
+  <!-- 1. 全局暗调与角落光晕 -->
+  <view class="vignette-overlay"></view>
+
+  <!-- 2. 梦幻极光层 (绿、蓝、微紫交汇) -->
+  <view class="aurora-container">
+    <view class="aurora aurora-1"></view>
+    <view class="aurora aurora-2"></view>
+    <view class="aurora aurora-3"></view>
+  </view>
+
+  <!-- 3. 深空偶发的流星 -->
+  <view class="shooting-stars">
+    <view class="shooting-star s-1"></view>
+    <view class="shooting-star s-2"></view>
+    <view class="shooting-star s-3"></view>
+  </view>
+
+  <!-- 4. 深海提灯游鱼 (灯头鱼) -->
+  <view class="lantern-fish-container">
+    <view class="lantern-fish f-1">
+      <view class="lf-sway">
+        <view class="lf-antenna">
+          <view class="lf-light"></view>
+          <view class="lf-glow"></view>
+        </view>
+        <view class="lf-body"></view>
+        <view class="lf-tail"></view>
+      </view>
+    </view>
+    <view class="lantern-fish f-2">
+      <view class="lf-sway">
+        <view class="lf-antenna">
+          <view class="lf-light"></view>
+          <view class="lf-glow"></view>
+        </view>
+        <view class="lf-body"></view>
+        <view class="lf-tail"></view>
+      </view>
+    </view>
+    <view class="lantern-fish f-3">
+      <view class="lf-sway">
+        <view class="lf-antenna">
+          <view class="lf-light"></view>
+          <view class="lf-glow"></view>
+        </view>
+        <view class="lf-body"></view>
+        <view class="lf-tail"></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 5. 深海水墨粒子烟花 -->
+  <view class="ink-fireworks-container">
+    <view class="ink-burst burst-1">
+      <view class="ink-drop color-magenta"></view>
+      <view class="ink-drop color-cyan"></view>
+      <view class="ink-drop color-gold"></view>
+    </view>
+    <view class="ink-burst burst-2">
+      <view class="ink-drop color-purple"></view>
+      <view class="ink-drop color-magenta"></view>
+    </view>
+    <view class="ink-burst burst-3">
+      <view class="ink-drop color-teal"></view>
+      <view class="ink-drop color-gold"></view>
+    </view>
+  </view>
+
+  <!-- 6. 深海幽蓝水母 -->
+  <view class="jellyfish-container">
+    <view class="jellyfish jelly-1">
+      <view class="j-head"></view>
+      <view class="j-tentacles"></view>
+    </view>
+    <view class="jellyfish jelly-2">
+      <view class="j-head"></view>
+      <view class="j-tentacles"></view>
+    </view>
+    <view class="jellyfish jelly-3">
+      <view class="j-head"></view>
+      <view class="j-tentacles"></view>
+    </view>
+  </view>
+
+  <!-- 7. 丁达尔暖阳柔光束 -->
+  <view class="god-ray ray-1"></view>
+  <view class="god-ray ray-2"></view>
+
+  <!-- 8. 光束与极光中的浮尘/萤火 -->
+  <view class="dust-container">
+    <view class="dust d-1"></view>
+    <view class="dust d-2"></view>
+    <view class="dust d-3"></view>
+    <view class="dust d-4"></view>
+    <view class="dust d-5"></view>
+    <view class="dust d-6"></view>
+    <view class="dust d-7 dust-cold"></view>
+    <view class="dust d-8 dust-cold"></view>
+    <view class="dust d-9"></view>
+    <view class="dust d-10 dust-cold-blue"></view>
+    <view class="dust d-11"></view>
+    <view class="dust d-12 dust-cold"></view>
+    <view class="dust d-13 dust-cold-blue"></view>
+    <view class="dust d-14"></view>
+    <view class="dust d-15 dust-cold"></view>
+  </view>
+
+  <!-- 顶部复古档案馆装饰 -->
+  <view class="hud-overlay">
+    <view class="hud-top-left">
+      <view class="hud-text">ARCHIVE // ALGORITHM_RECORDS</view>
+      <view class="hud-line"></view>
+    </view>
+    <view class="hud-top-right">
+      <view class="hud-compass"></view>
+    </view>
+  </view>
+
+  <!-- 9. 温暖星空背景点阵 -->
+  <view class="stars-bg twinkling"></view>
+
+  <!-- 10. 探索画布 (修改点：强行扩大画布边界，告别局促卡边) -->
+  <movable-area class="universe-scroll" scale-area="true">
+    <!-- 使用 calc 强行给宽高增加 600rpx 的深空留白，加上 padding 抵消坐标挤压 -->
+    <movable-view class="universe-canvas" direction="all" scale="true" scale-min="0.2" scale-max="5"
+      out-of-bounds="true"
+      style="width: calc({{canvasWidth || 6000}}rpx + 600rpx); height: calc({{canvasHeight || 6000}}rpx + 600rpx); padding: 300rpx; box-sizing: content-box;">
+
+      <!-- 连线：加入微弱的能量脉动 -->
+      <block wx:for="{{lines}}" wx:key="index">
+        <view class="energy-line pulse-line"
+          style="width: {{item.length}}rpx; left: calc({{item.startX}}rpx + 300rpx); top: calc({{item.startY}}rpx + 300rpx); transform: rotate({{item.angle}}deg);">
+          <view class="data-flow"></view>
+        </view>
+      </block>
+
+      <!-- 节点：加入互相牵制的量子浮动动画 -->
+      <block wx:for="{{nodes}}" wx:key="id">
+        <!-- left/top 增加 300rpx 补偿画布 padding 带来的偏移，确保连线依然精准 -->
+        <view class="star-node quantum-float {{item.type}}"
+          style="left: calc({{item.x}}rpx + 300rpx); top: calc({{item.y}}rpx + 300rpx);" bindtap="onNodeClick"
+          data-item="{{item}}">
+          <!-- 扩大并柔化光晕环，增加羁绊感 -->
+          <view class="orbit-ring grand-ring"></view>
+          <view class="planet">
+            <view class="planet-core"></view>
+          </view>
+          <text class="star-name">{{item.name}}</text>
+        </view>
+      </block>
+
+    </movable-view>
+  </movable-area>
+
+  <!-- 11. 温暖茶色玻璃大屏弹窗 -->
+  <view class="popup-mask {{showPopup ? 'show' : ''}}" bindtap="closePopup"></view>
+  <view class="code-popup {{showPopup ? 'show' : ''}}">
+    <view class="popup-header">
+      <view>
+        <view class="popup-subtitle">CHAPTER OPENED</view>
+        <text class="popup-title">{{currentAlgorithm.name}}</text>
+        <view class="popup-desc">{{currentAlgorithm.desc}}</view>
+      </view>
+      <text class="close-btn" bindtap="closePopup">合上</text>
+    </view>
+    <scroll-view class="code-scroll" scroll-y="true" scroll-x="true">
+      <view class="code-content-wrapper">
+        <text class="code-content">{{currentAlgorithm.code}}</text>
+      </view>
+    </scroll-view>
+  </view>
+
+</view>

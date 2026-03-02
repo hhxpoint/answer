@@ -1,0 +1,107 @@
+<!-- pages/emotion-analysis/emotion-analysis.wxml -->
+<view class="page-container">
+
+  <!-- 氛围感背景光晕 -->
+  <view class="bg-shape bg-shape-1"></view>
+  <view class="bg-shape bg-shape-2"></view>
+
+  <view class="content-wrapper">
+    <!-- 顶部标题区域 -->
+    <view class="header">
+      <view class="title-wrapper">
+        <text class="emoji-title">✨</text>
+        <text class="title">笨蛋本科生 情感分析</text>
+      </view>
+      <text class="subtitle">倾听声音背后的情绪密码</text>
+    </view>
+
+    <!-- 核心大卡片 -->
+    <view class="card main-card">
+      <view class="status-area">
+
+        <!-- 1. 录音状态 -->
+        <block wx:if="{{isRecording}}">
+          <view class="audio-waves">
+            <view class="bar"></view>
+            <view class="bar"></view>
+            <view class="bar"></view>
+            <view class="bar"></view>
+            <view class="bar"></view>
+          </view>
+          <text class="status-title recording-text">正在倾听...</text>
+          <text class="time-display">{{formatRecordTime}} / 01:00</text>
+        </block>
+
+        <!-- 2. 预览试听状态 (新增) -->
+        <block wx:elif="{{isPreviewing}}">
+          <view class="icon-box {{isPlaying ? 'pulse-green' : 'idle-bg'}}" bindtap="togglePlay">
+            <text class="icon-text">{{isPlaying ? '⏸️' : '▶️'}}</text>
+          </view>
+          <text class="status-title">{{isPlaying ? '正在播放' : '录音完成'}}</text>
+          <text class="time-display">{{formatPlayTime}} / {{formatRecordTime}}</text>
+          <text class="status-desc" wx:if="{{!isPlaying}}">点击图标可试听录音</text>
+        </block>
+
+        <!-- 3. 待机就绪状态 -->
+        <block wx:else>
+          <view class="icon-box idle-bg"><text class="icon-text">🎙️</text></view>
+          <text class="status-title">准备就绪</text>
+          <text class="status-desc">最长可录制 60 秒语音</text>
+        </block>
+      </view>
+
+      <!-- 操作按钮区域 -->
+      <view class="action-area">
+        <!-- 待机中：开始录音 -->
+        <button wx:if="{{!isRecording && !isPreviewing}}" class="btn-primary start" bindtap="startRecording"
+          hover-class="btn-hover-primary">
+          <text class="btn-icon">🎤</text>
+          <text>开始录音</text>
+        </button>
+
+        <!-- 录音中：停止录音 -->
+        <button wx:if="{{isRecording}}" class="btn-primary stop" bindtap="stopRecording" hover-class="btn-hover-stop">
+          <text class="btn-icon">⏹</text>
+          <text>结束录制</text>
+        </button>
+
+        <!-- 预览中：双按钮 (重录 / 提交) -->
+        <view wx:if="{{isPreviewing}}" class="double-btn-group">
+          <button class="btn-half btn-outline" bindtap="reRecord" hover-class="btn-hover-outline">
+            <text>重新录制</text>
+          </button>
+          <button class="btn-half btn-primary start" bindtap="submitForAnalysis" hover-class="btn-hover-primary">
+            <text>开始分析</text>
+          </button>
+        </view>
+      </view>
+    </view>
+
+    <!-- 次要功能面板 (网格布局) -->
+    <view class="tools-grid">
+      <view class="tool-card" bindtap="chooseAudioFile" hover-class="card-hover">
+        <view class="tool-icon-wrapper bg-blue-light">
+          <text class="tool-icon">📁</text>
+        </view>
+        <text class="tool-name">导入音频</text>
+      </view>
+
+      <view class="tool-card" bindtap="viewHistory" hover-class="card-hover">
+        <view class="tool-icon-wrapper bg-purple-light">
+          <text class="tool-icon">📊</text>
+        </view>
+        <text class="tool-name">历史记录</text>
+      </view>
+      
+    </view>
+
+    <!-- 底部使用建议 -->
+    <view class="tips-box">
+      <view class="tips-header">💡 最佳体验建议</view>
+      <view class="tip-text">• 请在相对安静的环境下进行录音</view>
+      <view class="tip-text">• 推荐录音时长为 5 到 15 秒之间，最长支持60秒</view>
+      <view class="tip-text">• 可以先试听确认声音清晰后，再提交分析</view>
+    </view>
+
+  </view>
+</view>

@@ -1,0 +1,49 @@
+<view class="page-container">
+  <!-- 顶部渐变背景弧形 -->
+  <view class="header-bg"></view>
+
+  <!-- 悬浮主内容卡片 -->
+  <view class="main-card">
+
+    <!-- 个人信息区 -->
+    <view class="profile-section">
+      <!-- 头像，如果没有现成的可以直接用微信开放能力获取，这里用本地或网络占位图 -->
+      <image class="avatar" src="/assets/banner2.png" mode="aspectFill"></image>
+      <text class="name">主轩次瀚</text>
+      <text class="bio">Please don't cry</text>
+    </view>
+
+    <view class="divider"></view>
+
+    <!-- 个人博客区 -->
+    <view class="info-section">
+      <view class="info-header">
+        <text class="info-title">🌐 我的个人博客</text>
+      </view>
+      <view class="blog-box">
+        <text class="blog-url">{{blogUrl}}</text>
+        <view class="copy-btn" bindtap="copyBlogUrl">复制链接</view>
+      </view>
+    </view>
+
+    <view class="divider"></view>
+
+    <!-- 公众号二维码区 -->
+    <view class="info-section">
+      <view class="info-header">
+        <text class="info-title">📱 关注我的公众号</text>
+      </view>
+      <view class="qr-box">
+        <!-- ⚠️ 这里放你的公众号二维码路径 -->
+        <image class="qr-code" src="{{qrCodeUrl}}" mode="aspectFit" bindtap="previewQRCode"></image>
+        <text class="qr-tip">点击图片放大后长按识别</text>
+      </view>
+    </view>
+
+  </view>
+
+  <!-- 底部版权或留白 -->
+  <view class="footer">
+    <text>Designed with ❤️</text>
+  </view>
+</view>

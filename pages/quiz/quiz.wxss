@@ -1,0 +1,100 @@
+page {
+  background: linear-gradient(180deg, #a8c0ff 0%, #fbc2eb 100%);
+  min-height: 100vh;
+}
+
+.quiz-container {
+  padding: 40rpx 50rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 进度条样式 */
+.progress-section {
+  margin-bottom: 60rpx;
+  padding: 0 10rpx;
+}
+
+.progress-text {
+  margin-bottom: 20rpx;
+}
+
+.current-num {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #fff;
+}
+
+.total-num {
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.7);
+  margin-left: 10rpx;
+}
+
+.progress-bar {
+  height: 8rpx;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4rpx;
+  overflow: hidden;
+}
+
+.progress-inner {
+  height: 100%;
+  background: #fff;
+  transition: width 0.3s ease;
+  /* 进度条滑动动画 */
+  box-shadow: 0 0 15rpx rgba(255, 255, 255, 0.5);
+}
+
+.card-wrapper {
+  flex: 1;
+}
+
+/* 底部悬浮面板 */
+.control-panel {
+  position: fixed;
+  bottom: 120rpx;
+  left: 50rpx;
+  right: 50rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-main,
+.btn-sub {
+  height: 110rpx;
+  border-radius: 55rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32rpx;
+  margin: 0 !important;
+  transition: all 0.2s;
+}
+
+/* 显示答案按钮：主色调 */
+.btn-main {
+  width: 55% !important;
+  background: #4b7bec !important;
+  color: #fff !important;
+  box-shadow: 0 15rpx 40rpx rgba(75, 123, 236, 0.3);
+}
+
+/* 下一题按钮：轻盈质感 */
+.btn-sub {
+  width: 40% !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: #4b7bec !important;
+  border: 2rpx solid #4b7bec;
+}
+
+.btn-disabled {
+  opacity: 0.5;
+  background: #a8c0ff !important;
+}
+
+.arrow {
+  margin-left: 10rpx;
+  font-weight: bold;
+}

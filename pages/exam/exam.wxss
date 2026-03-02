@@ -1,0 +1,238 @@
+.page-container {
+  min-height: 100vh;
+  background: #f4f7fc;
+  padding: 20rpx 30rpx 60rpx;
+}
+
+/* 进度条 */
+.progress-bar-area {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.pb-bg {
+  flex: 1;
+  height: 12rpx;
+  background: #e0e0e0;
+  border-radius: 20rpx;
+  overflow: hidden;
+  margin-right: 20rpx;
+}
+
+.pb-inner {
+  height: 100%;
+  background: #4b7bec;
+  transition: 0.3s;
+}
+
+.count-txt {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 卡片 */
+.main-card {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 40rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.q-tag {
+  font-size: 22rpx;
+  color: #4b7bec;
+  background: #eef2ff;
+  display: inline-block;
+  padding: 4rpx 16rpx;
+  border-radius: 8rpx;
+  margin-bottom: 20rpx;
+}
+
+.q-title {
+  font-size: 34rpx;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 40rpx;
+  font-weight: 500;
+}
+
+/* 选项 */
+.opt-item {
+  display: flex;
+  align-items: center;
+  padding: 30rpx;
+  border: 2rpx solid #f0f0f0;
+  border-radius: 16rpx;
+  margin-bottom: 24rpx;
+  transition: 0.2s;
+}
+
+.opt-idx {
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 50%;
+  background: #f5f5f5;
+  text-align: center;
+  line-height: 44rpx;
+  margin-right: 20rpx;
+  font-size: 24rpx;
+}
+
+.opt-item.active {
+  border-color: #4b7bec;
+  background: #f0f5ff;
+}
+
+.opt-item.success {
+  border-color: #07c160;
+  background: #f6ffed;
+}
+
+.opt-item.error {
+  border-color: #ff4d4f;
+  background: #fff1f0;
+}
+
+/* 填空题输入框 */
+.input-section {
+  margin: 60rpx 0;
+}
+
+.underline-input {
+  border-bottom: 4rpx solid #4b7bec;
+  height: 100rpx;
+  text-align: center;
+  font-size: 36rpx;
+}
+
+.input-success {
+  border-bottom-color: #07c160;
+  color: #07c160;
+}
+
+.input-error {
+  border-bottom-color: #ff4d4f;
+  color: #ff4d4f;
+}
+
+/* 按钮 */
+.primary-btn {
+  background: #4b7bec;
+  color: #fff;
+  border-radius: 50rpx;
+  font-size: 32rpx;
+  margin-top: 40rpx;
+}
+
+.next-btn {
+  background: #333;
+  color: #fff;
+  border-radius: 50rpx;
+  font-size: 32rpx;
+  margin-top: 40rpx;
+}
+
+/* 解析区 */
+.result-analysis {
+  margin-top: 60rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+  background: #fafafa;
+}
+
+.status-banner {
+  padding: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 30rpx;
+}
+
+.banner-success {
+  background: #f6ffed;
+  color: #07c160;
+}
+
+.banner-error {
+  background: #fff1f0;
+  color: #ff4d4f;
+}
+
+.analysis-body {
+  padding: 30rpx;
+}
+
+.ana-title {
+  font-size: 26rpx;
+  color: #888;
+  margin-bottom: 16rpx;
+}
+
+.ana-text {
+  font-size: 28rpx;
+  color: #444;
+  line-height: 1.8;
+  display: block;
+}
+
+
+/* 确保所有公式图片正确缩放 */
+rich-text image {
+  max-width: 100% !important;
+  height: auto !important;
+  /* 内联样式会覆盖，但保留 */
+}
+
+
+
+
+
+
+/* --- 新增：标签栏与科目标签样式 --- */
+.tag-bar {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin-bottom: 20rpx;
+}
+
+.tag-bar .q-tag {
+  margin-bottom: 0;
+}
+
+/* 科目标签：高级紫 */
+.subject-tag {
+  color: #7c3aed;
+  /* 优雅的深紫色 */
+  background: #ede9fe;
+  /* 极浅的柔和紫背景 */
+}
+
+
+
+/* --- 覆盖 towxml 默认样式，保护原有 UI 不被撑破 --- */
+.q-title towxml,
+.opt-val towxml,
+.ana-text towxml {
+  display: inline;
+  /* 强制转为行内元素，避免换行问题 */
+}
+
+/* 强行去掉 towxml 里面所有 p 标签自带的上下外边距 */
+.opt-val .h2w__p,
+.q-title .h2w__p,
+.ana-text .h2w__p {
+  margin: 0 !important;
+  padding: 0 !important;
+  display: inline-block;
+  /* 保证居中对齐 */
+  vertical-align: middle;
+}
+
+/* 微调数学公式的垂直对齐，使其和周围文字完美在一条线上 */
+.h2w__equation {
+  vertical-align: middle !important;
+  margin: 0 4rpx !important;
+  /* 公式左右稍微留一点空隙 */
+}

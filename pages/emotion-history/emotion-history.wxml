@@ -1,0 +1,57 @@
+<view class="page-container">
+  <view class="header">
+    <text class="title">分析档案</text>
+    <text class="subtitle">共 {{historyList.length}} 条语音记录</text>
+  </view>
+
+  <scroll-view class="history-list" scroll-y>
+    <block wx:if="{{historyList.length === 0}}">
+      <view class="empty-state">
+        <text class="empty-icon">📂</text>
+        <text class="empty-text">暂无记录，快去录制第一段语音吧</text>
+      </view>
+    </block>
+
+    <block wx:for="{{historyList}}" wx:key="id">
+      <view class="history-card">
+        <!-- 头部：时间和标签 -->
+        <view class="card-header">
+          <text class="date-text">{{item.time}}</text>
+          <view class="emotion-badge">
+            <text>{{item.emotion}}</text>
+            <text class="confidence-text">{{item.confidence}}%</text>
+          </view>
+        </view>
+
+        <!-- 内容：AI 识别的文本 -->
+        <view class="text-content">
+          <text class="quote-mark">"</text>
+          <text class="transcribed-text">{{item.text}}</text>
+          <text class="quote-mark">"</text>
+        </view>
+
+        <!-- 底部：音频播放器 -->
+        <view class="audio-player {{playingId === item.id ? 'playing' : ''}}" bindtap="playAudio" data-id="{{item.id}}"
+          data-path="{{item.filePath}}">
+          <view class="play-btn">
+            <text class="play-icon">{{playingId === item.id ? '⏸' : '▶'}}</text>
+          </view>
+          <view class="wave-container">
+            <!-- 假声波，播放时带有动画 -->
+            <view class="mini-wave"></view>
+            <view class="mini-wave"></view>
+            <view class="mini-wave"></view>
+            <view class="mini-wave"></view>
+            <view class="mini-wave"></view>
+            <view class="mini-wave"></view>
+            <view class="mini-wave"></view>
+            <view class="mini-wave"></view>
+            <view class="mini-wave"></view>
+            <view class="mini-wave"></view>
+          </view>
+          <text class="play-status">{{playingId === item.id ? '播放中...' : '点击播放'}}</text>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+</view>

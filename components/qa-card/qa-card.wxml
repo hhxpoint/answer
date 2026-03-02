@@ -1,0 +1,14 @@
+<!-- components/qa-card/qa-card.wxml -->
+<view class="card-container">
+  <view class="q-header">
+    <text class="q-icon">Q</text>
+    <text class="q-text">{{title}}</text>
+  </view>
+
+  <view class="divider"></view>
+
+  <view class="a-body">
+    <text class="a-label">解析</text>
+    <view class="a-content">{{content}}</view>
+  </view>
+</view>

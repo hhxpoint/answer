@@ -1,0 +1,84 @@
+<!-- pages/calc/calc.wxml -->
+<view class="calc-container">
+
+  <!-- 1. 顶部状态栏 & 模式切换 -->
+  <view class="header">
+    <view class="mode-tag {{isAdvanced ? 'adv-active' : ''}}">
+      {{isAdvanced ? '高级模式' : '基础模式'}}
+    </view>
+    <view class="mode-switch-btn" bindtap="toggleMode">
+      <text class="iconfont">{{isAdvanced ? '显示基础' : '开启高级'}}</text>
+    </view>
+  </view>
+
+  <!-- 2. 显示区域 -->
+  <view class="display-area">
+    <view class="expr-line">{{expr || ' '}}</view>
+    <view class="result-line">{{result}}</view>
+  </view>
+
+  <!-- 3. 键盘区域 -->
+  <view class="keyboard">
+
+    <!-- 高级面板 (滑入滑出动画) -->
+    <view class="advanced-panel {{isAdvanced ? 'panel-show' : 'panel-hide'}}">
+      <view class="btn-row">
+        <view class="btn btn-sci" bindtap="press" data-val="det">det</view>
+        <view class="btn btn-sci" bindtap="press" data-val="diff">diff</view>
+        <view class="btn btn-sci" bindtap="press" data-val="int">int</view>
+        <view class="btn btn-sci" bindtap="press" data-val="x">x</view>
+      </view>
+      <view class="btn-row">
+        <view class="btn btn-sci" bindtap="press" data-val="[">[</view>
+        <view class="btn btn-sci" bindtap="press" data-val="]">]</view>
+        <view class="btn btn-sci" bindtap="press" data-val=";">;</view>
+        <view class="btn btn-sci" bindtap="press" data-val=",">,</view>
+      </view>
+    </view>
+
+    <!-- 基础科学功能行 -->
+    <view class="btn-row">
+      <view class="btn btn-sci" bindtap="press" data-val="sin">sin</view>
+      <view class="btn btn-sci" bindtap="press" data-val="cos">cos</view>
+      <view class="btn btn-sci" bindtap="press" data-val="tan">tan</view>
+      <view class="btn btn-ac" bindtap="press" data-val="AC">AC</view>
+    </view>
+
+    <!-- 数字键盘区 -->
+    <view class="btn-row">
+      <view class="btn btn-num" bindtap="press" data-val="7">7</view>
+      <view class="btn btn-num" bindtap="press" data-val="8">8</view>
+      <view class="btn btn-num" bindtap="press" data-val="9">9</view>
+      <view class="btn btn-opt" bindtap="press" data-val="÷">÷</view>
+    </view>
+
+    <view class="btn-row">
+      <view class="btn btn-num" bindtap="press" data-val="4">4</view>
+      <view class="btn btn-num" bindtap="press" data-val="5">5</view>
+      <view class="btn btn-num" bindtap="press" data-val="6">6</view>
+      <view class="btn btn-opt" bindtap="press" data-val="×">×</view>
+    </view>
+
+    <view class="btn-row">
+      <view class="btn btn-num" bindtap="press" data-val="1">1</view>
+      <view class="btn btn-num" bindtap="press" data-val="2">2</view>
+      <view class="btn btn-num" bindtap="press" data-val="3">3</view>
+      <view class="btn btn-opt" bindtap="press" data-val="-">-</view>
+    </view>
+
+    <view class="btn-row">
+      <view class="btn btn-num" bindtap="press" data-val="0">0</view>
+      <view class="btn btn-num" bindtap="press" data-val=".">.</view>
+      <view class="btn btn-equal" bindtap="press" data-val="=">=</view>
+      <view class="btn btn-opt" bindtap="press" data-val="+">+</view>
+    </view>
+
+    <!-- 底部辅助行 -->
+    <view class="btn-row">
+      <view class="btn btn-bottom" bindtap="press" data-val="(">(</view>
+      <view class="btn btn-bottom" bindtap="press" data-val=")">)</view>
+      <view class="btn btn-bottom" bindtap="press" data-val="π">π</view>
+      <view class="btn btn-bottom" bindtap="press" data-val="e">e</view>
+    </view>
+  </view>
+</view>
