@@ -1,0 +1,160 @@
+# 变更历史（Changelog）
+
+> 本文件用于**回溯与追溯**：每次功能上线/修复/文档更新都在这里记录。
+> 格式：版本 · 日期 · 类型 · 摘要 · 关键文件 · 验收方式。
+>
+> 说明：小程序通过 `miniprogram-ci` 上传开发版，版本号递增；「体验版/正式版」在微信公众平台人工设置。
+> 服务端与后台的变更单独记录在本文件后部。
+
+---
+
+## 一、当前仓库同步（2026-11-17）
+
+### 仓库维护
+
+| 项目 | 内容 |
+|---|---|
+| 新增 | `.gitignore`：忽略依赖、构建产物、大模型、密钥、本地私有配置 |
+| 整理 | 根目录历史开发文档移入 `docs/dev-guides/` |
+| 新增 | `README.md`、`docs/**` 全套工程文档 |
+| 调整 | `project.private.config.json` 从版本控制移除（保留本地文件，已被忽略） |
+| 安全 | 移除代码中硬编码的腾讯云 API 密钥（翻译模块 3 个文件），改为空占位并注明必须服务端代理；**该密钥需在腾讯云控制台轮换** |
+| 同步 | 将当前**全部**已开发但此前未入库的子包/页面/资源/依赖声明提交入库 |
+| 删除 | 根目录与 `packagetoken` 重复的旧页面/词库文件（`pages/exam`、`pages/word`、`pages/algorithm`、`pages/detail`、`data/ky_408.js`、`utils/dictionary/*` 等）—— 这些功能的实现已迁移到 `packagetoken/` 子包中，删除的是主包里的重复副本 |
+
+### 本次入库的模块（此前未提交到远端）
+
+`packageCouple`、`packageAI`、`packageAR`、`packageAssets`、`packageDetect`、`packageFinance`、
+`packageGame`、`packageGithub`、`packageJwzx`、`packageSport`、`packageWeather`、`packagepdf`、
+`packagetoken`、`bitcoin`、`chess`、`course`、`particle`、`pictionary`、`resume`、
+`pages/loginscan`、`pages/user`、`components/xr-scene`、`utils/jwzx-api.js`、`utils/learning-center.js`、
+新增静态资源（`assets/*.png`、`assets/couple-share.png`）、`package.json`、`package-lock.json`。
+
+### 编译验证
+
+- `miniprogram-ci getCompiledResult`：**通过**（260 个文件，编译结果 404 项，产物约 6.39MB）
+- 发布版本：**1.26.0**（上传开发版）
+
+---
+
+## 二、小程序版本历史
+
+### 1.26.0 · 2026-11-17 · 音频内容安全
+- 接入微信 `mediaCheckAsync`：每条语音发送后自动异步审核
+- 新增消息推送回调 `/couple-api/wx/callback`：支持明文/安全模式、JSON/XML
+- 审核结果落库：`trace_id / check_status / check_label / hidden / checked_at`
+- 违规语音自动下架，双方显示「未通过内容审核，已隐藏」；管理员后台可审计
+- 关键文件：`packageCouple/pages/listen/listen.js|wxml`、`packageCouple/utils/couple-api.js`
+- 服务端：`src/wx.js`、`src/app.js`、`src/db.js`（详见 server 文档）
+- 验收：回调自测 12/12；真实语音回调约 10 秒内状态 `pending → pass`
+
+### 1.25.0 · 2026-11-17 · 侧耳倾听（语音信箱）
+- 新增独立子包页面 `packageCouple/pages/listen`
+- 按住说话（最长 60 秒，自动停止发送）、上滑取消、录音浮层动效
+- 音频 mp3、16kHz、24kbps；服务端 ffprobe 校验真实时长
+- 语音消息播放（InnerAudioContext，静音键下也播放）、进度/波形高亮
+- 支持 2 分钟内撤回；实时推送 + 10 秒对账
+- 首页新增「侧耳倾听」入口，显示语音条数
+- 后台新增语音面板：时长、发送人、播放器、下载、审核状态
+- 关键文件：`packageCouple/pages/listen/*`、`packageCouple/utils/couple-api.js`、`app.json`、`pages/home/*`
+
+### 1.24.0 · 2026-11-17 · 纪念日日历视觉与节日
+- 新增 `packageCouple/utils/chinese-calendar.js`：1900–2100 农历转换 + 节日识别
+  - 支持：春节、元宵、清明、端午、中秋、除夕、七夕、重阳、腊八、元旦、劳动节、国庆、情人节、妇女节、青年节、儿童节、教师节、平安夜、圣诞、母亲节、父亲节
+  - 农历闰月、除夕判定、清明寿星公式、第 N 个周日计算
+- 日历日期下方以宋体小字展示节日；今天/选中态自动适配颜色
+- 月份切换滑入动画、日期按压回弹、列表错峰入场、FAB 浮动
+- 修复页面底部背景色带（统一 `page` 底色与渐变结束色）
+- 验收：25/25 节日日期用例通过（2025–2035 春节等）
+
+### 1.23.1 · 2026-11-17 · 纪念日稳定性
+- 修复纪念日页在 me 未缓存时的加载逻辑；完善空数据/冷却重试
+
+### 1.23.0 · 2026-11-17 · 我们的纪念日
+- 新增 `packageCouple/pages/anniversary`（日历 + 列表 + 倒计时）与 `anniversary-edit`
+- 支持每年重复、单次日期、下一次日期与剩余天数、增删改
+- 自绘月历：今天描边、选中渐变、可滑动翻月、点日期查看当日纪念日
+- 首页新增入口与倒计时副标题
+- 后台「纪念日」面板增加下一次日期与倒计时
+
+### 1.22.0 · 2026-11-17 · 我们的时光
+- 新增 `packageCouple/pages/timeline` 与 `timeline-edit`
+- 图文记录：文本 ≤1000 字、最多 9 图；客户端压缩后逐张上传
+- 时间线分页（10 条/页）、下拉刷新、图片大图预览、九宫格排版
+- 实时推送新记录、删除同步；服务端图片校验与文件清理
+- 后台「时光/相册」面板：缩略图 + 灯箱查看
+
+### 1.21.1 · 2026-11-17 · 聊天布局修复
+- 修复悄悄话消息区被内容撑高、输入框被顶出屏幕的问题
+- `msg-list` 使用 `flex:1 1 0; height:0; min-height:0;` 内部滚动
+- 输入区固定底部、键盘弹出自动收缩、安全区适配
+
+### 1.21.0 · 2026-11-17 · 悄悄话增强
+- 支持 2 分钟内撤回（双方同步系统提示）
+- 支持引用对方消息回复（气泡内引用块，引用内容撤回后显示「消息已撤回」）
+- 仿微信长按菜单：复制 / 引用 / 撤回；消息时间分隔、新消息提示
+- 服务端新增消息撤回与引用字段；后台展示撤回与引用状态
+- 验收：服务端 13/13 用例通过
+
+### 1.20.0 · 2026-11-17 · 小火苗形象升级
+- 小火苗改为分层材质：外焰/内焰/核心高光 + 环境光晕 + 内阴影 + 地面投影
+- 新增火星粒子、呼吸/闪烁/脉冲动效、表情细节（眼神光/腮红/心情表情）
+- 首页入口、绑定页小火苗同步统一；纯 WXSS 实现，无额外资源
+
+### 1.19.0 · 2026-11-17 · 资料与小火苗自定义
+- 首次进入强制设置微信昵称/头像（`chooseAvatar` + `type="nickname"`）
+- 头像 base64 上传、服务端校验与旧头像清理；昵称内容安全检测
+- 小火苗支持自定义名字（1–12 字），双方实时同步
+- 首页/聊天/绑定页展示双方头像；后台展示头像与名字
+- 验收：服务端 11/11 用例通过
+
+### 1.18.0 · 2026-11-17 · 分享与视觉
+- 分享邀请卡片（`onShareAppMessage` / `onShareTimeline` + 分享图）
+- 邀请链接自动绑定；绑定页/首页视觉重做（玻璃卡、柔和渐变）
+- 修复分包内 utils 引用问题，模块可用
+
+### 1.17.2 · 2026-11-16 · 小火苗首个可用版
+- 新增 `packageCouple` 子包：登录、创建/加入双人空间、小火苗主页、文字悄悄话
+- 服务端 `couple-api` 上线：登录、空间、宠物、消息、WebSocket
+- 首页新增「我们的小火苗」入口卡
+
+---
+
+## 三、服务端与后台变更（独立部署，不在本仓库代码内）
+
+| 日期 | 变更 | 说明 |
+|---|---|---|
+| 2026-11-16 | `couple-api` v1 上线 | Node/Express/SQLite/ws；systemd `couple.service`；nginx `/couple-api`、`/couple-ws`、`/couple-admin` |
+| 2026-11-16 | 独立管理面板 | `/couple-admin/` Basic Auth，只读展示用户/空间/宠物/消息/互动/打卡/时光/纪念日 |
+| 2026-11-17 | OJ 管理后台子模块 | `/admin/couple/`：`couple_admin.py` + 深色模板，侧边栏「小火苗数据」；只读读取 SQLite |
+| 2026-11-17 | 资料/头像/名字 | 新增 profile 接口、头像文件存储、宠物改名接口 |
+| 2026-11-17 | 悄悄话撤回/引用 | 消息表加 `recalled/recalled_at/reply_to`；撤回 2 分钟窗口；引用校验 |
+| 2026-11-17 | 时光相册 | `diaries` 表 + 图片上传/静态服务 + 删除清理；后台缩略图/灯箱 |
+| 2026-11-17 | 纪念日 | `anniversaries` CRUD、每年重复、2/29 收敛、下一次/倒计时计算 |
+| 2026-11-17 | 侧耳倾听 | `voice_messages` 表、语音上传/ffprobe 校验/静态 Range、撤回、后台播放器 |
+| 2026-11-17 | 音频内容安全 | `mediaCheckAsync` + 消息推送回调（安全模式签名、AES 解密、JSON/XML）、违规下架、后台审核状态 |
+| 2026-11-17 | 服务器清理 | 释放约 9GB（journal 4.1G→225M、pip 缓存 5.6G、npm 缓存、btmp 压缩），未重启业务服务，健康检查通过 |
+
+> 服务端完整配置与接口见 [modules/couple/server.md](modules/couple/server.md)，
+> 部署与运维见 [ops/deployment.md](ops/deployment.md) / [ops/runbook.md](ops/runbook.md)。
+
+---
+
+## 四、回溯方式
+
+```bash
+# 查看所有提交
+git log --oneline --decorate
+
+# 查看某版本涉及的提交/文件
+git log --oneline -- packageCouple/
+
+# 查看某个文件的完整变更历史
+git log -p -- packageCouple/pages/listen/listen.js
+
+# 对比两个版本
+git diff <old-tag-or-commit> <new-tag-or-commit> --stat
+```
+
+建议发布时打 tag（见 [modules/couple/release.md](modules/couple/release.md)），
+tag 名称与小程序版本号一致，例如 `v1.26.0`。
