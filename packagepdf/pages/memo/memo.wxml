@@ -1,0 +1,115 @@
+<view class="container">
+
+  <view class="top-dashboard">
+    <view class="storage-info">
+      <view class="storage-text">
+        <text class="title">本地胶卷余量</text>
+        <text class="percent">{{storagePercent}}%</text>
+      </view>
+      <view class="progress-bar">
+        <view class="progress-inner"
+          style="width: {{storagePercent}}%; background: {{storagePercent > 80 ? '#E74C3C' : '#27AE60'}}"></view>
+      </view>
+      <view class="storage-estimate">
+        <text>约可落笔: <text class="highlight">{{remainingChars}}</text> 字</text>
+      </view>
+    </view>
+
+    <view class="calendar-card" bindtap="openHistoryCalendar">
+      <view class="calendar-left">
+        <text class="cal-month">{{currentMonth}}月</text>
+        <text class="cal-day">{{currentDay}}</text>
+      </view>
+      <view class="calendar-right">
+        <view class="cal-desc-box">
+          <text class="cal-desc">已累计执笔</text>
+          <text class="cal-highlight"> {{checkInDays}} </text>天
+        </view>
+        <view class="btn-checkin {{hasCheckedIn ? 'checked' : ''}}" catchtap="handleCheckIn">
+          {{hasCheckedIn ? '今日已印' : '今日落印'}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="memo-list">
+    <view class="empty-state" wx:if="{{memos.length === 0}}">
+      <!-- <image class="empty-icon" src="/assets/word.png"></image> -->
+      <text class="empty-text">岁月漫长，落笔生花...</text>
+    </view>
+
+    <block wx:for="{{memos}}" wx:key="id">
+      <!-- 【修改点】点击卡片整体，查看笔记 -->
+      <view class="memo-card" bindtap="viewMemo" data-id="{{item.id}}">
+        <view class="card-color-bar" style="background-color: {{item.color}}"></view>
+        <view class="card-content">
+          <view class="card-header"><text class="memo-title">{{item.title}}</text></view>
+          <text class="memo-desc">{{item.content}}</text>
+          <view class="card-footer">
+            <text class="memo-date">{{item.date}}</text>
+            <!-- 【修改点】删除按钮使用 catchtap 阻止冒泡 -->
+            <view class="delete-btn" catchtap="deleteMemo" data-id="{{item.id}}">撕掉</view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <view class="bottom-space"></view>
+  </view>
+
+  <view class="fab-btn" bindtap="openEditor"><text class="fab-icon">羽</text></view>
+
+  <!-- 编辑器区域 -->
+  <view class="editor-page {{isInputing ? 'show' : ''}}">
+    <view class="editor-header">
+      <view class="btn-cancel" bindtap="closeEditor">收起</view>
+      <view class="editor-status">{{currentInput.length}} 字</view>
+      <view class="btn-save {{(currentTitle.length > 0 || currentInput.length > 0) ? 'active' : ''}}"
+        bindtap="saveMemo">落款</view>
+    </view>
+    <scroll-view scroll-y enhanced show-scrollbar class="editor-body">
+      <input class="editor-title-input" placeholder="在这里写下标题..." placeholder-style="color: #C1B4A4;"
+        model:value="{{currentTitle}}" />
+      <view class="divider"></view>
+      <textarea class="editor-textarea" placeholder="长河落日，岁月如歌，写点什么吧..." placeholder-style="color: #C1B4A4;"
+        model:value="{{currentInput}}" maxlength="-1" auto-focus="{{isInputing}}" show-confirm-bar="{{false}}"
+        auto-height="true"></textarea>
+      <view class="keyboard-spacer"></view>
+    </scroll-view>
+  </view>
+
+  <view class="calendar-modal {{showCalendarModal ? 'show' : ''}}">
+    <view class="cal-modal-header">
+      <text class="cal-modal-title">岁月轨迹 · {{currentYear}}</text>
+      <text class="cal-modal-close" bindtap="closeHistoryCalendar">合上</text>
+    </view>
+    <scroll-view scroll-y class="cal-modal-body">
+      <block wx:for="{{yearCalendarData}}" wx:key="month" wx:for-item="monthData">
+        <view class="month-block">
+          <view class="month-title">{{monthData.month}}月</view>
+          <view class="week-header">
+            <text>日</text><text>一</text><text>二</text><text>三</text><text>四</text><text>五</text><text>六</text>
+          </view>
+          <view class="days-grid">
+            <view class="day-cell empty" wx:for="{{monthData.emptyDays}}" wx:key="*this"></view>
+            <view class="day-cell {{dayItem.isChecked ? 'checked' : ''}} {{dayItem.isToday ? 'today' : ''}}"
+              wx:for="{{monthData.days}}" wx:key="dateStr" wx:for-item="dayItem">
+              <text class="day-num">{{dayItem.day}}</text>
+              <text class="check-mark" wx:if="{{dayItem.isChecked}}">✔</text>
+            </view>
+          </view>
+        </view>
+      </block>
+      <view class="bottom-space"></view>
+    </scroll-view>
+  </view>
+
+  <view class="quote-mask {{showQuote ? 'show' : ''}}" bindtap="closeQuote"></view>
+  <view class="quote-modal {{showQuote ? 'show' : ''}}">
+    <view class="quote-content">
+      <text class="quote-mark">"</text><text class="quote-text">{{currentQuote}}</text><text
+        class="quote-mark right">"</text>
+    </view>
+    <view class="quote-footer">— 岁月回音 —</view>
+  </view>
+
+</view>

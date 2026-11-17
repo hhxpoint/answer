@@ -1,0 +1,265 @@
+/* 统一原生系统字体，解决不协调问题 */
+page {
+  background-color: #F4F5F7;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --primary: #3B82F6;
+  --bg-dark: #1E1E1E;
+}
+
+.page-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 40rpx 30rpx 160rpx;
+  box-sizing: border-box;
+  transition: filter 0.3s ease;
+}
+
+.blur-bg {
+  filter: blur(12px);
+  transform: scale(0.98);
+}
+
+.header {
+  margin-bottom: 40rpx;
+  padding-left: 10rpx;
+}
+
+.title {
+  font-size: 56rpx;
+  font-weight: 800;
+  color: #111827;
+  letter-spacing: -1rpx;
+  display: block;
+}
+
+.subtitle {
+  font-size: 26rpx;
+  color: #6B7280;
+  margin-top: 12rpx;
+  display: block;
+}
+
+/* 编辑器框 */
+.editor-container {
+  flex: 1;
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  box-shadow: 0 10rpx 30rpx rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.editor-header {
+  height: 80rpx;
+  background: #F8FAFC;
+  border-bottom: 1px solid #E2E8F0;
+  display: flex;
+  align-items: center;
+  padding: 0 30rpx;
+}
+
+.mac-dots {
+  display: flex;
+}
+
+.dot {
+  width: 22rpx;
+  height: 22rpx;
+  border-radius: 50%;
+  margin-right: 14rpx;
+}
+
+.dot.red {
+  background-color: #FF5F56;
+}
+
+.dot.yellow {
+  background-color: #FFBD2E;
+}
+
+.dot.green {
+  background-color: #27C93F;
+}
+
+.tab-title {
+  margin-left: auto;
+  margin-right: auto;
+  transform: translateX(-20rpx);
+  font-size: 24rpx;
+  color: #94A3B8;
+  font-family: monospace;
+  font-weight: bold;
+}
+
+.code-input {
+  flex: 1;
+  width: 100%;
+  padding: 30rpx;
+  box-sizing: border-box;
+  font-size: 28rpx;
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  color: #334155;
+  line-height: 1.6;
+}
+
+/* 底部按钮 */
+.bottom-action {
+  position: fixed;
+  bottom: 60rpx;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+}
+
+.btn-generate {
+  background: var(--primary);
+  color: white;
+  font-size: 32rpx;
+  font-weight: 600;
+  height: 96rpx;
+  line-height: 96rpx;
+  border-radius: 48rpx;
+  width: 85%;
+  box-shadow: 0 16rpx 32rpx rgba(59, 130, 246, 0.3);
+  border: none;
+}
+
+.btn-hover {
+  transform: scale(0.96);
+  box-shadow: 0 8rpx 16rpx rgba(59, 130, 246, 0.2);
+}
+
+/* =========== 弹窗与截图卡片 =========== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(17, 24, 39, 0.75);
+  backdrop-filter: blur(5px);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 10vh;
+  overflow-y: auto;
+  /* 允许弹窗内上下滑动以查看长图 */
+}
+
+.modal-content {
+  width: 92%;
+  padding-bottom: 60rpx;
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-tools {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.tool-actions {
+  display: flex;
+  gap: 20rpx;
+}
+
+.tool-btn {
+  padding: 14rpx 32rpx;
+  border-radius: 40rpx;
+  font-size: 26rpx;
+  font-weight: 600;
+}
+
+.tool-btn.close {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.tool-btn.outline {
+  background: rgba(255, 255, 255, 0.9);
+  color: #111827;
+}
+
+.tool-btn.solid {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 8rpx 20rpx rgba(59, 130, 246, 0.4);
+}
+
+/* 卡片本体（被截屏的部分） */
+.card-wrapper {
+  background: linear-gradient(135deg, #FF9A9E 0%, #FECFEF 99%, #FECFEF 100%);
+  padding: 40rpx;
+  border-radius: 24rpx;
+  box-shadow: 0 40rpx 80rpx rgba(0, 0, 0, 0.3);
+}
+
+.mac-window {
+  background-color: var(--bg-dark);
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 20rpx 50rpx rgba(0, 0, 0, 0.4);
+}
+
+.mac-header {
+  height: 70rpx;
+  background: #2D2D2D;
+  display: flex;
+  align-items: center;
+  padding: 0 24rpx;
+  position: relative;
+}
+
+.mac-dot {
+  width: 22rpx;
+  height: 22rpx;
+  border-radius: 50%;
+  margin-right: 16rpx;
+}
+
+.mac-dot.red {
+  background: #FF5F56;
+}
+
+.mac-dot.yellow {
+  background: #FFBD2E;
+}
+
+.mac-dot.green {
+  background: #27C93F;
+}
+
+.mac-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #858585;
+  font-size: 24rpx;
+  font-family: monospace;
+  font-weight: bold;
+}
+
+/* 移除固定高度，内容多长图片就多长 */
+.mac-body {
+  padding: 30rpx;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(60rpx);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

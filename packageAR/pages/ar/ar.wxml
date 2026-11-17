@@ -1,0 +1,80 @@
+<!-- packageAR/pages/ar/ar.wxml -->
+<view class="page">
+  <!-- 摄像头预览（可见，显示物理世界） -->
+  <camera
+    id="ar-camera"
+    class="camera-view"
+    device-position="back"
+    flash="off"
+    resolution="medium"
+    frame-size="medium"
+    bindinitdone="onCameraReady"
+    binderror="onCameraError"
+  />
+
+  <!-- 2D Canvas 叠加层（透明，画 3D 投影 + 手势标注） -->
+  <canvas
+    id="ar-overlay"
+    class="overlay-canvas"
+    type="2d"
+  />
+
+  <!-- 触摸层（穿透到下方按钮，不处理放置） -->
+  <view class="touch-layer"></view>
+
+  <!-- HUD -->
+  <view class="hud" wx:if="{{ready}}">
+    <view class="top-bar">
+      <view class="pill">
+        <text>AR 物体: {{objCount}}</text>
+      </view>
+      <view class="pill" wx:if="{{gestureActive}}">
+        <text>{{gestureIcon}} {{gestureLabel}} {{gestureScore}}%</text>
+      </view>
+    </view>
+
+    <!-- 手势大卡片 -->
+    <view class="gesture-card" wx:if="{{gestureActive}}">
+      <text class="gc-icon">{{gestureIcon}}</text>
+      <text class="gc-label">{{gestureLabel}}</text>
+      <text class="gc-hint">挥动0.5秒=移除一个 | 强力挥动1秒=清空全部</text>
+    </view>
+
+    <!-- 提示 -->
+    <view class="toast" wx:if="{{toastText}}">
+      <text>{{toastText}}</text>
+    </view>
+
+    <!-- 右侧模型选择 -->
+    <view class="side-panel">
+      <view class="sp-item {{activeModel === 'cube' ? 'on' : ''}}" bindtap="onPick" data-m="cube">
+        <text>🟦</text><text>立方体</text>
+      </view>
+      <view class="sp-item {{activeModel === 'sphere' ? 'on' : ''}}" bindtap="onPick" data-m="sphere">
+        <text>🔴</text><text>球体</text>
+      </view>
+      <view class="sp-item {{activeModel === 'cylinder' ? 'on' : ''}}" bindtap="onPick" data-m="cylinder">
+        <text>🟢</text><text>圆柱</text>
+      </view>
+      <view class="sp-item {{activeModel === 'torus' ? 'on' : ''}}" bindtap="onPick" data-m="torus">
+        <text>🟣</text><text>圆环</text>
+      </view>
+      <view class="sp-item {{activeModel === 'cone' ? 'on' : ''}}" bindtap="onPick" data-m="cone">
+        <text>🔺</text><text>圆锥</text>
+      </view>
+    </view>
+
+    <!-- 底部按钮 -->
+    <view class="bottom-bar">
+      <view class="bbtn" bindtap="onReset"><text>🔄</text><text>重置</text></view>
+      <view class="bbtn main" bindtap="onPlace"><text>✨</text><text>放置</text></view>
+      <view class="bbtn" bindtap="onCapture"><text>📸</text><text>截图</text></view>
+    </view>
+  </view>
+
+  <!-- 加载 -->
+  <view class="loading" wx:if="{{!ready}}">
+    <view class="spinner"></view>
+    <text class="lt">{{loadingHint}}</text>
+  </view>
+</view>

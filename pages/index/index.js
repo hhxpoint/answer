@@ -2,6 +2,13 @@ const app = getApp();
 
 
 Page({
+  // 我们的小火苗
+  goCouple() {
+    wx.navigateTo({
+      url: '/packageCouple/pages/home/home'
+    })
+  },
+
   // 1. 开始答题 (因为是底部的 Tab 之一，必须用 switchTab)
   goQuiz() {
     wx.switchTab({
@@ -17,11 +24,11 @@ Page({
   },
 
   // 3. 随机知识点 (跳转到详情页，非 Tab 页面，用 navigateTo 会自动产生返回键)
-  randomQA() {
-    wx.navigateTo({
-      url: '/pages/detail/detail'
-    })
-  },
+  // randomQA() {
+  //   wx.navigateTo({
+  //     url: '/pages/detail/detail'
+  //   })
+  // },
 
   // 4. 科学计算器 (跳转到计算器，非 Tab 页面，用 navigateTo 会自动产生返回键)
   goCalc() {
@@ -31,6 +38,7 @@ Page({
   },
 
   
+
   // 新增的跳转函数
   goExam: function(e) {
     // 获取 wxml 中 data-type 传过来的值 ("408" 或 "math1")
@@ -38,14 +46,14 @@ Page({
     
     wx.navigateTo({
       // 跳转到 exam 页面，顺便带上 type 参数
-      url: `/pages/exam/exam?type=${type}`
+      url: `/packagetoken/pages/exam/exam?type=${type}`
     });
   },
 
 
   goAlgorithm() {
     wx.navigateTo({
-      url: '/pages/algorithm/algorithm',
+      url: '/packagetoken/pages/algorithm/algorithm',
     })
   },
 
@@ -67,9 +75,11 @@ Page({
     }
   },
 
+
+
   goWords: function() {
     wx.navigateTo({
-      url: '/pages/word/word'
+      url: '/packagetoken/pages/word/word'
     })
   },
 
@@ -84,6 +94,151 @@ Page({
       url: '/pages/emotion-analysis/emotion-analysis'
     })
   },
+
+
+  golab: function() {
+    wx.navigateTo({
+      url: '/packagepdf/pages/lab/lab'
+    })
+  },
+
+
+  gohash: function() {
+    wx.navigateTo({
+      url: '/packagepdf/pages/hash/hash'
+    })
+  },
+
+  gomemo: function() {
+    wx.navigateTo({
+      url: '/packagepdf/pages/memo/memo'
+    })
+  },
+
+  gopuzzle: function() {
+    wx.navigateTo({
+      url: '/packagepdf/pages/puzzle/puzzle'
+    })
+  },
+
+  goimg2pdf: function() {
+    wx.navigateTo({
+      url: '/packagepdf/pages/img2pdf/img2pdf'
+    })
+  },
+
+  goWeather: function() {
+    wx.navigateTo({
+      url: '/packageWeather/pages/weather/weather'
+    })
+  },
+
+
+  got: function() {
+    wx.navigateTo({
+      url: '/particle/pages/t'
+    })
+  },
+
+  
+  goc: function() {
+    wx.navigateTo({
+      url: '/course/pages/course/course'
+    })
+  },
+
+  // 教务在线 - 成绩查询
+  goScores: function() {
+    wx.navigateTo({
+      url: '/packageJwzx/pages/scores/scores'
+    })
+  },
+
+  // 教务在线 - 课表
+  goJwzxTimetable: function() {
+    wx.navigateTo({
+      url: '/packageJwzx/pages/timetable/timetable'
+    })
+  },
+
+
+  gob: function() {
+    wx.navigateTo({
+      url: '/bitcoin/pages/bitcoin/bitcoin'
+    })
+  },
+
+
+  gor: function() {
+    wx.navigateTo({
+      url: '/resume/pages/resume/resume'
+    })
+  },
+
+  gochess: function() {
+  const savedProfile = wx.getStorageSync('gameProfile');
+  if (savedProfile) {
+    // 有缓存，直接进入对局
+    wx.navigateTo({ url: '/chess/pages/chess/chess' });
+  } else {
+    // 没缓存，去设置身份
+    wx.navigateTo({ url: '/chess/pages/user_info/user_info' });
+  }
+
+  },
+
+  gop: function() {
+    const savedProfile = wx.getStorageSync('gameProfile');
+    if (savedProfile) {
+      wx.navigateTo({ url: '/pictionary/pages/lobby/lobby' });
+    } else {
+      wx.navigateTo({ url: '/pictionary/pages/user_info/user_info' });
+    }
+  },
+
+
+
+  goSport: function() {
+    wx.navigateTo({
+      url: '/packageSport/pages/sport/sport'
+    })
+  },
+
+  goGithub: function() {
+    wx.navigateTo({
+      url: '/packageGithub/pages/journal/journal'
+    })
+  },
+
+  goCoach: function() {
+    wx.navigateTo({
+      url: '/packageAI/pages/loader/index'
+    })
+  },
+
+  goAR: function() {
+    wx.navigateTo({
+      url: '/packageAR/pages/ar/ar'
+    })
+  },
+
+  goFinance: function() {
+    wx.navigateTo({
+      url: '/packageFinance/pages/index/index'
+    })
+  },
+
+  goDetect: function() {
+    wx.navigateTo({
+      url: '/packageDetect/pages/detect/detect'
+    })
+  },
+
+  // gocode: function() {
+  //   wx.navigateTo({
+  //     url: '/packagepdf/pages/code/code'
+  //   })
+  // },
 
 
 })

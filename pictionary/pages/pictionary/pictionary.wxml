@@ -1,0 +1,146 @@
+<view class="game-container">
+  <!-- 顶部信息栏 -->
+  <view class="top-bar">
+    <view class="round-info">第 {{round}}/{{totalRounds}} 轮</view>
+    <view class="timer {{timeLeft <= 10 ? 'timer-urgent' : ''}}">{{timeLeft}}s</view>
+    <view class="score-info">{{players.length}} 人在线</view>
+  </view>
+
+  <!-- 题目区域 -->
+  <view class="word-area">
+    <view wx:if="{{isDrawer}}" class="word-display">
+      <text class="word-label">请画：</text>
+      <text class="word-text">{{currentWord}}</text>
+    </view>
+    <view wx:elif="{{currentWord}}" class="word-hint">
+      <text class="word-label">提示：</text>
+      <text class="word-text">{{hint}}</text>
+    </view>
+    <view wx:else class="word-waiting">等待游戏开始...</view>
+  </view>
+
+  <!-- 画布区域 -->
+  <view class="canvas-wrapper">
+    <canvas
+      type="2d"
+      id="drawCanvas"
+      class="draw-canvas"
+      disable-scroll="{{true}}"
+      bindtouchstart="onTouchStart"
+      bindtouchmove="onTouchMove"
+      bindtouchend="onTouchEnd"
+    ></canvas>
+
+    <!-- 画手工具栏 -->
+    <view class="toolbar" wx:if="{{isDrawer}}">
+      <view class="color-picker">
+        <view
+          wx:for="{{colors}}"
+          wx:key="*this"
+          class="color-dot {{currentColor === item ? 'color-active' : ''}}"
+          style="background: {{item}};"
+          bindtap="onColorTap"
+          data-color="{{item}}"
+        ></view>
+      </view>
+      <view class="size-picker">
+        <text class="size-label">细</text>
+        <slider class="size-slider" min="1" max="20" step="1" value="{{currentSize}}" activeColor="#d4af37" backgroundColor="rgba(255,255,255,0.15)" block-size="18" bindchange="onSizeChange" bindchanging="onSizeChange" />
+        <text class="size-label">粗</text>
+        <text class="size-value">{{currentSize}}</text>
+      </view>
+      <view class="tool-btns">
+        <view class="tool-btn {{isEraser ? 'tool-active' : ''}}" bindtap="toggleEraser">橡皮</view>
+        <view class="tool-btn" bindtap="onUndo">撤销</view>
+        <view class="tool-btn" bindtap="onClear">清空</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 玩家横向列表 -->
+  <scroll-view scroll-x class="player-bar">
+    <block wx:for="{{players}}" wx:key="id">
+      <view wx:if="{{!item.isEmpty}}"
+        class="player-chip {{item.isDrawer ? 'chip-drawer' : ''}} {{item.correct ? 'chip-correct' : ''}}">
+        <image class="chip-avatar" src="{{item.avatar || defaultAvatar}}" mode="aspectFill"></image>
+        <view class="chip-info">
+          <text class="chip-name">{{item.nickname}}</text>
+          <text class="chip-score">{{item.score || 0}}分</text>
+        </view>
+        <text class="chip-tag" wx:if="{{item.isDrawer}}">画</text>
+        <text class="chip-tag chip-ok" wx:if="{{item.correct}}">✓</text>
+      </view>
+      <button wx:else class="player-chip chip-empty" open-type="share">
+        <view class="chip-plus">+</view>
+      </button>
+    </block>
+  </scroll-view>
+
+  <!-- 消息滚动区 -->
+  <scroll-view scroll-y class="message-area" scroll-into-view="{{scrollToMsg}}">
+    <view
+      wx:for="{{messages}}"
+      wx:key="id"
+      id="msg-{{item.id}}"
+      class="msg-item msg-{{item.type}}"
+    >
+      <text class="msg-text">{{item.text}}</text>
+    </view>
+  </scroll-view>
+
+  <!-- 底部猜词区域 -->
+  <view class="bottom-bar" wx:if="{{gameStarted}}">
+    <!-- 联机非画手：猜词输入 -->
+    <view class="guess-row" wx:if="{{!isDrawer && mode === 'online'}}">
+      <input
+        class="guess-input"
+        placeholder="输入你的猜测..."
+        value="{{guessText}}"
+        bindinput="onGuessInput"
+        bindconfirm="sendGuess"
+        confirm-type="send"
+      />
+      <view class="guess-btn" bindtap="sendGuess">发送</view>
+    </view>
+    <!-- 本地模式：下一题 -->
+    <view class="guess-row" wx:elif="{{isDrawer && mode !== 'online'}}">
+      <view class="guess-btn" style="flex:1;" bindtap="onNextLocalRound">下一题</view>
+    </view>
+  </view>
+
+  <!-- 结算界面 -->
+  <view class="result-mask" wx:if="{{showResult}}">
+    <view class="result-card">
+      <text class="result-title">游戏结束</text>
+      <view class="result-list">
+        <view wx:for="{{resultRankings}}" wx:key="nickname" class="result-item {{index === 0 ? 'result-first' : ''}}">
+          <text class="result-rank">{{index + 1}}</text>
+          <image class="result-avatar" src="{{item.avatar || defaultAvatar}}" mode="aspectFill"></image>
+          <text class="result-name">{{item.nickname}}</text>
+          <text class="result-score">{{item.score}} 分</text>
+        </view>
+      </view>
+      <view class="result-btn" bindtap="onBackToLobby">返回大厅</view>
+    </view>
+  </view>
+
+  <!-- 等待遮罩 / 模式选择 -->
+  <view class="waiting-mask" wx:if="{{!gameStarted && !showResult}}">
+    <view class="waiting-content">
+      <view wx:if="{{waiting}}">
+        <view class="radar-spinner"></view>
+        <text class="waiting-text">等待其他玩家加入...</text>
+      </view>
+      <view wx:elif="{{mode === 'online'}}" class="mode-select">
+        <text class="waiting-text">{{statusText}}</text>
+        <button class="mode-btn" bindtap="onGoLobby">返回大厅</button>
+      </view>
+      <view wx:else class="mode-select">
+        <text class="waiting-title">你画我猜</text>
+        <text class="waiting-sub">选择模式开始游戏</text>
+        <button class="mode-btn primary" bindtap="onStartLocal">本地模式</button>
+        <button class="mode-btn" bindtap="onStartOnline">联机模式</button>
+      </view>
+    </view>
+  </view>
+</view>

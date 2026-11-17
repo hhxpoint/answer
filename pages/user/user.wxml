@@ -1,0 +1,245 @@
+<view class="page">
+  <view class="page-bg"></view>
+
+  <view class="hero-card glass-card">
+    <view class="hero-top">
+      <view>
+        <text class="hero-title">个人中心</text>
+        <!-- <text class="hero-subtitle">仅需微信头像和昵称即可完成注册</text> -->
+      </view>
+      <text class="hero-badge">USER</text>
+    </view>
+
+    <view class="hero-profile" wx:if="{{isRegistered && !editing}}">
+      <image class="avatar" src="{{profile.avatarUrl}}" mode="aspectFill"></image>
+      <view class="hero-profile-main">
+        <text class="nickname">{{profile.nickName}}</text>
+        <!-- <text class="meta">已注册 · 资料已保存到本地</text> -->
+      </view>
+    </view>
+
+    <view class="hero-profile" wx:if="{{!isRegistered || editing}}">
+      <image wx:if="{{form.avatarUrl}}" class="avatar" src="{{form.avatarUrl}}" mode="aspectFill"></image>
+      <view wx:else class="avatar avatar-placeholder">头像</view>
+      <view class="hero-profile-main">
+        <text class="nickname">{{form.nickName || '未设置昵称'}}</text>
+        <text class="meta">请分别点击下方入口获取头像和昵称</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="panel glass-card" wx:if="{{isRegistered && !editing}}">
+    <view class="panel-title-row">
+      <text class="panel-title">学习概览</text>
+      <text class="panel-tip">实时联动</text>
+    </view>
+
+    <view class="metric-grid">
+      <view class="metric-card metric-wrong">
+        <text class="metric-value">{{learningSummary.wrongCount}}</text>
+        <text class="metric-label">错题总数</text>
+      </view>
+      <view class="metric-card metric-fav">
+        <text class="metric-value">{{learningSummary.favoriteCount}}</text>
+        <text class="metric-label">收藏总数</text>
+      </view>
+      <view class="metric-card metric-time">
+        <text class="metric-value">{{learningSummary.totalMinutes}}</text>
+        <text class="metric-label">学习分钟</text>
+      </view>
+    </view>
+
+    <view class="last-study-row">
+      <text class="last-study-label">最近学习</text>
+      <text class="last-study-value">{{learningSummary.lastStudyText}}</text>
+    </view>
+  </view>
+
+  <view class="panel glass-card" wx:if="{{isRegistered && !editing}}">
+    <view class="panel-title-row">
+      <text class="panel-title">学习入口</text>
+      <text class="panel-tip">快速复习</text>
+    </view>
+
+    <view class="entrance-grid">
+      <view class="entrance-card" bindtap="goModule" data-target="quiz">
+        <text class="entrance-icon">题</text>
+        <text class="entrance-title">题库训练</text>
+        <text class="entrance-sub">切题练习</text>
+      </view>
+      <view class="entrance-card" bindtap="goModule" data-target="exam">
+        <text class="entrance-icon">考</text>
+        <text class="entrance-title">考研刷题</text>
+        <text class="entrance-sub">408/数学一</text>
+      </view>
+      <view class="entrance-card" bindtap="goModule" data-target="word">
+        <text class="entrance-icon">词</text>
+        <text class="entrance-title">单词学习</text>
+        <text class="entrance-sub">高频速记</text>
+      </view>
+      <view class="entrance-card" bindtap="goModule" data-target="search">
+        <text class="entrance-icon">搜</text>
+        <text class="entrance-title">知识检索</text>
+        <text class="entrance-sub">精准定位</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="panel glass-card" wx:if="{{isRegistered && !editing}}">
+    <view class="panel-title-row">
+      <text class="panel-title">错题本</text>
+      <view class="title-actions">
+        <text class="panel-tip">{{learningSummary.wrongCount}} 条</text>
+        <button class="section-toggle" bindtap="toggleWrongCollapse">{{collapseWrong ? '展开' : '折叠'}}</button>
+      </view>
+    </view>
+
+    <view wx:if="{{!collapseWrong}}">
+      <view class="empty-tip" wx:if="{{wrongList.length === 0}}">暂时没有错题，继续保持。</view>
+
+      <block wx:for="{{wrongList}}" wx:key="key" wx:for-item="item" wx:for-index="idx">
+        <view class="record-card" wx:if="{{showAllWrong || idx < 3}}">
+          <view class="record-top">
+            <text class="record-source">{{item.sourceText}}</text>
+            <text class="record-time">{{item.updatedText}}</text>
+          </view>
+          <text class="record-title">{{item.title}}</text>
+          <text class="record-answer">你的答案：{{item.userAnswer || '未填写'}} · 正确答案：{{item.answer || '未知'}}</text>
+          <view class="record-actions">
+            <button class="small-btn" bindtap="reviewWrong" data-source="{{item.source}}">去复习</button>
+            <button class="small-btn small-btn-danger" bindtap="removeWrong" data-key="{{item.key}}">删除</button>
+          </view>
+        </view>
+      </block>
+
+      <button class="expand-btn" wx:if="{{wrongList.length > 3}}" bindtap="toggleWrongExpand">
+        {{showAllWrong ? '收起错题' : '展开全部错题'}}
+      </button>
+    </view>
+  </view>
+
+  <view class="panel glass-card" wx:if="{{isRegistered && !editing}}">
+    <view class="panel-title-row">
+      <text class="panel-title">收藏夹</text>
+      <view class="title-actions">
+        <text class="panel-tip">{{learningSummary.favoriteCount}} 条</text>
+        <button class="section-toggle" bindtap="toggleFavoriteCollapse">{{collapseFavorite ? '展开' : '折叠'}}</button>
+      </view>
+    </view>
+
+    <view wx:if="{{!collapseFavorite}}">
+      <view class="empty-tip" wx:if="{{favoriteList.length === 0}}">还没有收藏内容，去学习页点一点收藏吧。</view>
+
+      <block wx:for="{{favoriteList}}" wx:key="key" wx:for-item="item" wx:for-index="idx">
+        <view class="record-card" wx:if="{{showAllFavorite || idx < 3}}">
+          <view class="record-top">
+            <text class="record-source">{{item.sourceText}}</text>
+            <text class="record-time">{{item.updatedText}}</text>
+          </view>
+          <text class="record-title">{{item.title}}</text>
+          <text class="record-answer">{{item.subtitle}}</text>
+          <view class="record-actions">
+            <button class="small-btn" bindtap="reviewFavorite" data-source="{{item.source}}" data-route="{{item.route}}">打开</button>
+            <button class="small-btn small-btn-danger" bindtap="removeFavorite" data-key="{{item.key}}">取消</button>
+          </view>
+        </view>
+      </block>
+
+      <button class="expand-btn" wx:if="{{favoriteList.length > 3}}" bindtap="toggleFavoriteExpand">
+        {{showAllFavorite ? '收起收藏' : '展开全部收藏'}}
+      </button>
+    </view>
+  </view>
+
+  <view class="panel glass-card" wx:if="{{isRegistered && !editing}}">
+    <view class="panel-title-row">
+      <text class="panel-title">最近学习记录</text>
+      <view class="title-actions">
+        <text class="panel-tip">最近 6 条</text>
+        <button class="section-toggle" bindtap="toggleSessionCollapse">{{collapseSession ? '展开' : '折叠'}}</button>
+      </view>
+    </view>
+
+    <view wx:if="{{!collapseSession}}">
+      <view class="empty-tip" wx:if="{{studySessionList.length === 0}}">暂时没有学习时长记录。</view>
+
+      <block wx:for="{{studySessionList}}" wx:key="index" wx:for-item="item">
+        <view class="session-item">
+          <view>
+            <text class="session-module">{{item.moduleText}}</text>
+            <text class="session-note">{{item.note || '学习打卡'}}</text>
+          </view>
+          <view class="session-right">
+            <text class="session-duration">{{item.durationText}}</text>
+            <text class="session-time">{{item.atText}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <view class="panel glass-card" wx:if="{{!isRegistered || editing}}">
+    <view class="panel-title-row">
+      <text class="panel-title">注册信息</text>
+      <text class="panel-tip">必填项</text>
+    </view>
+
+    <view class="field-card">
+      <view class="field-header">
+        <text class="field-title">微信头像</text>
+        <text class="field-desc">点击按钮后选择头像</text>
+      </view>
+      <view class="field-body">
+        <button class="avatar-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+          <image wx:if="{{form.avatarUrl}}" class="avatar btn-avatar" src="{{form.avatarUrl}}" mode="aspectFill"></image>
+          <text wx:else>点击获取头像</text>
+        </button>
+      </view>
+    </view>
+
+    <view class="field-card">
+      <view class="field-header">
+        <text class="field-title">微信昵称</text>
+        <text class="field-desc">点击输入框并使用微信昵称键盘类型</text>
+      </view>
+      <view class="field-body">
+        <input
+          class="input"
+          type="nickname"
+          value="{{form.nickName}}"
+          placeholder="点击输入昵称"
+          bindinput="onNickNameInput"
+        />
+      </view>
+    </view>
+
+    <view class="action-row">
+      <button class="btn btn-primary" bindtap="submitProfile">{{isRegistered ? '保存修改' : '完成注册'}}</button>
+      <button wx:if="{{isRegistered}}" class="btn btn-ghost" bindtap="cancelEdit">取消</button>
+    </view>
+  </view>
+
+  <view class="panel glass-card" wx:if="{{isRegistered && !editing}}">
+    <view class="panel-title-row">
+      <text class="panel-title">账号管理</text>
+      <text class="panel-tip">已完成注册</text>
+    </view>
+
+    <view class="account-item">
+      <text class="account-label">用户昵称</text>
+      <text class="account-value">{{profile.nickName}}</text>
+    </view>
+
+    <view class="account-item">
+      <text class="account-label">注册时间</text>
+      <text class="account-value">{{profile.createdAtText || '未知'}}</text>
+    </view>
+
+    <view class="action-row">
+      <button class="btn btn-primary" bindtap="startEdit">修改信息</button>
+      <button class="btn btn-danger" bindtap="logout">退出登录</button>
+    </view>
+
+    <button class="danger-line-btn" bindtap="clearLearningData">清空学习记录</button>
+  </view>
+</view>

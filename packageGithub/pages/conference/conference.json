@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "顶会荟萃",
+  "navigationBarBackgroundColor": "#F4F1EA",
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": false,
+  "backgroundColor": "#F4F1EA",
+  "usingComponents": {
+    "skeleton": "/packageGithub/components/skeleton/skeleton"
+  }
+}

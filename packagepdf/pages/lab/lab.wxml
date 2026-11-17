@@ -1,0 +1,55 @@
+<!-- pages/lab/lab.wxml -->
+<view class="container">
+
+  <!-- 头部控制区 -->
+  <view class="header">
+    <view class="title">Number Butterfly</view>
+
+    <!-- iOS风格分段控制器 -->
+    <view class="segmented-control">
+      <view class="segment {{size === 3 ? 'active' : ''}}" bindtap="changeSize" data-size="3">3x3</view>
+      <view class="segment {{size === 4 ? 'active' : ''}}" bindtap="changeSize" data-size="4">4x4</view>
+    </view>
+  </view>
+
+  <!-- 信息仪表盘 -->
+  <view class="dashboard">
+    <view class="info-group">
+      <view class="info-item">
+        <text class="label">步数</text>
+        <text class="value">{{steps}}</text>
+      </view>
+      <view class="divider"></view>
+      <view class="info-item">
+        <text class="label">时间</text>
+        <text class="value time-value">{{timeStr}}</text>
+      </view>
+    </view>
+    <view class="btn-restart" bindtap="restart" hover-class="btn-hover">
+      <text class="icon">↻</text> 重开
+    </view>
+  </view>
+
+  <!-- 游戏主棋盘 -->
+  <view class="board-wrapper">
+    <!-- 托盘内阴影区域 -->
+    <view class="board-tray">
+      <view class="board" style="grid-template-columns: repeat({{size}}, 1fr);">
+        <view wx:for="{{board}}" wx:key="index" class="tile {{item === 0 ? 'empty' : 'number-tile'}}"
+          bindtap="onTapTile" data-index="{{index}}">
+          <text wx:if="{{item !== 0}}">{{item}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 胜利提示 -->
+  <view class="win-modal {{isWin ? 'show' : ''}}">
+    <view class="win-content">
+      <view class="win-title">🎉 挑战成功</view>
+      <view class="win-stats">用时 {{timeStr}} • 移动 {{steps}} 步</view>
+      <view class="btn-play-again" bindtap="restart">再来一局</view>
+    </view>
+  </view>
+
+</view>

@@ -1,0 +1,256 @@
+<view class="page">
+  <!-- 顶部导航 -->
+  <!-- <view class="header">
+    <view class="back-btn" bindtap="goBack">
+      <text class="back-icon">←</text>
+    </view>
+    <view class="header-center">
+      <text class="header-title">指数破壁</text>
+      <text class="header-sub">全球财富 · 人民币化</text>
+    </view>
+    <view class="refresh-btn" bindtap="onRefresh">
+      <text class="refresh-icon {{refreshing ? 'rotating' : ''}}">↻</text>
+    </view>
+  </view> -->
+
+  <!-- 状态栏 -->
+  <view class="status-bar">
+    <view class="status-item">
+      <text class="status-label">USD/CNY</text>
+      <text class="status-value {{isRateEstimate ? 'estimate' : ''}}">{{usdCnyRate}}</text>
+      <text class="status-tag" wx:if="{{isRateEstimate}}">预估</text>
+    </view>
+    <view class="status-divider"></view>
+    <view class="status-item">
+      <text class="status-label">更新</text>
+      <text class="status-value">{{lastUpdate}}</text>
+    </view>
+    <view class="status-divider"></view>
+    <view class="status-item">
+      <text class="status-tag {{fromCache ? 'cache' : 'live'}}">{{fromCache ? '缓存' : '实时'}}</text>
+      <text class="status-tag warn" wx:if="{{rateLimited}}">限流</text>
+    </view>
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading-wrap" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">正在穿透数据壁垒...</text>
+  </view>
+
+  <!-- 主内容 -->
+  <scroll-view scroll-y class="content" wx:else enhanced show-scrollbar="{{false}}">
+    <view class="fade-in">
+      
+      <!-- ========== 模块A：金属脉搏 ========== -->
+      <view class="module-header">
+        <view class="module-icon">🥇</view>
+        <view class="module-info">
+          <text class="module-title">金属脉搏</text>
+          <text class="module-desc">避险资产的人民币映射</text>
+        </view>
+      </view>
+
+      <view class="metal-grid">
+        <!-- 黄金卡片 -->
+        <view class="metal-card glass">
+          <view class="metal-header">
+            <text class="metal-name">今日金价</text>
+            <view class="metal-badge {{gold.isUp ? 'up' : 'down'}}">
+              <text>{{gold.trend}}</text>
+            </view>
+          </view>
+          <view class="metal-price-wrap">
+            <text class="metal-price">{{gold.priceCNY}}</text>
+            <text class="metal-unit">元/克</text>
+          </view>
+          <view class="metal-usd">
+            <text>美元价: ${{gold.priceUSD}}/盎司</text>
+          </view>
+          <view class="metal-change {{gold.isUp ? 'up' : 'down'}}">
+            <text class="change-arrow">{{gold.isUp ? '↑' : '↓'}}</text>
+            <text class="change-value">{{gold.changePercent}}%</text>
+          </view>
+          <view class="metal-trend-desc">
+            <text>💡 {{gold.trendDesc}}</text>
+          </view>
+        </view>
+
+        <!-- 白银卡片 -->
+        <view class="metal-card glass">
+          <view class="metal-header">
+            <text class="metal-name">今日银价</text>
+            <view class="metal-badge {{silver.isUp ? 'up' : 'down'}}">
+              <text>{{silver.trend}}</text>
+            </view>
+          </view>
+          <view class="metal-price-wrap">
+            <text class="metal-price">{{silver.priceCNY}}</text>
+            <text class="metal-unit">元/克</text>
+          </view>
+          <view class="metal-usd">
+            <text>美元价: ${{silver.priceUSD}}/盎司</text>
+          </view>
+          <view class="metal-change {{silver.isUp ? 'up' : 'down'}}">
+            <text class="change-arrow">{{silver.isUp ? '↑' : '↓'}}</text>
+            <text class="change-value">{{silver.changePercent}}%</text>
+          </view>
+          <view class="metal-trend-desc">
+            <text>💡 {{silver.trendDesc}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- ========== 模块B：通胀护盾 ========== -->
+      <view class="module-header">
+        <view class="module-icon">🛡️</view>
+        <view class="module-info">
+          <text class="module-title">通胀护盾</text>
+          <text class="module-desc">人民币购买力监控</text>
+        </view>
+      </view>
+
+      <view class="inflation-card glass">
+        <view class="inflation-main">
+          <text class="inflation-label">人民币购买力稳定度</text>
+          <view class="stability-bar">
+            <view class="stability-fill" style="width: {{inflation.purchasingPower}}%; background: {{inflation.stabilityColor}}"></view>
+          </view>
+          <view class="stability-info">
+            <text class="stability-value" style="color: {{inflation.stabilityColor}}">{{inflation.stabilityLevel}}</text>
+            <text class="stability-percent">{{inflation.purchasingPower}}%</text>
+          </view>
+        </view>
+        
+        <view class="inflation-detail">
+          <view class="inflation-item">
+            <text class="inflation-item-label">当前年化通胀</text>
+            <text class="inflation-item-value">{{inflation.rate}}%</text>
+          </view>
+          <view class="inflation-note">
+            <text>📊 当前年化通胀为 {{inflation.rate}}%，若无理财动作，每 10 万元将在一年后相当于现在的 {{inflation.tenWanRemaining}} 万元</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- ========== 模块C：美股雷达 ========== -->
+      <view class="module-header">
+        <view class="module-icon">📈</view>
+        <view class="module-info">
+          <text class="module-title">AI科技股雷达</text>
+          <text class="module-desc">前沿AI/科技公司人民币表现</text>
+        </view>
+      </view>
+
+      <!-- 涨幅榜 -->
+      <view class="stock-section">
+        <text class="stock-section-title">🔥 涨幅榜</text>
+        <view class="stock-list">
+          <view class="stock-item glass" wx:for="{{stocks.gainers}}" wx:key="ticker">
+            <view class="stock-info">
+              <text class="stock-name">{{item.nameCNY}} ({{item.ticker}})</text>
+              <view class="stock-sector">{{item.sector}}</view>
+            </view>
+            <view class="stock-price-area">
+              <text class="stock-price-cny">¥{{item.priceCNY}}</text>
+              <text class="stock-price-usd">${{item.price}}</text>
+            </view>
+            <view class="stock-change up">
+              <text>{{item.changePercent}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 跌幅榜 -->
+      <view class="stock-section">
+        <text class="stock-section-title">📉 跌幅榜</text>
+        <view class="stock-list">
+          <view class="stock-item glass" wx:for="{{stocks.losers}}" wx:key="ticker">
+            <view class="stock-info">
+              <text class="stock-name">{{item.nameCNY}} ({{item.ticker}})</text>
+              <view class="stock-sector">{{item.sector}}</view>
+            </view>
+            <view class="stock-price-area">
+              <text class="stock-price-cny">¥{{item.priceCNY}}</text>
+              <text class="stock-price-usd">${{item.price}}</text>
+            </view>
+            <view class="stock-change down">
+              <text>{{item.changePercent}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- ========== 财富体检工具 ========== -->
+      <view class="wealth-check-card glass" bindtap="showWealthCheck">
+        <view class="wealth-icon">💰</view>
+        <view class="wealth-info">
+          <text class="wealth-title">财富体检工具</text>
+          <text class="wealth-desc">  输入您的资产，获取专业建议</text>
+        </view>
+        <text class="wealth-arrow">→</text>
+      </view>
+
+      <!-- 底部信息 -->
+      <view class="footer">
+        <text class="footer-text">数据来源：Alpha Vantage</text>
+        <text class="footer-text">全部数据已转换为人民币基准</text>
+        <text class="footer-disclaimer">⚠️ 本页面数据仅供参考，不构成任何投资建议</text>
+        <text class="footer-disclaimer">投资有风险，入市需谨慎</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 财富体检弹窗 -->
+  <view class="wealth-modal" wx:if="{{wealthCheck.show}}">
+    <view class="wealth-modal-mask" bindtap="hideWealthCheck"></view>
+    <view class="wealth-modal-content">
+      <view class="wealth-modal-header">
+        <text class="wealth-modal-title">💰 财富体检</text>
+        <text class="wealth-modal-close" bindtap="hideWealthCheck">×</text>
+      </view>
+      
+      <view class="wealth-form" wx:if="{{!wealthCheck.report}}">
+        <text class="wealth-form-label">请输入您的人民币现金资产</text>
+        <view class="wealth-input-wrap">
+          <text class="wealth-input-prefix">¥</text>
+          <input class="wealth-input" type="digit" placeholder="请输入金额" bindinput="onAmountInput" value="{{wealthCheck.amount}}"/>
+        </view>
+        <button class="wealth-submit" bindtap="generateReport">生成体检报告</button>
+      </view>
+      
+      <view class="wealth-report" wx:else>
+        <view class="report-header">
+          <text class="report-title">体检报告</text>
+          <text class="report-amount">资产总额: ¥{{wealthCheck.report.amount}}</text>
+        </view>
+        
+        <view class="report-section">
+          <text class="report-section-title">📊 购买力损耗预测</text>
+          <view class="report-loss">
+            <view class="report-loss-item">
+              <text class="report-loss-label">年化通胀率</text>
+              <text class="report-loss-value">{{wealthCheck.report.lossPercent}}%</text>
+            </view>
+            <view class="report-loss-item">
+              <text class="report-loss-label">预计损失金额</text>
+              <text class="report-loss-value loss">-¥{{wealthCheck.report.lossAmount}}</text>
+            </view>
+            <view class="report-loss-item">
+              <text class="report-loss-label">一年后实际价值</text>
+              <text class="report-loss-value remaining">¥{{wealthCheck.report.remaining}}</text>
+            </view>
+          </view>
+        </view>
+        
+        <view class="report-section">
+          <text class="report-section-title">💡 配置建议</text>
+          <text class="report-advice">{{wealthCheck.report.advice}}</text>
+        </view>
+        
+        <button class="wealth-close-btn" bindtap="closeReport">关闭报告</button>
+      </view>
+    </view>
+  </view>
+</view>

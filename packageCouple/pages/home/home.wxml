@@ -1,0 +1,148 @@
+<view class="page">
+  <view class="deco deco-a"></view>
+  <view class="deco deco-b"></view>
+
+  <view wx:if="{{!ready}}" class="state">小火苗正在赶来…</view>
+  <view wx:elif="{{errorText}}" class="state err">{{errorText}}</view>
+
+  <block wx:else>
+    <view class="hero">
+      <view class="avatar-pair">
+        <image wx:if="{{myAvatar}}" class="avatar-sm me" src="{{myAvatar}}" mode="aspectFill"></image>
+        <view wx:else class="avatar-sm me">我</view>
+        <image wx:if="{{partnerAvatar}}" class="avatar-sm ta" src="{{partnerAvatar}}" mode="aspectFill"></image>
+        <view wx:else class="avatar-sm ta">{{partnerInitial}}</view>
+      </view>
+      <view class="hero-title">我们的小火苗</view>
+      <view class="hero-sub">在一起第 {{days}} 天 · 连续守护 {{pet.streak}} 天</view>
+    </view>
+
+    <view class="pet-card">
+      <view class="pet-glow"></view>
+      <view class="float-exp" wx:if="{{toast}}">{{toast}}</view>
+
+      <view class="pet-name" bindtap="renamePet">
+        <text class="pet-name-text">{{petName}}</text>
+        <text class="pet-name-edit">✎</text>
+      </view>
+      <view class="pet-name-tip">点名字可以给小火苗改名</view>
+
+      <view class="pet">
+        <view class="pet-ambient"></view>
+        <view class="flame mood-{{pet.mood}}">
+          <view class="flame-aura"></view>
+          <view class="flame-body">
+            <view class="flame-mood"></view>
+            <view class="flame-shine"></view>
+            <view class="flame-inner"></view>
+            <view class="flame-core"></view>
+            <view class="face">
+              <view class="eye left"><view class="eye-shine"></view></view>
+              <view class="eye right"><view class="eye-shine"></view></view>
+              <view class="blush left"></view>
+              <view class="blush right"></view>
+              <view class="mouth"></view>
+            </view>
+            <view class="spark s1"></view>
+            <view class="spark s2"></view>
+            <view class="spark s3"></view>
+          </view>
+        </view>
+        <view class="pet-shadow"></view>
+      </view>
+
+      <view class="level-pill">Lv.{{pet.level}} · {{pet.mood_text}}</view>
+
+      <view class="bar"><view class="bar-fill" style="width: {{pet.percent}}%"></view></view>
+      <view class="bar-text">经验 {{pet.exp}} / {{pet.next_exp}}</view>
+
+      <view class="chips">
+        <view class="chip">
+          <view class="chip-num">{{pet.hunger}}</view>
+          <view class="chip-label">饱腹</view>
+        </view>
+        <view class="chip">
+          <view class="chip-num">{{pet.streak}}</view>
+          <view class="chip-label">连续守护</view>
+        </view>
+        <view class="chip">
+          <view class="chip-num">{{days}}</view>
+          <view class="chip-label">在一起</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="actions">
+      <view
+        class="action {{item.used >= item.max ? 'done' : ''}}"
+        wx:for="{{actions}}"
+        wx:key="type"
+        data-type="{{item.type}}"
+        bindtap="onInteract"
+      >
+        <view class="action-emoji">{{item.emoji}}</view>
+        <view class="action-name">{{item.name}}</view>
+        <view class="action-count">{{item.used}}/{{item.max}}</view>
+      </view>
+    </view>
+
+    <view class="partner-bar">
+      <image wx:if="{{partnerAvatar}}" class="avatar avatar-img" src="{{partnerAvatar}}" mode="aspectFill"></image>
+      <view wx:else class="avatar">{{partnerInitial}}</view>
+      <view class="partner-text">
+        <view class="partner-name">{{partnerName}}</view>
+        <view class="partner-sub">{{pet.partner_checked_in ? '今天已经打过卡啦 ☀️' : '今天还没打卡，去戳一下 TA'}}</view>
+      </view>
+      <view class="partner-tag {{pet.partner_checked_in ? 'ok' : ''}}">{{pet.partner_checked_in ? '已打卡' : '未打卡'}}</view>
+    </view>
+
+    <view class="invite-card" wx:if="{{alone}}">
+      <view class="invite-head">
+        <view class="invite-title">把邀请卡发给 TA</view>
+        <view class="invite-sub">对方点一下就能和你一起养</view>
+      </view>
+      <view class="invite-code" bindtap="copyCode">{{inviteCode}}</view>
+      <view class="invite-actions">
+        <button class="share-btn" open-type="share">分享邀请卡给 TA</button>
+        <view class="copy-btn" bindtap="copyCode">复制邀请码</view>
+      </view>
+    </view>
+
+    <view class="entries">
+      <view class="entry" bindtap="goChat">
+        <view class="entry-emoji">💌</view>
+        <view class="entry-text">
+          <view class="entry-title">悄悄话</view>
+          <view class="entry-sub">只属于我们俩的小纸条</view>
+        </view>
+        <view class="entry-arrow">›</view>
+      </view>
+      <view class="entry" bindtap="goTimeline">
+        <view class="entry-emoji">📷</view>
+        <view class="entry-text">
+          <view class="entry-title">我们的时光</view>
+          <view class="entry-sub">{{diaryCount ? diaryCount + ' 条记录 · 照片与日常' : '照片与日常，记录我们的小事'}}</view>
+        </view>
+        <view class="entry-arrow">›</view>
+      </view>
+      <view class="entry" bindtap="goAnniversary">
+        <view class="entry-emoji">💝</view>
+        <view class="entry-text">
+          <view class="entry-title">我们的纪念日</view>
+          <view class="entry-sub">{{nextAnnivText}}</view>
+        </view>
+        <view class="entry-arrow">›</view>
+      </view>
+      <view class="entry" bindtap="goListen">
+        <view class="entry-emoji">🎧</view>
+        <view class="entry-text">
+          <view class="entry-title">侧耳倾听</view>
+          <view class="entry-sub">{{voiceCount ? voiceCount + ' 条语音 · 只属于两个人的语音信箱' : '只属于两个人的语音信箱'}}</view>
+        </view>
+        <view class="entry-arrow">›</view>
+      </view>
+    </view>
+
+    <view class="footer">每天来看看小火苗，它就会长得更好看一点</view>
+  </block>
+</view>

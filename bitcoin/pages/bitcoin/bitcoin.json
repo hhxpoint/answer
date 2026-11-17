@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "Blockchain Explorer",
+  "navigationBarBackgroundColor": "#0d1117",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#0d1117",
+  "backgroundTextStyle": "dark",
+  "usingComponents": {}
+}

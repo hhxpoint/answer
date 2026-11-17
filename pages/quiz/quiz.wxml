@@ -1,29 +1,66 @@
-<view class="quiz-container">
-  <!-- 1. 顶部进度区域 -->
-  <view class="progress-section">
-    <view class="progress-text">
-      <text class="current-num">Q {{currentIndex + 1}}</text>
-      <text class="total-num">/ {{totalCount}}</text>
-    </view>
-    <view class="progress-bar">
-      <view class="progress-inner" style="width: {{(currentIndex + 1) / totalCount * 100}}%"></view>
-    </view>
-  </view>
+<view class="quiz-page">
+  <view class="bg-orb orb-left"></view>
+  <view class="bg-orb orb-right"></view>
 
-  <!-- 2. 题目卡片区 -->
-  <view class="card-wrapper">
-    <!-- 仅传入问题，答案根据 showAnswer 决定是否显示 -->
-    <qa-card title="{{currentQA.question}}" content="{{showAnswer ? currentQA.answer : '点击下方按钮查看解析...'}}"></qa-card>
-  </view>
+  <view class="quiz-container">
+    <view class="hero-card">
+      <view class="hero-row">
+        <view>
+          <text class="hero-index">Q {{currentIndex + 1}}</text>
+          <text class="hero-total">/ {{totalCount}}</text>
+        </view>
+        <view class="mode-badge">{{mode === 'sequence' ? '顺序模式' : '随机模式'}}</view>
+      </view>
 
-  <!-- 3. 底部悬浮控制台 -->
-  <view class="control-panel">
-    <button class="btn-main {{showAnswer ? 'btn-disabled' : ''}}" bindtap="toggleAnswer">
-      <text>显示答案</text>
-    </button>
-    <button class="btn-sub" bindtap="nextQuestion">
-      <text>下一题</text>
-      <text class="arrow"> →</text>
-    </button>
+      <view class="progress-track">
+        <view class="progress-fill" style="width: {{progressPercent}}%;"></view>
+      </view>
+
+      <view class="hero-meta">
+        <text>进度 {{progressPercent}}%</text>
+        <text>已看解析 {{viewedAnswerCount}} 次</text>
+      </view>
+    </view>
+
+    <view class="seek-card">
+      <view class="seek-head">
+        <text class="seek-label">快速跳题</text>
+        <text class="seek-current">第 {{currentIndex + 1}} 题</text>
+      </view>
+      <slider
+        min="1"
+        max="{{totalCount || 1}}"
+        value="{{currentIndex + 1}}"
+        show-value="false"
+        activeColor="#7f9892"
+        backgroundColor="#d7dcd9"
+        block-color="#7f9892"
+        block-size="18"
+        bindchange="onProgressSeek"
+      />
+    </view>
+
+    <view class="card-wrapper">
+      <qa-card title="{{currentQA.question}}" content="{{showAnswer ? currentQA.answer : '点击下方按钮查看解析...'}}"></qa-card>
+    </view>
+
+    <view class="action-dock">
+      <view class="main-actions">
+        <button class="action-btn action-primary {{showAnswer ? 'btn-disabled' : ''}}" bindtap="toggleAnswer">显示答案</button>
+        <button class="action-btn action-secondary" bindtap="nextQuestion">下一题</button>
+      </view>
+
+      <view class="assist-actions">
+        <button class="mini-btn" bindtap="prevQuestion">上一题</button>
+        <button class="mini-btn {{autoNext ? 'mini-btn-active' : ''}}" bindtap="toggleAutoNext">{{autoNext ? '自动下一题:开' : '自动下一题:关'}}</button>
+        <button class="mini-btn" bindtap="toggleMode">切换到{{mode === 'sequence' ? '随机' : '顺序'}}</button>
+        <button class="mini-btn" bindtap="jumpRandom">随机跳题</button>
+      </view>
+
+      <view class="record-actions">
+        <button class="record-btn {{isWrongAdded ? 'record-btn-active' : ''}}" bindtap="toggleWrong">{{isWrongAdded ? '移出错题本' : '加入错题本'}}</button>
+        <button class="record-btn {{isFavorite ? 'record-btn-active' : ''}}" bindtap="toggleFavorite">{{isFavorite ? '取消收藏' : '收藏题目'}}</button>
+      </view>
+    </view>
   </view>
 </view>

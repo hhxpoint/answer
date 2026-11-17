@@ -1,0 +1,166 @@
+<view class="page-bg">
+<!-- Header -->
+<view class="header">
+  <view class="header-glow"></view>
+  <view class="header-content">
+    <view class="header-logo"><text class="logo-icon">⬡</text><text class="logo-text">BLOCKCHAIN</text></view>
+    <text class="header-sub">Multi-Chain Explorer</text>
+    <text class="header-time" wx:if="{{refreshTime}}">{{refreshTime}} 更新</text>
+  </view>
+  <view class="header-deco"><view class="dc dc1"></view><view class="dc dc2"></view><view class="dc dc3"></view></view>
+</view>
+
+<!-- Tabs -->
+<view class="tab-bar">
+  <view class="tab {{currentTab===0?'on':''}}" bindtap="switchTab" data-idx="0"><text>概览</text><view class="tab-line" wx:if="{{currentTab===0}}"></view></view>
+  <view class="tab {{currentTab===1?'on':''}}" bindtap="switchTab" data-idx="1"><text>浏览器</text><view class="tab-line" wx:if="{{currentTab===1}}"></view></view>
+  <view class="tab {{currentTab===2?'on':''}}" bindtap="switchTab" data-idx="2"><text>快讯</text><view class="tab-line" wx:if="{{currentTab===2}}"></view></view>
+</view>
+
+<!-- Tab 0: Overview -->
+<view class="tab-content" wx:if="{{currentTab===0}}">
+  <!-- Network Status -->
+  <view class="net-status">
+    <view class="net-dot {{loading?'':'error'}}"></view>
+    <text class="net-text">{{loading ? '同步数据中...' : '已连接 ' + chainList.length + ' 条链'}}</text>
+  </view>
+
+  <!-- Loading -->
+  <view class="sk-grid" wx:if="{{loading}}">
+    <view class="sk-card" wx:for="{{[1,2,3,4,5,6]}}" wx:key="*this">
+      <view class="sk-row"><view class="sk-dot"></view><view class="sk-l lg"></view></view>
+      <view class="sk-row"><view class="sk-l md"></view></view>
+      <view class="sk-row"><view class="sk-l sm"></view><view class="sk-l sm"></view><view class="sk-l sm"></view></view>
+    </view>
+  </view>
+
+  <block wx:elif="{{chainList.length>0}}">
+    <!-- Stats Summary -->
+    <view class="stats-summary">
+      <view class="stat-pill">
+        <text class="stat-val">{{totalMarketCap}}</text>
+        <text class="stat-label">总市值</text>
+      </view>
+      <view class="stat-pill">
+        <text class="stat-val">{{totalTx24h}}</text>
+        <text class="stat-label">24h交易</text>
+      </view>
+      <view class="stat-pill">
+        <text class="stat-val">{{chainList.length}}</text>
+        <text class="stat-label">链数量</text>
+      </view>
+    </view>
+
+    <!-- Sort Bar -->
+    <view class="sort-bar">
+      <view class="sort-btn {{sortBy==='default'?'on':''}}" bindtap="sortByField" data-field="default"><text>默认</text></view>
+      <view class="sort-btn {{sortBy==='price'?'on':''}}" bindtap="sortByField" data-field="price"><text>价格</text></view>
+      <view class="sort-btn {{sortBy==='cap'?'on':''}}" bindtap="sortByField" data-field="cap"><text>市值</text></view>
+      <view class="sort-btn {{sortBy==='change'?'on':''}}" bindtap="sortByField" data-field="change"><text>涨幅</text></view>
+      <view class="sort-btn {{sortBy==='tx'?'on':''}}" bindtap="sortByField" data-field="tx"><text>交易量</text></view>
+    </view>
+
+    <view class="chain-grid">
+      <view class="c-card" wx:for="{{displayList}}" wx:key="key" bindtap="goToExplorer" data-idx="{{item._origIdx}}">
+        <view class="c-accent" style="background:{{item.color}}"></view>
+        <view class="c-top">
+          <view class="c-dot" style="background:{{item.color}};box-shadow:0 0 12rpx {{item.color}}60"></view>
+          <text class="c-name">{{item.name}}</text>
+          <text class="c-sym" style="color:{{item.color}}">{{item.symbol}}</text>
+        </view>
+        <text class="c-price" wx:if="{{item.priceDisplay!=='--'}}">{{item.priceDisplay}}</text>
+        <text class="c-change {{item.changePercent>=0?'up':'down'}}" wx:if="{{item.changeDisplay}}">{{item.changePercent>=0?'+':''}}{{item.changeDisplay}}</text>
+        <view class="c-metrics">
+          <view class="m"><text class="m-l">市值</text><text class="m-v">{{item.marketCapDisplay}}</text></view>
+          <view class="m"><text class="m-l">区块</text><text class="m-v">{{item.blocksDisplay}}</text></view>
+          <view class="m"><text class="m-l">24h交易</text><text class="m-v">{{item.tx24hDisplay}}</text></view>
+        </view>
+        <view class="c-tags">
+          <text class="c-tag">难度 {{item.difficultyDisplay}}</text>
+          <text class="c-tag" wx:if="{{item.volume24hDisplay!='$--'}}">量 {{item.volume24hDisplay}}</text>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <view class="empty" wx:else><text class="empty-i">📡</text><text class="empty-t">暂无数据，下拉刷新重试</text></view>
+  <text class="credit">Powered by Blockchair API</text>
+</view>
+
+<!-- Tab 1: Explorer -->
+<view class="tab-content" wx:if="{{currentTab===1}}">
+  <picker mode="selector" range="{{chainNames}}" value="{{chainIndex}}" bindchange="onChainPickerChange">
+    <view class="chain-picker">
+      <view class="cp-dot" style="background:{{chainList[chainIndex].color||'#F7931A'}}"></view>
+      <text>{{chainNames[chainIndex]}}</text><text class="cp-arrow">▾</text>
+    </view>
+  </picker>
+
+  <!-- Search History -->
+  <view class="search-history" wx:if="{{searchHistory.length>0 && !explorerResult && !explorerLoading}}">
+    <view class="sh-title"><text>最近搜索</text></view>
+    <view class="sh-list">
+      <view class="sh-item" wx:for="{{searchHistory}}" wx:key="*this" bindtap="useHistory" data-val="{{item}}"><text>{{item}}</text></view>
+    </view>
+  </view>
+
+  <view class="search-box">
+    <input class="s-input" placeholder="输入区块高度/哈希/交易ID" value="{{searchInput}}" bindinput="onSearchInput" bindconfirm="doSearch" placeholder-style="color:#484f58" />
+    <view class="s-btn" bindtap="doSearch"><text class="s-btn-text">搜索</text></view>
+  </view>
+
+  <!-- Loading -->
+  <view class="ex-loading" wx:if="{{explorerLoading}}">
+    <view class="spinner"></view><text class="spin-text">查询中...</text>
+  </view>
+
+  <!-- Error -->
+  <view class="ex-error" wx:if="{{explorerError}}">
+    <text class="ex-error-i">⚠️</text><text class="ex-error-t">{{explorerError}}</text>
+    <view class="ex-retry" bindtap="clearExplorer"><text>清除</text></view>
+  </view>
+
+  <!-- Result -->
+  <view class="ex-result" wx:if="{{explorerResult}}">
+    <view class="res-header">
+      <text class="res-type">{{resultType === 'block' ? '📦 Block' : '🔗 Transaction'}}</text>
+      <text class="res-chain" style="color:{{chainList[chainIndex].color}}">{{chainNames[chainIndex]}}</text>
+    </view>
+
+    <view class="res-fields">
+      <view class="f-row" wx:for="{{explorerFields}}" wx:key="key">
+        <text class="f-key">{{item.key}}</text>
+        <text class="f-val" selectable="true" bindlongpress="copyText" data-text="{{item.value}}">{{item.value}}</text>
+      </view>
+    </view>
+
+    <view class="raw-toggle" bindtap="toggleRaw">
+      <text>{{showRaw ? '隐藏 Raw' : '显示 Raw JSON'}}</text>
+    </view>
+    <view class="raw-block" wx:if="{{showRaw}}" selectable="true">
+      <text class="raw-text">{{explorerResult}}</text>
+    </view>
+  </view>
+</view>
+
+<!-- Tab 2: News -->
+<view class="tab-content" wx:if="{{currentTab===2}}">
+  <view class="news-loading" wx:if="{{newsLoading}}"><view class="spinner"></view><text class="spin-text">加载新闻...</text></view>
+  <view class="news-error" wx:if="{{newsError}}"><text>{{newsError}}</text><view class="ex-retry" bindtap="loadNews"><text>重试</text></view></view>
+
+  <view class="news-list" wx:if="{{newsList.length>0}}">
+    <view class="n-card" wx:for="{{newsList}}" wx:key="hash" bindtap="openNews" data-index="{{index}}">
+      <view class="n-source">
+        <text class="n-src">{{item.source}}</text>
+        <text class="n-time">{{item.timeShort}}</text>
+      </view>
+      <text class="n-title">{{item.title}}</text>
+      <text class="n-desc">{{item.description}}</text>
+      <view class="n-tags">
+        <text class="n-tag" wx:for="{{item.tagsArr}}" wx:for-item="tag" wx:key="*this">#{{tag}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+</view>

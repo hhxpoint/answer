@@ -1,0 +1,253 @@
+<view class="page" style="background: {{bgGradient}}">
+  <view class="status-bar"></view>
+  
+  <!-- 顶部导航 -->
+  <view class="header">
+    <view class="back-btn" bindtap="goBack">
+      <text class="back-icon">←</text>
+    </view>
+    <view class="city-info" bindtap="showSearch">
+      <text class="city-name">{{cityName}}</text>
+      <text class="city-arrow">▼</text>
+    </view>
+    <view class="refresh-btn" bindtap="refreshData">
+      <text class="refresh-icon">↻</text>
+    </view>
+  </view>
+
+  <!-- 城市搜索面板 -->
+  <view class="search-panel" wx:if="{{showSearchPanel}}">
+    <view class="search-mask" bindtap="hideSearch"></view>
+    <view class="search-box">
+      <input class="search-input" placeholder="搜索城市名称" bindinput="onSearchInput" value="{{searchKeyword}}"/>
+      <view class="search-results" wx:if="{{searchResults.length > 0}}">
+        <view class="search-item" wx:for="{{searchResults}}" wx:key="id" bindtap="selectCity" data-location="{{item.lon}},{{item.lat}}" data-name="{{item.name}}">
+          <text class="search-item-name">{{item.name}}</text>
+          <text class="search-item-adm">{{item.adm1}} {{item.adm2}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading-wrap" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">获取天气数据中...</text>
+  </view>
+
+  <!-- 主内容区 -->
+  <scroll-view scroll-y class="content" wx:else enhanced show-scrollbar="{{false}}">
+    <view class="fade-in">
+      <!-- 灾害预警 -->
+      <view class="warning-bar" wx:if="{{warningList.length > 0}}">
+        <text class="warning-icon">⚠️</text>
+        <view class="warning-content">
+          <text class="warning-title">{{warningList[0].typeName || '预警'}}</text>
+          <text class="warning-text">{{warningList[0].title}}</text>
+        </view>
+      </view>
+
+      <!-- 实时天气卡片 -->
+      <view class="now-card glass">
+        <view class="now-main">
+          <view class="now-temp-wrap">
+            <text class="now-temp">{{weatherNow.temp}}</text>
+            <text class="now-unit">°C</text>
+          </view>
+          <view class="now-icon">{{weatherIcon}}</view>
+        </view>
+        <view class="now-info">
+          <text class="now-text">{{weatherNow.text}}</text>
+          <text class="now-divider">|</text>
+          <text class="now-feels">体感 {{weatherNow.feelsLike}}°C</text>
+        </view>
+        <view class="now-detail">
+          <view class="now-detail-item">
+            <text class="detail-icon">💧</text>
+            <view class="detail-info">
+              <text class="detail-label">湿度</text>
+              <text class="detail-value">{{weatherNow.humidity}}%</text>
+            </view>
+          </view>
+          <view class="now-detail-item">
+            <text class="detail-icon">🌬️</text>
+            <view class="detail-info">
+              <text class="detail-label">{{windDir}}</text>
+              <text class="detail-value">{{weatherNow.windSpeed}}km/h</text>
+            </view>
+          </view>
+          <view class="now-detail-item">
+            <text class="detail-icon">📊</text>
+            <view class="detail-info">
+              <text class="detail-label">气压</text>
+              <text class="detail-value">{{weatherNow.pressure}}hPa</text>
+            </view>
+          </view>
+          <view class="now-detail-item">
+            <text class="detail-icon">👁️</text>
+            <view class="detail-info">
+              <text class="detail-label">能见度</text>
+              <text class="detail-value">{{weatherNow.vis}}km</text>
+            </view>
+          </view>
+        </view>
+        <view class="update-time" wx:if="{{lastUpdate}}">
+          <text>更新于 {{lastUpdate}}</text>
+        </view>
+      </view>
+
+      <!-- 24小时预报 -->
+      <view class="section-title">
+        <text class="section-icon">🕐</text>
+        <text>逐小时预报</text>
+      </view>
+      <scroll-view scroll-x class="hourly-scroll" enhanced show-scrollbar="{{false}}">
+        <view class="hourly-list">
+          <view class="hourly-item glass" wx:for="{{hourlyForecast}}" wx:key="time">
+            <text class="hourly-time">{{item.time}}</text>
+            <text class="hourly-icon">{{item.icon}}</text>
+            <text class="hourly-temp">{{item.temp}}°</text>
+            <text class="hourly-text" wx:if="{{item.text}}">{{item.text}}</text>
+          </view>
+        </view>
+      </scroll-view>
+
+      <!-- 7天预报 -->
+      <view class="section-title">
+        <text class="section-icon">📅</text>
+        <text>7日天气预报</text>
+      </view>
+      <view class="daily-card glass">
+        <view class="daily-item" wx:for="{{dailyForecast}}" wx:key="fxDate">
+          <view class="daily-date-wrap">
+            <text class="daily-date">{{item.date}}</text>
+            <text class="daily-text">{{item.textDay}}</text>
+          </view>
+          <view class="daily-icons">
+            <text class="daily-icon">{{item.iconDay}}</text>
+            <text class="daily-icon-night">{{item.iconNight}}</text>
+          </view>
+          <view class="daily-temp-bar">
+            <text class="daily-temp-min">{{item.tempMin}}°</text>
+            <view class="temp-bar">
+              <view class="temp-bar-fill" style="left: {{item.tempLeft}}%; width: {{item.tempWidth}}%"></view>
+            </view>
+            <text class="daily-temp-max">{{item.tempMax}}°</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 空气质量 -->
+      <view class="section-title">
+        <text class="section-icon">🌬️</text>
+        <text>空气质量</text>
+      </view>
+      <view class="aqi-card glass">
+        <view class="aqi-main">
+          <view class="aqi-circle" style="background: {{aqiColor}}">
+            <text class="aqi-value">{{airQuality.aqiDisplay || airQuality.aqi || '--'}}</text>
+            <text class="aqi-label-small">QAQI</text>
+          </view>
+          <view class="aqi-info">
+            <text class="aqi-level">{{airQuality.category || '暂无数据'}}</text>
+            <text class="aqi-primary" wx:if="{{airQuality.primary}}">首要污染物: {{airQuality.primary}}</text>
+            <view class="aqi-us-epa" wx:if="{{airQuality.usEpa}}">
+              <text class="aqi-us-label">US EPA:</text>
+              <text class="aqi-us-value">{{airQuality.usEpa.aqi}} ({{airQuality.usEpa.category}})</text>
+            </view>
+          </view>
+        </view>
+        
+        <!-- 污染物详情 -->
+        <view class="pollutants-grid" wx:if="{{airQuality.pollutants}}">
+          <view class="pollutant-item" wx:if="{{airQuality.pollutants.pm2p5}}">
+            <text class="pollutant-name">PM2.5</text>
+            <text class="pollutant-value">{{airQuality.pollutants.pm2p5.value}}</text>
+            <text class="pollutant-unit">μg/m³</text>
+          </view>
+          <view class="pollutant-item" wx:if="{{airQuality.pollutants.pm10}}">
+            <text class="pollutant-name">PM10</text>
+            <text class="pollutant-value">{{airQuality.pollutants.pm10.value}}</text>
+            <text class="pollutant-unit">μg/m³</text>
+          </view>
+          <view class="pollutant-item" wx:if="{{airQuality.pollutants.no2}}">
+            <text class="pollutant-name">NO₂</text>
+            <text class="pollutant-value">{{airQuality.pollutants.no2.value}}</text>
+            <text class="pollutant-unit">μg/m³</text>
+          </view>
+          <view class="pollutant-item" wx:if="{{airQuality.pollutants.so2}}">
+            <text class="pollutant-name">SO₂</text>
+            <text class="pollutant-value">{{airQuality.pollutants.so2.value}}</text>
+            <text class="pollutant-unit">μg/m³</text>
+          </view>
+          <view class="pollutant-item" wx:if="{{airQuality.pollutants.o3}}">
+            <text class="pollutant-name">O₃</text>
+            <text class="pollutant-value">{{airQuality.pollutants.o3.value}}</text>
+            <text class="pollutant-unit">μg/m³</text>
+          </view>
+          <view class="pollutant-item" wx:if="{{airQuality.pollutants.co}}">
+            <text class="pollutant-name">CO</text>
+            <text class="pollutant-value">{{airQuality.pollutants.co.value}}</text>
+            <text class="pollutant-unit">mg/m³</text>
+          </view>
+        </view>
+
+        <!-- 健康建议 -->
+        <view class="health-advice" wx:if="{{airQuality.generalAdvice}}">
+          <view class="advice-item">
+            <text class="advice-label">一般人群</text>
+            <text class="advice-text">{{airQuality.generalAdvice}}</text>
+          </view>
+          <view class="advice-item" wx:if="{{airQuality.sensitiveAdvice}}">
+            <text class="advice-label">敏感人群</text>
+            <text class="advice-text">{{airQuality.sensitiveAdvice}}</text>
+          </view>
+        </view>
+
+        <!-- 24小时空气质量趋势 -->
+        <view class="aqi-hourly" wx:if="{{airQualityHourly.length > 0}}">
+          <view class="aqi-hourly-title">
+            <text>24小时空气质量趋势</text>
+          </view>
+          <scroll-view scroll-x class="aqi-hourly-scroll" enhanced show-scrollbar="{{false}}">
+            <view class="aqi-hourly-list">
+              <view class="aqi-hourly-item" wx:for="{{airQualityHourly}}" wx:key="time">
+                <text class="aqi-hourly-time">{{item.time}}</text>
+                <view class="aqi-hourly-bar" style="background: {{item.color}}; height: {{item.aqi * 8}}rpx;"></view>
+                <text class="aqi-hourly-value">{{item.aqi}}</text>
+              </view>
+            </view>
+          </scroll-view>
+        </view>
+      </view>
+
+      <!-- 生活指数 -->
+      <view class="section-title">
+        <text class="section-icon">🎯</text>
+        <text>生活指数</text>
+        <view class="life-expand-btn" bindtap="toggleLifeIndex">
+          <text>{{lifeIndexExpanded ? '收起' : '展开全部'}}</text>
+        </view>
+      </view>
+      
+      <view class="life-grid">
+        <view class="life-item glass" wx:for="{{lifeIndexExpanded ? lifeIndex : lifeIndex.slice(0, 6)}}" wx:key="type" bindtap="showIndexDetail" data-text="{{item.text}}" data-name="{{item.name}}">
+          <view class="life-icon-wrap" style="background: {{item.color}}">
+            <text class="life-icon">{{item.icon}}</text>
+          </view>
+          <text class="life-name">{{item.name}}</text>
+          <text class="life-level">{{item.category}}</text>
+          <view class="life-level-bar">
+            <view class="life-level-fill" style="width: {{item.level * 20}}%; background: {{item.color}}"></view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 底部信息 -->
+      <view class="footer">
+        <text class="footer-text">数据来源：和风天气</text>
+        <text class="footer-text" wx:if="{{lastUpdate}}"> | 更新时间：{{lastUpdate}}</text>
+      </view>
+    </view>
+  </scroll-view>
+</view>

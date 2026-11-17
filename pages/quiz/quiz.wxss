@@ -1,100 +1,247 @@
 page {
-  background: linear-gradient(180deg, #a8c0ff 0%, #fbc2eb 100%);
   min-height: 100vh;
+  background: linear-gradient(180deg, #ecebea 0%, #f4f2ef 48%, #f7f5f2 100%);
+  font-family: "SF Pro Display", "PingFang SC", "Segoe UI", sans-serif;
+}
+
+.quiz-page {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.orb-left {
+  width: 560rpx;
+  height: 560rpx;
+  top: -220rpx;
+  left: -190rpx;
+  background: radial-gradient(circle at 30% 30%, rgba(154, 167, 161, 0.26), rgba(154, 167, 161, 0.04) 64%, transparent 78%);
+}
+
+.orb-right {
+  width: 520rpx;
+  height: 520rpx;
+  top: 120rpx;
+  right: -220rpx;
+  background: radial-gradient(circle at 40% 40%, rgba(196, 187, 170, 0.24), rgba(196, 187, 170, 0.03) 66%, transparent 80%);
 }
 
 .quiz-container {
-  padding: 40rpx 50rpx;
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 28rpx 28rpx 356rpx;
   display: flex;
   flex-direction: column;
 }
 
-/* 进度条样式 */
-.progress-section {
-  margin-bottom: 60rpx;
-  padding: 0 10rpx;
+.hero-card {
+  padding: 24rpx;
+  border-radius: 26rpx;
+  background: rgba(255, 255, 255, 0.78);
+  border: 2rpx solid rgba(241, 236, 230, 0.95);
+  backdrop-filter: blur(12rpx);
+  box-shadow: 0 10rpx 24rpx rgba(89, 84, 76, 0.1);
 }
 
-.progress-text {
-  margin-bottom: 20rpx;
-}
-
-.current-num {
-  font-size: 48rpx;
-  font-weight: bold;
-  color: #fff;
-}
-
-.total-num {
-  font-size: 28rpx;
-  color: rgba(255, 255, 255, 0.7);
-  margin-left: 10rpx;
-}
-
-.progress-bar {
-  height: 8rpx;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 4rpx;
-  overflow: hidden;
-}
-
-.progress-inner {
-  height: 100%;
-  background: #fff;
-  transition: width 0.3s ease;
-  /* 进度条滑动动画 */
-  box-shadow: 0 0 15rpx rgba(255, 255, 255, 0.5);
-}
-
-.card-wrapper {
-  flex: 1;
-}
-
-/* 底部悬浮面板 */
-.control-panel {
-  position: fixed;
-  bottom: 120rpx;
-  left: 50rpx;
-  right: 50rpx;
+.hero-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.btn-main,
-.btn-sub {
-  height: 110rpx;
-  border-radius: 55rpx;
-  display: flex;
-  justify-content: center;
+.hero-index {
+  font-size: 54rpx;
+  font-weight: 800;
+  color: #3f4a47;
+  letter-spacing: 1rpx;
+}
+
+.hero-total {
+  margin-left: 8rpx;
+  font-size: 28rpx;
+  color: #7f8a86;
+}
+
+.mode-badge {
+  height: 54rpx;
+  border-radius: 999rpx;
+  display: inline-flex;
   align-items: center;
-  font-size: 32rpx;
+  justify-content: center;
+  padding: 0 20rpx;
+  font-size: 22rpx;
+  font-weight: 700;
+  color: #5f736e;
+  background: #e7ece9;
+  border: 2rpx solid #d4ddd8;
+}
+
+.progress-track {
+  margin-top: 18rpx;
+  height: 10rpx;
+  border-radius: 999rpx;
+  background: #d8ddd9;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 999rpx;
+  background: linear-gradient(90deg, #849790, #6f8b83);
+  transition: width 0.28s ease;
+}
+
+.hero-meta {
+  margin-top: 12rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #687571;
+  font-size: 23rpx;
+}
+
+.seek-card {
+  margin-top: 14rpx;
+  padding: 18rpx 18rpx 12rpx;
+  border-radius: 20rpx;
+  background: rgba(255, 255, 255, 0.75);
+  border: 2rpx solid rgba(239, 233, 225, 0.95);
+  box-shadow: 0 8rpx 20rpx rgba(89, 84, 76, 0.07);
+}
+
+.seek-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.seek-label {
+  display: block;
+  color: #5f6b66;
+  font-size: 24rpx;
+  font-weight: 600;
+}
+
+.seek-current {
+  font-size: 22rpx;
+  color: #72817c;
+  font-weight: 600;
+}
+
+.card-wrapper {
+  margin-top: 18rpx;
+  flex: 1;
+}
+
+.action-dock {
+  position: fixed;
+  left: 24rpx;
+  right: 24rpx;
+  bottom: 20rpx;
+  padding: 16rpx;
+  border-radius: 28rpx;
+  background: rgba(255, 255, 255, 0.72);
+  border: 2rpx solid rgba(239, 233, 225, 0.96);
+  backdrop-filter: blur(16rpx);
+  box-shadow: 0 14rpx 30rpx rgba(89, 84, 76, 0.15);
+}
+
+.main-actions,
+.assist-actions,
+.record-actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12rpx;
+}
+
+.assist-actions,
+.record-actions {
+  margin-top: 10rpx;
+}
+
+.action-btn,
+.mini-btn,
+.record-btn {
+  width: 100% !important;
+  height: 76rpx;
+  border-radius: 20rpx;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
   margin: 0 !important;
-  transition: all 0.2s;
+  padding: 0 !important;
+  box-sizing: border-box;
+  line-height: normal !important;
+  font-size: 26rpx;
+  font-weight: 700;
+  letter-spacing: 1rpx;
+  transition: all 0.2s ease;
 }
 
-/* 显示答案按钮：主色调 */
-.btn-main {
-  width: 55% !important;
-  background: #4b7bec !important;
-  color: #fff !important;
-  box-shadow: 0 15rpx 40rpx rgba(75, 123, 236, 0.3);
+.action-btn::after,
+.mini-btn::after,
+.record-btn::after {
+  border: none;
 }
 
-/* 下一题按钮：轻盈质感 */
-.btn-sub {
-  width: 40% !important;
-  background: rgba(255, 255, 255, 0.9) !important;
-  color: #4b7bec !important;
-  border: 2rpx solid #4b7bec;
+.action-primary {
+  background: linear-gradient(135deg, #8fa29c, #7a8f88);
+  color: #ffffff;
+  box-shadow: 0 8rpx 16rpx rgba(122, 143, 136, 0.24);
+}
+
+.action-secondary {
+  background: #fdfcfb;
+  color: #6b7f79;
+  border: 2rpx solid #ccd7d2;
+}
+
+.mini-btn {
+  background: #f7f5f2;
+  color: #5f6b66;
+  border: 2rpx solid #dfdcd7;
+  font-size: 23rpx;
+  font-weight: 600;
+}
+
+.mini-btn-active {
+  background: #e6ece9;
+  color: #56706a;
+  border-color: #c8d4cf;
+}
+
+.record-btn {
+  background: #fdfcfb;
+  color: #5f6b66;
+  border: 2rpx solid #d8dedb;
+}
+
+.record-btn-active {
+  color: #4f5f5a;
+  border-color: #becac5;
+  background: linear-gradient(180deg, #ecefed, #dde4e1);
+}
+
+.action-primary:active,
+.action-secondary:active,
+.mini-btn:active,
+.record-btn:active {
+  transform: scale(0.98);
 }
 
 .btn-disabled {
-  opacity: 0.5;
-  background: #a8c0ff !important;
-}
-
-.arrow {
-  margin-left: 10rpx;
-  font-weight: bold;
+  opacity: 0.82;
+  color: #f7f7f6 !important;
+  background: linear-gradient(135deg, #b8c4c0, #a8b6b1) !important;
+  border-color: #c8d1cd !important;
+  box-shadow: none !important;
+  pointer-events: none;
 }

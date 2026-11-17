@@ -1,0 +1,32 @@
+<!-- packageAI/pages/loader/index.wxml -->
+<view class="loader-page">
+  <view class="loader-card">
+    <view class="loader-icon">
+      <text class="loader-emoji">🧍</text>
+    </view>
+    <text class="loader-title">姿态教练</text>
+    <text class="loader-desc">选择练习课程，进入后AI引擎将自动加载</text>
+
+    <view class="course-list">
+      <view
+        class="course-item {{selectedCourse === index ? 'active' : ''}}"
+        wx:for="{{courses}}"
+        wx:key="name"
+        bindtap="selectCourse"
+        data-index="{{index}}"
+      >
+        <text class="course-emoji">{{item.icon}}</text>
+        <view class="course-info">
+          <text class="course-name">{{item.name}}</text>
+          <text class="course-desc">{{item.description}}</text>
+        </view>
+      </view>
+    </view>
+
+    <button class="start-btn" bindtap="goCoach">
+      开始练习 →
+    </button>
+
+    <text class="hint-text">PoseNet 0.50 模型已量化打包（1.1MB），首次加载需解压</text>
+  </view>
+</view>

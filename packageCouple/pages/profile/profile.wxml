@@ -1,0 +1,41 @@
+<view class="page">
+  <view class="deco deco-a"></view>
+  <view class="deco deco-b"></view>
+
+  <view class="hero">
+    <view class="hero-title">先认识一下你</view>
+    <view class="hero-sub">用微信的头像和昵称，让 TA 认出你</view>
+  </view>
+
+  <view wx:if="{{loading}}" class="state">加载中…</view>
+  <view wx:elif="{{errorText}}" class="state err">{{errorText}}</view>
+
+  <block wx:else>
+    <view class="card">
+      <view class="avatar-wrap">
+        <button class="avatar-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+          <image wx:if="{{avatarPreview}}" class="avatar-img" src="{{avatarPreview}}" mode="aspectFill"></image>
+          <view wx:else class="avatar-placeholder">+</view>
+        </button>
+        <view class="avatar-tip">点这里，用微信头像</view>
+      </view>
+
+      <view class="field">
+        <view class="field-label">昵称</view>
+        <input
+          class="input"
+          type="nickname"
+          placeholder="用微信昵称，或自己起一个"
+          value="{{nickname}}"
+          bindinput="onNickInput"
+          maxlength="20"
+        />
+      </view>
+
+      <view class="btn primary block" bindtap="onSave">{{saving ? '保存中…' : '开始我们的小火苗'}}</view>
+      <view class="hint">头像和昵称会显示在你们的小空间里，只有你和 TA 能看到</view>
+    </view>
+  </block>
+
+  <view class="footer">只属于两个人的小空间</view>
+</view>

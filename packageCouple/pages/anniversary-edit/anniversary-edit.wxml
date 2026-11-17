@@ -1,0 +1,68 @@
+<view class="page">
+  <view class="bg-a"></view>
+
+  <view class="hero">
+    <view class="hero-sub">{{id ? '修改这个重要的日子' : '把一个重要的日子圈起来'}}</view>
+    <view class="hero-title">{{title || '新的纪念日'}}</view>
+  </view>
+
+  <view wx:if="{{loading}}" class="state">加载中…</view>
+  <view wx:elif="{{errorText}}" class="state err">{{errorText}}</view>
+
+  <block wx:else>
+    <view class="card">
+      <view class="label">纪念日名称</view>
+      <input class="title-input" value="{{title}}" placeholder="比如：在一起、TA 的生日" maxlength="20" bindinput="onTitleInput" />
+      <view class="chips">
+        <view class="chip" data-title="在一起" bindtap="pickTitle">在一起</view>
+        <view class="chip" data-title="生日" bindtap="pickTitle">生日</view>
+        <view class="chip" data-title="第一次见面" bindtap="pickTitle">第一次见面</view>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="cal-head">
+        <view class="cal-nav" bindtap="prevMonth">‹</view>
+        <view class="cal-title">{{monthLabel}}</view>
+        <view class="cal-nav" bindtap="nextMonth">›</view>
+      </view>
+      <view class="week-row">
+        <view class="week-cell" wx:for="{{week}}" wx:key="*this">{{item}}</view>
+      </view>
+      <view class="day-grid">
+        <view
+          wx:for="{{cells}}"
+          wx:key="key"
+          class="day-cell {{item.inMonth ? '' : 'muted'}} {{item.isToday ? 'today' : ''}} {{item.selected ? 'selected' : ''}}"
+          data-date="{{item.dateStr}}"
+          bindtap="tapDay"
+        >
+          <view class="day-num">{{item.day}}</view>
+          <view class="day-holiday" wx:if="{{item.holiday}}">{{item.holiday}}</view>
+        </view>
+      </view>
+      <view class="cal-foot">
+        <view class="chosen">
+          <text>{{dateLabel}}</text>
+          <text class="chosen-holiday" wx:if="{{holidayText}}"> · {{holidayText}}</text>
+        </view>
+        <view class="today-btn" bindtap="todayTap">回到今天</view>
+      </view>
+    </view>
+
+    <view class="card switch-card">
+      <view class="switch-main">
+        <view class="switch-title">每年重复</view>
+        <view class="switch-sub">生日、纪念日这类每年都会到的日子</view>
+      </view>
+      <switch checked="{{repeatYearly}}" color="#ff9a7a" bindchange="toggleRepeat" />
+    </view>
+
+    <view class="tips">纪念日会显示在日历上，并自动计算距离下一次还有多少天</view>
+
+    <view class="publish-bar">
+      <view class="save-btn {{saving ? 'disabled' : ''}}" bindtap="save">{{saving ? '保存中…' : '保存'}}</view>
+      <view class="del-btn" wx:if="{{id}}" bindtap="doDelete">删除这个纪念日</view>
+    </view>
+  </block>
+</view>

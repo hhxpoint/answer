@@ -1,0 +1,105 @@
+<view class="page">
+  <!-- 未找到记录 -->
+  <view class="not-found" wx:if="{{notFound}}">
+
+    <view class="not-found-icon-wrap">
+      <text class="not-found-icon">🏃</text>
+    </view>
+
+    
+    <text class="not-found-text">记录不存在</text>
+    <view class="not-found-btn" bindtap="goBack">返回</view>
+  </view>
+
+  <!-- 详情内容 -->
+  <block wx:elif="{{record}}">
+    <!-- 顶部导航 -->
+    <view class="header">
+      <view class="back-btn" bindtap="goBack">
+        <text class="back-icon">←</text>
+      </view>
+      <text class="header-title">运动详情</text>
+      <view class="share-btn" bindtap="shareRecord">
+        <text class="share-icon">📤</text>
+      </view>
+    </view>
+
+    <!-- 地图区域 -->
+    <view class="map-container">
+      <map
+        class="detail-map"
+        latitude="{{mapCenter.latitude}}"
+        longitude="{{mapCenter.longitude}}"
+        scale="{{mapScale}}"
+        polyline="{{polyline}}"
+        markers="{{markers}}"
+        show-location="{{false}}"
+        enable-zoom="{{true}}"
+        enable-scroll="{{true}}"
+      ></map>
+      <view class="map-overlay"></view>
+    </view>
+
+    <!-- 数据卡片 -->
+    <view class="data-card">
+      <!-- 头部信息 -->
+      <view class="card-header">
+        <view class="header-left">
+          <view class="sport-icon {{record.type}}">
+            <text>{{record.type === 'RUN' ? '🏃' : record.type === 'WALK' ? '🚶' : '🚴'}}</text>
+          </view>
+          <view class="header-info">
+            <text class="sport-type">{{record.typeName}}</text>
+            <text class="sport-date">{{record.dateText}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 核心数据 -->
+      <view class="core-stats">
+        <view class="core-distance">
+          <text class="distance-value">{{record.distanceText}}</text>
+          <text class="distance-unit">{{record.distanceUnit}}</text>
+        </view>
+      </view>
+
+      <!-- 数据网格 -->
+      <view class="stats-grid">
+        <view class="stat-item">
+          <view class="stat-icon time">⏱</view>
+          <view class="stat-content">
+            <text class="stat-value">{{record.durationText}}</text>
+            <text class="stat-label">时长</text>
+          </view>
+        </view>
+        <view class="stat-item">
+          <view class="stat-icon pace">⚡</view>
+          <view class="stat-content">
+            <text class="stat-value">{{record.avgPace}}</text>
+            <text class="stat-label">配速</text>
+          </view>
+        </view>
+        <view class="stat-item">
+          <view class="stat-icon cal">🔥</view>
+          <view class="stat-content">
+            <text class="stat-value">{{record.calories}}</text>
+            <text class="stat-label">千卡</text>
+          </view>
+        </view>
+        <view class="stat-item" wx:if="{{record.trackPoints}}">
+          <view class="stat-icon point">📍</view>
+          <view class="stat-content">
+            <text class="stat-value">{{record.trackPoints.length}}</text>
+            <text class="stat-label">轨迹点</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 底部 -->
+      <view class="card-footer">
+        <text class="footer-icon">🥛</text>
+        <text class="footer-text">酸奶运动</text>
+      </view>
+    </view>
+  </block>
+</view>

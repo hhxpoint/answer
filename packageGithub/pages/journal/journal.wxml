@@ -1,0 +1,287 @@
+<view class="page-container">
+  <view class="paper-bg"></view>
+
+  <!-- 报纸抬头 -->
+  <view class="masthead">
+    <view class="masthead-rule top-rule"></view>
+    <view class="masthead-title-section">
+      <text class="masthead-title">{{masthead.title}}</text>
+    </view>
+    <view class="masthead-divider">
+      <view class="divider-line left"></view>
+      <view class="divider-diamond">◆</view>
+      <view class="divider-line right"></view>
+    </view>
+    <text class="masthead-subtitle">{{masthead.subtitle}}</text>
+    <view class="masthead-meta">
+      <text class="meta-edition">第{{masthead.edition}}期</text>
+      <text class="meta-separator">|</text>
+      <text class="meta-date">{{masthead.date}}</text>
+    </view>
+    <view class="masthead-rule bottom-rule"></view>
+  </view>
+
+  <!-- Tab 切换 -->
+  <view class="tab-bar">
+    <view class="tab-item {{viewMode === 'daily' ? 'active' : ''}}" data-mode="daily" bindtap="switchTab">
+      <text class="tab-icon">📰</text>
+      <text class="tab-text">每日论文</text>
+    </view>
+    <view class="tab-item {{viewMode === 'venue' ? 'active' : ''}}" data-mode="venue" bindtap="switchTab">
+      <text class="tab-icon">🏛️</text>
+      <text class="tab-text">顶会顶刊</text>
+    </view>
+  </view>
+
+  <!-- ========== 每日论文视图 ========== -->
+  <view class="daily-view" wx:if="{{viewMode === 'daily'}}">
+    
+    <!-- 加载中 -->
+    <view class="loading-tip" wx:if="{{loading}}">
+      <view class="loading-spinner"></view>
+      <text class="loading-text">正在排版中...</text>
+    </view>
+
+    <!-- 论文列表 -->
+    <view class="papers-container" wx:if="{{!loading && papers.length > 0}}">
+      
+      <!-- 头条论文 -->
+      <view class="headline-paper" wx:if="{{papers[0]}}" data-paper="{{papers[0]}}" bindtap="goToPaper">
+        <view class="venue-block" style="background-color: {{papers[0].venueColor}}">
+          <text class="venue-letter">{{papers[0].venueLetter}}</text>
+          <text class="venue-name">{{papers[0].venue}}</text>
+        </view>
+        <view class="headline-content">
+          <view class="citation-badge">
+            <text class="citation-text">Citations: {{papers[0].citationCount}}</text>
+          </view>
+          <view class="pdf-badge" wx:if="{{papers[0].hasPdf}}">
+            <text class="pdf-text">📄 PDF</text>
+          </view>
+          <text class="headline-title">{{papers[0].title}}</text>
+          <text class="headline-authors">{{papers[0].authorsText}}</text>
+          <text class="headline-abstract">{{papers[0].abstractShort}}</text>
+        </view>
+      </view>
+
+      <!-- 分隔线 -->
+      <view class="section-divider">
+        <text class="divider-text">LATEST PAPERS</text>
+      </view>
+
+      <!-- 论文列表 -->
+      <view class="paper-list">
+        <view class="paper-item" wx:for="{{papers}}" wx:key="id" wx:if="{{index > 0}}" data-paper="{{item}}" bindtap="goToPaper">
+          <view class="paper-venue-block" style="background-color: {{item.venueColor}}">
+            <text class="venue-letter-small">{{item.venueLetter}}</text>
+          </view>
+          <view class="paper-info">
+            <view class="paper-badges">
+              <view class="citation-small">
+                <text>{{item.citationText}}</text>
+              </view>
+              <view class="pdf-small" wx:if="{{item.hasPdf}}">
+                <text>PDF</text>
+              </view>
+            </view>
+            <text class="paper-title">{{item.title}}</text>
+            <text class="paper-authors">{{item.authorsText}}</text>
+            <text class="paper-abstract">{{item.abstractShort}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 加载更多 -->
+      <view class="load-more" wx:if="{{loadingMore}}">
+        <view class="loading-dots">
+          <view class="dot"></view>
+          <view class="dot"></view>
+          <view class="dot"></view>
+        </view>
+        <text class="loading-text">加载更多...</text>
+      </view>
+
+      <view class="no-more" wx:if="{{!hasMore && papers.length > 0 && !loadingMore}}">
+        <text class="no-more-text">— 共 {{papers.length}} 篇 —</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- ========== 顶会顶刊视图 ========== -->
+  <view class="venue-view" wx:if="{{viewMode === 'venue'}}">
+    
+    <!-- 列表子视图 -->
+    <view class="venue-list-view" wx:if="{{venueView === 'list'}}">
+      
+      <!-- 顶会/顶刊切换 -->
+      <view class="venue-type-bar">
+        <view class="venue-type-item {{venueType === 'conference' ? 'active' : ''}}" data-type="conference" bindtap="switchVenueType">
+          <text class="type-icon">🏛️</text>
+          <text class="type-text">顶会</text>
+        </view>
+        <view class="venue-type-item {{venueType === 'journal' ? 'active' : ''}}" data-type="journal" bindtap="switchVenueType">
+          <text class="type-icon">📖</text>
+          <text class="type-text">顶刊</text>
+        </view>
+      </view>
+
+      <!-- 方向筛选 -->
+      <scroll-view class="area-scroll" scroll-x enable-flex>
+        <view class="area-list">
+          <view class="area-item {{selectedArea === area.id ? 'active' : ''}}" wx:for="{{researchAreas}}" wx:key="id" data-area="{{item.id}}" bindtap="selectArea">
+            <text class="area-icon">{{item.icon}}</text>
+            <text class="area-name">{{item.name}}</text>
+          </view>
+        </view>
+      </scroll-view>
+
+      <!-- 年份筛选（仅顶会显示） -->
+      <scroll-view class="year-scroll" scroll-x enable-flex wx:if="{{venueType === 'conference'}}">
+        <view class="year-list">
+          <view class="year-item {{selectedYear === year ? 'active' : ''}}" wx:for="{{years}}" wx:key="*this" data-year="{{item}}" bindtap="selectYear">
+            {{item}}
+          </view>
+        </view>
+      </scroll-view>
+
+      <!-- 顶会列表 -->
+      <view class="venue-grid" wx:if="{{venueType === 'conference'}}">
+        <view class="venue-card" wx:for="{{conferences}}" wx:key="id" data-conference="{{item}}" bindtap="selectConference">
+          <view class="card-header" style="background-color: {{item.color}}">
+            <text class="venue-abbr">{{item.name}}</text>
+          </view>
+          <view class="card-body">
+            <text class="venue-name">{{item.fullName}}</text>
+            <view class="venue-meta">
+              <text class="meta-category">{{item.category}}</text>
+              <text class="meta-year">{{selectedYear}}</text>
+            </view>
+          </view>
+          <view class="card-arrow">→</view>
+        </view>
+      </view>
+
+      <!-- 顶刊列表 -->
+      <view class="venue-grid" wx:if="{{venueType === 'journal'}}">
+        <view class="venue-card" wx:for="{{journals}}" wx:key="id" data-journal="{{item}}" bindtap="selectJournal">
+          <view class="card-header" style="background-color: {{item.color}}">
+            <text class="venue-abbr">{{item.name}}</text>
+          </view>
+          <view class="card-body">
+            <text class="venue-name">{{item.fullName}}</text>
+            <view class="venue-meta">
+              <text class="meta-category">{{item.category}}</text>
+            </view>
+          </view>
+          <view class="card-arrow">→</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 论文子视图 -->
+    <view class="venue-papers-view" wx:if="{{venueView === 'papers'}}">
+      
+      <!-- 精美头部设计 -->
+      <view class="venue-detail-header">
+        <!-- 背景装饰 -->
+        <view class="header-bg" style="background-color: {{venueType === 'conference' ? selectedConference.color : selectedJournal.color}}"></view>
+        
+        <!-- 返回按钮 -->
+        <view class="header-nav">
+          <view class="nav-back-btn" bindtap="backToList">
+            <text class="nav-back-icon">‹</text>
+          </view>
+          <view class="nav-title">
+            <text>{{venueType === 'conference' ? '顶会论文' : '顶刊论文'}}</text>
+          </view>
+          <view class="nav-placeholder"></view>
+        </view>
+
+        <!-- 会议/期刊信息卡片 -->
+        <view class="venue-hero-card">
+          <view class="hero-badge" style="background-color: {{venueType === 'conference' ? selectedConference.color : selectedJournal.color}}">
+            <text class="hero-letter">{{venueType === 'conference' ? selectedConference.name : selectedJournal.name}}</text>
+          </view>
+          <view class="hero-content">
+            <text class="hero-abbr">{{venueType === 'conference' ? selectedConference.name : selectedJournal.name}}</text>
+            <text class="hero-fullname">{{venueType === 'conference' ? selectedConference.fullName : selectedJournal.fullName}}</text>
+            <view class="hero-stats">
+              <view class="stat-item">
+                <text class="stat-value">{{selectedYear}}</text>
+                <text class="stat-label" wx:if="{{venueType === 'conference'}}">年份</text>
+              </view>
+              <view class="stat-divider"></view>
+              <view class="stat-item">
+                <text class="stat-value">{{venuePapers.length}}</text>
+                <text class="stat-label">篇论文</text>
+              </view>
+              <view class="stat-divider"></view>
+              <view class="stat-item">
+                <text class="stat-label tag">{{venueType === 'conference' ? selectedConference.category : selectedJournal.category}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 加载中 -->
+      <view class="loading-tip" wx:if="{{venueLoading}}">
+        <view class="loading-spinner"></view>
+        <text class="loading-text">正在检索论文...</text>
+      </view>
+
+      <!-- 论文列表 -->
+      <view class="paper-list" wx:if="{{!venueLoading && venuePapers.length > 0}}">
+        <view class="paper-item" wx:for="{{venuePapers}}" wx:key="id" data-paper="{{item}}" bindtap="goToPaper">
+          <view class="paper-venue-block" style="background-color: {{item.venueColor}}">
+            <text class="venue-letter-small">{{item.venueLetter}}</text>
+          </view>
+          <view class="paper-info">
+            <view class="paper-badges">
+              <view class="citation-small">
+                <text>{{item.citationText}} 引用</text>
+              </view>
+              <view class="pdf-small" wx:if="{{item.hasPdf}}">
+                <text>📄 PDF</text>
+              </view>
+            </view>
+            <text class="paper-title">{{item.title}}</text>
+            <text class="paper-authors">{{item.authorsText}}</text>
+            <text class="paper-abstract">{{item.abstractShort}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 加载更多 -->
+      <view class="load-more" wx:if="{{venueLoadingMore}}">
+        <view class="loading-dots">
+          <view class="dot"></view>
+          <view class="dot"></view>
+          <view class="dot"></view>
+        </view>
+        <text class="loading-text">加载更多...</text>
+      </view>
+
+      <view class="no-more" wx:if="{{!venueHasMore && venuePapers.length > 0 && !venueLoadingMore}}">
+        <text class="no-more-text">— 共 {{venuePapers.length}} 篇 —</text>
+      </view>
+
+      <!-- 空状态 -->
+      <view class="empty-state" wx:if="{{!venueLoading && venuePapers.length === 0}}">
+        <text class="empty-icon">📭</text>
+        <text class="empty-title">暂无论文</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部信息 -->
+  <view class="footer">
+    <text class="footer-text">PAPER GEEK © {{masthead.year}}</text>
+    <text class="footer-sub">Powered by Semantic Scholar</text>
+  </view>
+
+  <!-- 回到顶部 -->
+  <view class="back-top" wx:if="{{scrollTop > 300}}" catchtap="scrollToTop">
+    <text>↑</text>
+  </view>
+</view>

@@ -1,0 +1,107 @@
+<view class="page">
+  <view class="bg-glow glow-a"></view>
+  <view class="bg-glow glow-b"></view>
+  <view class="bg-star star-a"></view>
+  <view class="bg-star star-b"></view>
+  <view class="bg-star star-c"></view>
+
+  <view class="topbar">
+    <image wx:if="{{partnerAvatar}}" class="top-avatar" src="{{partnerAvatar}}" mode="aspectFill"></image>
+    <view wx:else class="top-avatar">{{partnerInitial}}</view>
+    <view class="topbar-main">
+      <view class="title">侧耳倾听</view>
+      <view class="sub">和 {{partnerName}} 的语音信箱 · 只属于你们俩</view>
+    </view>
+    <view class="conn {{connOk ? 'ok' : 'warn'}}">{{connText}}</view>
+  </view>
+
+  <view wx:if="{{!ready}}" class="state">正在打开信箱…</view>
+  <view wx:elif="{{errorText}}" class="state err">{{errorText}}</view>
+
+  <block wx:else>
+    <scroll-view
+      class="voice-list"
+      scroll-y
+      scroll-into-view="{{scrollInto}}"
+      scroll-with-animation
+      bindscrolltolower="onToLower"
+      bindscroll="onScroll"
+      enhanced="{{true}}"
+      show-scrollbar="{{false}}"
+    >
+      <view class="list-top"></view>
+
+      <view wx:for="{{voices}}" wx:key="id" id="msg-{{item.id}}">
+        <view wx:if="{{item.showTime}}" class="time-row">{{item.timeText}}</view>
+
+        <view wx:if="{{item.system}}" class="system-row">{{item.text}}</view>
+
+        <view wx:else class="voice-row {{item.mine ? 'mine' : 'them'}}">
+          <image wx:if="{{item.avatar}}" class="voice-avatar" src="{{item.avatar}}" mode="aspectFill"></image>
+          <view wx:else class="voice-avatar">{{item.avatarText}}</view>
+
+          <view
+            class="voice-bubble {{item.mine ? 'mine' : 'them'}} {{playingId === item.id ? 'playing' : ''}}"
+            data-id="{{item.id}}"
+            bindtap="togglePlay"
+            bindlongpress="onLongPress"
+          >
+            <view class="play-dot">{{playingId === item.id ? '❚❚' : '▶'}}</view>
+            <view class="wave">
+              <view
+                class="wave-bar {{playingId === item.id && (index * 100 / item.bars.length) <= playingProgress ? 'active' : ''}}"
+                wx:for="{{item.bars}}"
+                wx:for-item="bar"
+                wx:for-index="index"
+                style="height: {{bar}}rpx;"
+              ></view>
+            </view>
+            <text class="voice-dur">{{item.durationText}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view wx:if="{{!voices.length}}" class="empty">
+        <view class="moon"></view>
+        <view class="empty-title">还没有语音</view>
+        <view class="empty-sub">按住下面的按钮，说第一句悄悄话吧</view>
+      </view>
+
+      <view class="list-foot" wx:if="{{voices.length}}">· 长按自己的语音可以撤回 ·</view>
+      <view class="list-bottom"></view>
+    </scroll-view>
+
+    <view class="new-msg {{newCount > 0 ? 'show' : ''}}" bindtap="scrollBottom">{{newCount}} 条新语音 ↓</view>
+
+    <view class="record-bar">
+      <view
+        class="hold-btn {{recording ? 'recording' : ''}}"
+        bindtouchstart="onRecordStart"
+        catchtouchmove="onRecordMove"
+        bindtouchend="onRecordEnd"
+        bindtouchcancel="onRecordCancel"
+      >
+        <text class="mic">🎙</text>
+        <text>{{recording ? (cancelHint ? '松开取消' : '松开发送') : '按住 说话'}}</text>
+      </view>
+      <view class="record-tip">一条最多 60 秒 · 上滑取消</view>
+    </view>
+
+    <view class="rec-mask" wx:if="{{recording}}">
+      <view class="rec-card">
+        <view class="rec-rings">
+          <view class="ring r1"></view>
+          <view class="ring r2"></view>
+          <view class="ring r3"></view>
+          <view class="rec-mic">🎙</view>
+        </view>
+        <view class="rec-time">{{recordSec}}s</view>
+        <view class="rec-hint {{cancelHint ? 'cancel' : ''}}">{{recordHint}}</view>
+        <view class="rec-progress">
+          <view class="rec-progress-fill" style="width: {{recordSec / 60 * 100}}%;"></view>
+        </view>
+        <view class="rec-limit">最长 60 秒</view>
+      </view>
+    </view>
+  </block>
+</view>

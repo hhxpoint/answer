@@ -1,0 +1,67 @@
+<view class="page">
+  <!-- 顶部导航 -->
+  <!-- <view class="header">
+    <view class="back-btn" bindtap="goBack">
+      <text class="back-icon">←</text>
+    </view>
+    <text class="header-title">运动记录</text>
+    <view class="header-placeholder"></view>
+  </view> -->
+
+  <!-- 月度统计卡片 -->
+  <view class="monthly-card">
+    <view class="monthly-grid">
+      <view class="monthly-item">
+        <view class="monthly-value">{{monthlyStats.count}}</view>
+        <view class="monthly-label">次数</view>
+      </view>
+      <view class="monthly-divider"></view>
+      <view class="monthly-item">
+        <view class="monthly-value">{{monthlyDistanceText}}</view>
+        <view class="monthly-label">{{monthlyDistanceUnit}}</view>
+      </view>
+      <view class="monthly-divider"></view>
+      <view class="monthly-item">
+        <view class="monthly-value">{{monthlyStats.calories}}</view>
+        <view class="monthly-label">千卡</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{isEmpty}}">
+    <view class="empty-icon-wrap">
+      <text class="empty-icon">🏃</text>
+    </view>
+    <text class="empty-text">还没有运动记录</text>
+    <text class="empty-hint">开始你的第一次运动吧</text>
+  </view>
+
+  <!-- 记录列表 -->
+  <view class="history-list" wx:else>
+    <view class="history-item-wrap" wx:for="{{historyList}}" wx:key="id">
+      <view class="history-item" bindtap="goDetail" data-id="{{item.id}}">
+        <view class="item-left">
+          <view class="item-icon {{item.type}}">
+            <text>{{item.type === 'RUN' ? '🏃' : item.type === 'WALK' ? '🚶' : '🚴'}}</text>
+          </view>
+          <view class="item-info">
+            <text class="item-type">{{item.typeName}}</text>
+            <text class="item-date">{{item.dateText}}</text>
+          </view>
+        </view>
+        <view class="item-center">
+          <text class="distance-value">{{item.distanceText}}</text>
+          <text class="distance-unit">{{item.distanceUnit}}</text>
+        </view>
+        <view class="item-right">
+          <text class="meta-text">{{item.durationText}}</text>
+          <text class="meta-text">{{item.avgPace}}/km</text>
+        </view>
+      </view>
+      <view class="delete-action" catchtap="deleteRecord" data-id="{{item.id}}">
+        <text class="delete-icon">×</text>
+      </view>
+    </view>
+  </view>
+</view>

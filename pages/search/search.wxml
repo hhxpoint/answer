@@ -1,34 +1,98 @@
-<view class="sky-container">
-  <!-- 1. 搜索框：云朵造型 -->
-  <view class="search-header">
-    <view class="search-bar">
-      <icon type="search" size="18" color="#A8C0FF"></icon>
-      <input class="sky-input" placeholder="搜索知识点..." placeholder-class="placeholder-style" value="{{keyword}}"
-        bindinput="onSearchInput" />
-    </view>
-  </view>
+<view class="search-page">
+  <view class="hero-gradient"></view>
 
-  <!-- 2. 默认状态：显示推荐词 -->
-  <view class="hot-section" wx:if="{{!isSearching}}">
-    <view class="section-title">☁️ 推荐搜索</view>
-    <view class="tag-group">
-      <view class="sky-tag" wx:for="{{hotKeywords}}" wx:key="*this" bindtap="onTagTap" data-word="{{item}}">{{item}}
+  <view class="search-shell">
+    <view class="search-bar">
+      <icon type="search" size="18" color="#4F46E5"></icon>
+      <input
+        class="search-input"
+        placeholder="输入问题、概念或关键词"
+        placeholder-class="placeholder-style"
+        value="{{keyword}}"
+        confirm-type="search"
+        bindinput="onSearchInput"
+        bindconfirm="onSearchConfirm"
+      />
+      <view class="search-clear" wx:if="{{keyword}}" bindtap="onClearKeyword">清空</view>
+      <view class="search-confirm" bindtap="onSearchConfirm">搜索</view>
+    </view>
+
+    <view class="tool-row">
+      <scroll-view scroll-x class="chip-scroll" enhanced="true" show-scrollbar="false">
+        <view class="chip-list">
+          <view
+            class="chip {{searchScope === item.value ? 'chip-active' : ''}}"
+            wx:for="{{scopeOptions}}"
+            wx:key="value"
+            bindtap="onScopeChange"
+            data-value="{{item.value}}"
+          >
+            {{item.label}}
+          </view>
+        </view>
+      </scroll-view>
+
+      <scroll-view scroll-x class="chip-scroll" enhanced="true" show-scrollbar="false">
+        <view class="chip-list">
+          <view
+            class="chip chip-light {{sortMode === item.value ? 'chip-light-active' : ''}}"
+            wx:for="{{sortOptions}}"
+            wx:key="value"
+            bindtap="onSortChange"
+            data-value="{{item.value}}"
+          >
+            {{item.label}}
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+
+    <view class="suggest-section" wx:if="{{suggestions.length > 0 && keyword}}">
+      <view class="section-head">
+        <text class="section-title">智能建议</text>
+      </view>
+      <view class="tag-group">
+        <view class="suggest-tag" wx:for="{{suggestions}}" wx:key="*this" bindtap="onSuggestionTap" data-word="{{item}}">{{item}}</view>
       </view>
     </view>
+
+    <view class="history-section" wx:if="{{historyKeywords.length > 0 && !keyword}}">
+      <view class="section-head">
+        <text class="section-title">最近搜索</text>
+        <text class="clear-history" bindtap="onClearHistory">清空历史</text>
+      </view>
+      <view class="tag-group">
+        <view class="history-tag" wx:for="{{historyKeywords}}" wx:key="*this" bindtap="onHistoryTap" data-word="{{item}}">{{item}}</view>
+      </view>
+    </view>
+
+    <view class="hot-section" wx:if="{{!keyword}}">
+      <view class="section-head">
+        <text class="section-title">推荐搜索</text>
+      </view>
+      <view class="tag-group">
+        <view class="hot-tag" wx:for="{{hotKeywords}}" wx:key="*this" bindtap="onTagTap" data-word="{{item}}">{{item}}</view>
+      </view>
+    </view>
+
+    <scroll-view scroll-y class="result-list" wx:if="{{isSearching}}">
+      <view class="result-info">找到 {{searchResult.length}} 条结果</view>
+
+      <view class="card-item" wx:for="{{searchResult}}" wx:key="id">
+        <view class="result-meta">
+          <text class="meta-hit">{{item._hitText}}</text>
+          <view class="meta-actions">
+            <text class="meta-action" bindtap="onCopyQuestion" data-text="{{item.question}}">复制问题</text>
+            <text class="meta-action" bindtap="onCopyAnswer" data-text="{{item.answer}}">复制解析</text>
+          </view>
+        </view>
+        <qa-card title="{{item.question}}" content="{{item.answer}}"></qa-card>
+      </view>
+
+      <view class="empty-box" wx:if="{{searchResult.length === 0}}">
+        <image class="empty-img" src="/assets/search.png" mode="aspectFit"></image>
+        <text class="empty-text">没有匹配内容，试试换个关键词或切换搜索范围</text>
+      </view>
+    </scroll-view>
   </view>
-
-  <!-- 3. 搜索结果：卡片展示 -->
-  <scroll-view scroll-y class="result-list" wx:if="{{isSearching}}">
-    <view class="result-info">已为你匹配到 {{searchResult.length}} 条云端知识</view>
-
-    <view class="card-item" wx:for="{{searchResult}}" wx:key="id">
-      <qa-card title="{{item.question}}" content="{{item.answer}}"></qa-card>
-    </view>
-
-    <!-- 空状态 -->
-    <view class="empty-box" wx:if="{{searchResult.length === 0}}">
-      <image class="empty-img" src="/assets/search.png" mode="aspectFit"></image>
-      <text>这片云朵里还没有你要找的内容哦~</text>
-    </view>
-  </scroll-view>
 </view>

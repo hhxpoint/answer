@@ -1,0 +1,57 @@
+<view class="page">
+
+
+  <!-- 成就统计卡片 -->
+  <view class="stats-card">
+    <view class="trophy-icon">🏆</view>
+    <view class="stats-info">
+      <text class="stats-num">{{unlockedCount}}</text>
+      <text class="stats-sep">/</text>
+      <text class="stats-total">{{totalCount}}</text>
+    </view>
+    <text class="stats-label">已解锁</text>
+    <view class="progress-bar">
+      <view class="progress-fill" style="width: {{unlockedCount / totalCount * 100}}%"></view>
+    </view>
+  </view>
+
+  <!-- 分类标签 -->
+  <scroll-view scroll-x class="category-scroll" enhanced show-scrollbar="{{false}}">
+    <view class="category-list">
+      <view class="category-item {{currentCategory === item.key ? 'active' : ''}}"
+            wx:for="{{categories}}" wx:key="key"
+            bindtap="switchCategory" data-key="{{item.key}}">
+        <text>{{item.name}}</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 成就列表 -->
+  <view class="achievement-list">
+    <view class="achievement-item {{item.unlocked ? 'unlocked' : 'locked'}}"
+          wx:for="{{achievements}}" wx:key="id"
+          wx:if="{{currentCategory === 'all' || item.category === currentCategory}}">
+      
+      <!-- 左侧图标 -->
+      <view class="achievement-icon {{item.unlocked ? 'active' : ''}}">
+        <text>{{item.icon}}</text>
+      </view>
+
+      <!-- 中间信息 -->
+      <view class="achievement-info">
+        <view class="info-header">
+          <text class="achievement-name">{{item.name}}</text>
+          <text class="progress-percent {{item.unlocked ? 'done' : ''}}">{{item.progressText}}</text>
+        </view>
+        <text class="achievement-desc">{{item.desc}}</text>
+        
+        <!-- 进度条 -->
+        <view class="achievement-progress">
+          <view class="progress-track">
+            <view class="progress-fill {{item.unlocked ? 'done' : ''}}" style="width: {{item.progress}}%"></view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

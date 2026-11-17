@@ -1,0 +1,91 @@
+<view class="page">
+  <view class="bg-a"></view>
+  <view class="bg-b"></view>
+
+  <view class="hero">
+    <view class="hero-title">我们的纪念日</view>
+    <view class="hero-sub">在一起第 {{days}} 天 · 把重要的日子圈起来</view>
+    <view class="hero-next">
+      <view class="next-dot"></view>
+      <view class="next-text">{{nextText}}</view>
+    </view>
+  </view>
+
+  <view wx:if="{{!ready}}" class="state">正在打开日历…</view>
+  <view wx:elif="{{errorText}}" class="state err">{{errorText}}</view>
+
+  <block wx:else>
+    <view class="cal-card">
+      <view class="cal-head">
+        <view class="cal-nav" bindtap="prevMonth">‹</view>
+        <view class="cal-title">{{monthLabel}}</view>
+        <view class="cal-nav" bindtap="nextMonth">›</view>
+      </view>
+
+      <view class="cal-body {{motionClass}}">
+        <view class="week-row">
+          <view class="week-cell" wx:for="{{week}}" wx:key="*this">{{item}}</view>
+        </view>
+
+        <view class="day-grid" bindtouchstart="onCalTouchStart" bindtouchend="onCalTouchEnd">
+          <view
+            wx:for="{{cells}}"
+            wx:key="key"
+            class="day-cell {{item.inMonth ? '' : 'muted'}} {{item.isToday ? 'today' : ''}} {{item.selected ? 'selected' : ''}}"
+            data-date="{{item.dateStr}}"
+            bindtap="tapDay"
+          >
+            <view class="day-num">{{item.day}}</view>
+            <view class="day-holiday" wx:if="{{item.holiday}}">{{item.holiday}}</view>
+            <view class="day-dot" wx:if="{{item.marks}}"></view>
+          </view>
+        </view>
+      </view>
+
+      <view class="cal-foot">
+        <view class="sel-label">
+          <text>{{selectedLabel}}</text>
+          <text class="sel-holiday" wx:if="{{selectedHoliday}}"> · {{selectedHoliday}}</text>
+        </view>
+        <view class="sel-items" wx:if="{{selectedItems.length}}">
+          <view class="sel-chip" wx:for="{{selectedItems}}" wx:key="id">{{item.title}}</view>
+        </view>
+        <view class="sel-empty" wx:else>这一天还没有纪念日</view>
+      </view>
+    </view>
+
+    <view class="list-head" wx:if="{{hasData}}">
+      <view class="list-title">全部纪念日</view>
+      <view class="list-count">{{total}} 个</view>
+    </view>
+
+    <view class="list" wx:if="{{hasData}}">
+      <view class="ann-card enter" wx:for="{{anniversaries}}" wx:key="id" style="animation-delay: {{index * 45}}ms" data-id="{{item.id}}" bindtap="onItemTap" bindlongpress="onLongPress">
+        <view class="ann-date">
+          <view class="ann-day">{{item.dayNum}}</view>
+          <view class="ann-month">{{item.monthNum}}月</view>
+        </view>
+        <view class="ann-main">
+          <view class="ann-title-row">
+            <view class="ann-title">{{item.title}}</view>
+            <view class="ann-tag {{item.repeat ? 'repeat' : ''}}">{{item.repeat ? '每年' : '单次'}}</view>
+          </view>
+          <view class="ann-meta">{{item.nextLabel}} · {{item.weekday}}</view>
+        </view>
+        <view class="ann-right">
+          <view class="ann-count {{item.isToday ? 'today' : (item.passed ? 'passed' : '')}}">{{item.countdown}}</view>
+          <view class="ann-more" data-id="{{item.id}}" catchtap="onMore">···</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="empty" wx:else>
+      <view class="empty-cal">📅</view>
+      <view class="empty-title">还没有纪念日</view>
+      <view class="empty-sub">在一起的那天、生日、第一次见面…值得被记住的日子，都圈起来吧</view>
+      <view class="empty-btn" bindtap="goEdit">添加第一个纪念日</view>
+    </view>
+  </block>
+
+  <view class="fab" bindtap="goEdit">＋ 添加纪念日</view>
+</view>

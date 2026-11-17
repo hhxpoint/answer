@@ -1,0 +1,133 @@
+<view class="article-page" wx:if="{{paper}}">
+  <!-- 报纸背景 -->
+  <view class="paper-bg"></view>
+
+  <!-- 论文头部 -->
+  <view class="article-header">
+    <!-- 期刊色块 -->
+    <view class="venue-block" style="background-color: {{paper.venueColor}}">
+      <text class="venue-letter">{{paper.venueLetter}}</text>
+      <text class="venue-name">{{paper.venue}}</text>
+    </view>
+
+    <!-- 引用量徽章 -->
+    <view class="citation-badge">
+      <text class="citation-text">Citations: {{paper.citationCount}}</text>
+    </view>
+
+    <!-- 论文标题 -->
+    <text class="article-title">{{paper.title}}</text>
+
+    <!-- 作者行 -->
+    <text class="article-authors">{{paper.authorsText}}</text>
+
+    <!-- 装饰分隔线 -->
+    <view class="title-divider">
+      <view class="divider-line"></view>
+      <view class="divider-diamond">◆</view>
+      <view class="divider-line"></view>
+    </view>
+  </view>
+
+  <!-- 论文摘要 -->
+  <view class="article-body">
+    <view class="section-header">
+      <text class="section-label">ABSTRACT</text>
+      <view class="translate-btn" bindtap="toggleTranslate">
+        <text class="translate-icon">{{isTranslated ? '原文' : '翻译'}}</text>
+      </view>
+    </view>
+
+    <view class="article-content-wrapper">
+      <text class="article-full-content" user-select>{{displayContent}}</text>
+    </view>
+
+
+
+    <!-- 翻译工具入口 -->
+    <view class="translate-tool-entry" bindtap="goToTranslateTool">
+      <text class="tool-icon">🌐</text>
+      <text class="tool-text">翻译工具</text>
+      <text class="tool-desc">支持文本翻译、图片翻译等丰富功能</text>
+      <text class="tool-arrow">→</text>
+    </view>
+
+
+
+    
+
+    <!-- 元信息 -->
+    <view class="paper-meta-section">
+      <view class="meta-item">
+        <text class="meta-label">发表期刊/会议：</text>
+        <text class="meta-value">{{paper.venue}}</text>
+      </view>
+      <view class="meta-item">
+        <text class="meta-label">发表年份：</text>
+        <text class="meta-value">{{paper.yearText}}</text>
+      </view>
+      <view class="meta-item" wx:if="{{paper.doi}}">
+        <text class="meta-label">DOI：</text>
+        <text class="meta-value">{{paper.doi}}</text>
+      </view>
+      <view class="meta-item" wx:if="{{paper.arxivId}}">
+        <text class="meta-label">arXiv：</text>
+        <text class="meta-value">{{paper.arxivId}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="action-bar">
+    <!-- PDF 按钮 - 根据来源显示不同状态 -->
+    <view class="action-btn primary" wx:if="{{pdfInfo.url}}" bindtap="openPdf">
+      <text class="btn-icon">📄</text>
+      <text class="btn-text">Read Full Paper (PDF)</text>
+      <text class="btn-source" wx:if="{{pdfInfo.source}}">{{pdfInfo.source}}</text>
+    </view>
+
+    <!-- 检查中状态 -->
+    <view class="action-btn checking" wx:if="{{!pdfInfo.url && paper.doi && !hasCheckedUnpaywall}}">
+      <text class="btn-icon">🔍</text>
+      <text class="btn-text">正在查找开放获取版本...</text>
+    </view>
+
+    <!-- 无 PDF 时显示复制 DOI -->
+    <view class="action-btn secondary" wx:if="{{!pdfInfo.url && paper.doi}}" bindtap="copyDoi">
+      <text class="btn-icon">📋</text>
+      <text class="btn-text">Copy DOI to Clipboard</text>
+    </view>
+
+    <view class="action-row">
+      <view class="action-small" bindtap="copyTitle">
+        <text>复制标题</text>
+      </view>
+      <view class="action-small" bindtap="copyAbstract">
+        <text>复制摘要</text>
+      </view>
+      <button class="action-small share" open-type="share">
+        <text>分享</text>
+      </button>
+    </view>
+  </view>
+
+  <!-- 底部品牌 -->
+  <view class="footer">
+    <text class="footer-text">PAPER GEEK · 学术日报</text>
+  </view>
+</view>
+
+<!-- 加载状态 -->
+<view class="loading-state" wx:if="{{loading}}">
+  <view class="loading-spinner"></view>
+  <text>正在加载...</text>
+</view>
+
+<!-- 无数据状态 -->
+<view class="empty-state" wx:if="{{!loading && !paper}}">
+  <text class="empty-icon">📚</text>
+  <text class="empty-title">论文未找到</text>
+  <view class="back-btn" bindtap="goBack">
+    <text>返回列表</text>
+  </view>
+</view>

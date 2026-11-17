@@ -1,0 +1,40 @@
+<view class="page">
+  <view class="bg-a"></view>
+
+  <view class="hero">
+    <view class="hero-sub">在一起第 {{days}} 天</view>
+    <view class="hero-title">记录这一刻</view>
+  </view>
+
+  <view class="card">
+    <textarea
+      class="editor"
+      value="{{content}}"
+      placeholder="今天发生了什么小事…"
+      placeholder-class="ph"
+      maxlength="1000"
+      auto-height
+      show-confirm-bar="{{false}}"
+      bindinput="onInput"
+    ></textarea>
+
+    <view class="divider"></view>
+
+    <view class="img-grid">
+      <view class="img-cell" wx:for="{{images}}" wx:key="*this">
+        <image class="thumb" src="{{item}}" mode="aspectFill" data-index="{{index}}" bindtap="preview"></image>
+        <view class="del" data-index="{{index}}" catchtap="removeImage">×</view>
+      </view>
+      <view class="img-add" wx:if="{{images.length < 9}}" bindtap="chooseImages">
+        <view class="plus">＋</view>
+        <view class="add-text">{{images.length}}/9</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="tips">照片会保存在你们的小空间里，只有你们两个人能看到</view>
+
+  <view class="publish-bar">
+    <view class="publish-btn {{publishing ? 'disabled' : ''}}" bindtap="publish">{{publishing ? '发布中…' : '记录下来'}}</view>
+  </view>
+</view>

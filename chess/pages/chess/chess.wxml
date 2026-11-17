@@ -1,0 +1,107 @@
+<view class="main-wrapper">
+  
+  <!-- 顶部状态栏 -->
+  <view class="top-bar">
+    <view class="turn-toast">{{turnText}}</view>
+    <view class="mode-tag">{{modeName}}</view>
+  </view>
+
+  <!-- 棋盘区 -->
+  <view class="board-anchor">
+    <view class="board-wrapper">
+      <canvas type="2d" id="boardCanvas" class="board-canvas"
+        style="width: {{canvasWidth}}px; height: {{canvasHeight}}px;" bindtap="handleCanvasTap"></canvas>
+    </view>
+  </view>
+
+  <!-- 动态内容区 (向下滚动) -->
+  <scroll-view scroll-y="true" class="extend-container">
+    
+    <!-- 模式1 & 2：本地双人 / 人机对战 (显示控制面板) -->
+    <block wx:if="{{!isOnline}}">
+      
+      <!-- 获取到的当前用户信息卡片 -->
+      <view class="local-user-card">
+        <image class="user-avatar" src="{{userInfo.avatar}}"></image>
+        <view class="user-info">
+          <text class="user-name">{{userInfo.nickname}}</text>
+          <text class="user-role">当前玩家</text>
+        </view>
+        <view class="local-badge">{{mode === 'local' ? '本地模式' : '人机模式'}}</view>
+      </view>
+
+      <!-- 游戏控制大厅面板 (三大核心按钮) -->
+      <view class="control-panel">
+        <view class="panel-title">- 游戏模式选择 -</view>
+        <view class="btn-group">
+          <view class="c-btn btn-local" bindtap="startLocalMode">
+            <text class="btn-icon">👥</text>
+            <text class="btn-text">本地双人对决</text>
+          </view>
+          
+          <view class="c-btn btn-ai" bindtap="startAIMode">
+            <text class="btn-icon">🤖</text>
+            <text class="btn-text">单机人机挑战</text>
+          </view>
+
+          <view class="c-btn btn-online" bindtap="goToLobby">
+            <text class="btn-icon">🌐</text>
+            <text class="btn-text">进入联机大厅</text>
+          </view>
+        </view>
+      </view>
+      
+    </block>
+
+    <!-- 模式3：网络联机 (显示对战身份卡和聊天室) -->
+    <block wx:if="{{isOnline}}">
+      <view class="identity-card">
+        <view class="player-box {{currentPlayer === 1 ? 'active' : ''}}">
+          <image class="p-avatar" src="{{redAvatar || userInfo.avatar}}"></image>
+          <view class="p-info">
+            <text class="p-name">{{redNickname}}</text>
+            <text class="p-status">{{currentPlayer === 1 ? '思考中...' : '等待中...'}}</text>
+          </view>
+        </view>
+        <view class="vs-tag">VS</view>
+        <view class="player-box {{currentPlayer === 2 ? 'active' : ''}}">
+          <image class="p-avatar" src="{{blackAvatar || userInfo.avatar}}"></image>
+          <view class="p-info">
+            <text class="p-name">{{blackNickname}}</text>
+            <text class="p-status">{{currentPlayer === 2 ? '思考中...' : '等待中...'}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="chat-room">
+        <view class="chat-room-header">对局实时聊天</view>
+        <view class="msg-container">
+          <block wx:for="{{chatMessages}}" wx:key="id">
+            <view class="msg-item {{item.role === myRole ? 'msg-right' : 'msg-left'}}">
+              <image class="msg-avatar" src="{{item.avatar || userInfo.avatar}}"></image>
+              <view class="msg-bubble">
+                <text class="msg-user">{{item.nickname}}</text>
+                <text class="msg-text">{{item.text}}</text>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </block>
+    
+    <!-- 底部留空 -->
+    <view style="height: 60rpx;"></view>
+  </scroll-view>
+
+  <!-- 仅在联机模式下显示底部聊天输入栏 -->
+  <view class="fixed-input-bar" wx:if="{{isOnline}}">
+    <view class="voice-btn {{voiceStatus.connected && !voiceStatus.muted ? 'voice-active' : ''}} {{voiceStatus.speaking.red && myRole === 1 ? 'voice-speaking' : ''}} {{voiceStatus.speaking.black && myRole === 2 ? 'voice-speaking' : ''}}" bindtap="toggleVoice">
+      <text wx:if="{{!voiceStatus.connected || voiceStatus.muted}}">🔇</text>
+      <text wx:elif="{{voiceStatus.speaking.red && myRole === 1 || voiceStatus.speaking.black && myRole === 2}}">🗣️</text>
+      <text wx:else>🎙️</text>
+    </view>
+    <input class="chat-input" value="{{inputText}}" bindinput="onInputChat" placeholder="发送对局消息..." />
+    <view class="send-btn" bindtap="sendChat">发送</view>
+  </view>
+
+</view>

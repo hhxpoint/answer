@@ -1,0 +1,76 @@
+<view class="page">
+  <view class="bg-a"></view>
+  <view class="bg-b"></view>
+
+  <view class="hero">
+    <view class="hero-avatars">
+      <image wx:if="{{myAvatar}}" class="h-avatar me" src="{{myAvatar}}" mode="aspectFill"></image>
+      <view wx:else class="h-avatar me">{{myInitial}}</view>
+      <image wx:if="{{partnerAvatar}}" class="h-avatar ta" src="{{partnerAvatar}}" mode="aspectFill"></image>
+      <view wx:else class="h-avatar ta">{{partnerInitial}}</view>
+    </view>
+    <view class="hero-title">我们的时光</view>
+    <view class="hero-sub">
+      <text>在一起第 {{days}} 天</text>
+      <text wx:if="{{total}}"> · 已记录 {{total}} 件小事</text>
+      <text wx:else> · 记录第一件小事吧</text>
+    </view>
+  </view>
+
+  <view wx:if="{{!ready}}" class="state">正在打开时光…</view>
+  <view wx:elif="{{errorText}}" class="state err">{{errorText}}</view>
+
+  <view wx:elif="{{diaries.length === 0}}" class="empty">
+    <view class="empty-flame">
+      <view class="ef-aura"></view>
+      <view class="ef-body"></view>
+      <view class="ef-core"></view>
+    </view>
+    <view class="empty-title">还没有记录</view>
+    <view class="empty-sub">把今天的小事写下来，慢慢就攒成一本只属于你们的相册</view>
+    <view class="empty-btn" bindtap="goEdit">记录第一件小事</view>
+  </view>
+
+  <block wx:else>
+    <view class="list">
+      <view class="card" wx:for="{{diaries}}" wx:key="id" data-id="{{item.id}}" bindlongpress="onLongPress">
+        <view class="card-head">
+          <image wx:if="{{item.authorAvatar}}" class="author-avatar" src="{{item.authorAvatar}}" mode="aspectFill"></image>
+          <view wx:else class="author-avatar">{{item.authorInitial}}</view>
+          <view class="head-text">
+            <view class="author-name">{{item.authorName}}</view>
+            <view class="time-text">{{item.timeText}}</view>
+          </view>
+          <view class="day-chip">第 {{item.dayNo}} 天</view>
+        </view>
+
+        <view wx:if="{{item.content}}" class="content">{{item.content}}</view>
+
+        <view wx:if="{{item.images.length}}" class="img-grid images-{{item.imageClass}}">
+          <image
+            wx:for="{{item.images}}"
+            wx:for-item="img"
+            wx:for-index="idx"
+            wx:key="*this"
+            class="img"
+            src="{{img}}"
+            mode="aspectFill"
+            data-id="{{item.id}}"
+            data-src="{{img}}"
+            bindtap="previewImage"
+          ></image>
+        </view>
+
+        <view wx:if="{{item.mine}}" class="card-more" data-id="{{item.id}}" catchtap="onMore">···</view>
+      </view>
+
+      <view wx:if="{{hasMore}}" class="list-foot" bindtap="loadMore">{{loadingMore ? '加载中…' : '加载更早的时光'}}</view>
+      <view wx:else class="list-foot end">· 已经到最早的一天了 ·</view>
+    </view>
+  </block>
+
+  <view class="fab" bindtap="goEdit">
+    <text class="fab-icon">✎</text>
+    <text>记录</text>
+  </view>
+</view>

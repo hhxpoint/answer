@@ -1,0 +1,185 @@
+<view class="translate-page">
+  <!-- 顶部导航 -->
+  <!-- <view class="nav-bar">
+    <view class="nav-back" bindtap="goBack">
+      <text class="back-icon">←</text>
+    </view>
+    <text class="nav-title">翻译工具</text>
+    <view class="nav-placeholder"></view>
+  </view> -->
+
+  <!-- 模式切换 -->
+  <view class="mode-tabs">
+    <view class="mode-tab {{mode === 'text' ? 'active' : ''}}" data-mode="text" bindtap="switchMode">
+      <text class="tab-icon">📝</text>
+      <text class="tab-text">文本翻译</text>
+    </view>
+    <view class="mode-tab {{mode === 'image' ? 'active' : ''}}" data-mode="image" bindtap="switchMode">
+      <text class="tab-icon">📷</text>
+      <text class="tab-text">图片翻译</text>
+    </view>
+  </view>
+
+  <!-- 语言选择栏 -->
+  <view class="lang-bar">
+    <view class="lang-selector" bindtap="showSourceLangPicker">
+      <picker mode="selector" range="{{languages}}" range-key="name" bindchange="onSourceLangChange">
+        <view class="lang-name">{{sourceLangName}}</view>
+      </picker>
+    </view>
+    
+    <view class="lang-swap" bindtap="swapLanguages">
+      <text class="swap-icon">⇄</text>
+    </view>
+    
+    <view class="lang-selector" bindtap="showTargetLangPicker">
+      <picker mode="selector" range="{{targetLanguages}}" range-key="name" bindchange="onTargetLangChange">
+        <view class="lang-name">{{targetLangName}}</view>
+      </picker>
+    </view>
+  </view>
+
+  <!-- 文本翻译模式 -->
+  <block wx:if="{{mode === 'text'}}">
+    <!-- 输入区域 -->
+    <view class="input-section">
+      <view class="section-header">
+        <text class="section-label">原文</text>
+        <view class="section-actions">
+          <view class="action-btn small" bindtap="playSource" wx:if="{{sourceText}}">
+            <text class="play-icon">{{playingSource ? '⏸' : '🔊'}}</text>
+          </view>
+          <view class="action-btn small" bindtap="copySource" wx:if="{{sourceText}}">
+            <text>复制</text>
+          </view>
+          <view class="action-btn small" bindtap="clearInput" wx:if="{{sourceText}}">
+            <text>清空</text>
+          </view>
+        </view>
+      </view>
+      <textarea 
+        class="text-input" 
+        placeholder="请输入要翻译的文本..." 
+        value="{{sourceText}}"
+        bindinput="onInput"
+        maxlength="6000"
+        auto-height
+      />
+      <view class="char-count">{{sourceText.length}}/6000</view>
+    </view>
+
+    <!-- 翻译按钮 -->
+    <view class="translate-btn-wrapper">
+      <view class="translate-btn {{translating ? 'loading' : ''}}" bindtap="doTranslate">
+        <text class="btn-text" wx:if="{{!translating}}">翻译</text>
+        <text class="btn-text" wx:else>翻译中...</text>
+      </view>
+    </view>
+
+    <!-- 结果区域 -->
+    <view class="result-section" wx:if="{{targetText}}">
+      <view class="section-header">
+        <text class="section-label">译文</text>
+        <view class="section-actions">
+          <view class="action-btn small" bindtap="playTarget" wx:if="{{targetText}}">
+            <text class="play-icon">{{playingTarget ? '⏸' : '🔊'}}</text>
+          </view>
+          <view class="action-btn small" bindtap="copyResult">
+            <text>复制</text>
+          </view>
+        </view>
+      </view>
+      <view class="text-output">
+        <text user-select>{{targetText}}</text>
+      </view>
+    </view>
+  </block>
+
+  <!-- 图片翻译模式 -->
+  <block wx:if="{{mode === 'image'}}">
+    <view class="image-section">
+      <view class="image-upload" bindtap="chooseImage">
+        <text class="upload-icon">📷</text>
+        <text class="upload-text">点击选择图片</text>
+        <text class="upload-hint">支持 JPG、PNG 格式</text>
+      </view>
+      
+      <view class="image-tips">
+        <text class="tips-title">图片翻译说明：</text>
+        <text class="tips-item">• 支持识别图片中的文字并翻译</text>
+        <text class="tips-item">• 建议图片分辨率 600×800 以上</text>
+        <text class="tips-item">• 支持中英文等18种语言互译</text>
+      </view>
+    </view>
+    
+    <!-- 图片翻译结果 -->
+    <view class="result-section" wx:if="{{targetText}}">
+      <view class="section-header">
+        <text class="section-label">识别原文</text>
+        <view class="section-actions">
+          <view class="action-btn small" bindtap="playSource" wx:if="{{sourceText}}">
+            <text class="play-icon">{{playingSource ? '⏸' : '🔊'}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="text-output">
+        <text user-select>{{sourceText}}</text>
+      </view>
+      
+      <view class="section-header" style="margin-top: 20rpx;">
+        <text class="section-label">翻译结果</text>
+        <view class="section-actions">
+          <view class="action-btn small" bindtap="playTarget" wx:if="{{targetText}}">
+            <text class="play-icon">{{playingTarget ? '⏸' : '🔊'}}</text>
+          </view>
+          <view class="action-btn small" bindtap="copyResult">
+            <text>复制</text>
+          </view>
+        </view>
+      </view>
+      <view class="text-output">
+        <text user-select>{{targetText}}</text>
+      </view>
+    </view>
+  </block>
+
+  <!-- 翻译历史 -->
+  <view class="history-section" wx:if="{{history.length > 0}}">
+    <view class="section-header">
+      <text class="section-label">翻译历史</text>
+      <view class="section-actions">
+        <view class="action-btn small" bindtap="clearHistory">
+          <text>清空</text>
+        </view>
+      </view>
+    </view>
+    <view class="history-list">
+      <view 
+        class="history-item" 
+        wx:for="{{history}}" 
+        wx:key="id"
+        data-item="{{item}}"
+      >
+        <view class="history-content" bindtap="onHistoryTap" data-item="{{item}}">
+          <view class="history-text">
+            <text class="history-source">{{item.source}}</text>
+            <text class="history-arrow">→</text>
+            <text class="history-target">{{item.target}}</text>
+          </view>
+          <view class="history-meta">
+            <text class="history-lang">{{item.sourceLang}} → {{item.targetLang}}</text>
+            <text class="history-time">{{item.time}}</text>
+          </view>
+        </view>
+        <view class="history-delete" data-id="{{item.id}}" catchtap="deleteHistoryItem">
+          <text class="delete-icon">×</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部品牌 -->
+  <view class="footer">
+    <text class="footer-text">PAPER GEEK · 翻译工具</text>
+  </view>
+</view>

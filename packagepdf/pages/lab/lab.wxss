@@ -1,0 +1,262 @@
+/* pages/lab/lab.wxss */
+page {
+  /* 高级渐变背景 */
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60rpx 30rpx;
+  box-sizing: border-box;
+}
+
+/* --- 头部区域 --- */
+.header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+
+.title {
+  font-size: 56rpx;
+  font-weight: 800;
+  color: #2c3e50;
+  letter-spacing: 4rpx;
+  margin-bottom: 30rpx;
+  text-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+
+/* iOS 风格分段选择器 */
+.segmented-control {
+  display: flex;
+  background: rgba(200, 210, 225, 0.6);
+  border-radius: 20rpx;
+  padding: 8rpx;
+  box-shadow: inset 0 2rpx 6rpx rgba(0, 0, 0, 0.1);
+}
+
+.segment {
+  width: 160rpx;
+  text-align: center;
+  padding: 14rpx 0;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #7f8c8d;
+  border-radius: 14rpx;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.segment.active {
+  background: #ffffff;
+  color: #2980b9;
+  box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.08);
+}
+
+/* --- 信息仪表盘 --- */
+.dashboard {
+  width: 640rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  padding: 20rpx 30rpx;
+  border-radius: 24rpx;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.04);
+  margin-bottom: 60rpx;
+  box-sizing: border-box;
+}
+
+.info-group {
+  display: flex;
+  align-items: center;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 100rpx;
+}
+
+.label {
+  font-size: 22rpx;
+  color: #95a5a6;
+  text-transform: uppercase;
+  margin-bottom: 4rpx;
+}
+
+.value {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #34495e;
+  font-variant-numeric: tabular-nums;
+  /* 让数字等宽，跳动时不晃眼 */
+}
+
+.time-value {
+  color: #e74c3c;
+}
+
+.divider {
+  width: 2rpx;
+  height: 40rpx;
+  background: #ecf0f1;
+  margin: 0 30rpx;
+}
+
+.btn-restart {
+  background: linear-gradient(135deg, #6dd5ed, #2193b0);
+  color: white;
+  font-size: 26rpx;
+  font-weight: bold;
+  padding: 16rpx 36rpx;
+  border-radius: 100rpx;
+  box-shadow: 0 6rpx 16rpx rgba(33, 147, 176, 0.3);
+  display: flex;
+  align-items: center;
+  transition: all 0.1s;
+}
+
+.btn-hover {
+  transform: scale(0.95);
+  box-shadow: 0 2rpx 8rpx rgba(33, 147, 176, 0.3);
+}
+
+/* --- 核心：棋盘与立体方块 --- */
+.board-wrapper {
+  background: #ffffff;
+  padding: 20rpx;
+  border-radius: 30rpx;
+  box-shadow: 0 20rpx 50rpx rgba(0, 0, 0, 0.1);
+}
+
+.board-tray {
+  /* 制作一个凹下去的托盘感 */
+  background: #e4e9f2;
+  padding: 16rpx;
+  border-radius: 20rpx;
+  box-shadow: inset 4rpx 4rpx 10rpx rgba(0, 0, 0, 0.1),
+    inset -4rpx -4rpx 10rpx rgba(255, 255, 255, 0.7);
+}
+
+.board {
+  display: grid;
+  gap: 16rpx;
+  width: 600rpx;
+  height: 600rpx;
+}
+
+.tile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16rpx;
+  font-size: 52rpx;
+  font-weight: 800;
+  transition: transform 0.1s ease;
+  user-select: none;
+}
+
+/* 2.5D 物理按键质感 (上左亮，下右暗) */
+.number-tile {
+  background-color: #f8f9fa;
+  color: #2c3e50;
+
+  /* 高光边缘与阴影边缘 */
+  border-top: 4rpx solid #ffffff;
+  border-left: 4rpx solid #ffffff;
+  border-bottom: 4rpx solid #bdc3c7;
+  border-right: 4rpx solid #bdc3c7;
+
+  /* 基础投影 */
+  box-shadow: 4rpx 8rpx 12rpx rgba(0, 0, 0, 0.15);
+  text-shadow: 2rpx 2rpx 0 #ffffff;
+}
+
+/* 点击时的真实下压手感 */
+.number-tile:active {
+  /* 边框明暗反转 */
+  border-top: 4rpx solid #bdc3c7;
+  border-left: 4rpx solid #bdc3c7;
+  border-bottom: 4rpx solid #ffffff;
+  border-right: 4rpx solid #ffffff;
+
+  /* 向下位移并减小阴影 */
+  transform: translateY(4rpx);
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.1);
+}
+
+.empty {
+  background-color: transparent;
+}
+
+/* --- 胜利弹窗 --- */
+.win-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  z-index: 999;
+}
+
+.win-modal.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.win-content {
+  background: white;
+  width: 540rpx;
+  padding: 60rpx 40rpx;
+  border-radius: 32rpx;
+  text-align: center;
+  transform: scale(0.8);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.win-modal.show .win-content {
+  transform: scale(1);
+}
+
+.win-title {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #27ae60;
+  margin-bottom: 20rpx;
+}
+
+.win-stats {
+  font-size: 30rpx;
+  color: #7f8c8d;
+  margin-bottom: 50rpx;
+}
+
+.btn-play-again {
+  background: #27ae60;
+  color: white;
+  font-size: 32rpx;
+  font-weight: bold;
+  padding: 24rpx 0;
+  border-radius: 100rpx;
+  box-shadow: 0 8rpx 20rpx rgba(39, 174, 96, 0.3);
+}
+
+.btn-play-again:active {
+  transform: scale(0.96);
+}

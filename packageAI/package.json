@@ -1,0 +1,5 @@
+{
+  "name": "packageAI",
+  "version": "1.0.0",
+  "description": "AI姿态估计核心模块 - 基于MoveNet的骨骼关键点检测"
+}

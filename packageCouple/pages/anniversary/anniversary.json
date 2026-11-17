@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "我们的纪念日",
+  "navigationBarBackgroundColor": "#fff7f2",
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#ffefe6",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
+}

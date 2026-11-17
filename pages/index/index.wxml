@@ -1,62 +1,84 @@
+<!-- 我们的小火苗入口 -->
+<view class="couple-entry" bindtap="goCouple">
+  <view class="couple-entry-glow"></view>
+  <view class="couple-entry-flame">
+    <view class="mini-flame">
+      <view class="mini-flame-inner">
+        <view class="mini-flame-core"></view>
+      </view>
+    </view>
+  </view>
+  <view class="couple-entry-text">
+    <view class="couple-entry-title">我们的小火苗</view>
+    <view class="couple-entry-sub">和 TA 一起养一只 · 记录两个人的时光</view>
+  </view>
+  <view class="couple-entry-arrow">›</view>
+</view>
+
 <swiper class="swiper" autoplay interval="3000" circular>
   <swiper-item>
     <image class="swiper-img" src="/assets/banner1.png"></image>
   </swiper-item>
-  <swiper-item>
-    <image class="swiper-img" src="/assets/banner2.png"></image>
-  </swiper-item>
-  
 </swiper>
 
 
 
 <view class="banner">
   <text class="banner-title">机器学习问答</text>
-  
-  <text class="banner-sub">轻松掌握核心知识点</text>
+
+  <text class="banner-sub">  轻松掌握核心知识点</text>
 </view>
+
+
 
 <view class="container">
 
-
-  
   <view class="card-list">
 
     <view class="card" bindtap="goQuiz">
-      <image class="card-icon" src="/assets/home.png"></image>
+      <image class="card-icon" src="/assets/home-active.png"></image>
       <text class="card-title">开始答题</text>
     </view>
 
-    <view class="card" bindtap="goSearch">
-      <image class="card-icon" src="/assets/search.png"></image>
-      <text class="card-title">搜索知识点</text>
-    </view>
 
-    <view class="card" bindtap="randomQA">
-      <image class="card-icon" src="/assets/book.png"></image>
-      <text class="card-title">随机知识点</text>
+
+        <!-- 教务在线 - 成绩查询 -->
+        <view class="card" bindtap="goScores">
+          <image class="card-icon" src="/assets/2.png"></image>
+          <view class="card-title">成绩查询</view>
+        </view>
+        
+        <!-- 教务在线 - 教务课表 -->
+        <view class="card" bindtap="goJwzxTimetable">
+          <image class="card-icon" src="/assets/1.png"></image>
+          <view class="card-title">课表</view>
+        </view>
+
+
+    <view class="card" bindtap="goSearch">
+      <image class="card-icon" src="/assets/search-active.png"></image>
+      <text class="card-title">搜索知识点</text>
     </view>
 
     <!-- pages/index/index.wxml 找到 card-list 内部 -->
     <view class="card" bindtap="goWords">
-      <image class="card-icon" src="/assets/word.png"></image> <!-- 确保你把图标放到了 assets/word.png -->
+      <image class="card-icon" src="/assets/word.png"></image>
       <view class="card-title">背单词</view>
     </view>
 
-    
+
     <!-- 408综合 按钮 -->
     <view class="card" bindtap="goExam" data-type="408">
       <image class="card-icon" src="/assets/408.png"></image>
       <view class="card-title">408综合</view>
     </view>
-    
+
     <!-- 数一客观 按钮 -->
     <view class="card" bindtap="goExam" data-type="math1">
       <image class="card-icon" src="/assets/math1.png"></image>
       <view class="card-title">数一客观</view>
     </view>
 
-  
 
 
 
@@ -68,26 +90,144 @@
 
     <!-- 原神启动（算法网络）按钮 -->
     <view class="card" bindtap="goAlgorithm">
-      <!-- 注意：这里的 src 请换成刚才放进 assets 里的图片名字 -->
       <image class="card-icon" src="/assets/bo.png"></image>
       <view class="card-title">卜神启动</view>
     </view>
 
 
-      
     <view class="card" bindtap="goprocess">
-        <!-- 注意：这里的 src 请换成刚才放进 assets 里的图片名字 -->
         <image class="card-icon" src="/assets/search-active.png"></image>
         <view class="card-title">图像处理</view>
       </view>
 
-      
+    <view class="card" bindtap="golab">
+        <image class="card-icon" src="/assets/book-active.png"></image>
+        <view class="card-title">butterfly</view>
+      </view>
+
+
+    <view class="card" bindtap="gohash">
+      <image class="card-icon" src="/assets/hash.png"></image>
+      <view class="card-title">hash</view>
+    </view>
+
+      <view class="card" bindtap="gopuzzle">
+        <image class="card-icon" src="/assets/puzzle.png"></image>
+        <view class="card-title">puzzle</view>
+      </view>
+
+
+
+    <view class="card" bindtap="gomemo">
+        <image class="card-icon" src="/assets/memo.png"></image>
+        <view class="card-title">coconut</view>
+    </view>
+
+    <view class="card" bindtap="goimg2pdf">
+      <image class="card-icon" src="/assets/img2pdf.png"></image>
+      <view class="card-title">img2pdf</view>
+    </view>
+
+  <!-- 粒子的测试渲染 -->
+      <view class="card" bindtap="got">
+
+        <image class="card-icon" src="/assets/search-active.png"></image>
+        <view class="card-title">particle</view>
+      </view>
+
+
+
+
+
+     <view class="card" bindtap="goc">
+        <image class="card-icon" src="/assets/course.png"></image>
+        <view class="card-title">课程表</view>
+      </view>
+
+
+
+
+      <view class="card" bindtap="gochess">
+        <image class="card-icon" src="/assets/course.png"></image>
+        <view class="card-title">灯神长街</view>
+      </view>
+
+      <view class="card" bindtap="gop">
+        <image class="card-icon" src="/assets/course.png"></image>
+        <view class="card-title">应许之地</view>
+      </view>
+
+
+
       <!-- 原神启动（算法网络）按钮 -->
     <view class="card" bindtap="goemotion">
-        <!-- 注意：这里的 src 请换成刚才放进 assets 里的图片名字 -->
         <image class="card-icon" src="/assets/home-active.png"></image>
         <view class="card-title">语音大师</view>
       </view>
+
+    <view class="card lite-card" bindtap="goWeather">
+      <view class="lite-emoji">🍊</view>
+      <view class="lite-info">
+        <text class="lite-title">天气系统</text>
+        <text class="lite-sub">实时天气预报</text>
+      </view>
+    </view>
+
+    <view class="card lite-card" bindtap="goSport">
+      <view class="lite-emoji">🫐</view>
+      <view class="lite-info">
+        <text class="lite-title">运动系统</text>
+        <text class="lite-sub">健身记录与统计</text>
+      </view>
+    </view>
+
+    <view class="card lite-card" bindtap="goGithub">
+      <view class="lite-emoji">🍋</view>
+      <view class="lite-info">
+        <text class="lite-title">Paper Geek</text>
+        <text class="lite-sub">学术日报 · AI论文</text>
+      </view>
+    </view>
+
+    <view class="card lite-card" bindtap="goAR">
+      <view class="lite-emoji">🍇</view>
+      <view class="lite-info">
+        <text class="lite-title">AR 空间</text>
+        <text class="lite-sub">增强现实 · 3D交互</text>
+      </view>
+    </view>
+
+    <view class="card lite-card" bindtap="goFinance">
+      <view class="lite-emoji">🥝</view>
+      <view class="lite-info">
+        <text class="lite-title">指数破壁</text>
+        <text class="lite-sub">全球财富监控</text>
+      </view>
+    </view>
+
+    <view class="card lite-card" bindtap="gob">
+      <view class="lite-emoji">🍑</view>
+      <view class="lite-info">
+        <text class="lite-title">Blockchain</text>
+        <text class="lite-sub">多链浏览器 · 实时行情</text>
+      </view>
+    </view>
+
+    <view class="card lite-card" bindtap="gor">
+      <view class="lite-emoji">🍒</view>
+      <view class="lite-info">
+        <text class="lite-title">简历编辑器</text>
+        <text class="lite-sub">可视化编辑 · 实时预览</text>
+      </view>
+    </view>
+
+    <view class="card lite-card" bindtap="goDetect">
+      <view class="lite-emoji">🍓</view>
+      <view class="lite-info">
+        <text class="lite-title">目标检测</text>
+        <text class="lite-sub">手写数字识别 · 实时检测</text>
+      </view>
+    </view>
 
   </view>
 

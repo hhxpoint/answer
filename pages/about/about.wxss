@@ -1,154 +1,278 @@
-/* 页面基础底色 */
-page {
-  background-color: #f4f6f9;
-}
+/* pages/about/about.wxss */
 
-.page-container {
+/* === 全局容器与动态背景 === */
+.container {
+  min-height: 100vh;
+  width: 100%;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
   position: relative;
-}
-
-/* 顶部现代感渐变背景 */
-.header-bg {
-  width: 100%;
-  height: 350rpx;
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-  border-bottom-left-radius: 40rpx;
-  border-bottom-right-radius: 40rpx;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
-
-/* 悬浮卡片主体 */
-.main-card {
-  width: 88%;
-  background-color: #ffffff;
-  border-radius: 30rpx;
-  box-shadow: 0 16rpx 40rpx rgba(0, 0, 0, 0.06);
-  margin-top: 100rpx;
-  /* 向上偏移盖住一部分背景 */
-  z-index: 2;
-  padding: 50rpx 40rpx;
+  overflow: hidden;
+  padding: 40rpx 0;
   box-sizing: border-box;
 }
 
-/* 个人信息 */
+/* 动态背景：暖色调呼吸渐变 */
+.animated-bg {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  /* 暖橙 -> 柔粉 -> 淡紫 -> 暖黄 */
+  background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fad0c4, #a18cd1, #fbc2eb);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  z-index: 1;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* === 毛玻璃主卡片 === */
+.glass-card {
+  width: 90%;
+  /* 半透明白色背景 */
+  background: rgba(255, 255, 255, 0.75);
+  /* 核心：背景模糊 (部分安卓机型可能不支持，背景色作为兜底) */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 40rpx;
+  /* 柔和的白色边框，增加层次感 */
+  border: 2rpx solid rgba(255, 255, 255, 0.6);
+  /* 弥散投影 */
+  box-shadow: 0 20rpx 60rpx rgba(0, 0, 0, 0.1);
+  z-index: 2;
+  padding: 60rpx 40rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* === 1. 个人资料 === */
 .profile-section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 30rpx;
+  margin-bottom: 50rpx;
+}
+
+.avatar-wrapper {
+  padding: 8rpx;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  /* 头像外圈的光晕 */
+  box-shadow: 0 10rpx 30rpx rgba(255, 154, 158, 0.3);
 }
 
 .avatar {
-  width: 160rpx;
-  height: 160rpx;
+  width: 180rpx;
+  height: 180rpx;
   border-radius: 50%;
-  border: 6rpx solid #ffffff;
-  box-shadow: 0 8rpx 20rpx rgba(0, 0, 0, 0.1);
-  margin-bottom: 20rpx;
-  background-color: #eeeeee;
-  /* 图片加载前的占位色 */
+  display: block;
 }
 
 .name {
-  font-size: 36rpx;
-  font-weight: bold;
-  color: #333333;
-  margin-bottom: 10rpx;
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #2d3436;
+  /* 深炭灰，比纯黑柔和 */
+  margin-top: 24rpx;
+  letter-spacing: 2rpx;
+  /* 增加字间距显得大气 */
 }
 
 .bio {
   font-size: 26rpx;
-  color: #888888;
+  color: #636e72;
+  margin-top: 10rpx;
+  font-weight: 400;
 }
 
-/* 分割线 */
-.divider {
+/* === 2. 列表区域 === */
+.list-section {
   width: 100%;
-  height: 1px;
-  background-color: #f0f0f0;
-  margin: 40rpx 0;
+  margin-bottom: 40rpx;
 }
 
-/* 信息区块通用样式 */
-.info-section {
+/* 通用图标盒子 */
+.icon-box {
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  margin-right: 24rpx;
+}
+
+.icon-blog {
+  background-color: #e0f7fa;
+  color: #00bcd4;
+}
+
+.icon-qr {
+  background-color: #f3e5f5;
+  color: #9c27b0;
+}
+
+/* 博客卡片 */
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  padding: 30rpx;
+  border-radius: 24rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.02);
+  transition: all 0.2s;
+}
+
+.list-item:active {
+  transform: scale(0.98);
+  background: #fdfdfd;
+}
+
+.item-left {
+  display: flex;
+  align-items: center;
+}
+
+.item-info {
   display: flex;
   flex-direction: column;
 }
 
-.info-title {
+.item-title {
   font-size: 30rpx;
   font-weight: 600;
-  color: #333333;
-  margin-bottom: 20rpx;
-  display: block;
+  color: #2d3436;
 }
 
-/* 博客链接样式 */
-.blog-box {
+.item-desc {
+  font-size: 24rpx;
+  color: #b2bec3;
+  margin-top: 4rpx;
+}
+
+.item-arrow {
+  font-size: 24rpx;
+  color: #fab1a0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  background-color: #f8f9fa;
-  padding: 20rpx 24rpx;
-  border-radius: 16rpx;
-}
-
-.blog-url {
-  font-size: 26rpx;
-  color: #555555;
-  flex: 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.copy-btn {
-  font-size: 24rpx;
-  color: #4facfe;
-  background-color: rgba(79, 172, 254, 0.1);
-  padding: 10rpx 20rpx;
-  border-radius: 30rpx;
-  margin-left: 20rpx;
   font-weight: 500;
 }
 
-.copy-btn:active {
-  opacity: 0.7;
+/* 二维码区域 */
+.qr-container {
+  background: #ffffff;
+  border-radius: 24rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
 }
 
-/* 二维码样式 */
-.qr-box {
+.qr-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.qr-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #2d3436;
+}
+
+.qr-wrapper {
+  background: #fdfdfd;
+  border-radius: 16rpx;
+  border: 2rpx dashed #e0e0e0;
+  padding: 30rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.qr-image {
+  width: 280rpx;
+  height: 280rpx;
+  /* 混合模式：让二维码白底融入背景 */
+  mix-blend-mode: multiply;
+}
+
+.qr-hint {
+  font-size: 22rpx;
+  color: #b2bec3;
+  margin-top: 16rpx;
+  letter-spacing: 1rpx;
+}
+
+/* === 3. 底部客服按钮 === */
+.footer-section {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 10rpx;
 }
 
-.qr-code {
-  width: 320rpx;
-  height: 320rpx;
-  border-radius: 20rpx;
-  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
-  background-color: #fafafa;
-  margin-bottom: 20rpx;
-  /* ⚠️ 提示：在没放图片前，这里会显示一个灰底色 */
+
+
+.contact-btn {
+  width: 100% !important;
+  height: 100rpx;
+  /* 暖色渐变按钮 */
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+  border-radius: 50rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: 600;
+  /* 按钮发光 */
+  box-shadow: 0 10rpx 25rpx rgba(255, 154, 158, 0.4);
+  padding: 0;
+  transition: opacity 0.2s;
 }
 
-.qr-tip {
-  font-size: 24rpx;
-  color: #aaaaaa;
+.contact-btn::after {
+  border: none;
 }
 
-/* 底部留白 */
-.footer {
-  margin-top: 60rpx;
-  margin-bottom: 40rpx;
-  font-size: 24rpx;
-  color: #cccccc;
+.contact-btn:active {
+  opacity: 0.9;
+  transform: scale(0.99);
+}
+
+.btn-icon {
+  margin-right: 12rpx;
+  font-size: 36rpx;
+}
+
+.footer-text {
+  font-size: 20rpx;
+  color: #b2bec3;
+  /* 浅灰 */
+  margin-top: 30rpx;
+  font-family: monospace;
+  /* 程序员风格字体 */
+  opacity: 0.8;
 }

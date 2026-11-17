@@ -1,0 +1,100 @@
+<view class="page">
+  <view class="bg-glow glow-a"></view>
+  <view class="bg-glow glow-b"></view>
+
+  <view class="topbar">
+    <image wx:if="{{partnerAvatar}}" class="top-avatar" src="{{partnerAvatar}}" mode="aspectFill"></image>
+    <view wx:else class="top-avatar">{{partnerInitial}}</view>
+    <view class="topbar-main">
+      <view class="title">悄悄话</view>
+      <view class="sub">和 {{partnerName}} · 只属于你们俩</view>
+    </view>
+    <view class="conn {{connOk ? 'ok' : 'warn'}}">{{connText}}</view>
+  </view>
+
+  <view wx:if="{{!ready}}" class="tip">加载中…</view>
+  <view wx:elif="{{errorText}}" class="tip error">{{errorText}}</view>
+
+  <block wx:else>
+    <scroll-view
+      class="msg-list"
+      scroll-y
+      scroll-into-view="{{scrollInto}}"
+      scroll-with-animation
+      bindscrolltolower="onToLower"
+      bindscroll="onScroll"
+      enhanced="{{true}}"
+      show-scrollbar="{{true}}"
+    >
+      <view class="list-top"></view>
+
+      <view wx:for="{{messages}}" wx:key="id" id="msg-{{item.id}}">
+        <view wx:if="{{item.showTime}}" class="time-row">{{item.timeText}}</view>
+
+        <view wx:if="{{item.system}}" class="system-row">{{item.text}}</view>
+
+        <view wx:else class="msg-row {{item.mine ? 'mine' : 'them'}}">
+          <image wx:if="{{item.avatar}}" class="msg-avatar" src="{{item.avatar}}" mode="aspectFill"></image>
+          <view wx:else class="msg-avatar">{{item.avatarText}}</view>
+
+          <view
+            class="bubble {{item.mine ? 'bubble-mine' : 'bubble-them'}}"
+            data-id="{{item.id}}"
+            data-mine="{{item.mine}}"
+            bindtouchstart="onTouchStart"
+            bindlongpress="onLongPress"
+          >
+            <view class="tail"></view>
+            <view wx:if="{{item.replyName}}" class="reply-box">
+              <view class="reply-name">{{item.replyName}}</view>
+              <view class="reply-text">{{item.replyContent}}</view>
+            </view>
+            <text class="bubble-text">{{item.content}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="list-bottom"></view>
+    </scroll-view>
+
+    <view class="new-msg {{newCount > 0 ? 'show' : ''}}" bindtap="scrollToBottom">{{newCount}} 条新消息 ↓</view>
+
+    <view class="input-area">
+      <view class="quote-bar" wx:if="{{quote}}">
+        <view class="quote-line"></view>
+        <view class="quote-info">
+          <view class="quote-name">引用 {{quote.name}}</view>
+          <view class="quote-text">{{quote.content}}</view>
+        </view>
+        <view class="quote-close" bindtap="cancelQuote">×</view>
+      </view>
+
+      <view class="input-row">
+        <input
+          class="chat-input"
+          value="{{input}}"
+          placeholder="说点悄悄话…"
+          focus="{{focus}}"
+          bindinput="onInput"
+          confirm-type="send"
+          bindconfirm="onConfirm"
+          cursor-spacing="20"
+          adjust-position="{{true}}"
+        />
+        <view class="send-btn {{sending ? 'disabled' : ''}}" bindtap="send">发送</view>
+      </view>
+    </view>
+
+    <view class="action-mask" wx:if="{{menuVisible}}" bindtap="closeMenu" catchtouchmove="noop">
+      <view class="action-menu" style="left: {{menuX}}px; top: {{menuY}}px" catchtap="noop">
+        <view
+          class="action-item"
+          wx:for="{{menuItems}}"
+          wx:key="key"
+          data-key="{{item.key}}"
+          bindtap="onMenuAction"
+        >{{item.label}}</view>
+      </view>
+    </view>
+  </block>
+</view>

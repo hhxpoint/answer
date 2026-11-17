@@ -1,0 +1,314 @@
+<view class="page-container">
+  <scroll-view class="content-scroll" scroll-y style="padding-bottom: {{safeBottom + 180}}rpx;">
+    <view class="content-shell">
+    <view class="quick-actions">
+      <view class="quick-pill" bindtap="importJSON">导入</view>
+      <view class="quick-pill" bindtap="exportJSON">导出</view>
+      <view class="quick-pill warning" bindtap="resetData">重置</view>
+    </view>
+
+    <view class="card card-profile" wx:if="{{moduleVisibility.basicInfo}}">
+      <view class="card-profile-inner">
+        <view class="card-profile-avatar" bindtap="chooseAvatar">
+          <image wx:if="{{avatarUrl}}" class="avatar-img" src="{{avatarUrl}}" mode="aspectFill" />
+          <view wx:else class="avatar-placeholder">{{avatarText}}</view>
+        </view>
+        <view class="card-profile-info">
+          <text class="profile-name">{{resumeData.basicInfo.name || '你的名字'}}</text>
+          <text class="profile-intention">{{resumeData.basicInfo.intention || '请完善求职意向'}}</text>
+          <text class="profile-city">期望城市：{{resumeData.basicInfo.location || '未填写'}}</text>
+        </view>
+      </view>
+      <view class="card-edit-icon" bindtap="openProfileModal">
+        <text class="edit-text">编辑</text>
+      </view>
+    </view>
+
+    <view class="card" wx:if="{{moduleVisibility.education}}">
+      <view class="card-header">
+        <view class="card-header-left">
+          <view class="accent-bar"></view>
+          <text class="card-title">{{moduleLabels.education}}</text>
+        </view>
+      </view>
+      <view class="card-body" wx:if="{{resumeData.education.length > 0}}">
+        <view class="entry-block {{index > 0 ? 'entry-block-divider' : ''}}" wx:for="{{resumeData.education}}" wx:key="index" wx:for-item="edu">
+          <view class="entry-main">
+            <text class="entry-title">{{edu.school || '未填写学校'}}</text>
+            <text class="entry-time">{{edu.time || '未填写时间'}}</text>
+            <text class="entry-sub">{{edu.major || '未填写专业'}} - {{edu.degree || '未填写学历'}}</text>
+            <text class="entry-desc" wx:if="{{edu.courses}}">主修课程：{{edu.courses}}</text>
+          </view>
+          <view class="entry-actions">
+            <text class="entry-action" bindtap="editEducation" data-index="{{index}}">编辑</text>
+            <text class="entry-action danger" bindtap="deleteEducation" data-index="{{index}}">删除</text>
+          </view>
+        </view>
+      </view>
+      <view class="empty-text" wx:else>暂无教育经历，点击下方按钮添加</view>
+      <view class="card-footer">
+        <view class="add-btn-area" bindtap="addEducation">
+          <text class="add-icon">+ 添加教育经历</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="card" wx:if="{{moduleVisibility.skills}}">
+      <view class="card-header">
+        <view class="card-header-left">
+          <view class="accent-bar"></view>
+          <text class="card-title">{{moduleLabels.skills}}</text>
+        </view>
+        <view class="card-header-action" bindtap="openSkillsModal">编辑</view>
+      </view>
+      <view class="card-body">
+        <view class="skill-line" wx:if="{{resumeData.skills.certificates}}">
+          <text class="skill-dot"></text>
+          <text class="skill-text">获得证书：{{resumeData.skills.certificates}}</text>
+        </view>
+        <view class="skill-line" wx:if="{{resumeData.skills.languages}}">
+          <text class="skill-dot"></text>
+          <text class="skill-text">语言能力：{{resumeData.skills.languages}}</text>
+        </view>
+        <view class="skill-line" wx:if="{{resumeData.skills.office}}">
+          <text class="skill-dot"></text>
+          <text class="skill-text">办公技能：{{resumeData.skills.office}}</text>
+        </view>
+        <view class="skill-line" wx:if="{{resumeData.skills.professional}}">
+          <text class="skill-dot"></text>
+          <text class="skill-text">专业技能：{{resumeData.skills.professional}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="card" wx:if="{{moduleVisibility.experience}}">
+      <view class="card-header">
+        <view class="card-header-left">
+          <view class="accent-bar"></view>
+          <text class="card-title">{{moduleLabels.experience}}</text>
+        </view>
+      </view>
+      <view class="card-body" wx:if="{{resumeData.experience.length > 0}}">
+        <view class="entry-block {{index > 0 ? 'entry-block-divider' : ''}}" wx:for="{{resumeData.experience}}" wx:key="index" wx:for-item="exp">
+          <view class="entry-main">
+            <text class="entry-title">{{exp.company || '未填写单位'}}</text>
+            <text class="entry-time">{{exp.time || '未填写时间'}}</text>
+            <text class="entry-sub" wx:if="{{exp.position}}">{{exp.position}}</text>
+            <text class="entry-desc" wx:if="{{exp.description}}">{{exp.description}}</text>
+          </view>
+          <view class="entry-actions">
+            <text class="entry-action" bindtap="editExperience" data-index="{{index}}">编辑</text>
+            <text class="entry-action danger" bindtap="deleteExperience" data-index="{{index}}">删除</text>
+          </view>
+        </view>
+      </view>
+      <view class="empty-text" wx:else>暂无实践经历，点击下方按钮添加</view>
+      <view class="card-footer">
+        <view class="add-btn-area" bindtap="addExperience">
+          <text class="add-icon">+ 添加实践经历</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="card" wx:if="{{moduleVisibility.selfEvaluation}}">
+      <view class="card-header">
+        <view class="card-header-left">
+          <view class="accent-bar"></view>
+          <text class="card-title">{{moduleLabels.selfEvaluation}}</text>
+        </view>
+        <view class="card-header-action" bindtap="openEvalModal">编辑</view>
+      </view>
+      <view class="card-body">
+        <text class="evaluation-text">{{resumeData.selfEvaluation || '请填写一段有说服力的自我评价。'}}</text>
+      </view>
+    </view>
+    </view>
+  </scroll-view>
+
+  <view class="bottom-bar" style="padding-bottom: env(safe-area-inset-bottom);">
+    <view class="bottom-bar-inner">
+    <view class="btn-secondary" bindtap="openModuleModal">
+      <text class="btn-secondary-text">模块自定义</text>
+    </view>
+    <view class="btn-primary" bindtap="generateResume">
+      <text class="btn-primary-text">生成简历</text>
+    </view>
+    </view>
+  </view>
+
+  <view class="modal-overlay" wx:if="{{showProfileModal}}" bindtap="closeProfileModal">
+    <view class="modal-content" catchtap="noop">
+      <view class="modal-title">编辑个人信息</view>
+      <view class="modal-form">
+        <view class="form-row">
+          <text class="form-label">姓名</text>
+          <input class="form-input" value="{{profileForm.name}}" bindinput="onProfileInput" data-field="name" placeholder="请输入姓名" />
+        </view>
+        <view class="form-row">
+          <text class="form-label">性别</text>
+          <picker range="{{genderOptions}}" value="{{genderIndex}}" bindchange="onGenderChange">
+            <view class="form-picker">{{profileForm.gender || '请选择性别'}}</view>
+          </picker>
+        </view>
+        <view class="form-row">
+          <text class="form-label">年龄</text>
+          <input class="form-input" type="number" value="{{profileForm.age}}" bindinput="onProfileInput" data-field="age" placeholder="请输入年龄" />
+        </view>
+        <view class="form-row">
+          <text class="form-label">期望城市</text>
+          <input class="form-input" value="{{profileForm.location}}" bindinput="onProfileInput" data-field="location" placeholder="如：北京" />
+        </view>
+        <view class="form-row">
+          <text class="form-label">求职意向</text>
+          <input class="form-input" value="{{profileForm.intention}}" bindinput="onProfileInput" data-field="intention" placeholder="如：新媒体运营" />
+        </view>
+        <view class="form-row">
+          <text class="form-label">手机号</text>
+          <input class="form-input" value="{{profileForm.phone}}" bindinput="onProfileInput" data-field="phone" placeholder="请输入手机号" />
+        </view>
+        <view class="form-row">
+          <text class="form-label">邮箱</text>
+          <input class="form-input" value="{{profileForm.email}}" bindinput="onProfileInput" data-field="email" placeholder="请输入邮箱" />
+        </view>
+      </view>
+      <view class="modal-actions">
+        <view class="modal-btn-cancel" bindtap="closeProfileModal">取消</view>
+        <view class="modal-btn-confirm" bindtap="saveProfile">保存</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="modal-overlay" wx:if="{{showEduModal}}" bindtap="closeEduModal">
+    <view class="modal-content modal-content-large" catchtap="noop">
+      <view class="modal-title">{{editingEduIndex >= 0 ? '编辑教育经历' : '添加教育经历'}}</view>
+      <view class="modal-form">
+        <view class="form-row">
+          <text class="form-label">学校</text>
+          <input class="form-input" value="{{eduForm.school}}" bindinput="onEduFormInput" data-field="school" placeholder="学校名称" />
+        </view>
+        <view class="form-row">
+          <text class="form-label">时间</text>
+          <input class="form-input" value="{{eduForm.time}}" bindinput="onEduFormInput" data-field="time" placeholder="如：2018.09 - 2022.06" />
+        </view>
+        <view class="form-row">
+          <text class="form-label">专业</text>
+          <input class="form-input" value="{{eduForm.major}}" bindinput="onEduFormInput" data-field="major" placeholder="专业名称" />
+        </view>
+        <view class="form-row">
+          <text class="form-label">学历</text>
+          <input class="form-input" value="{{eduForm.degree}}" bindinput="onEduFormInput" data-field="degree" placeholder="如：本科" />
+        </view>
+        <view class="form-row">
+          <text class="form-label">主修课程</text>
+          <textarea class="form-textarea" value="{{eduForm.courses}}" bindinput="onEduFormInput" data-field="courses" placeholder="请输入课程，推荐使用顿号分隔" />
+        </view>
+        <view class="form-row">
+          <text class="form-label">GPA</text>
+          <input class="form-input" value="{{eduForm.gpa}}" bindinput="onEduFormInput" data-field="gpa" placeholder="如：3.8/4.0" />
+        </view>
+      </view>
+      <view class="modal-actions">
+        <view class="modal-btn-cancel" bindtap="closeEduModal">取消</view>
+        <view class="modal-btn-confirm" bindtap="saveEdu">保存</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="modal-overlay" wx:if="{{showExpModal}}" bindtap="closeExpModal">
+    <view class="modal-content modal-content-large" catchtap="noop">
+      <view class="modal-title">{{editingExpIndex >= 0 ? '编辑实践经历' : '添加实践经历'}}</view>
+      <view class="modal-form">
+        <view class="form-row">
+          <text class="form-label">公司/组织</text>
+          <input class="form-input" value="{{expForm.company}}" bindinput="onExpFormInput" data-field="company" placeholder="请输入公司或组织名称" />
+        </view>
+        <view class="form-row">
+          <text class="form-label">职位</text>
+          <input class="form-input" value="{{expForm.position}}" bindinput="onExpFormInput" data-field="position" placeholder="请输入职位" />
+        </view>
+        <view class="form-row">
+          <text class="form-label">时间</text>
+          <input class="form-input" value="{{expForm.time}}" bindinput="onExpFormInput" data-field="time" placeholder="如：2023.06 - 2023.09" />
+        </view>
+        <view class="form-row">
+          <text class="form-label">职责描述</text>
+          <textarea class="form-textarea form-textarea-large" value="{{expForm.description}}" bindinput="onExpFormInput" data-field="description" placeholder="每行一条，突出结果与数字" />
+        </view>
+      </view>
+      <view class="modal-actions">
+        <view class="modal-btn-cancel" bindtap="closeExpModal">取消</view>
+        <view class="modal-btn-confirm" bindtap="saveExp">保存</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="modal-overlay" wx:if="{{showSkillsModal}}" bindtap="closeSkillsModal">
+    <view class="modal-content modal-content-large" catchtap="noop">
+      <view class="modal-title">编辑专业技能</view>
+      <view class="modal-form">
+        <view class="form-row">
+          <text class="form-label">获得证书</text>
+          <textarea class="form-textarea" value="{{skillsForm.certificates}}" bindinput="onSkillsFormInput" data-field="certificates" placeholder="如：人力资源管理师四级" />
+        </view>
+        <view class="form-row">
+          <text class="form-label">语言能力</text>
+          <textarea class="form-textarea" value="{{skillsForm.languages}}" bindinput="onSkillsFormInput" data-field="languages" placeholder="如：英语 CET-6" />
+        </view>
+        <view class="form-row">
+          <text class="form-label">办公技能</text>
+          <textarea class="form-textarea" value="{{skillsForm.office}}" bindinput="onSkillsFormInput" data-field="office" placeholder="如：熟练使用 Office 办公软件" />
+        </view>
+        <view class="form-row">
+          <text class="form-label">专业技能</text>
+          <textarea class="form-textarea" value="{{skillsForm.professional}}" bindinput="onSkillsFormInput" data-field="professional" placeholder="请输入专业技能" />
+        </view>
+      </view>
+      <view class="modal-actions">
+        <view class="modal-btn-cancel" bindtap="closeSkillsModal">取消</view>
+        <view class="modal-btn-confirm" bindtap="saveSkills">保存</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="modal-overlay" wx:if="{{showEvalModal}}" bindtap="closeEvalModal">
+    <view class="modal-content modal-content-large" catchtap="noop">
+      <view class="modal-title">编辑自我评价</view>
+      <view class="modal-form">
+        <view class="form-row">
+          <textarea class="form-textarea form-textarea-large" value="{{evalForm.text}}" bindinput="onEvalFormInput" placeholder="请输入自我评价" />
+        </view>
+      </view>
+      <view class="modal-actions">
+        <view class="modal-btn-cancel" bindtap="closeEvalModal">取消</view>
+        <view class="modal-btn-confirm" bindtap="saveEval">保存</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="modal-overlay" wx:if="{{showModuleModal}}" bindtap="closeModuleModal">
+    <view class="modal-content modal-content-large" catchtap="noop">
+      <view class="modal-title">模块管理</view>
+      <view class="module-tools">
+        <view class="module-tool-btn" bindtap="resetModuleLabels">恢复默认名称</view>
+      </view>
+      <view class="module-list">
+        <view class="module-item" wx:for="{{moduleOrder}}" wx:key="key">
+          <view class="module-item-info">
+            <text class="drag-handle">⋮⋮</text>
+            <input class="module-name-input" value="{{item.label}}" maxlength="12" bindinput="onModuleLabelInput" bindblur="onModuleLabelBlur" data-key="{{item.key}}" placeholder="输入模块名" />
+          </view>
+          <view class="module-item-actions">
+            <view class="module-visibility {{moduleVisibility[item.key] ? 'visible' : ''}}" bindtap="toggleModuleVisibility" data-key="{{item.key}}">
+              <text>{{moduleVisibility[item.key] ? '显示' : '隐藏'}}</text>
+            </view>
+            <view class="module-move" bindtap="moveModuleUp" data-index="{{index}}" wx:if="{{index > 0}}">↑</view>
+            <view class="module-move" bindtap="moveModuleDown" data-index="{{index}}" wx:if="{{index < moduleOrder.length - 1}}">↓</view>
+          </view>
+        </view>
+      </view>
+      <view class="modal-actions">
+        <view class="modal-btn-full" bindtap="closeModuleModal">完成</view>
+      </view>
+    </view>
+  </view>
+</view>

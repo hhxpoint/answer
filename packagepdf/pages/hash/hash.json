@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "数独迷宫",
+  "usingComponents": {
+    "qa-card": "/components/qa-card/qa-card"
+  }
+}

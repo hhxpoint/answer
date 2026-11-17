@@ -1,0 +1,129 @@
+<!-- course/pages/course-copy/course-copy.wxml -->
+<view class="container">
+  <!-- 头部 -->
+  <view class="header">
+    <view class="header-left" bindtap="goBack">
+      <text class="back-icon">←</text>
+    </view>
+    <view class="header-title">
+      <text>复制课程到其他日期</text>
+    </view>
+    <view class="header-right"></view>
+  </view>
+
+  <!-- 源课程信息 -->
+  <view class="source-info">
+    <view class="info-title">源课程信息</view>
+    <view class="info-content">
+      <view class="info-item">
+        <text class="info-label">日期：</text>
+        <text class="info-value">{{sourceDate}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">课程数量：</text>
+        <text class="info-value">{{sourceCourses.length}}门课程</text>
+      </view>
+    </view>
+    
+    <!-- 源课程列表 -->
+    <scroll-view class="source-courses" scroll-y="true">
+      <block wx:for="{{sourceCourses}}" wx:key="id">
+        <view class="course-item" style="border-left-color: {{item.color}};">
+          <text class="course-name">{{item.name}}</text>
+          <text class="course-time">{{item.startTime}} - {{item.endTime}}</text>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+
+  <!-- 快速选择 -->
+  <view class="quick-select">
+    <view class="select-title">快速选择</view>
+    <view class="select-options">
+      <view class="select-option" bindtap="onQuickSelect" data-type="week">本周剩余</view>
+      <view class="select-option" bindtap="onQuickSelect" data-type="month">本月剩余</view>
+      <view class="select-option" bindtap="onQuickSelect" data-type="weekday">每周同一天</view>
+    </view>
+  </view>
+
+  <!-- 日历选择 -->
+  <view class="calendar-section">
+    <view class="section-title">选择目标日期</view>
+    
+    <!-- 月份导航 -->
+    <view class="month-nav">
+      <view class="nav-btn" bindtap="prevMonth">
+        <text class="nav-icon">‹</text>
+      </view>
+      <view class="month-title">
+        <text>{{currentYear}}年{{currentMonth}}月</text>
+      </view>
+      <view class="nav-btn" bindtap="nextMonth">
+        <text class="nav-icon">›</text>
+      </view>
+    </view>
+
+    <!-- 星期标题 -->
+    <view class="weekdays">
+      <block wx:for="{{weekDays}}" wx:key="*this">
+        <view class="weekday">{{item}}</view>
+      </block>
+    </view>
+
+    <!-- 日期网格 -->
+    <view class="calendar-grid">
+      <block wx:for="{{calendarDays}}" wx:key="date">
+        <view 
+          class="calendar-day {{item.isCurrentMonth ? 'current-month' : 'other-month'}} {{item.isSelectable ? 'selectable' : 'not-selectable'}} {{item.isSelected ? 'selected' : ''}}"
+          bindtap="onDateSelect"
+          data-date="{{item.date}}"
+          data-isselectable="{{item.isSelectable}}"
+        >
+          <text class="day-number">{{item.day}}</text>
+          <view class="select-indicator" wx:if="{{item.isSelected}}">✓</view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 已选择日期 -->
+  <view class="selected-dates" wx:if="{{selectedDates.length > 0}}">
+    <view class="section-header">
+      <text class="section-title">已选择 {{selectedDates.length}} 个日期</text>
+      <view class="clear-btn" bindtap="clearSelection">清空</view>
+    </view>
+    <scroll-view class="dates-list" scroll-y="true">
+      <block wx:for="{{selectedDates}}" wx:key="*this">
+        <view class="date-item">{{item}}</view>
+      </block>
+    </scroll-view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-bar">
+    <view class="selection-info">
+      <text>已选择 {{selectedDates.length}} 个日期</text>
+    </view>
+    <button class="copy-btn" bindtap="executeCopy" disabled="{{isLoading || selectedDates.length === 0}}">
+      <text wx:if="{{!isLoading}}">开始复制</text>
+      <text wx:else>复制中...</text>
+    </button>
+  </view>
+
+  <!-- 加载遮罩 -->
+  <view class="loading-mask" wx:if="{{isLoading}}">
+    <view class="loading-content">
+      <view class="loading-spinner"></view>
+      <text class="loading-text">正在复制课程...</text>
+    </view>
+  </view>
+
+  <!-- 复制成功提示 -->
+  <view class="success-mask" wx:if="{{copySuccess}}">
+    <view class="success-content">
+      <view class="success-icon">✓</view>
+      <text class="success-text">课程复制成功！</text>
+      <text class="success-sub">正在返回课程表...</text>
+    </view>
+  </view>
+</view>

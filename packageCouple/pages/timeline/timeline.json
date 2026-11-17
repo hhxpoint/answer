@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "我们的时光",
+  "navigationBarBackgroundColor": "#fff7f2",
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#ffefe6",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "onReachBottomDistance": 120
+}

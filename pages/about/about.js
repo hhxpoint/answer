@@ -61,8 +61,14 @@ Page({
       query: 'id=share', // 点击朋友圈进入时带的参数
       imageUrl: '/assets/banner1.png' // 朋友圈显示的配图
     }
-  }
+  },
 
+    // 用户点击客服按钮的回调
+  handleContact(e) {
+    // 这里虽然不能直接发消息，但可以打印日志，或者做埋点统计
+    console.log('用户尝试联系客服，路径:', e.detail.path, '参数:', e.detail.query)
+    
+  },
 
 
 })

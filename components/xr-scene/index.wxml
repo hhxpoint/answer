@@ -1,0 +1,34 @@
+<!-- components/xr-scene/index.wxml -->
+<xr-scene ar-system="modes:Plane" bind:ready="handleReady" bind:tick="handleTick" bind:touchstart="handleTouchStart">
+  <!-- 资源加载 -->
+  <xr-assets bind:loaded="handleAssetsLoaded">
+    <!-- 我们按照教程加两个贴图模型或者内置一些好玩的，这里使用内置的几何体和简单材质代替外部glTF为了保证加载成功不出错（如果没有外部glTF的情况下） -->
+    <xr-asset-material asset-id="mat-red" effect="standard"
+      uniforms="u_baseColorFactor:0.8 0.2 0.2 1,u_metallicRoughnessValues:0.3 0.4" />
+    <xr-asset-material asset-id="mat-gold" effect="standard"
+      uniforms="u_baseColorFactor:1 0.84 0 1,u_metallicRoughnessValues:1 0.1" />
+    <xr-asset-material asset-id="mat-hologram" effect="simple"
+      uniforms="u_baseColorFactor:0 1 1 0.5" states="alphaMode:BLEND" />
+  </xr-assets>
+
+  <!-- 环境数据 -->
+  <xr-env env-data="xr-frame-team-workspace-day" />
+
+  <!-- 灯光 -->
+  <xr-light type="ambient" color="1 1 1" intensity="1" />
+  <xr-light type="directional" rotation="40 70 0" color="1 1 1" intensity="3" cast-shadow />
+
+  <!-- AR平面追踪标记 -->
+  <xr-ar-tracker id="tracker" mode="Plane">
+    <xr-mesh geometry="cylinder" material="mat-hologram" scale="0.5 0.02 0.5" />
+  </xr-ar-tracker>
+
+  <!-- 将要放置的节点 -->
+  <xr-node node-id="setitem" visible="false">
+    <xr-mesh geometry="cube" material="mat-red" scale="0.2 0.2 0.2" cast-shadow />
+  </xr-node>
+
+  <!-- AR相机 -->
+  <xr-camera id="camera" node-id="camera"
+    background="ar" is-ar-camera clear-color="0 0 0 0" />
+</xr-scene>

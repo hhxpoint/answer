@@ -2,7 +2,5 @@
   "navigationBarTitleText": "机器学习问答",
   "usingComponents": {
     "qa-card": "/components/qa-card/qa-card"
-
-
   }
 }

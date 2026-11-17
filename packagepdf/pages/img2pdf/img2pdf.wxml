@@ -1,0 +1,96 @@
+<view class="page-container">
+
+  <!-- 顶部状态引导 -->
+  <view class="header-section">
+    <view class="step-title">第一步：选择并调整图片</view>
+    <view class="step-desc">系统将自动按顺序为您生成 A4 尺寸竖排 PDF</view>
+  </view>
+
+  <!-- 空状态：大面积上传区 -->
+  <view class="empty-state" wx:if="{{imageList.length === 0}}" bindtap="chooseImages">
+    <view class="upload-icon">➕</view>
+    <view class="upload-text">点击选择图片</view>
+    <view class="upload-subtext">支持多选，最大支持20张</view>
+  </view>
+
+  <!-- 已选图片展示区 -->
+  <view class="image-list-section" wx:else>
+    <view class="image-grid">
+      <!-- 循环渲染图片 -->
+      <view class="grid-item" wx:for="{{imageList}}" wx:key="*this">
+        <view class="image-card">
+          <!-- === 新增：左上角增强按钮 === -->
+          <view class="btn-enhance" bindtap="startScan" data-index="{{index}}">✨</view>
+
+          <image class="img-thumb" src="{{item}}" mode="aspectFill" bindtap="previewImage" data-url="{{item}}"></image>
+          <view class="btn-delete" bindtap="deleteImage" data-index="{{index}}">✕</view>
+
+          <!-- 底部控制条：排序 -->
+          <view class="control-bar">
+            <view class="ctrl-btn {{index === 0 ? 'disabled' : ''}}" bindtap="moveLeft" data-index="{{index}}">◀</view>
+            <view class="page-num">{{index + 1}}</view>
+            <view class="ctrl-btn {{index === imageList.length - 1 ? 'disabled' : ''}}" bindtap="moveRight"
+              data-index="{{index}}">▶</view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 继续添加按钮 -->
+      <view class="grid-item" wx:if="{{imageList.length < 20}}">
+        <view class="add-more-card" bindtap="chooseImages">
+          <view class="add-more-icon">➕</view>
+          <text>继续添加</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部固定操作栏 -->
+  <view class="bottom-action-bar" wx:if="{{imageList.length > 0}}">
+    <view class="info-area">
+      <text class="count-text">共 {{imageList.length}} 张图片</text>
+      <text class="clear-text" bindtap="clearImages">清空全部</text>
+    </view>
+    <button class="btn-submit" type="primary" bindtap="openNameModal" disabled="{{isGenerating}}">
+      {{isGenerating ? '正在排版生成中...' : '生成并预览 PDF'}}
+    </button>
+  </view>
+
+  <!-- ================= 原有：命名弹窗 ================= -->
+  <view class="modal-mask" wx:if="{{showNameModal}}" bindtap="closeNameModal">
+    <view class="modal-box" catchtap="preventBubbling">
+      <view class="modal-title">为您的 PDF 命名</view>
+      <view class="input-wrapper">
+        <input class="modal-input" value="{{pdfFileName}}" bindinput="onFileNameInput" placeholder="请输入文件名称"
+          focus="{{showNameModal}}" />
+        <text class="suffix">.pdf</text>
+      </view>
+      <view class="modal-footer">
+        <button class="btn-cancel" bindtap="closeNameModal">取消</button>
+        <button class="btn-confirm" bindtap="generatePDF">确定生成</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- ================= 新增：扫描增强预览弹窗 ================= -->
+  <view class="modal-mask" wx:if="{{showScanModal}}" bindtap="cancelScan">
+    <view class="modal-box scan-modal" catchtap="preventBubbling">
+      <view class="modal-title">扫描增强预览</view>
+
+      <!-- 预览图展示区，点击可放大 -->
+      <view class="scan-preview-wrapper" bindtap="previewEnhanced">
+        <image class="scan-preview-img" src="{{previewEnhancedImage}}" mode="aspectFit"></image>
+        <view class="preview-hint">点击查看大图</view>
+      </view>
+
+      <view class="modal-footer">
+        <button class="btn-cancel" bindtap="cancelScan">放弃</button>
+        <button class="btn-confirm" bindtap="confirmScan">使用此图</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- === 新增：用于后台处理图像像素的隐藏 Canvas === -->
+  <canvas type="2d" id="scanCanvas" style="position:fixed; left:-9999px; width:1000px; height:1000px;"></canvas>
+
+</view>

@@ -1,0 +1,20 @@
+<view class="container">
+  <view class="header">
+    <text class="title">授权登录网页端</text>
+    <text class="desc">请完善头像与昵称</text>
+  </view>
+
+  <!-- 微信官方推荐的获取头像组件 -->
+  <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+    <image class="avatar" src="{{avatarUrl}}"></image>
+    <view class="tip">点击选择微信头像</view>
+  </button>
+
+  <!-- 微信官方推荐的获取昵称组件 -->
+  <view class="input-group">
+    <text class="label">昵称</text>
+    <input type="nickname" class="weui-input" placeholder="请输入或获取微信昵称" bind:change="onInputChange" />
+  </view>
+
+  <button class="login-btn" type="primary" bindtap="doLogin">确认授权并登录</button>
+</view>

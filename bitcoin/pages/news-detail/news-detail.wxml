@@ -1,0 +1,114 @@
+<view class="detail-container">
+  <!-- 加载态 -->
+  <view class="loading-wrap" wx:if="{{loading}}">
+    <view class="spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 错误态 -->
+  <view class="error-wrap" wx:if="{{error}}">
+    <text class="error-icon">⚠</text>
+    <text class="error-text">{{error}}</text>
+    <view class="retry-btn" bindtap="retryLoad">重试</view>
+  </view>
+
+  <!-- 内容 -->
+  <view class="content-wrap" wx:if="{{!loading && !error}}">
+    <!-- 标题 -->
+    <view class="title-section">
+      <text class="news-title" user-select="true">{{news.title}}</text>
+      <view class="title-actions">
+        <view class="action-icon" bindtap="translateTitle" wx:if="{{!translatingTitle}}">
+          <text>🌐</text>
+          <text class="icon-label">翻译标题</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 翻译后的标题 -->
+    <view class="translated-title" wx:if="{{translatedTitle}}">
+      <text class="translated-label">中文标题</text>
+      <text class="translated-text" user-select="true">{{translatedTitle}}</text>
+    </view>
+
+    <!-- 元信息 -->
+    <view class="meta-section">
+      <view class="meta-item">
+        <text class="meta-label">来源</text>
+        <text class="meta-value source">{{news.source}}</text>
+      </view>
+      <view class="meta-item">
+        <text class="meta-label">时间</text>
+        <text class="meta-value">{{news.time}}</text>
+      </view>
+    </view>
+
+    <!-- 标签 -->
+    <view class="tags-section" wx:if="{{tags.length > 0}}">
+      <view class="tag" wx:for="{{tags}}" wx:key="index">{{item}}</view>
+    </view>
+
+    <!-- 相关币种 -->
+    <view class="related-section" wx:if="{{relatedCoins.length > 0}}">
+      <text class="related-title">相关币种</text>
+      <view class="coin-tags">
+        <view class="coin-tag" wx:for="{{relatedCoins}}" wx:key="index">{{item}}</view>
+      </view>
+    </view>
+
+    <!-- 摘要内容 -->
+    <view class="summary-section">
+      <view class="summary-header">
+        <text class="summary-label">内容摘要</text>
+        <view class="summary-actions">
+          <text class="api-note">来自 Blockchair</text>
+          <view class="translate-btn" bindtap="translateSnippet" wx:if="{{!translatingSnippet && contentText && !translatedSnippet}}">
+            <text>翻译</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 原文 - 始终显示 -->
+      <view class="snippet-original" wx:if="{{contentText}}">
+        <text class="summary-text" user-select="true">{{contentText}}</text>
+      </view>
+
+      <!-- 翻译中 -->
+      <view class="translating-wrap" wx:if="{{translatingSnippet}}">
+        <view class="mini-spinner"></view>
+        <text>正在翻译...</text>
+      </view>
+
+      <!-- 翻译结果 - 可折叠 -->
+      <view class="translated-wrap" wx:if="{{translatedSnippet && !translatingSnippet}}">
+        <view class="translated-header" bindtap="toggleSnippetView">
+          <text class="translated-tag">中文译文</text>
+          <view class="toggle-icon">
+            <text>{{showTranslatedSnippet ? '收起' : '展开'}}</text>
+          </view>
+        </view>
+        <text class="summary-text translated" wx:if="{{showTranslatedSnippet}}" user-select="true">{{translatedSnippet}}</text>
+      </view>
+    </view>
+
+    <!-- 操作栏 -->
+    <view class="action-bar">
+      <view class="action-btn copy-btn" bindtap="copyLink">
+        <text class="btn-icon">📋</text>
+        <text class="btn-text">复制链接</text>
+      </view>
+
+
+      <!-- <view class="action-btn share-btn" bindtap="shareNews">
+        <text class="btn-icon">📤</text>
+        <text class="btn-text">分享</text>
+      </view> -->
+
+
+      <view class="action-btn trans-btn" bindtap="translateAll">
+        <text class="btn-icon">🌐</text>
+        <text class="btn-text">全文翻译</text>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,169 @@
+<view class="page-container">
+  <scroll-view class="content-area" scroll-y style="padding-bottom: {{safeBottom + 340}}rpx;">
+    <view class="preview-canvas">
+      <view class="resume-paper {{themeClass}}" style="font-family: {{fontFamily}}; line-height: {{lineSpacing}};">
+        <view class="resume-header-accent">
+          <view class="accent-dark"></view>
+          <view class="accent-light"></view>
+        </view>
+
+        <view class="resume-content">
+          <view class="resume-header-row" wx:if="{{moduleVisibility.basicInfo}}">
+            <view class="resume-name-section">
+              <text class="resume-name">{{resumeData.basicInfo.name}}</text>
+              <text class="resume-intention">{{resumeData.basicInfo.intention}}</text>
+              <text class="resume-meta">{{resumeData.basicInfo.gender}}</text>
+              <text class="resume-meta" wx:if="{{resumeData.basicInfo.age}}">年龄：{{resumeData.basicInfo.age}}岁</text>
+            </view>
+            <view class="resume-avatar">
+              <image wx:if="{{avatarUrl}}" class="resume-avatar-img" src="{{avatarUrl}}" mode="aspectFill" />
+              <view wx:else class="resume-avatar-placeholder">{{avatarText}}</view>
+            </view>
+          </view>
+
+          <view class="contact-bar" wx:if="{{moduleVisibility.basicInfo}}">
+            <view class="contact-item" wx:if="{{resumeData.basicInfo.phone}}">
+              <text class="contact-icon">📱</text>
+              <text class="contact-text">{{resumeData.basicInfo.phone}}</text>
+            </view>
+            <view class="contact-item" wx:if="{{resumeData.basicInfo.email}}">
+              <text class="contact-icon">✉</text>
+              <text class="contact-text">{{resumeData.basicInfo.email}}</text>
+            </view>
+            <view class="contact-item" wx:if="{{resumeData.basicInfo.location}}">
+              <text class="contact-icon">📍</text>
+              <text class="contact-text">{{resumeData.basicInfo.location}}</text>
+            </view>
+          </view>
+
+          <block wx:for="{{moduleOrder}}" wx:key="key">
+            <view class="resume-section" style="margin-bottom: {{moduleSpacing}}rpx;" wx:if="{{moduleVisibility[item.key]}}">
+              <block wx:if="{{item.key === 'education' && resumeData.education.length > 0}}">
+                <view class="section-title-bar">
+                  <text class="section-title-text">{{item.label}}</text>
+                </view>
+                <view class="section-body">
+                  <view class="edu-entry" wx:for="{{resumeData.education}}" wx:key="index" wx:for-item="edu">
+                    <view class="edu-entry-header">
+                      <text class="edu-entry-school">{{edu.school}}</text>
+                      <text class="edu-entry-time">{{edu.time}}</text>
+                    </view>
+                    <text class="edu-entry-major">{{edu.major}} | {{edu.degree}}</text>
+                    <text class="edu-entry-courses" wx:if="{{edu.courses}}">主修课程：{{edu.courses}}</text>
+                    <text class="edu-entry-courses" wx:if="{{edu.gpa}}">GPA：{{edu.gpa}}</text>
+                  </view>
+                </view>
+              </block>
+
+              <block wx:if="{{item.key === 'skills'}}">
+                <view class="section-title-bar">
+                  <text class="section-title-text">{{item.label}}</text>
+                </view>
+                <view class="section-body">
+                  <view class="skill-entry" wx:if="{{resumeData.skills.certificates}}">
+                    <text class="skill-entry-text">• 获得证书：{{resumeData.skills.certificates}}</text>
+                  </view>
+                  <view class="skill-entry" wx:if="{{resumeData.skills.languages}}">
+                    <text class="skill-entry-text">• 语言能力：{{resumeData.skills.languages}}</text>
+                  </view>
+                  <view class="skill-entry" wx:if="{{resumeData.skills.office}}">
+                    <text class="skill-entry-text">• 办公技能：{{resumeData.skills.office}}</text>
+                  </view>
+                  <view class="skill-entry" wx:if="{{resumeData.skills.professional}}">
+                    <text class="skill-entry-text">• 专业技能：{{resumeData.skills.professional}}</text>
+                  </view>
+                </view>
+              </block>
+
+              <block wx:if="{{item.key === 'experience' && resumeData.experience.length > 0}}">
+                <view class="section-title-bar">
+                  <text class="section-title-text">{{item.label}}</text>
+                </view>
+                <view class="section-body">
+                  <view class="exp-entry" wx:for="{{resumeData.experience}}" wx:key="index" wx:for-item="exp">
+                    <view class="exp-entry-header">
+                      <text class="exp-entry-company">{{exp.company}}</text>
+                      <text class="exp-entry-time">{{exp.time}}</text>
+                    </view>
+                    <text class="exp-entry-position" wx:if="{{exp.position}}">{{exp.position}}</text>
+                    <text class="exp-entry-desc" wx:if="{{exp.description}}">{{exp.description}}</text>
+                  </view>
+                </view>
+              </block>
+
+              <block wx:if="{{item.key === 'selfEvaluation' && resumeData.selfEvaluation}}">
+                <view class="section-title-bar">
+                  <text class="section-title-text">{{item.label}}</text>
+                </view>
+                <view class="section-body">
+                  <text class="eval-text">{{resumeData.selfEvaluation}}</text>
+                </view>
+              </block>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="template-selector">
+    <scroll-view class="template-scroll" scroll-x enable-flex enhanced show-scrollbar="{{false}}">
+      <view class="template-list">
+        <view class="template-item {{themeIndex === 0 ? 'active' : ''}}" bindtap="selectTheme" data-index="0">
+          <view class="template-thumb template-thumb-classic"></view>
+          <text class="template-label">经典</text>
+        </view>
+        <view class="template-item {{themeIndex === 1 ? 'active' : ''}}" bindtap="selectTheme" data-index="1">
+          <view class="template-thumb template-thumb-minimal"></view>
+          <text class="template-label">简约</text>
+        </view>
+        <view class="template-item {{themeIndex === 2 ? 'active' : ''}}" bindtap="selectTheme" data-index="2">
+          <view class="template-thumb template-thumb-warm"></view>
+          <text class="template-label">温暖</text>
+        </view>
+        <view class="template-item {{themeIndex === 3 ? 'active' : ''}}" bindtap="selectTheme" data-index="3">
+          <view class="template-thumb template-thumb-green"></view>
+          <text class="template-label">清新</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="bottom-bar" style="padding-bottom: env(safe-area-inset-bottom);">
+    <view class="bottom-bar-inner">
+    <view class="bottom-actions-left">
+      <view class="action-btn" bindtap="editContent">
+        <text class="action-btn-text">编辑内容</text>
+      </view>
+      <view class="action-btn" bindtap="changeTheme">
+        <text class="action-btn-text">主题</text>
+      </view>
+      <view class="action-btn" bindtap="adjustSpacing">
+        <text class="action-btn-text">间距</text>
+      </view>
+    </view>
+    <view class="bottom-action-primary" bindtap="downloadResume">
+      <text class="action-primary-text">下载PDF</text>
+    </view>
+    </view>
+  </view>
+
+  <view class="modal-overlay" wx:if="{{showSpacingModal}}" bindtap="closeSpacingModal">
+    <view class="spacing-modal" catchtap="noop">
+      <view class="spacing-title">版式间距</view>
+      <view class="spacing-row">
+        <text class="spacing-label">模块间距</text>
+        <slider min="16" max="56" step="2" show-value value="{{moduleSpacing}}" activeColor="#2749A4" bindchanging="onModuleSpacingChanging" bindchange="onModuleSpacingChange" />
+      </view>
+      <view class="spacing-row">
+        <text class="spacing-label">行间距</text>
+        <slider min="1.2" max="2.0" step="0.1" show-value value="{{lineSpacing}}" activeColor="#2749A4" bindchanging="onLineSpacingChanging" bindchange="onLineSpacingChange" />
+      </view>
+      <view class="spacing-actions">
+        <view class="spacing-btn" bindtap="closeSpacingModal">完成</view>
+      </view>
+    </view>
+  </view>
+
+  <canvas type="2d" id="pdfCanvas" style="position: fixed; left: -9999px; width: 1240px; height: 1754px;"></canvas>
+</view>

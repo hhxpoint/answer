@@ -1,0 +1,578 @@
+/* puzzle.wxss */
+page {
+  background-color: #F2F4F7;
+  /* 浅灰底色 */
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- 1. Top Status Bar (固定在顶部，类似图1风格) --- */
+/* .top-status-bar {
+  flex-shrink: 0;
+  background: #FFFFFF;
+  padding: 20rpx 40rpx;
+  display: flex;
+  justify-content: center;
+
+  align-items: center;
+  gap: 30rpx;
+  box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.03);
+
+  z-index: 10;
+}
+
+
+.info-pill {
+  background: #F7FAFC;
+  padding: 10rpx 24rpx;
+  border-radius: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 90rpx;
+}
+
+.pill-label {
+  font-size: 20rpx;
+  color: #A0AEC0;
+  font-weight: bold;
+  margin-bottom: 2rpx;
+}
+
+.pill-value {
+  font-size: 34rpx;
+  color: #2D3748;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+*/
+
+/* .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+ */
+
+
+
+
+/* 固定在顶部的 header */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120rpx;
+  /* 根据视觉调整高度 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 24rpx 0 24rpx;
+  /* 上内边距可微调 */
+  background: #FFFFFF;
+  box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.05);
+  z-index: 1000;
+}
+
+
+
+.status-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #FFFFFF;
+  padding: 10rpx 24rpx;
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.status-card .label {
+  font-size: 22rpx;
+  color: #8898AA;
+  margin-bottom: 4rpx;
+}
+
+.status-card .value {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #2D3748;
+  font-variant-numeric: tabular-nums;
+}
+
+.actions {
+  display: flex;
+  gap: 20rpx;
+}
+
+.icon-btn {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36rpx;
+  font-weight: bold;
+  background: #fff;
+  box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.08);
+  transition: all 0.1s;
+}
+
+.help-btn {
+  color: #6C5CE7;
+}
+
+.reset-btn {
+  color: #FF7675;
+  font-size: 40rpx;
+}
+
+.icon-btn:active {
+  transform: scale(0.95);
+  background: #f8f9fa;
+}
+
+
+
+
+
+
+
+/* 按钮组 */
+.action-group {
+  display: flex;
+  gap: 20rpx;
+}
+
+.circle-btn {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 2rpx solid #EDF2F7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 38rpx;
+  font-weight: bold;
+  box-shadow: 0 4rpx 6rpx rgba(0, 0, 0, 0.02);
+}
+
+.circle-btn.help {
+  color: #6C5CE7;
+}
+
+.circle-btn.reset {
+  color: #FF7675;
+}
+
+.circle-btn:active {
+  transform: scale(0.9);
+  background: #F7FAFC;
+}
+
+
+/* --- 2. History Board (自适应拉伸区域) --- */
+.game-board {
+  flex: 1;
+  /* 核心：占据中间所有剩余空间 */
+  width: 100%;
+  padding: 20rpx 30rpx;
+  /* 给内容留出边距 */
+  box-sizing: border-box;
+  overflow-y: scroll;
+}
+
+.empty-tip {
+  text-align: center;
+  color: #CBD5E0;
+  font-size: 28rpx;
+  margin-top: 100rpx;
+}
+
+.history-item {
+  background: #FFFFFF;
+  border-radius: 20rpx;
+  padding: 24rpx 30rpx;
+  margin-bottom: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.02);
+}
+
+.history-nums {
+  flex: 1;
+  display: flex;
+  gap: 30rpx;
+}
+
+.h-num {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #2D3748;
+}
+
+.res-badges {
+  display: flex;
+  gap: 14rpx;
+}
+
+.badge {
+  padding: 8rpx 18rpx;
+  border-radius: 12rpx;
+  font-size: 26rpx;
+  font-weight: 800;
+}
+
+.a-badge {
+  background: #E0EAFF;
+  color: #5C6AC4;
+}
+
+.b-badge {
+  background: #E6FFFA;
+  color: #2C7A7B;
+}
+
+.fade-in {
+  animation: slideIn 0.3s;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10rpx)
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0)
+  }
+}
+
+
+/* --- 3. Bottom Control Card (图2风格，固定底部) --- */
+.control-card {
+  
+  flex-shrink: 0;
+  
+  background: #FFFFFF;
+  border-radius: 50rpx 50rpx 0 0;
+  
+
+  box-shadow: 0 -10rpx 40rpx rgba(0, 0, 0, 0.04);
+  padding: 30rpx 40rpx;
+  padding-bottom: calc(30rpx + env(safe-area-inset-bottom));
+  
+}
+
+
+
+
+
+
+
+/* 状态文字 */
+.status-text {
+  text-align: center;
+  color: #718096;
+  font-size: 26rpx;
+  margin-bottom: 20rpx;
+  height: 36rpx;
+}
+
+.shake-text {
+  color: #E53E3E;
+  animation: shake 0.4s;
+}
+
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0)
+  }
+
+  20%,
+  80% {
+    transform: translateX(-5px)
+  }
+
+  50% {
+    transform: translateX(5px)
+  }
+}
+
+
+
+/* 输入行 */
+.input-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30rpx;
+}
+
+.input-slots {
+  display: flex;
+  gap: 20rpx;
+}
+
+.input-box {
+  width: 90rpx;
+  height: 100rpx;
+  background: #F7FAFC;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44rpx;
+  font-weight: bold;
+  color: #CBD5E0;
+  transition: all 0.2s;
+}
+
+.input-box.filled {
+  background: #FFFFFF;
+  border: 4rpx solid #6C5CE7;
+  color: #2D3748;
+  box-shadow: 0 4rpx 10rpx rgba(108, 92, 231, 0.1);
+  transform: translateY(-4rpx);
+}
+
+
+
+
+
+
+/* 灯泡按钮 */
+.hint-btn {
+  width: 100rpx;
+  height: 100rpx;
+  background: #FEFCBF;
+  border-radius: 24rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6rpx 0 #F6E05E;
+}
+
+.hint-btn:active {
+  box-shadow: 0 0 0 #F6E05E;
+  transform: translateY(6rpx);
+}
+
+.hint-btn.disabled {
+  filter: grayscale(1);
+  opacity: 0.6;
+  pointer-events: none;
+  box-shadow: none;
+  transform: translateY(6rpx);
+}
+
+.bulb-icon {
+  font-size: 34rpx;
+  margin-bottom: 4rpx;
+}
+
+.hint-text-small {
+  font-size: 20rpx;
+  font-weight: bold;
+  color: #D69E2E;
+}
+
+
+
+
+
+
+/* 键盘 */
+.keypad {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.key-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.key-btn {
+  width: 30%;
+  height: 110rpx;
+  background: #F7FAFC;
+  border-radius: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44rpx;
+  font-weight: 600;
+  color: #2D3748;
+  box-shadow: 0 6rpx 0 #E2E8F0;
+  transition: all 0.1s;
+}
+
+.key-btn:active {
+  transform: translateY(6rpx);
+  box-shadow: none;
+}
+
+.disabled-key {
+  opacity: 0.3;
+  pointer-events: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+.func-delete {
+  background: #FFF5F5;
+  color: #E53E3E;
+  box-shadow: 0 6rpx 0 #FEB2B2;
+}
+
+.func-ok {
+  background: #EDF2F7;
+  color: #A0AEC0;
+  box-shadow: 0 6rpx 0 #CBD5E0;
+}
+
+.active-ok {
+  background: #6C5CE7;
+  color: #fff;
+  box-shadow: 0 6rpx 0 #4C51BF;
+}
+
+
+
+
+
+
+
+
+
+
+/* 弹窗样式优化 */
+.modal-mask {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: #fff;
+  width: 80%;
+  padding: 40rpx;
+  border-radius: 30rpx;
+}
+
+.modal-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 30rpx;
+  text-align: center;
+  color: #2D3748;
+}
+
+.modal-desc {
+  text-align: center;
+  font-size: 28rpx;
+  color: #4A5568;
+  margin-bottom: 30rpx;
+}
+
+.answer-text {
+  color: #E53E3E;
+  font-weight: bold;
+  font-size: 32rpx;
+  margin-left: 10rpx;
+}
+
+.modal-btn {
+  background: #6C5CE7;
+  color: #fff;
+  font-weight: bold;
+  width: 100%;
+  border-radius: 20rpx;
+}
+
+/* 详细规则样式 */
+.rule-box {
+  background: #F7FAFC;
+  border-radius: 20rpx;
+  padding: 24rpx;
+  margin-bottom: 40rpx;
+}
+
+.rule-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+  font-size: 26rpx;
+  color: #4A5568;
+}
+
+.rule-icon {
+  margin-right: 16rpx;
+  font-size: 32rpx;
+}
+
+.rule-tag {
+  font-size: 22rpx;
+  font-weight: bold;
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+  margin-right: 16rpx;
+  width: 30rpx;
+  text-align: center;
+}
+
+.rule-tag.a-tag {
+  background: #E0EAFF;
+  color: #5C6AC4;
+}
+
+.rule-tag.b-tag {
+  background: #E6FFFA;
+  color: #2C7A7B;
+}
+
+.highlight {
+  font-weight: bold;
+  color: #2D3748;
+}
+
+.rule-example {
+  margin-top: 20rpx;
+  padding-top: 20rpx;
+  border-top: 2rpx dashed #E2E8F0;
+  font-size: 24rpx;
+  color: #718096;
+  line-height: 1.5;
+}
+
+.rule-example text {
+  display: block;
+}

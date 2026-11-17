@@ -1,0 +1,78 @@
+{
+  "name": "举手示意",
+  "description": "练习演讲时举手动作：保持身体稳定，手臂从两侧抬起至头顶",
+  "category": "演讲仪态",
+  "difficulty": 2,
+  "duration": 3000,
+  "frames": [
+    {
+      "timestamp": 0,
+      "description": "起始姿势：双臂自然下垂",
+      "keypoints": [
+        { "name": "nose", "x": 0.50, "y": 0.10, "score": 0.95 },
+        { "name": "left_eye", "x": 0.47, "y": 0.08, "score": 0.92 },
+        { "name": "right_eye", "x": 0.53, "y": 0.08, "score": 0.92 },
+        { "name": "left_ear", "x": 0.44, "y": 0.08, "score": 0.88 },
+        { "name": "right_ear", "x": 0.56, "y": 0.08, "score": 0.88 },
+        { "name": "left_shoulder", "x": 0.38, "y": 0.22, "score": 0.96 },
+        { "name": "right_shoulder", "x": 0.62, "y": 0.22, "score": 0.96 },
+        { "name": "left_elbow", "x": 0.34, "y": 0.38, "score": 0.92 },
+        { "name": "right_elbow", "x": 0.66, "y": 0.38, "score": 0.92 },
+        { "name": "left_wrist", "x": 0.32, "y": 0.52, "score": 0.88 },
+        { "name": "right_wrist", "x": 0.68, "y": 0.52, "score": 0.88 },
+        { "name": "left_hip", "x": 0.42, "y": 0.52, "score": 0.96 },
+        { "name": "right_hip", "x": 0.58, "y": 0.52, "score": 0.96 },
+        { "name": "left_knee", "x": 0.41, "y": 0.72, "score": 0.93 },
+        { "name": "right_knee", "x": 0.59, "y": 0.72, "score": 0.93 },
+        { "name": "left_ankle", "x": 0.40, "y": 0.92, "score": 0.90 },
+        { "name": "right_ankle", "x": 0.60, "y": 0.92, "score": 0.90 }
+      ]
+    },
+    {
+      "timestamp": 1000,
+      "description": "手臂抬起至45度",
+      "keypoints": [
+        { "name": "nose", "x": 0.50, "y": 0.10, "score": 0.95 },
+        { "name": "left_eye", "x": 0.47, "y": 0.08, "score": 0.92 },
+        { "name": "right_eye", "x": 0.53, "y": 0.08, "score": 0.92 },
+        { "name": "left_ear", "x": 0.44, "y": 0.08, "score": 0.88 },
+        { "name": "right_ear", "x": 0.56, "y": 0.08, "score": 0.88 },
+        { "name": "left_shoulder", "x": 0.38, "y": 0.22, "score": 0.96 },
+        { "name": "right_shoulder", "x": 0.62, "y": 0.22, "score": 0.96 },
+        { "name": "left_elbow", "x": 0.28, "y": 0.18, "score": 0.92 },
+        { "name": "right_elbow", "x": 0.72, "y": 0.18, "score": 0.92 },
+        { "name": "left_wrist", "x": 0.22, "y": 0.12, "score": 0.88 },
+        { "name": "right_wrist", "x": 0.78, "y": 0.12, "score": 0.88 },
+        { "name": "left_hip", "x": 0.42, "y": 0.52, "score": 0.96 },
+        { "name": "right_hip", "x": 0.58, "y": 0.52, "score": 0.96 },
+        { "name": "left_knee", "x": 0.41, "y": 0.72, "score": 0.93 },
+        { "name": "right_knee", "x": 0.59, "y": 0.72, "score": 0.93 },
+        { "name": "left_ankle", "x": 0.40, "y": 0.92, "score": 0.90 },
+        { "name": "right_ankle", "x": 0.60, "y": 0.92, "score": 0.90 }
+      ]
+    },
+    {
+      "timestamp": 2000,
+      "description": "手臂完全举起",
+      "keypoints": [
+        { "name": "nose", "x": 0.50, "y": 0.10, "score": 0.95 },
+        { "name": "left_eye", "x": 0.47, "y": 0.08, "score": 0.92 },
+        { "name": "right_eye", "x": 0.53, "y": 0.08, "score": 0.92 },
+        { "name": "left_ear", "x": 0.44, "y": 0.08, "score": 0.88 },
+        { "name": "right_ear", "x": 0.56, "y": 0.08, "score": 0.88 },
+        { "name": "left_shoulder", "x": 0.38, "y": 0.22, "score": 0.96 },
+        { "name": "right_shoulder", "x": 0.62, "y": 0.22, "score": 0.96 },
+        { "name": "left_elbow", "x": 0.35, "y": 0.08, "score": 0.92 },
+        { "name": "right_elbow", "x": 0.65, "y": 0.08, "score": 0.92 },
+        { "name": "left_wrist", "x": 0.38, "y": 0.02, "score": 0.88 },
+        { "name": "right_wrist", "x": 0.62, "y": 0.02, "score": 0.88 },
+        { "name": "left_hip", "x": 0.42, "y": 0.52, "score": 0.96 },
+        { "name": "right_hip", "x": 0.58, "y": 0.52, "score": 0.96 },
+        { "name": "left_knee", "x": 0.41, "y": 0.72, "score": 0.93 },
+        { "name": "right_knee", "x": 0.59, "y": 0.72, "score": 0.93 },
+        { "name": "left_ankle", "x": 0.40, "y": 0.92, "score": 0.90 },
+        { "name": "right_ankle", "x": 0.60, "y": 0.92, "score": 0.90 }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+<!-- packageGame/pages/report/index.wxml -->
+<view class="report-page">
+  <view class="report-header">
+    <text class="report-title">练习报告</text>
+    <text class="report-time">{{practiceTime}}</text>
+  </view>
+
+  <view class="score-ring">
+    <view class="ring-bg">
+      <text class="ring-score">{{avgScore}}</text>
+      <text class="ring-label">平均匹配度</text>
+    </view>
+  </view>
+
+  <view class="stats-grid">
+    <view class="stat-card">
+      <text class="stat-value">{{passRate}}%</text>
+      <text class="stat-name">达标率</text>
+    </view>
+    <view class="stat-card">
+      <text class="stat-value">{{maxScore}}</text>
+      <text class="stat-name">最高分</text>
+    </view>
+    <view class="stat-card">
+      <text class="stat-value">{{minScore}}</text>
+      <text class="stat-name">最低分</text>
+    </view>
+    <view class="stat-card">
+      <text class="stat-value">{{totalFrames}}</text>
+      <text class="stat-name">检测帧数</text>
+    </view>
+  </view>
+
+  <view class="section" wx:if="{{weakestJoints.length > 0}}">
+    <text class="section-title">需要改进的关节</text>
+    <view class="joint-list">
+      <view class="joint-item" wx:for="{{weakestJoints}}" wx:key="name">
+        <view class="joint-rank">{{index + 1}}</view>
+        <view class="joint-info">
+          <text class="joint-name">{{item.label}}</text>
+          <view class="joint-bar-bg">
+            <view class="joint-bar" style="width: {{100 - item.frequency}}%"></view>
+          </view>
+        </view>
+        <text class="joint-pct">{{item.frequency}}%</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="section" wx:if="{{timeline.length > 0}}">
+    <text class="section-title">分数变化趋势</text>
+    <view class="timeline">
+      <view class="timeline-item" wx:for="{{timeline}}" wx:key="time">
+        <text class="tl-time">{{item.time}}s</text>
+        <view class="tl-bar-bg">
+          <view class="tl-bar" style="width: {{item.score}}%; background: {{item.score >= 80 ? '#00ff88' : item.score >= 50 ? '#ffcc00' : '#ff4444'}}"></view>
+        </view>
+        <text class="tl-score">{{item.score}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="actions">
+    <button class="action-btn primary" bindtap="shareReport">
+      分享报告
+    </button>
+    <button class="action-btn secondary" bindtap="goBack">
+      返回
+    </button>
+  </view>
+</view>

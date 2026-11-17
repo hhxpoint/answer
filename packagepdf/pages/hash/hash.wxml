@@ -1,0 +1,63 @@
+<!-- pages/hash/hash.wxml -->
+<view class="container">
+
+  <!-- 顶部信息栏：难度 + 计时器 (保持不变) -->
+  <view class="top-bar">
+    <view class="header">
+      <view class="diff-btn {{difficulty=='easy'?'active':''}}" data-diff="easy" bindtap="changeDifficulty">简单</view>
+      <view class="diff-btn {{difficulty=='medium'?'active':''}}" data-diff="medium" bindtap="changeDifficulty">中等
+      </view>
+      <view class="diff-btn {{difficulty=='hard'?'active':''}}" data-diff="hard" bindtap="changeDifficulty">困难</view>
+    </view>
+    <view class="timer-box">
+      <text class="timer-icon">⏱</text>
+      <text class="timer-text">{{formattedTime}}</text>
+    </view>
+  </view>
+
+  <!-- 数独棋盘 9x9 -->
+  <view class="board">
+    <view wx:for="{{board}}" wx:key="index"
+      class="cell {{item.c == 2 || item.c == 5 ? 'border-right' : ''}} {{item.r == 2 || item.r == 5 ? 'border-bottom' : ''}} {{selectedIdx == index ? 'selected' : ''}} {{item.type}}"
+      data-idx="{{index}}" bindtap="selectCell">
+
+      <!-- ✨ 修改：如果有正常值，显示正常大字 -->
+      <block wx:if="{{item.val !== 0}}">{{item.val}}</block>
+
+      <!-- ✨ 新增：如果没有正常值，但有草稿，显示草稿小字 (使用 flex 布局平铺显示) -->
+      <view wx:elif="{{item.notes.length > 0}}" class="notes-wrap">
+        <text wx:for="{{item.notes}}" wx:for-item="note" wx:key="*this" class="note-text">{{note}}</text>
+      </view>
+
+    </view>
+  </view>
+
+  <!-- AI 逻辑讲解面板 (保持不变) -->
+  <view class="ai-panel">
+    <text class="ai-title">🧠 推理过程区：</text>
+    <text class="ai-text">{{aiMessage}}</text>
+  </view>
+
+  <!-- 自定义键盘 -->
+  <view class="keyboard">
+    <view class="key-row">
+      <!-- ✨ 新增：草稿模式切换开关 -->
+      <view class="key mode-btn {{isDraftMode ? 'draft-active' : ''}}" bindtap="toggleDraftMode">
+        {{isDraftMode ? '📝 笔记' : '✏️ 填入'}}
+      </view>
+
+      <view class="key" wx:for="{{[1,2,3,4]}}" wx:key="*this" data-num="{{item}}" bindtap="inputNumber">{{item}}</view>
+    </view>
+    <view class="key-row">
+      <view class="key" wx:for="{{[5,6,7,8,9]}}" wx:key="*this" data-num="{{item}}" bindtap="inputNumber">{{item}}
+      </view>
+      <view class="key btn-clear" data-num="C" bindtap="inputNumber">清除</view>
+    </view>
+  </view>
+
+  <!-- 底部 AI 开关按钮 (保持不变) -->
+  <button class="ai-btn {{isAiPlaying ? 'stop' : 'start'}}" bindtap="toggleAi">
+    {{isAiPlaying ? '⏹ 停止 AI 演示' : '🤖 我要看 AI 演示'}}
+  </button>
+
+</view>

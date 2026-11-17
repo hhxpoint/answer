@@ -1,0 +1,133 @@
+<!-- puzzle.wxml -->
+<view class="container">
+
+
+
+  <view class="header">
+    <view class="status-card">
+      <text class="label">时间</text>
+      <text class="value">{{timeStr}}</text>
+    </view>
+    <view class="actions">
+      <view class="icon-btn help-btn" bindtap="showHelp">?</view>
+      <view class="icon-btn reset-btn" bindtap="restartGame">↻</view>
+    </view>
+    <view class="status-card">
+      <text class="label">步数</text>
+      <text class="value">{{history.length}}</text>
+    </view>
+  </view>
+  
+
+
+
+  <!-- 2. 中间历史记录 (flex:1 自动撑满中间剩余高度，可滑动) -->
+  <scroll-view class="game-board" scroll-y scroll-into-view="{{scrollId}}" scroll-with-animation>
+    <!-- 空状态提示 -->
+    <view wx:if="{{history.length === 0}}" class="empty-tip">
+      游戏开始，请在下方键盘输入数字...
+    </view>
+
+    <view class="history-list">
+      <block wx:for="{{history}}" wx:key="index">
+        <view class="history-item fade-in">
+          <view class="history-nums">
+            <text wx:for="{{item.guess}}" wx:key="*this" wx:for-item="num" class="h-num">{{num}}</text>
+          </view>
+          <view class="res-badges">
+            <view class="badge a-badge">{{item.a}}A</view>
+            <view class="badge b-badge">{{item.b}}B</view>
+          </view>
+        </view>
+      </block>
+      <!-- 底部垫片，防止滚动到底部时被圆角遮挡 -->
+      <view id="scroll-bottom" style="height: 40rpx;"></view>
+    </view>
+  </scroll-view>
+
+  <!-- 3. 底部操作面板 (保持完全不动，大白卡片风格) -->
+  <view class="control-card">
+
+    <!-- 状态文字提示 -->
+    <view class="status-text {{isError ? 'shake-text' : ''}}">{{hintText}}</view>
+
+    <!-- 输入框 + 灯泡提示 -->
+    <view class="input-row">
+      <view class="input-slots">
+        <block wx:for="{{[0,1,2,3]}}" wx:key="*this">
+          <view class="input-box {{currentInput[item] !== undefined ? 'filled' : ''}}">
+            {{currentInput[item] !== undefined ? currentInput[item] : ''}}
+          </view>
+        </block>
+      </view>
+
+      <!-- 灯泡按钮 -->
+      <view class="hint-btn {{currentInput.length >= 4 ? 'disabled' : ''}}" bindtap="onUseHint">
+        <view class="bulb-icon">💡</view>
+        <text class="hint-text-small">提示</text>
+      </view>
+    </view>
+
+    <!-- 键盘区域 -->
+    <view class="keypad">
+      <view class="key-row">
+        <view class="key-btn {{numsStatus[1] ? 'disabled-key' : ''}}" bindtap="onTapKey" data-val="1">1</view>
+        <view class="key-btn {{numsStatus[2] ? 'disabled-key' : ''}}" bindtap="onTapKey" data-val="2">2</view>
+        <view class="key-btn {{numsStatus[3] ? 'disabled-key' : ''}}" bindtap="onTapKey" data-val="3">3</view>
+      </view>
+      <view class="key-row">
+        <view class="key-btn {{numsStatus[4] ? 'disabled-key' : ''}}" bindtap="onTapKey" data-val="4">4</view>
+        <view class="key-btn {{numsStatus[5] ? 'disabled-key' : ''}}" bindtap="onTapKey" data-val="5">5</view>
+        <view class="key-btn {{numsStatus[6] ? 'disabled-key' : ''}}" bindtap="onTapKey" data-val="6">6</view>
+      </view>
+      <view class="key-row">
+        <view class="key-btn {{numsStatus[7] ? 'disabled-key' : ''}}" bindtap="onTapKey" data-val="7">7</view>
+        <view class="key-btn {{numsStatus[8] ? 'disabled-key' : ''}}" bindtap="onTapKey" data-val="8">8</view>
+        <view class="key-btn {{numsStatus[9] ? 'disabled-key' : ''}}" bindtap="onTapKey" data-val="9">9</view>
+      </view>
+      <view class="key-row">
+        <view class="key-btn func-delete" bindtap="onDelete">⌫</view>
+        <view class="key-btn {{numsStatus[0] ? 'disabled-key' : ''}}" bindtap="onTapKey" data-val="0">0</view>
+        <view class="key-btn func-ok {{currentInput.length === 4 ? 'active-ok' : ''}}" bindtap="onConfirm">OK</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 弹窗部分 (规则文案已更新) -->
+  <view class="modal-mask" wx:if="{{gameState !== 'playing'}}">
+    <view class="modal-content">
+      <view class="result-emoji">{{gameState === 'won' ? '🎉' : '🥀'}}</view>
+      <view class="modal-title">{{gameState === 'won' ? '挑战成功！' : '游戏结束'}}</view>
+      <view class="modal-desc">
+        <block wx:if="{{gameState === 'won'}}">耗时 {{timeStr}}，尝试 {{history.length}} 次</block>
+        <block wx:else>正确答案：<text class="answer-text">{{secretCodeStr}}</text></block>
+      </view>
+      <button class="modal-btn" bindtap="restartGame">再来一局</button>
+    </view>
+  </view>
+
+  <view class="modal-mask" wx:if="{{showHelpModal}}" bindtap="closeHelp">
+    <view class="modal-content" style="text-align: left;">
+      <view class="modal-title" style="text-align: center;">怎么玩？</view>
+      <view class="rule-box">
+        <view class="rule-item">
+          <text class="rule-icon">🎯</text>
+          <text>系统会生成 4 个不重复的数字，请你猜出它们。</text>
+        </view>
+        <view class="rule-item">
+          <text class="rule-tag a-tag">A</text>
+          <text>表示：<text class="highlight">数字对，位置也对</text>。</text>
+        </view>
+        <view class="rule-item">
+          <text class="rule-tag b-tag">B</text>
+          <text>表示：<text class="highlight">数字对，但位置不对</text>。</text>
+        </view>
+        <view class="rule-example">
+          <text>例如：答案是 1234，你猜 1543</text>
+          <text>结果：1A2B (1位置对，4和3位置错)</text>
+        </view>
+      </view>
+      <button class="modal-btn" bindtap="closeHelp">我懂了</button>
+    </view>
+  </view>
+</view>

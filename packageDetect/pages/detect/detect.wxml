@@ -1,0 +1,144 @@
+<view class="page">
+  <!-- 顶部模式切换 -->
+  <view class="mode-tabs">
+    <view class="tab {{activeMode === 'digit' ? 'active' : ''}}" bindtap="switchMode" data-mode="digit">
+      <text class="tab-icon">123</text>
+      <text class="tab-text">数字识别</text>
+    </view>
+    <view class="tab {{activeMode === 'yolo' ? 'active' : ''}}" bindtap="switchMode" data-mode="yolo">
+      <text class="tab-icon">BOX</text>
+      <text class="tab-text">物体检测</text>
+    </view>
+    <view class="tab {{activeMode === 'herb' ? 'active' : ''}}" bindtap="switchMode" data-mode="herb">
+      <text class="tab-icon">药</text>
+      <text class="tab-text">中药识别</text>
+    </view>
+  </view>
+
+  <!-- 摄像头 + Canvas 覆盖层 -->
+  <view class="camera-wrap">
+    <camera class="camera" device-position="back" flash="off" resolution="medium"
+      binderror="onCameraError" style="width:100%;height:100%;">
+    </camera>
+    <canvas type="2d" id="detectCanvas" class="canvas-overlay" style="pointer-events:none;"></canvas>
+
+    <!-- 冻结指示器 -->
+    <view class="freeze-indicator" wx:if="{{frozen}}">
+      <view class="freeze-badge">
+        <text class="freeze-dot"></text>
+        <text class="freeze-text">已固定</text>
+      </view>
+      <view class="freeze-action" bindtap="unfreeze">
+        <text>✕ 重拍</text>
+      </view>
+    </view>
+
+    <!-- 推理动画覆盖层 -->
+    <view class="infer-overlay {{loading ? 'infer-show' : ''}}">
+      <!-- 全屏柔光背景 -->
+      <view class="infer-backdrop"></view>
+      <!-- 全宽扫描光带 -->
+      <view class="infer-scan-bar"></view>
+      <view class="infer-content">
+        <!-- 外环 - 慢速旋转 -->
+        <view class="infer-orbit infer-orbit-outer"></view>
+        <!-- 中环 - 反向旋转 -->
+        <view class="infer-orbit infer-orbit-mid"></view>
+        <!-- 内环 - 呼吸脉冲 -->
+        <view class="infer-orbit infer-orbit-inner"></view>
+        <!-- 轨道光点 -->
+        <view class="infer-dot infer-dot-1"></view>
+        <view class="infer-dot infer-dot-2"></view>
+        <!-- 中心柔光 -->
+        <view class="infer-glow"></view>
+      </view>
+      <!-- 文字 -->
+      <view class="infer-label">
+        <text class="infer-text">正在识别</text>
+        <text class="infer-dots">···</text>
+      </view>
+    </view>
+
+    <!-- 加载遮罩 -->
+    <view class="loading-mask" wx:if="{{!engineReady}}">
+      <view class="loading-spinner"></view>
+      <text class="loading-text">{{loadingText}}</text>
+    </view>
+  </view>
+
+  <!-- 数字模式控制栏 -->
+  <view class="controls" wx:if="{{activeMode === 'digit' && !frozen}}">
+    <view class="btn btn-primary" bindtap="captureDigit">
+      <text>拍照识别</text>
+    </view>
+    <view class="btn btn-secondary" bindtap="chooseImage">
+      <text>相册选图</text>
+    </view>
+  </view>
+
+  <!-- 数字模式结果 -->
+  <view class="result-panel" wx:if="{{activeMode === 'digit' && digitResult}}">
+    <view class="result-title">识别结果</view>
+    <view class="result-row" wx:if="{{digitResult.digit >= 0}}">
+      <text class="result-label">数字:</text>
+      <text class="result-value big">{{digitResult.digit}}</text>
+      <text class="result-conf">置信度 {{digitResult.confidence}}%</text>
+    </view>
+    <view class="result-row" wx:if="{{digitResult.digits && digitResult.digits.length > 1}}">
+      <text class="result-label">全部:</text>
+      <text class="result-value">{{digitResult.sequence}}</text>
+    </view>
+    <view class="result-row" wx:if="{{digitResult.digit < 0 && !digitResult.digits}}">
+      <text class="result-empty">未识别到数字，请调整拍摄角度</text>
+    </view>
+    <view class="result-time">推理耗时: {{digitResult.inferenceTime}}ms</view>
+  </view>
+
+  <!-- YOLO 模式控制栏 -->
+  <view class="controls" wx:if="{{activeMode === 'yolo'}}">
+    <view class="btn {{yoloRunning ? 'btn-danger' : 'btn-primary'}}" bindtap="toggleYolo" wx:if="{{!frozen}}">
+      <text>{{yoloRunning ? '停止检测' : '开始检测'}}</text>
+    </view>
+    <view class="btn btn-accent" bindtap="freezeYolo" wx:if="{{yoloRunning && !frozen}}">
+      <text>📸 截图</text>
+    </view>
+    <view class="btn btn-secondary" bindtap="unfreeze" wx:if="{{frozen}}">
+      <text>✕ 取消固定，继续检测</text>
+    </view>
+  </view>
+
+  <!-- YOLO 模式统计 -->
+  <view class="stats-bar" wx:if="{{activeMode === 'yolo'}}">
+    <text class="stats-item">FPS: {{fps}}</text>
+    <text class="stats-item">检测到: {{objectCount}} 个物体</text>
+    <text class="stats-item" wx:if="{{lastInferenceTime > 0}}">推理: {{lastInferenceTime}}ms</text>
+  </view>
+
+  <!-- 中药模式控制栏 -->
+  <view class="controls" wx:if="{{activeMode === 'herb' && !frozen}}">
+    <view class="btn btn-primary" bindtap="captureHerb">
+      <text>拍照识别</text>
+    </view>
+    <view class="btn btn-secondary" bindtap="chooseHerbImage">
+      <text>相册选图</text>
+    </view>
+  </view>
+
+  <!-- 中药模式结果面板 -->
+  <view class="result-panel" wx:if="{{activeMode === 'herb' && herbResults !== null}}">
+    <view class="result-title">识别结果</view>
+    <view class="result-row" wx:if="{{herbResults.length > 0}}">
+      <text class="result-label">检测到 {{herbResults.length}} 种中药</text>
+    </view>
+    <view class="herb-list" wx:if="{{herbResults.length > 0}}">
+      <view class="herb-item" wx:for="{{herbResults}}" wx:key="classId">
+        <text class="herb-name">{{item.className}}</text>
+        <text class="herb-conf">{{item.scorePercent}}%</text>
+      </view>
+    </view>
+    <view class="result-row" wx:if="{{herbResults.length === 0}}">
+      <text class="result-empty">未识别到中药，请调整拍摄角度</text>
+    </view>
+    <view class="result-time">推理耗时: {{herbInferenceTime}}ms</view>
+  </view>
+</view>

@@ -1,0 +1,202 @@
+<!-- 教务课表 -->
+<view class="page">
+
+  <!-- ═══ 未登录 ═══ -->
+  <view class="login-prompt" wx:if="{{!isLoggedIn}}">
+    <view class="prompt-icon-wrap"><text class="prompt-icon">T</text></view>
+    <text class="prompt-title">尚未登录</text>
+    <text class="prompt-desc">请先登录系统以查看课表</text>
+    <view class="prompt-btn" bindtap="goLogin">
+      <text class="prompt-btn-text">前往登录</text>
+    </view>
+  </view>
+
+  <!-- ═══ 已登录 ═══ -->
+  <view class="main" wx:if="{{isLoggedIn}}">
+
+    <!-- 顶部 -->
+    <view class="top-bar">
+      <view class="top-left">
+        <text class="page-title">{{studentName || '同学'}}的课表</text>
+      </view>
+      <view class="top-actions">
+        <view class="icon-btn" bindtap="switchView" data-mode="grid">
+          <text class="icon-btn-text {{viewMode === 'grid' ? 'active' : ''}}">网格</text>
+        </view>
+        <view class="icon-btn" bindtap="switchView" data-mode="list">
+          <text class="icon-btn-text {{viewMode === 'list' ? 'active' : ''}}">列表</text>
+        </view>
+        <view class="icon-btn" bindtap="doLogout">
+          <text class="icon-btn-text logout-text">退出</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 加载 -->
+    <view class="loading-wrap" wx:if="{{loading}}">
+      <view class="spinner"></view>
+      <text class="loading-text">正在加载课表...</text>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-wrap" wx:if="{{hasLoaded && courses.length === 0 && !loading}}">
+      <text class="empty-icon">📚</text>
+      <text class="empty-title">暂无课程</text>
+      <text class="empty-desc">当前学期没有课程安排</text>
+    </view>
+
+    <!-- ═══ 网格视图 ═══ -->
+    <block wx:if="{{viewMode === 'grid' && !loading && gridData.length > 0}}">
+
+      <!-- 周次选择器 -->
+      <scroll-view class="week-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+        <view class="week-selector">
+          <view
+            class="week-chip {{currentWeek === item ? 'active' : ''}}"
+            wx:for="{{weekList}}" wx:key="*this"
+            wx:for-item="item"
+            bindtap="onWeekChange"
+            data-week="{{item}}"
+          >
+            <text>{{item}}周</text>
+          </view>
+        </view>
+      </scroll-view>
+
+      <!-- 课表网格 -->
+      <view class="grid-wrap">
+        <view class="grid-container">
+
+          <!-- 表头行 -->
+          <view class="grid-header">
+            <view class="grid-corner">
+              <text class="corner-text">节次</text>
+            </view>
+            <view class="grid-day-header" wx:for="{{weekdays}}" wx:key="*this">
+              <text class="day-text">{{item}}</text>
+            </view>
+          </view>
+
+          <!-- 时间行 -->
+          <view class="grid-row" wx:for="{{gridData}}" wx:key="slotLabel">
+            <!-- 左侧时间标签 -->
+            <view class="grid-slot">
+              <text class="slot-label">{{item.slotLabel}}</text>
+              <text class="slot-time">{{item.slotTime}}</text>
+            </view>
+            <!-- 7 天单元格 -->
+            <view
+              class="grid-cell {{cell.hasCourse ? 'has-course' : ''}}"
+              wx:for="{{item.cells}}"
+              wx:for-item="cell"
+              wx:key="day"
+              bindtap="{{cell.hasCourse ? 'onCourseTap' : ''}}"
+              data-name="{{cell.name}}"
+              data-location="{{cell.location}}"
+            >
+              <view
+                class="course-block"
+                wx:if="{{cell.hasCourse}}"
+                style="background: {{cell.color}};"
+              >
+                <text class="course-name">{{cell.name}}</text>
+                <text class="course-loc" wx:if="{{cell.location}}">{{cell.location}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 无固定时间地点的课程 -->
+      <view class="no-schedule-section" wx:if="{{noScheduleCourses.length > 0}}">
+        <view class="no-schedule-header">
+          <text class="no-schedule-title">没有具体上课时间或地点的课程</text>
+        </view>
+        <view class="no-schedule-list">
+          <view
+            class="no-schedule-item"
+            wx:for="{{noScheduleCourses}}"
+            wx:key="code"
+            bindtap="onCourseTap"
+            data-name="{{item.name}}"
+            data-location="{{item.location}}"
+          >
+            <view class="ns-color-dot" style="background: {{colorMap[item.name] || '#5b7fd6'}};"></view>
+            <text class="ns-name">{{item.name}}</text>
+            <text class="ns-teacher">{{item.teacher}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!-- ═══ 列表视图 ═══ -->
+    <view class="list-view" wx:if="{{viewMode === 'list' && courses.length > 0 && !loading}}">
+      <view
+        class="list-item"
+        wx:for="{{courses}}"
+        wx:key="code"
+        bindtap="onCourseTap"
+        data-name="{{item.name}}"
+        data-location="{{item.location}}"
+      >
+        <view class="list-color-bar" style="background: {{colorMap[item.name] || '#5b7fd6'}};"></view>
+        <view class="list-main">
+          <view class="list-row-top">
+            <text class="list-name">{{item.name}}</text>
+            <text class="list-badge" wx:if="{{item.elective}}">{{item.elective}}</text>
+          </view>
+          <view class="list-meta">
+            <text class="list-meta-text">{{item.teacher}} · {{item.credit}}学分</text>
+          </view>
+          <view class="list-loc" wx:if="{{item.location}}">
+            <text class="list-loc-text">{{item.location}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- ═══ 课程详情弹窗 ═══ -->
+  <view class="detail-overlay" wx:if="{{selectedCourse}}" bindtap="closeDetail">
+    <view class="detail-card" catchtap="stopPropagation">
+      <!-- 头部 -->
+      <view class="detail-header" style="background: {{colorMap[selectedCourse.name] || '#5b7fd6'}};">
+        <text class="detail-name">{{selectedCourse.name}}</text>
+        <view class="detail-close" bindtap="closeDetail">
+          <text>×</text>
+        </view>
+      </view>
+      <!-- 内容 -->
+      <view class="detail-body">
+        <view class="detail-row" wx:if="{{selectedCourse.teacher}}">
+          <text class="detail-label">教师</text>
+          <text class="detail-value">{{selectedCourse.teacher}}</text>
+        </view>
+        <view class="detail-row" wx:if="{{selectedCourse.credit}}">
+          <text class="detail-label">学分</text>
+          <text class="detail-value">{{selectedCourse.credit}}</text>
+        </view>
+        <view class="detail-row" wx:if="{{selectedCourse.elective}}">
+          <text class="detail-label">类型</text>
+          <text class="detail-value">{{selectedCourse.elective}}</text>
+        </view>
+        <view class="detail-row" wx:if="{{selectedCourse.exam_type}}">
+          <text class="detail-label">考核</text>
+          <text class="detail-value">{{selectedCourse.exam_type}}</text>
+        </view>
+        <view class="detail-row" wx:if="{{selectedCourse.code}}">
+          <text class="detail-label">课程号</text>
+          <text class="detail-value">{{selectedCourse.code}}</text>
+        </view>
+        <!-- 排课信息 -->
+        <view class="detail-schedules" wx:if="{{selectedCourse.weekRange.length > 0}}">
+          <text class="detail-section-title">上课安排</text>
+          <view class="detail-schedule-item" wx:for="{{selectedCourse.weekRange}}" wx:key="*this">
+            <view class="schedule-dot" style="background: {{colorMap[selectedCourse.name] || '#5b7fd6'}};"></view>
+            <text class="schedule-text">{{item}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

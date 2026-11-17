@@ -1,0 +1,246 @@
+<view class="page">
+  <!-- 地图区域 -->
+  <view class="map-container">
+    <map
+      class="sport-map"
+      latitude="{{currentLocation.latitude}}"
+      longitude="{{currentLocation.longitude}}"
+      scale="16"
+      polyline="{{polyline}}"
+      markers="{{markers}}"
+      show-location
+      enable-zoom="{{true}}"
+      enable-scroll="{{true}}"
+    ></map>
+
+    <!-- 地图遮罩 -->
+    <view class="map-mask"></view>
+
+    <!-- 顶部状态栏 -->
+    <view class="header">
+      <view class="header-left">
+        <text class="brand-icon">🥛</text>
+        <text class="brand-name">酸奶运动</text>
+      </view>
+    </view>
+
+    <!-- 运行中状态指示 -->
+    <view class="running-indicator" wx:if="{{status === 'running'}}">
+      <view class="pulse-dot"></view>
+      <text class="indicator-text">运动中</text>
+    </view>
+  </view>
+
+  <!-- 主数据面板 -->
+  <view class="data-panel">
+    <!-- 面板顶部装饰 -->
+    <view class="panel-handle"></view>
+
+    <!-- 运动类型显示（运动中） -->
+    <view class="type-running" wx:if="{{status !== 'ready'}}">
+      <view class="type-running-badge {{sportType}}">
+        <text class="type-running-icon">{{sportType === 'RUN' ? '🏃' : sportType === 'WALK' ? '🚶' : '🚴'}}</text>
+      </view>
+      <text class="type-running-name">{{sportTypeName}}</text>
+    </view>
+
+    <!-- 核心数据 -->
+    <view class="core-data">
+      <view class="distance-display">
+        <text class="distance-value">{{distanceText}}</text>
+        <text class="distance-unit">{{distanceUnit}}</text>
+      </view>
+      <view class="distance-bar">
+        <view class="bar-track">
+          <view class="bar-fill" style="width: {{Math.min(distance / goalDistance * 100, 100)}}%"></view>
+        </view>
+        <text class="distance-label">目标 {{goalDistance / 1000}}km</text>
+      </view>
+    </view>
+
+    <!-- 数据网格 -->
+    <view class="data-grid">
+      <view class="grid-item">
+        <view class="grid-icon-wrap time">
+          <text class="grid-icon">⏱</text>
+        </view>
+        <view class="grid-info">
+          <text class="grid-value">{{durationText}}</text>
+          <text class="grid-label">时长</text>
+        </view>
+      </view>
+      <view class="grid-divider"></view>
+      <view class="grid-item">
+        <view class="grid-icon-wrap pace">
+          <text class="grid-icon">⚡</text>
+        </view>
+        <view class="grid-info">
+          <text class="grid-value">{{avgPace}}</text>
+          <text class="grid-label">配速</text>
+        </view>
+      </view>
+      <view class="grid-divider"></view>
+      <view class="grid-item">
+        <view class="grid-icon-wrap cal">
+          <text class="grid-icon">🔥</text>
+        </view>
+        <view class="grid-info">
+          <text class="grid-value">{{calories}}</text>
+          <text class="grid-label">千卡</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 实时数据（运动中显示） -->
+    <view class="realtime-data" wx:if="{{status !== 'ready'}}">
+      <view class="realtime-item">
+        <text class="realtime-value">{{currentPace}}</text>
+        <text class="realtime-label">当前配速</text>
+      </view>
+      <view class="realtime-divider"></view>
+      <view class="realtime-item">
+        <text class="realtime-value">{{currentSpeed}}</text>
+        <text class="realtime-label">速度 km/h</text>
+      </view>
+      <view class="realtime-divider"></view>
+      <view class="realtime-item">
+        <text class="realtime-value">{{avgSpeed}}</text>
+        <text class="realtime-label">均速 km/h</text>
+      </view>
+    </view>
+
+    <!-- 操作按钮 -->
+    <view class="action-area">
+      <!-- 暂停/继续 按钮 -->
+      <view class="running-btns" wx:if="{{status !== 'ready'}}">
+        <view class="stop-btn" bindtap="stopSport">
+          <text class="stop-icon">⏹</text>
+        </view>
+        <view class="pause-btn" bindtap="{{status === 'running' ? 'pauseSport' : 'resumeSport'}}">
+          <text class="pause-icon">{{status === 'running' ? '⏸' : '▶'}}</text>
+          <text class="pause-text">{{status === 'running' ? '暂停' : '继续'}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 准备状态内容 -->
+    <view class="ready-content" wx:if="{{status === 'ready'}}">
+      <!-- 运动类型选择 -->
+      <view class="type-bar">
+        <view class="type-item {{sportType === 'RUN' ? 'active' : ''}}" bindtap="selectSportType" data-type="RUN">
+          <view class="type-icon-wrap run">
+            <text class="type-emoji">🏃</text>
+          </view>
+          <text class="type-text">跑步</text>
+        </view>
+        <view class="type-item {{sportType === 'WALK' ? 'active' : ''}}" bindtap="selectSportType" data-type="WALK">
+          <view class="type-icon-wrap walk">
+            <text class="type-emoji">🚶</text>
+          </view>
+          <text class="type-text">步行</text>
+        </view>
+        <view class="type-item {{sportType === 'CYCLE' ? 'active' : ''}}" bindtap="selectSportType" data-type="CYCLE">
+          <view class="type-icon-wrap cycle">
+            <text class="type-emoji">🚴</text>
+          </view>
+          <text class="type-text">骑行</text>
+        </view>
+      </view>
+
+      <!-- 开始按钮 -->
+      <view class="start-btn" bindtap="startSport">
+        <view class="start-btn-ring"></view>
+        <view class="start-btn-inner">
+          <text class="start-icon">▶</text>
+        </view>
+        <text class="start-text">开始运动</text>
+      </view>
+
+      <!-- 今日概览 -->
+      <view class="today-overview">
+        <view class="today-header">
+          <text class="today-title">今日概览</text>
+          <text class="today-date">{{todayDate}}</text>
+        </view>
+        <view class="today-stats">
+          <view class="today-stat">
+            <text class="stat-num">{{todayStats.count}}</text>
+            <text class="stat-name">次数</text>
+          </view>
+          <view class="stat-sep"></view>
+          <view class="today-stat">
+            <text class="stat-num">{{todayDistanceText}}</text>
+            <text class="stat-name">距离km</text>
+          </view>
+          <view class="stat-sep"></view>
+          <view class="today-stat">
+            <text class="stat-num">{{todayDurationText}}</text>
+            <text class="stat-name">时长</text>
+          </view>
+          <view class="stat-sep"></view>
+          <view class="today-stat">
+            <text class="stat-num">{{todayStats.calories}}</text>
+            <text class="stat-name">千卡</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 底部快捷入口 -->
+      <view class="bottom-nav">
+        <view class="nav-item" bindtap="goHistory">
+          <view class="nav-icon-wrap history">
+            <text class="nav-icon">📊</text>
+          </view>
+          <text class="nav-text">记录</text>
+        </view>
+        <view class="nav-item" bindtap="showGoalSetting">
+          <view class="nav-icon-wrap goal">
+            <text class="nav-icon">🎯</text>
+          </view>
+          <text class="nav-text">目标</text>
+        </view>
+        <view class="nav-item" bindtap="goAchievements">
+          <view class="nav-icon-wrap achieve">
+            <text class="nav-icon">🏆</text>
+          </view>
+          <text class="nav-text">成就</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 目标设置弹窗 -->
+  <view class="goal-modal" wx:if="{{showGoal}}">
+    <view class="modal-mask" bindtap="hideGoalSetting"></view>
+    <view class="modal-content">
+      <view class="modal-handle"></view>
+      <text class="modal-title">设置目标</text>
+      <view class="goal-options">
+        <view class="goal-option {{goalDistance === 1000 ? 'active' : ''}}" bindtap="setGoal" data-distance="1000">
+          <text class="goal-value">1</text>
+          <text class="goal-unit">km</text>
+        </view>
+        <view class="goal-option {{goalDistance === 3000 ? 'active' : ''}}" bindtap="setGoal" data-distance="3000">
+          <text class="goal-value">3</text>
+          <text class="goal-unit">km</text>
+        </view>
+        <view class="goal-option {{goalDistance === 5000 ? 'active' : ''}}" bindtap="setGoal" data-distance="5000">
+          <text class="goal-value">5</text>
+          <text class="goal-unit">km</text>
+        </view>
+        <view class="goal-option {{goalDistance === 10000 ? 'active' : ''}}" bindtap="setGoal" data-distance="10000">
+          <text class="goal-value">10</text>
+          <text class="goal-unit">km</text>
+        </view>
+        <view class="goal-option {{goalDistance === 21097 ? 'active' : ''}}" bindtap="setGoal" data-distance="21097">
+          <text class="goal-value">半马</text>
+          <text class="goal-unit">21km</text>
+        </view>
+        <view class="goal-option {{goalDistance === 42195 ? 'active' : ''}}" bindtap="setGoal" data-distance="42195">
+          <text class="goal-value">全马</text>
+          <text class="goal-unit">42km</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,247 @@
+page {
+  background-color: #0d1117;
+  height: 100vh;
+  overflow: hidden;
+  color: #f0eee6;
+}
+
+.main-wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 顶部状态栏 */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40rpx 40rpx 10rpx;
+  background: #0d1117;
+  z-index: 10;
+}
+
+.turn-toast {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #f0d78c;
+  letter-spacing: 2rpx;
+}
+
+.mode-tag {
+  font-size: 22rpx;
+  background: rgba(212, 175, 55, 0.15);
+  color: #d4af37;
+  padding: 6rpx 16rpx;
+  border-radius: 20rpx;
+  border: 1rpx solid #d4af37;
+}
+
+/* 棋盘区 */
+.board-anchor {
+  display: flex;
+  justify-content: center;
+  padding: 10rpx 0 16rpx;
+}
+
+.board-wrapper {
+  border-radius: 16rpx;
+  background: linear-gradient(135deg, #e4c596 0%, #c29b62 50%, #9e763a 100%);
+  box-shadow: 0 30rpx 50rpx rgba(0, 0, 0, 0.6), 0 0 0 6rpx #4a3623;
+}
+
+/* 延展区 */
+.extend-container {
+  flex: 1;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+  overflow-y: auto;
+}
+
+/* === 本地/人机模式 UI === */
+.local-user-card {
+  width: 88%;
+  margin: 0 auto 20rpx;
+  background: linear-gradient(to right, #1c212b, #161a23);
+  border: 2rpx solid rgba(212, 175, 55, 0.2);
+  border-radius: 24rpx;
+  padding: 20rpx 28rpx;
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  box-shadow: 0 10rpx 20rpx rgba(0,0,0,0.5);
+}
+
+.user-avatar {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  border: 4rpx solid #4a4036;
+}
+
+.user-info { flex: 1; }
+
+.user-name {
+  display: block;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 6rpx;
+}
+
+.user-role { font-size: 22rpx; color: #7a766e; }
+
+.local-badge {
+  font-size: 20rpx;
+  color: #a69b8f;
+  background: rgba(255,255,255,0.05);
+  padding: 6rpx 16rpx;
+  border-radius: 12rpx;
+}
+
+/* 游戏模式控制面板 */
+.control-panel {
+  width: 88%;
+  margin: 0 auto;
+}
+
+.panel-title {
+  text-align: center;
+  font-size: 22rpx;
+  color: #7a766e;
+  margin-bottom: 16rpx;
+  letter-spacing: 4rpx;
+}
+
+.btn-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.c-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16rpx;
+  height: 88rpx;
+  border-radius: 20rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.c-btn:active { transform: scale(0.98); opacity: 0.9; }
+
+.btn-local {
+  background: #2a2e3a;
+  color: #f0eee6;
+  border: 2rpx solid #3d4454;
+}
+
+.btn-ai {
+  background: linear-gradient(135deg, #2b3a4a, #1a2432);
+  color: #8ab4f8;
+  border: 2rpx solid #3c5473;
+}
+
+.btn-online {
+  background: linear-gradient(135deg, #d4af37, #b8860b);
+  color: #1a1a1a;
+  box-shadow: 0 10rpx 20rpx rgba(212, 175, 55, 0.3);
+}
+
+.btn-icon { font-size: 36rpx; }
+
+
+/* === 联机模式 UI (保持不变) === */
+.identity-card {
+  width: 90%;
+  background: rgba(44, 37, 31, 0.9);
+  border: 2rpx solid rgba(212, 175, 55, 0.3);
+  border-radius: 30rpx;
+  padding: 30rpx;
+  margin: 20rpx auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.player-box { display: flex; align-items: center; gap: 20rpx; }
+.player-box.active {
+  background: rgba(212, 175, 55, 0.2);
+  border: 2rpx solid #ffd700;
+  border-radius: 20rpx;
+  padding: 10rpx 20rpx;
+  box-shadow: 0 0 20rpx rgba(255, 215, 0, 0.5), 0 0 40rpx rgba(255, 215, 0, 0.2);
+  animation: turnGlow 1.5s ease-in-out infinite;
+}
+.player-box.active .p-avatar {
+  border: 3rpx solid #ffd700;
+  box-shadow: 0 0 12rpx rgba(255, 215, 0, 0.6);
+}
+.player-box.active .p-status {
+  color: #ffd700;
+  font-weight: bold;
+}
+@keyframes turnGlow {
+  0%, 100% { box-shadow: 0 0 20rpx rgba(255, 215, 0, 0.5), 0 0 40rpx rgba(255, 215, 0, 0.2); }
+  50% { box-shadow: 0 0 30rpx rgba(255, 215, 0, 0.8), 0 0 60rpx rgba(255, 215, 0, 0.4); }
+}
+.p-avatar { width: 80rpx; height: 80rpx; border-radius: 50%; }
+.p-name { font-size: 26rpx; color: #fff; display: block; }
+.p-status { font-size: 22rpx; color: #ffd700; }
+.vs-tag { color: #ffd700; font-weight: bold; }
+
+.chat-room { width: 94%; margin: 40rpx auto 0; background: #161a23; border-radius: 40rpx 40rpx 0 0; border: 1rpx solid rgba(212, 175, 55, 0.2); min-height: 600rpx; padding-bottom: 40rpx; }
+.chat-room-header { text-align: center; color: #7a766e; font-size: 26rpx; padding: 30rpx 0; }
+.msg-container { padding: 0 30rpx; }
+.msg-item { display: flex; margin-bottom: 30rpx; }
+.msg-left { flex-direction: row; }
+.msg-right { flex-direction: row-reverse; }
+.msg-avatar { width: 70rpx; height: 70rpx; border-radius: 50%; }
+.msg-bubble { max-width: 70%; padding: 20rpx 30rpx; border-radius: 30rpx; margin: 0 20rpx; }
+.msg-left .msg-bubble { background: #2a2e3a; color: #e0d7c8; border-top-left-radius: 0; }
+.msg-right .msg-bubble { background: #b8860b; color: #2c251f; border-top-right-radius: 0; }
+
+.fixed-input-bar { position: fixed; bottom: 0; width: 100%; height: 120rpx; background: #161a23; display: flex; align-items: center; padding: 0 30rpx; gap: 20rpx; border-top: 1rpx solid rgba(212, 175, 55, 0.3); box-sizing: border-box;}
+.chat-input { flex: 1; height: 80rpx; background: rgba(0,0,0,0.4); border-radius: 40rpx; padding: 0 30rpx; color: #fff; }
+.send-btn { color: #ffd700; font-weight: bold; padding-right: 20rpx;}
+
+/* 语音麦克风按钮 */
+.voice-btn {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36rpx;
+  transition: all 0.3s;
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* 麦克风已开启状态 (绿色高亮 + 脉冲动效) */
+.voice-btn.voice-active {
+  background: rgba(46, 204, 113, 0.25);
+  box-shadow: 0 0 16rpx rgba(46, 204, 113, 0.5);
+  animation: micPulse 2s ease-in-out infinite;
+}
+
+/* 正在说话状态 (更强的绿色光晕) */
+.voice-btn.voice-speaking {
+  background: rgba(46, 204, 113, 0.4);
+  box-shadow: 0 0 30rpx rgba(46, 204, 113, 0.8);
+  animation: speakGlow 0.8s ease-in-out infinite;
+}
+
+@keyframes micPulse {
+  0%, 100% { box-shadow: 0 0 16rpx rgba(46, 204, 113, 0.5); }
+  50% { box-shadow: 0 0 28rpx rgba(46, 204, 113, 0.8); }
+}
+
+@keyframes speakGlow {
+  0%, 100% { box-shadow: 0 0 30rpx rgba(46, 204, 113, 0.8), 0 0 60rpx rgba(46, 204, 113, 0.3); }
+  50% { box-shadow: 0 0 45rpx rgba(46, 204, 113, 1), 0 0 80rpx rgba(46, 204, 113, 0.5); }
+}

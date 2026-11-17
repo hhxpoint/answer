@@ -1,0 +1,57 @@
+<view class="page-container {{showModal ? 'blur-bg' : ''}}">
+  <view class="header">
+    <text class="title">Code Beautifier</text>
+    <text class="subtitle">支持 Java, C++, Python, JS 等多语言高亮</text>
+  </view>
+
+  <view class="editor-container">
+    <view class="editor-header">
+      <view class="mac-dots"><text class="dot red"></text><text class="dot yellow"></text><text
+          class="dot green"></text></view>
+      <text class="tab-title">source_code.txt</text>
+    </view>
+    <textarea class="code-input" maxlength="-1" placeholder="在此粘贴您的代码...\n我们会自动识别并进行高亮排版..." bindinput="onInputChange"
+      value="{{inputCode}}">
+    </textarea>
+  </view>
+
+  <view class="bottom-action">
+    <button class="btn-generate" hover-class="btn-hover" bindtap="generateCodeCard">
+      ✨ 魔法美化并生成卡片
+    </button>
+  </view>
+</view>
+
+<!-- 沉浸式弹窗 -->
+<view class="modal-overlay" wx:if="{{showModal}}" catchtouchmove="preventTouchMove" bindtap="closeModal">
+  <view class="modal-content" catchtap="stopBubble">
+
+    <!-- 顶部操作栏 -->
+    <view class="modal-tools">
+      <view class="tool-btn close" bindtap="closeModal">关闭</view>
+      <view class="tool-actions">
+        <view class="tool-btn outline" bindtap="copyCode">复制文本</view>
+        <view class="tool-btn solid" bindtap="saveAsImage">保存图片</view>
+      </view>
+    </view>
+
+    <!-- 截图区域组件：这个标签内的内容可以直接生成真正的图片 -->
+    <snapshot id="snapshot-target">
+      <view class="card-wrapper">
+        <view class="mac-window">
+          <view class="mac-header">
+            <view class="mac-dot red"></view>
+            <view class="mac-dot yellow"></view>
+            <view class="mac-dot green"></view>
+            <text class="mac-title">Beautified Code</text>
+          </view>
+          <!-- 内部使用 view 替代 scroll-view，确保截图时能截取完整长图 -->
+          <view class="mac-body">
+            <rich-text nodes="{{richTextNodes}}"></rich-text>
+          </view>
+        </view>
+      </view>
+    </snapshot>
+
+  </view>
+</view>

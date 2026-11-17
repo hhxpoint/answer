@@ -132,5 +132,26 @@ Page({
     } catch (e) {
       this.setData({ result: "格式错误" });
     }
-  }
+  },
+
+     // 1. 实现“发送给朋友”功能
+    onShareAppMessage: function () {
+      return {
+        title: '鸿蒙计算器', // 分享显示的标题
+        path: '/pages/calc/calc', // 用户点击分享链接后进入的页面路径
+        
+      }
+    },
+  
+    // 2. 实现“分享到朋友圈”功能
+    onShareTimeline: function () {
+      return {
+        title: '鸿蒙计算器', // 朋友圈显示的标题
+        query: 'id=share', // 点击朋友圈进入时带的参数
+        
+      }
+    },
+
+  
+
 });

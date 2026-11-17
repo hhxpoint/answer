@@ -1,0 +1,82 @@
+.container {
+  padding: 50rpx 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f7f8fc;
+  min-height: 100vh;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 80rpx;
+}
+
+.title {
+  font-size: 44rpx;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.desc {
+  font-size: 28rpx;
+  color: #888;
+}
+
+.avatar-wrapper {
+  padding: 0;
+  width: 180rpx !important;
+  height: 180rpx !important;
+  border-radius: 20rpx;
+  background: #fff;
+  margin-bottom: 60rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.05);
+}
+
+.avatar {
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 20rpx;
+}
+
+.tip {
+  font-size: 22rpx;
+  color: #999;
+  text-align: center;
+  margin-top: 10rpx;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: #fff;
+  padding: 30rpx;
+  border-radius: 20rpx;
+  box-sizing: border-box;
+  margin-bottom: 80rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.05);
+}
+
+.label {
+  font-size: 32rpx;
+  color: #333;
+  margin-right: 30rpx;
+  font-weight: bold;
+}
+
+.weui-input {
+  flex: 1;
+  font-size: 32rpx;
+}
+
+.login-btn {
+  width: 100% !important;
+  border-radius: 50rpx;
+  background: #07C160;
+  font-size: 34rpx;
+  font-weight: bold;
+  padding: 24rpx 0;
+}

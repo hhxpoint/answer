@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "我们的小火苗",
+  "navigationBarBackgroundColor": "#fff1e6",
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#ffe3dd",
+  "enablePullDownRefresh": true
+}

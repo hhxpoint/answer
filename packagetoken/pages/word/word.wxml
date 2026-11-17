@@ -1,0 +1,69 @@
+<!-- pages/word/word.wxml -->
+<view class="page-container">
+  <!-- 1. 顶部进度条 -->
+  <view class="progress-section">
+    <view class="progress-text">学习进度 {{currentIndex + 1}} / {{wordList.length}}</view>
+    <view class="progress-bar-bg">
+      <view class="progress-bar-fill" style="width: {{(currentIndex + 1) / wordList.length * 100}}%"></view>
+    </view>
+  </view>
+
+  <!-- 2. 单词大卡片 -->
+  <view class="main-card {{showMeaning ? 'card-active' : ''}}" bindtap="toggleMeaning">
+    <view class="card-content">
+      <!-- 单词头部 -->
+      <view class="word-header">
+        <text class="word-text">{{currentWord.word}}</text>
+        <view class="phonetic-container">
+          <text class="phonetic-text">{{currentWord.phonetic}}</text>
+          <!-- 这里修改了：绑定 catchtap 事件 -->
+          <view class="speaker-icon" catchtap="readWord">🔊</view>
+        </view>
+      </view>
+
+      <!-- 英文释义区 -->
+      <view class="info-section">
+        <view class="section-label">ENGLISH DEFINITION</view>
+        <view class="en-box">{{currentWord.enDefinition}}</view>
+      </view>
+
+      <!-- 中文与例句区 (条件渲染) -->
+      <view class="hidden-content {{showMeaning ? 'show' : ''}}">
+        <view class="info-section">
+          <view class="section-label">中文释义</view>
+          <view class="zh-box">{{currentWord.zhDefinition}}</view>
+        </view>
+
+        <view class="info-section">
+          <view class="section-label">EXAMPLE SENTENCE</view>
+          <view class="example-box">
+            <text class="example-text">“{{currentWord.example}}”</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 未翻开时的提示 -->
+      <view class="click-hint" wx:if="{{!showMeaning}}">
+        <text>点击查看释义</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 3. 底部操作区 -->
+  <view class="footer-btns">
+    <view class="btn-circle prev {{currentIndex === 0 ? 'disabled' : ''}}" bindtap="prevWord">
+      <text class="btn-icon">←</text>
+      <text class="btn-text">上一个</text>
+    </view>
+
+    <view class="btn-circle fav" bindtap="toggleFavoriteWord">
+      <text class="btn-icon">{{isFavorite ? '★' : '☆'}}</text>
+      <text class="btn-text">{{isFavorite ? '已收藏' : '收藏'}}</text>
+    </view>
+
+    <view class="btn-circle next" bindtap="nextWord">
+      <text class="btn-icon">→</text>
+      <text class="btn-text">下一个</text>
+    </view>
+  </view>
+</view>

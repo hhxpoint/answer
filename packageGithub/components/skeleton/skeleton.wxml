@@ -1,0 +1,41 @@
+<view class="skeleton-wrap">
+  <!-- 抬头骨架 -->
+  <view class="skeleton-masthead">
+    <view class="skeleton-rule"></view>
+    <view class="skeleton-title-block"></view>
+    <view class="skeleton-divider">
+      <view class="skeleton-line"></view>
+      <view class="skeleton-dot"></view>
+      <view class="skeleton-line"></view>
+    </view>
+    <view class="skeleton-subtitle"></view>
+    <view class="skeleton-meta"></view>
+    <view class="skeleton-rule"></view>
+  </view>
+
+  <!-- 头条骨架 -->
+  <view class="skeleton-headline">
+    <view class="skeleton-venue-block"></view>
+    <view class="skeleton-headline-content">
+      <view class="skeleton-citation"></view>
+      <view class="skeleton-line long"></view>
+      <view class="skeleton-line medium"></view>
+      <view class="skeleton-authors"></view>
+      <view class="skeleton-line long"></view>
+      <view class="skeleton-line medium"></view>
+    </view>
+  </view>
+
+  <!-- 论文列表骨架 -->
+  <view class="skeleton-papers">
+    <view class="skeleton-paper" wx:for="{{3}}" wx:key="*this">
+      <view class="skeleton-paper-venue"></view>
+      <view class="skeleton-paper-content">
+        <view class="skeleton-citation-small"></view>
+        <view class="skeleton-line long"></view>
+        <view class="skeleton-authors-small"></view>
+        <view class="skeleton-line medium"></view>
+      </view>
+    </view>
+  </view>
+</view>
