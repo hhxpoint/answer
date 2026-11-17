@@ -1,0 +1,31 @@
+# ===== 依赖与构建产物（不入库，按需本地生成）=====
+node_modules/
+miniprogram_npm/
+*.zip
+
+# ===== 大模型权重（体积大，请从本地/发布资产获取）=====
+best.onnx
+best.pt
+
+# ===== 密钥与本地私有配置（严禁提交）=====
+project.private.config.json
+*.pem
+*.key
+private.wx*.key
+.env
+.env.*
+
+# ===== 本地工具 / IDE 私有配置 =====
+.claude/
+.vscode/settings.json
+
+# ===== 系统与临时文件 =====
+nul
+Thumbs.db
+.DS_Store
+*.log
+*.tmp
+
+# ===== 编译 / 测试临时产物 =====
+.compiled/
+out/
