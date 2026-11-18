@@ -39,6 +39,7 @@ README.md（根目录）
 | [modules/couple/server.md](modules/couple/server.md) | 服务端接口、SQLite 表、WebSocket、管理后台、内容安全 |
 | [modules/couple/multi-space.md](modules/couple/multi-space.md) | 多关系空间：数据模型、API、兼容、测试、回滚 |
 | [modules/couple/share-design.md](modules/couple/share-design.md) | 小火苗分享封面与文案设计系统 |
+| [modules/couple/performance.md](modules/couple/performance.md) | 悄悄话延迟优化：瓶颈、改动、验证与后续 |
 | [modules/couple/release.md](modules/couple/release.md) | 上传/预览/体验版/审核/隐私协议/发布检查单 |
 | [modules/recipe/README.md](modules/recipe/README.md) | 「今天吃什么」纯本地菜谱：数据、检索、冰箱模式、图片许可与构建 |
 | [ops/deployment.md](ops/deployment.md) | 服务器路径、systemd、nginx、环境变量、部署脚本 |

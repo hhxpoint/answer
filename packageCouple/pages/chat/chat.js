@@ -4,6 +4,7 @@ const wsClient = require('../../utils/couple-ws.js');
 
 const RECALL_WINDOW = 2 * 60 * 1000; // 与微信一致：2 分钟内可撤回
 const TIME_GAP = 5 * 60 * 1000; // 超过 5 分钟显示时间分隔
+const CACHE_PREFIX = 'couple_chat_cache_v1_';
 
 function pad(n) {
   return n < 10 ? '0' + n : '' + n;
@@ -49,8 +50,10 @@ Page({
   onLoad: function () {
     this.msgMap = {};
     this.order = [];
+    this.pending = {};
     this.lastScrollTop = 0;
     this.touchPos = { x: 0, y: 0 };
+    this.cacheKey = CACHE_PREFIX + (api.getSpaceId() || 0);
     try {
       this.sys = wx.getSystemInfoSync();
     } catch (e) {
@@ -59,6 +62,7 @@ Page({
     if (wx.showShareMenu) {
       wx.showShareMenu({ menus: ['shareAppMessage', 'shareTimeline'], withShareTicket: false });
     }
+    this.loadCache();
     this.load();
   },
 
@@ -67,31 +71,75 @@ Page({
   },
 
   onHide: function () {
+    this.cacheMessages();
     this.teardown();
   },
 
   onUnload: function () {
+    this.cacheMessages();
     this.teardown();
   },
 
   teardown: function () {
-    if (this.reconcileTimer) {
-      clearInterval(this.reconcileTimer);
-      this.reconcileTimer = null;
-    }
+    this.stopReconcile();
     if (this.socket) {
       this.socket.close();
       this.socket = null;
     }
   },
 
+  // 本地缓存最近消息：进入聊天先渲染，网络回来再刷新
+  loadCache: function () {
+    try {
+      const cache = wx.getStorageSync(this.cacheKey);
+      if (!cache || !Array.isArray(cache.messages) || !cache.messages.length) return;
+      this.setData({
+        ready: true,
+        myId: cache.myId || 0,
+        myName: cache.myName || '我',
+        myAvatar: cache.myAvatar || '',
+        partnerName: cache.partnerName || 'TA',
+        partnerInitial: cache.partnerInitial || 'TA',
+        partnerAvatar: cache.partnerAvatar || ''
+      });
+      this.mergeMessages(cache.messages, true);
+    } catch (e) {}
+  },
+
+  cacheMessages: function () {
+    try {
+      const list = [];
+      this.order.forEach(function (id) {
+        if (id >= 1e12) return;
+        const d = this.msgMap[id];
+        if (!d || d.pending || d.failed) return;
+        list.push(d);
+      }, this);
+      wx.setStorageSync(this.cacheKey, {
+        myId: this.data.myId,
+        myName: this.data.myName,
+        myAvatar: this.data.myAvatar,
+        partnerName: this.data.partnerName,
+        partnerInitial: this.data.partnerInitial,
+        partnerAvatar: this.data.partnerAvatar,
+        messages: list.slice(-50)
+      });
+    } catch (e) {}
+  },
+
   load: function () {
     const that = this;
-    api.ensureLogin()
-      .then(function () { return api.me(); })
-      .then(function (res) {
+    const hadCache = !!this.data.ready && this.data.messages.length > 0;
+    return api.ensureLogin()
+      .then(function () {
+        that.connectSocket();
+        return Promise.all([api.me(), api.recentMessages(50)]);
+      })
+      .then(function (arr) {
+        const res = arr[0];
+        const recent = arr[1];
         if (!res.couple) {
-          wx.redirectTo({ url: '/packageCouple/pages/bind/bind' });
+          wx.redirectTo({ url: '/packageCouple/pages/spaces/spaces' });
           return;
         }
         const user = res.user || {};
@@ -99,6 +147,7 @@ Page({
         const pname = partner.nickname || 'TA';
         that.setData({
           ready: true,
+          errorText: '',
           myId: user.id || 0,
           myName: user.nickname || '我',
           myAvatar: api.absUrl(user.avatar),
@@ -106,26 +155,35 @@ Page({
           partnerInitial: pname.slice(0, 1) || 'TA',
           partnerAvatar: api.absUrl(partner.avatar)
         });
-        return api.recentMessages(50).then(function (r) {
-          that.mergeMessages(r.messages || [], true);
-          api.markRead().catch(function () {});
-          that.connectSocket();
-          that.startReconcile();
-        });
+        that.mergeMessages(recent.messages || [], true);
+        api.markRead().catch(function () {});
+        that.cacheMessages();
       })
       .catch(function (err) {
+        if (hadCache) {
+          wx.showToast({ title: '网络不稳定，消息可能不是最新', icon: 'none' });
+          return;
+        }
         that.setData({ ready: true, errorText: err.msg || '加载失败，返回重试' });
       });
   },
 
   startReconcile: function () {
     const that = this;
-    if (this.reconcileTimer) return;
+    if (this.reconcileTimer || this.data.connOk) return;
     this.reconcileTimer = setInterval(function () {
+      if (that.data.connOk) return;
       api.recentMessages(50)
-        .then(function (r) { that.mergeMessages(r.messages || []); })
+        .then(function (r) { that.mergeMessages(r.messages || []); that.cacheMessages(); })
         .catch(function () {});
     }, 8000);
+  },
+
+  stopReconcile: function () {
+    if (this.reconcileTimer) {
+      clearInterval(this.reconcileTimer);
+      this.reconcileTimer = null;
+    }
   },
 
   connectSocket: function () {
@@ -138,9 +196,15 @@ Page({
         const online = status === 'online';
         that.setData({ connOk: online, connText: online ? '已连接' : '重连中…' });
         if (online) {
-          api.recentMessages(50)
-            .then(function (r) { that.mergeMessages(r.messages || []); })
-            .catch(function () {});
+          that.stopReconcile();
+          if (that._connectedOnce) {
+            api.recentMessages(50)
+              .then(function (r) { that.mergeMessages(r.messages || []); })
+              .catch(function () {});
+          }
+          that._connectedOnce = true;
+        } else {
+          that.startReconcile();
         }
       },
       onMessage: function (data) {
@@ -164,6 +228,15 @@ Page({
     let maxId = this.data.lastId || 0;
     dtos.forEach(function (d) {
       if (!d || !d.id) return;
+      // 服务端消息到达时，按 client_msg_id 移除本地“发送中”临时消息
+      if (d.client_msg_id && !d.pending) {
+        const tempId = that.pending[d.client_msg_id];
+        if (tempId) {
+          delete that.pending[d.client_msg_id];
+          that.removeLocalMessage(tempId);
+          changed = true;
+        }
+      }
       const prev = that.msgMap[d.id];
       if (!prev) {
         that.order.push(d.id);
@@ -175,7 +248,8 @@ Page({
         const replyChanged = JSON.stringify(prev.reply || null) !== JSON.stringify(d.reply || null);
         if (prev.recalled !== d.recalled || prev.content !== d.content || replyChanged) changed = true;
       }
-      if (d.id > maxId) maxId = d.id;
+      // 临时消息 id 很大，不参与 lastId；避免滚动锚点错乱
+      if (d.id < 1e12 && d.id > maxId) maxId = d.id;
     });
     if (!changed && !reset) return;
     this.order.sort(function (a, b) { return a - b; });
@@ -197,6 +271,14 @@ Page({
       }
     }
     this.setData(patch);
+    this.cacheMessages();
+  },
+
+  removeLocalMessage: function (id) {
+    if (!this.msgMap || !this.msgMap[id]) return;
+    delete this.msgMap[id];
+    this.order = this.order.filter(function (x) { return x !== id; });
+    this.setData({ messages: this.buildRows() });
   },
 
   buildRows: function () {
@@ -238,6 +320,8 @@ Page({
         timeText: fmtTime(d.created_at),
         replyName: replyName,
         replyContent: replyContent,
+        pending: !!d.pending,
+        failed: !!d.failed,
         avatar: mine ? that.data.myAvatar : that.data.partnerAvatar,
         avatarText: mine ? (that.data.myName || '我').slice(0, 1) : (that.data.partnerInitial || 'TA')
       });
@@ -255,7 +339,7 @@ Page({
     const id = Number(ds.id);
     if (!id) return;
     const d = (this.msgMap || {})[id];
-    if (!d || d.recalled) return;
+    if (!d || d.recalled || d.pending || d.failed) return;
     const mine = d.user_id === this.data.myId;
     const within = Date.now() - (d.created_at || 0) <= RECALL_WINDOW;
     const items = [];
@@ -301,7 +385,7 @@ Page({
       const name = mine ? (this.data.myName || '我') : this.data.partnerName;
       const that = this;
       this.setData({
-        quote: { id: id, name: name, content: (d.content || '').slice(0, 80) },
+        quote: { id: id, user_id: d.user_id, name: name, content: (d.content || '').slice(0, 80) },
         focus: true
       });
       setTimeout(function () { that.setData({ focus: false }); }, 400);
@@ -332,21 +416,77 @@ Page({
   },
 
   send: function () {
-    const that = this;
     const content = (this.data.input || '').trim();
-    if (!content || this.data.sending) return;
-    const replyTo = this.data.quote ? this.data.quote.id : 0;
-    this.setData({ sending: true });
-    api.sendMessage(content, replyTo)
+    if (!content) return;
+    const quote = this.data.quote;
+    const replyTo = quote ? quote.id : 0;
+    const replyObj = quote ? {
+      id: quote.id,
+      user_id: quote.user_id || 0,
+      content: quote.content || '',
+      recalled: false
+    } : null;
+    const clientId = 'c' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+    this.sendContent(content, replyTo, clientId, replyObj);
+  },
+
+  // 乐观发送：本地先出现“发送中”，网络返回后替换为服务端消息
+  sendContent: function (content, replyTo, clientId, replyObj) {
+    const that = this;
+    const tempId = Date.now() * 1000 + Math.floor(Math.random() * 1000);
+    const pending = {
+      id: tempId,
+      user_id: this.data.myId,
+      type: 'text',
+      content: content,
+      created_at: Date.now(),
+      recalled: false,
+      recalled_at: 0,
+      recall_deadline: 0,
+      client_msg_id: clientId,
+      pending: true,
+      failed: false,
+      reply: replyObj || undefined
+    };
+    this.pending[clientId] = tempId;
+    this.mergeMessages([pending]);
+    this.setData({ input: '', quote: null, sending: false, atBottom: true, newCount: 0 });
+    this.scrollToId(tempId);
+
+    api.sendMessage(content, replyTo, clientId)
       .then(function (r) {
-        that.setData({ sending: false, input: '', quote: null, atBottom: true, newCount: 0 });
-        that.mergeMessages([r.message]);
+        delete that.pending[clientId];
+        that.removeLocalMessage(tempId);
+        if (r && r.message) that.mergeMessages([r.message]);
+        that.cacheMessages();
         that.scrollToBottom();
       })
       .catch(function (err) {
-        that.setData({ sending: false });
-        wx.showToast({ title: err.msg || '发送失败', icon: 'none' });
+        // 如果 WS 已经送达并移除了临时消息，视为成功，不报错
+        delete that.pending[clientId];
+        const row = that.msgMap[tempId];
+        if (row) {
+          row.failed = true;
+          that.setData({ messages: that.buildRows() });
+          wx.showToast({ title: (err && err.msg) || '发送失败', icon: 'none' });
+        }
       });
+  },
+
+  retryMessage: function (e) {
+    const id = Number(e.currentTarget.dataset.id);
+    const d = (this.msgMap || {})[id];
+    if (!d || !d.failed) return;
+    const content = d.content || '';
+    const replyTo = d.reply ? d.reply.id : 0;
+    const replyObj = d.reply || null;
+    const clientId = d.client_msg_id || ('c' + Date.now().toString(36));
+    this.removeLocalMessage(id);
+    this.sendContent(content, replyTo, clientId, replyObj);
+  },
+
+  scrollToId: function (id) {
+    this.setData({ scrollInto: 'msg-' + id, atBottom: true, newCount: 0 });
   },
 
   scrollToBottom: function () {

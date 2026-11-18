@@ -116,8 +116,11 @@ function interact(type) { return request('/pet/interact', { method: 'POST', data
 function renamePet(name) { return request('/pet/rename', { method: 'POST', data: { name: name } }); }
 function listMessages(after) { return request('/messages?after=' + (after || 0)); }
 function recentMessages(limit) { return request('/messages/recent?limit=' + (limit || 50)); }
-function sendMessage(content, replyTo) {
-  return request('/messages', { method: 'POST', data: { content: content, reply_to: replyTo || 0 } });
+function sendMessage(content, replyTo, clientMsgId) {
+  return request('/messages', {
+    method: 'POST',
+    data: { content: content, reply_to: replyTo || 0, client_msg_id: clientMsgId || '' }
+  });
 }
 function recallMessage(id) { return request('/messages/' + id + '/recall', { method: 'POST' }); }
 

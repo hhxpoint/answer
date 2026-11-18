@@ -51,6 +51,12 @@
             </view>
             <text class="bubble-text">{{item.content}}</text>
           </view>
+
+          <view wx:if="{{item.mine && (item.pending || item.failed)}}"
+            class="send-status {{item.failed ? 'send-failed' : ''}}"
+            data-id="{{item.id}}" catchtap="retryMessage">
+            {{item.failed ? '发送失败 · 点击重试' : '发送中…'}}
+          </view>
         </view>
       </view>
 

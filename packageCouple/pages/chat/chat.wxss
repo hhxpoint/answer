@@ -385,3 +385,18 @@ page {
 .action-item:active {
   background: rgba(255, 255, 255, 0.12);
 }
+
+/* 乐观发送状态 */
+.send-status {
+  max-width: 240rpx;
+  margin: 0 12rpx 10rpx;
+  font-size: 20rpx;
+  color: #b49a88;
+  text-align: right;
+  line-height: 1.4;
+}
+.msg-row.them .send-status { text-align: left; }
+.send-status.send-failed {
+  color: #c25b4e;
+  text-decoration: underline;
+}
