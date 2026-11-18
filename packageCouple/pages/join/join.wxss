@@ -1,0 +1,27 @@
+page { background: linear-gradient(180deg, #fff9f4 0%, #fff0e7 58%, #ffe8e2 100%); min-height: 100%; }
+.page { position: relative; padding: 28rpx 34rpx 80rpx; overflow: hidden; color: #4a342b; }
+.deco { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(2rpx); }
+.deco-a { top: -130rpx; left: -90rpx; width: 380rpx; height: 380rpx; background: radial-gradient(closest-side, rgba(255,205,170,.5), transparent); }
+.deco-b { bottom: -160rpx; right: -120rpx; width: 420rpx; height: 420rpx; background: radial-gradient(closest-side, rgba(255,175,185,.3), transparent); }
+
+.head { padding: 14rpx 4rpx 28rpx; }
+.eyebrow { font-size: 18rpx; letter-spacing: 4rpx; color: #c39a80; font-weight: 600; }
+.title { margin-top: 14rpx; font-size: 46rpx; font-weight: 800; color: #3f2b22; }
+.sub { margin-top: 12rpx; font-size: 23rpx; color: #a5836f; line-height: 1.6; }
+
+.form-card { padding: 30rpx 26rpx; border-radius: 32rpx; background: rgba(255,255,255,.9); border: 1rpx solid rgba(255,255,255,.95); box-shadow: 0 18rpx 40rpx rgba(190,120,80,.1); }
+.field-label { font-size: 22rpx; color: #b08c75; }
+.field-label.mt { margin-top: 30rpx; }
+.code-input { margin-top: 14rpx; height: 100rpx; border-radius: 22rpx; background: #fff8f1; border: 1rpx solid rgba(230,205,185,.7); text-align: center; font-size: 40rpx; letter-spacing: 10rpx; font-weight: 800; color: #b96f45; }
+.from-share { margin-top: 10rpx; font-size: 19rpx; color: #b49a88; }
+.chips { display: flex; flex-wrap: wrap; gap: 12rpx; margin-top: 14rpx; }
+.chip { padding: 10rpx 22rpx; border-radius: 999rpx; background: #fff8f1; border: 1rpx solid rgba(225,200,180,.7); font-size: 22rpx; color: #8a6a55; }
+.chip-on { background: linear-gradient(135deg, #f5a05f, #e97b3e); border-color: transparent; color: #fff; font-weight: 600; }
+.label-input { margin-top: 16rpx; height: 84rpx; padding: 0 22rpx; border-radius: 20rpx; background: #fff8f1; border: 1rpx solid rgba(230,205,185,.7); font-size: 24rpx; color: #4a342b; }
+.hint { margin-top: 12rpx; font-size: 19rpx; color: #b49a88; }
+.primary-btn { margin-top: 30rpx; height: 88rpx; border-radius: 999rpx; background: linear-gradient(135deg, #f5a05f, #e97b3e); color: #fff; font-size: 27rpx; font-weight: 700; display: flex; align-items: center; justify-content: center; box-shadow: 0 14rpx 30rpx rgba(233,123,62,.22); }
+.primary-btn.disabled { opacity: .6; }
+
+.note { margin-top: 28rpx; padding: 24rpx 26rpx; border-radius: 24rpx; background: rgba(255,255,255,.55); border: 1rpx solid rgba(255,255,255,.8); }
+.note-title { font-size: 22rpx; font-weight: 700; color: #8a6a55; }
+.note-text { display: block; margin-top: 8rpx; font-size: 20rpx; color: #b49a88; line-height: 1.7; }

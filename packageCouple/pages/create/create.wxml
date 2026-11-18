@@ -1,0 +1,70 @@
+<view class="page">
+  <view class="deco deco-a"></view>
+  <view class="deco deco-b"></view>
+
+  <block wx:if="{{step === 'edit'}}">
+    <view class="head">
+      <view class="eyebrow">A NEW LITTLE FLAME</view>
+      <view class="title">添加一个关系空间</view>
+      <view class="sub">每一种关系，都值得一只独立的小火苗</view>
+    </view>
+
+    <view class="section">
+      <view class="section-label">01 · 这是怎样的关系</view>
+      <view class="type-grid">
+        <view class="type-card {{selectedType === item.key ? 'type-on' : ''}} {{item.cls}}"
+          wx:for="{{types}}" wx:key="key" data-key="{{item.key}}" bindtap="onPickType">
+          <view class="type-mark">{{item.icon}}</view>
+          <view class="type-name">{{item.name}}</view>
+          <view class="type-desc">{{item.desc}}</view>
+          <view class="type-check" wx:if="{{selectedType === item.key}}">✓</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-label">02 · 你在这段关系里的称呼</view>
+      <view class="chips" wx:if="{{labels.length}}">
+        <view class="chip {{myLabel === item ? 'chip-on' : ''}}" wx:for="{{labels}}" wx:key="*this"
+          data-label="{{item}}" bindtap="onPickLabel">{{item}}</view>
+      </view>
+      <input class="text-input" placeholder="也可以自己写，比如：老爸 / 干妈 / 宝" maxlength="12"
+        value="{{myLabel}}" bindinput="onLabelInput" />
+      <view class="hint">对方加入后会看到这个称呼；你也可以之后修改</view>
+    </view>
+
+    <view class="section">
+      <view class="section-label">03 · 给这个空间起个名字（可选）</view>
+      <input class="text-input" placeholder="比如：和爸爸的小火苗" maxlength="20"
+        value="{{title}}" bindinput="onTitleInput" />
+    </view>
+
+    <view class="actions">
+      <view class="primary-btn {{creating ? 'disabled' : ''}}" bindtap="onCreate">{{creating ? '创建中…' : '创建关系空间'}}</view>
+      <view class="sub-note">每个空间只有你们两个人，内容仅彼此可见</view>
+    </view>
+  </block>
+
+  <block wx:else>
+    <view class="done">
+      <view class="done-ring">
+        <view class="done-flame"></view>
+      </view>
+      <view class="done-title">小火苗亮起来了</view>
+      <view class="done-sub">把邀请码发给对方，只属于你们两个人的空间就完整了</view>
+
+      <view class="invite-card">
+        <view class="invite-label">{{relationName}}空间 · 邀请码</view>
+        <view class="invite-code">{{result.invite_code}}</view>
+        <view class="invite-actions">
+          <view class="ghost-btn" bindtap="copyCode">{{copied ? '已复制' : '复制邀请码'}}</view>
+          <button class="primary-btn share-btn" open-type="share">发给对方</button>
+        </view>
+      </view>
+
+      <view class="done-actions">
+        <view class="text-link" bindtap="goHome">先自己进去看看 →</view>
+      </view>
+    </view>
+  </block>
+</view>

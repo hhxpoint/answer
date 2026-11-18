@@ -46,6 +46,9 @@
     {
       "root": "packageCouple",
       "pages": [
+        "pages/spaces/spaces",
+        "pages/create/create",
+        "pages/join/join",
         "pages/home/home",
         "pages/bind/bind",
         "pages/chat/chat",

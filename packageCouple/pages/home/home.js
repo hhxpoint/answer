@@ -1,6 +1,14 @@
 const api = require('../../utils/couple-api.js');
+const spaceCtx = require('../../utils/space.js');
 
 const SHARE_IMAGE = '/assets/couple-share.png';
+const TYPE_META = {
+  family: { short: '家', name: '家人' },
+  partner: { short: '恋', name: '恋人' },
+  friend: { short: '友', name: '朋友' },
+  custom: { short: '定', name: '自定义' },
+  unset: { short: '待', name: '待设置' },
+};
 
 Page({
   data: {
@@ -23,6 +31,11 @@ Page({
     acting: false,
     alone: false,
     inviteCode: '',
+    spaceTitle: '我们的小火苗',
+    relationShort: '恋',
+    relationName: '恋人',
+    relationLine: '',
+    relationKey: 'unset',
     actions: [
       { type: 'feed', emoji: '🪵', name: '投喂', used: 0, max: 1 },
       { type: 'pet', emoji: '🤚', name: '摸摸', used: 0, max: 5 },
@@ -33,6 +46,13 @@ Page({
 
   onLoad: function (options) {
     this.inviteFromQuery = ((options && options.invite) || '').trim();
+    const fromQuery = parseInt(options && options.space, 10) || 0;
+    if (fromQuery > 0) spaceCtx.setCurrentSpaceId(fromQuery);
+    if (!spaceCtx.getCurrentSpaceId()) {
+      wx.redirectTo({ url: '/packageCouple/pages/spaces/spaces' });
+      return;
+    }
+    this.entrySpaceId = spaceCtx.getCurrentSpaceId();
     if (wx.showShareMenu) {
       wx.showShareMenu({ menus: ['shareAppMessage', 'shareTimeline'], withShareTicket: false });
     }
@@ -40,7 +60,15 @@ Page({
   },
 
   onShow: function () {
-    if (this.data.ready) this.load();
+    if (this.data.ready) {
+      const now = spaceCtx.getCurrentSpaceId();
+      if (now && now !== this.entrySpaceId) {
+        this.entrySpaceId = now;
+        this.load();
+      } else {
+        this.load();
+      }
+    }
   },
 
   load: function () {
@@ -50,25 +78,30 @@ Page({
       .then(function (res) {
         if (!res.user || !res.user.nickname || !res.user.avatar) {
           // 还没有设置微信昵称/头像：先去资料页，再回来
-          const nextStep = res.couple ? 'home' : 'bind';
+          const nextStep = res.couple ? 'home' : 'home';
           let url = '/packageCouple/pages/profile/profile?next=' + nextStep;
-          if (!res.couple && that.inviteFromQuery) {
-            url += '&invite=' + encodeURIComponent(that.inviteFromQuery);
-          }
+          if (that.entrySpaceId) url += '&space=' + that.entrySpaceId;
+          if (that.inviteFromQuery) url += '&invite=' + encodeURIComponent(that.inviteFromQuery);
           wx.redirectTo({ url: url });
           return;
         }
         if (!res.couple) {
-          const url = that.inviteFromQuery
-            ? '/packageCouple/pages/bind/bind?invite=' + encodeURIComponent(that.inviteFromQuery)
-            : '/packageCouple/pages/bind/bind';
-          wx.redirectTo({ url: url });
+          wx.redirectTo({ url: '/packageCouple/pages/spaces/spaces' });
           return;
+        }
+        // 服务端默认空间与本地上下文对齐（防止旧缓存指到已退出的空间）
+        if (res.active_space_id && res.active_space_id !== that.entrySpaceId) {
+          that.entrySpaceId = res.active_space_id;
+          spaceCtx.setCurrentSpaceId(res.active_space_id);
         }
         that.applyState(res);
       })
       .catch(function (err) {
         const msg = (err && (err.msg || err.message)) || '加载失败，下拉重试';
+        if (err && (err.code === 'NOT_MEMBER' || err.code === 'NO_COUPLE')) {
+          wx.redirectTo({ url: '/packageCouple/pages/spaces/spaces' });
+          return;
+        }
         that.setData({ ready: true, errorText: msg });
       });
   },
@@ -78,6 +111,13 @@ Page({
     const couple = res.couple || {};
     const alone = !couple.partner;
     const partnerName = (couple.partner && couple.partner.nickname) || 'TA';
+    const meta = TYPE_META[couple.relation_type] || TYPE_META.unset;
+    const spaceTitle = couple.title || (partnerName ? '和' + partnerName + '的小火苗' : '等待对方的小火苗');
+    const relationBits = [];
+    if (couple.my_label) relationBits.push('我 · ' + couple.my_label);
+    if (couple.partner_label) relationBits.push((partnerName || '对方') + ' · ' + couple.partner_label);
+    if (!relationBits.length && !alone) relationBits.push(meta.name);
+    if (alone) relationBits.push('等对方加入');
     const actions = this.data.actions.map(function (a) {
       const used = (pet.today_actions && pet.today_actions[a.type]) || 0;
       return Object.assign({}, a, { used: used });
@@ -109,7 +149,12 @@ Page({
       anniversaryCount: res.anniversary_count || 0,
       voiceCount: res.voice_count || 0,
       nextAnnivText: nextAnnivText,
-      actions: actions
+      actions: actions,
+      spaceTitle: spaceTitle,
+      relationShort: meta.short,
+      relationName: meta.name,
+      relationLine: relationBits.join('　'),
+      relationKey: couple.relation_type || 'unset'
     });
   },
 
@@ -178,6 +223,16 @@ Page({
     wx.navigateTo({ url: '/packageCouple/pages/chat/chat' });
   },
 
+  goSpaces: function () {
+    const pages = getCurrentPages();
+    const prev = pages.length > 1 ? pages[pages.length - 2] : null;
+    if (prev && prev.route === 'packageCouple/pages/spaces/spaces') {
+      wx.navigateBack();
+      return;
+    }
+    wx.redirectTo({ url: '/packageCouple/pages/spaces/spaces' });
+  },
+
   goTimeline: function () {
     wx.navigateTo({ url: '/packageCouple/pages/timeline/timeline' });
   },
@@ -198,13 +253,13 @@ Page({
     if (this.data.alone && this.data.inviteCode) {
       return {
         title: '🔥 来和我一起养一只小火苗吧',
-        path: '/packageCouple/pages/bind/bind?invite=' + encodeURIComponent(this.data.inviteCode),
+        path: '/packageCouple/pages/join/join?code=' + encodeURIComponent(this.data.inviteCode),
         imageUrl: SHARE_IMAGE
       };
     }
     return {
       title: '我们在养一只小火苗，已经一起守护 ' + ((this.data.pet && this.data.pet.streak) || 0) + ' 天啦',
-      path: '/packageCouple/pages/home/home',
+      path: '/packageCouple/pages/home/home?space=' + (this.data.couple && this.data.couple.id ? this.data.couple.id : ''),
       imageUrl: SHARE_IMAGE
     };
   },
@@ -213,7 +268,7 @@ Page({
     const alone = this.data.alone && this.data.inviteCode;
     return {
       title: alone ? '🔥 来和我一起养一只小火苗吧' : '我们的小火苗 · 只属于两个人的小空间',
-      query: alone ? 'invite=' + encodeURIComponent(this.data.inviteCode) : '',
+      query: alone ? 'code=' + encodeURIComponent(this.data.inviteCode) : '',
       imageUrl: SHARE_IMAGE
     };
   }

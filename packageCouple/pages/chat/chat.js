@@ -107,6 +107,7 @@ Page({
         });
         return api.recentMessages(50).then(function (r) {
           that.mergeMessages(r.messages || [], true);
+          api.markRead().catch(function () {});
           that.connectSocket();
           that.startReconcile();
         });
@@ -131,6 +132,7 @@ Page({
     const that = this;
     this.socket = wsClient.createChatSocket({
       getToken: api.getToken,
+      getSpaceId: api.getSpaceId,
       onStatus: function (status) {
         const online = status === 'online';
         that.setData({ connOk: online, connText: online ? '已连接' : '重连中…' });

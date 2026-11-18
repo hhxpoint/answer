@@ -1,0 +1,114 @@
+<view class="page">
+  <view class="deco deco-a"></view>
+  <view class="deco deco-b"></view>
+  <view class="deco deco-c"></view>
+
+  <view class="hero">
+    <view class="eyebrow">OUR LITTLE FLAME</view>
+    <view class="hero-title">我们的关系空间</view>
+    <view class="hero-sub">和重要的人，一起养一只火苗</view>
+    <view class="hero-meta">
+      <view class="count-pill">
+        <text class="count-num">{{count}}</text>
+        <text class="count-label">个空间</text>
+      </view>
+      <view class="limit-text">最多 {{limit}} 个</view>
+    </view>
+  </view>
+
+  <view wx:if="{{loading && !ready}}" class="skeleton-wrap">
+    <view class="skeleton-card" wx:for="{{skeletons}}" wx:key="*this">
+      <view class="sk-avatar"></view>
+      <view class="sk-lines">
+        <view class="sk-line w60"></view>
+        <view class="sk-line w40"></view>
+        <view class="sk-line w80"></view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:elif="{{errorText}}" class="error-card">
+    <view class="error-title">没连上小火苗</view>
+    <view class="error-desc">{{errorText}}</view>
+    <view class="ghost-btn" bindtap="load">再试一次</view>
+  </view>
+
+  <block wx:else>
+    <!-- 空状态 -->
+    <view wx:if="{{empty}}" class="empty">
+      <view class="empty-flame">
+        <view class="ef-glow"></view>
+        <view class="ef-body"></view>
+        <view class="ef-core"></view>
+      </view>
+      <view class="empty-title">先和一个重要的人，点亮火苗</view>
+      <view class="empty-desc">父亲、母亲、恋人、闺蜜、死党…每个关系都是独立的小空间</view>
+      <view class="empty-actions">
+        <view class="primary-btn" bindtap="goCreate">创建第一个空间</view>
+        <view class="ghost-btn" bindtap="goJoin">我有邀请码</view>
+      </view>
+    </view>
+
+    <!-- 关系卡 -->
+    <view wx:else class="space-list">
+      <view class="space-card {{item.relation.cls}} {{item.id === currentId ? 'is-current' : ''}}"
+        wx:for="{{spaces}}" wx:key="id" data-id="{{item.id}}" bindtap="onTapSpace">
+        <view class="card-top">
+          <view class="relation-badge">
+            <text class="relation-icon">{{item.relation.icon}}</text>
+            <text class="relation-name">{{item.relation.name}}</text>
+          </view>
+          <view class="card-tools">
+            <view class="unread" wx:if="{{item.unread > 0}}">{{item.unread > 99 ? '99+' : item.unread}}</view>
+            <view class="more" catchtap="onManageTap" data-index="{{index}}">···</view>
+          </view>
+        </view>
+
+        <view class="card-main">
+          <view class="avatar-shell">
+            <image wx:if="{{item.partnerAvatar}}" class="avatar" src="{{item.partnerAvatar}}" mode="aspectFill"></image>
+            <view wx:else class="avatar avatar-letter">{{item.initial}}</view>
+            <view class="flame-dot"><text class="flame-dot-text">🔥</text></view>
+          </view>
+          <view class="card-info">
+            <view class="card-title">{{item.title}}</view>
+            <view class="card-sub" wx:if="{{item.labels.length}}">{{item.labelText}}</view>
+            <view class="card-sub" wx:else>{{item.relation.desc}}</view>
+          </view>
+          <view class="enter-arrow">›</view>
+        </view>
+
+        <view class="card-foot">
+          <view class="pet-line">
+            <text class="pet-flame">🔥</text>
+            <text class="pet-name">{{item.petName}}</text>
+            <text class="pet-lv">Lv.{{item.level}}</text>
+          </view>
+          <view class="last-line">
+            <text class="last-text">{{item.lastText}}</text>
+            <text class="last-time">{{item.lastTime}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 新建卡 -->
+      <view class="add-card" bindtap="goCreate">
+        <view class="add-plus">＋</view>
+        <view class="add-copy">
+          <view class="add-title">添加一个关系空间</view>
+          <view class="add-sub">父亲 · 母亲 · 恋人 · 闺蜜 · 死党</view>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <!-- 底部动作 -->
+  <view class="bottom-actions" wx:if="{{!empty && ready}}">
+    <view class="bottom-primary" bindtap="goCreate">＋ 新建关系空间</view>
+    <view class="bottom-ghost" bindtap="goJoin">输入邀请码</view>
+  </view>
+
+  <view class="footer">
+    <text>每个空间都是独立的两个人，内容仅彼此可见</text>
+  </view>
+</view>

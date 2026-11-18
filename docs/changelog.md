@@ -39,7 +39,7 @@
 
 ## 二、小程序版本历史
 
-### 1.29.0（开发中）· 2026-11-18 · 多关系空间 Phase A（服务端）
+### 1.29.1 · 2026-11-18 · 多关系空间
 - 数据模型：`couples` 新增关系类型/标题/创建者/最近活跃；`couple_members` 新增身份标签/已读游标/置顶（加法式迁移）
 - 新增空间服务：大厅列表、创建、加入、详情、修改、解除（需二次确认，双方删除）
 - 新增 `resolveSpace` 中间件：`X-Space-Id` / `space_id` / 默认空间；非成员 403、不存在 404
@@ -49,7 +49,10 @@
 - 新增 `POST /couple-api/messages/read` 已读游标（大厅未读数）
 - 服务端集成测试：22 项通过（创建/加入/多空间/越权/旧接口/解除/上限）
 - 生产已迁移并开启 `MULTI_SPACE_ENABLED=1`；迁移前备份 `pre-multispace-consistent-*.db`
-- 客户端空间大厅/上下文将在 Phase B 实现；详见 [docs/modules/couple/multi-space.md](modules/couple/multi-space.md)
+- 客户端新增关系空间大厅（`packageCouple/pages/spaces`）、创建/加入页、空间上下文与请求头、首页空间切换/关系标签、聊天已读
+- UI：暖色玻璃卡片、关系色徽章（家人/恋人/朋友/自定义）、火苗摘要、未读/最近消息、空状态与骨架屏
+- 小程序编译通过（292 文件 / 产物约 7.93MB），上传开发版 **1.29.1**（1.29.0 为中间版本，界面/文案打磨后重传）
+- 详细说明：[docs/modules/couple/multi-space.md](modules/couple/multi-space.md)
 
 ### 1.28.0 · 2026-11-18 · 菜谱真实照片全量补齐
 - 40 道菜谱**全部补齐真实照片**（Pexels 免费商用图 + 少量 Wikimedia CC/PD 图）

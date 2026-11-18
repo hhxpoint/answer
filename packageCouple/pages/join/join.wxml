@@ -1,0 +1,33 @@
+<view class="page">
+  <view class="deco deco-a"></view>
+  <view class="deco deco-b"></view>
+
+  <view class="head">
+    <view class="eyebrow">JOIN A LITTLE FLAME</view>
+    <view class="title">加入一个关系空间</view>
+    <view class="sub">对方发来的邀请码，会带你去到只属于你们两个人的小火苗</view>
+  </view>
+
+  <view class="form-card">
+    <view class="field-label">邀请码</view>
+    <input class="code-input" placeholder="输入 6 位邀请码" maxlength="10" value="{{code}}"
+      bindinput="onCodeInput" confirm-type="done" bindconfirm="onJoin" />
+    <view class="from-share" wx:if="{{fromShare}}">已从分享卡片带入邀请码</view>
+
+    <view class="field-label mt">你在这段关系里的称呼</view>
+    <view class="chips">
+      <view class="chip {{myLabel === item ? 'chip-on' : ''}}" wx:for="{{labels}}" wx:key="*this"
+        data-label="{{item}}" bindtap="onPickLabel">{{item}}</view>
+    </view>
+    <input class="label-input" placeholder="也可以自己写，比如：老爸 / 干妈 / 宝" maxlength="12"
+      value="{{myLabel}}" bindinput="onLabelInput" />
+    <view class="hint">对方会看到这个称呼；加入后也能修改</view>
+
+    <view class="primary-btn {{joining ? 'disabled' : ''}}" bindtap="onJoin">{{joining ? '正在加入…' : '加入这段关系'}}</view>
+  </view>
+
+  <view class="note">
+    <text class="note-title">双人空间</text>
+    <text class="note-text">每个空间最多两个人，内容仅彼此可见；加入后会同步对方的小火苗与记录。</text>
+  </view>
+</view>

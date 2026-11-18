@@ -14,6 +14,7 @@
 | 主包页面 | 首页、搜索、刷题、计算、用户、扫码登录、关于、处理、情绪分析、情绪历史 |
 | 主要能力 | 学习问答、题库/考试、AI 问答、AR、目标检测、PDF 工具、天气、棋类、运动、GitHub 资讯、教务查询等 |
 | 特色模块 | **我们的小火苗**：双人绑定 + 虚拟小火苗 + 悄悄话 + 我们的时光 + 纪念日 + 侧耳倾听（语音信箱） |
+| 多关系空间 | 一人可拥有多个双人关系空间（家人/恋人/朋友/自定义），大厅切换，每个空间独立小火苗与数据 |
 | 新增模块 | **今天吃什么**：40 道家常菜、纯本地离线检索、冰箱模式、本地收藏（无服务端/无大模型） |
 | 服务端 | 独立 Node.js 服务（Express + SQLite + WebSocket），部署在 `hhxpoint.me` |
 | 管理后台 | OJ Flask 管理后台的子模块 `/admin/couple/` + 独立备用面板 `/couple-admin/` |
@@ -72,6 +73,7 @@ answer/
 这是本仓库最核心的自研模块，拥有独立文档：
 
 - **模块详解**（页面、交互、数据流、UI 设计、测试）：[docs/modules/couple/README.md](docs/modules/couple/README.md)
+- **多关系空间**（关系大厅/创建/加入/切换/数据隔离）：[docs/modules/couple/multi-space.md](docs/modules/couple/multi-space.md)
 - **服务端与后台**（接口、数据库、部署、内容安全、运维）：[docs/modules/couple/server.md](docs/modules/couple/server.md)
 - **发布与审核**（CI 上传、版本号、审核措辞、隐私协议）：[docs/modules/couple/release.md](docs/modules/couple/release.md)
 

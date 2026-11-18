@@ -2,10 +2,10 @@ const app = getApp();
 
 
 Page({
-  // 我们的小火苗
+  // 我们的小火苗（关系空间大厅）
   goCouple() {
     wx.navigateTo({
-      url: '/packageCouple/pages/home/home'
+      url: '/packageCouple/pages/spaces/spaces'
     })
   },
 

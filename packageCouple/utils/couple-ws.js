@@ -4,6 +4,7 @@ const WSS_URL = 'wss://hhxpoint.me/couple-ws';
 function createChatSocket(options) {
   options = options || {};
   const getToken = options.getToken || function () { return ''; };
+  const getSpaceId = options.getSpaceId || function () { return 0; };
   const onMessage = options.onMessage || function () {};
   const onStatus = options.onStatus || function () {};
 
@@ -56,8 +57,10 @@ function createChatSocket(options) {
       return;
     }
     try {
+      const sid = parseInt(getSpaceId(), 10) || 0;
+      const url = WSS_URL + '?token=' + encodeURIComponent(token) + (sid > 0 ? '&space_id=' + sid : '');
       task = wx.connectSocket({
-        url: WSS_URL + '?token=' + encodeURIComponent(token),
+        url: url,
         timeout: 15000
       });
     } catch (e) {

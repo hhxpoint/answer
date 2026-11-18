@@ -1,5 +1,7 @@
 // 情侣小火苗 API 封装
 // Base: https://hhxpoint.me/couple-api （已在 request 合法域名中）
+const spaceCtx = require('./space.js');
+
 const BASE = 'https://hhxpoint.me/couple-api';
 const TOKEN_KEY = 'couple_token';
 const USER_KEY = 'couple_user';
@@ -26,6 +28,8 @@ function request(path, options) {
     const header = { 'Content-Type': 'application/json' };
     const token = getToken();
     if (token) header.Authorization = 'Bearer ' + token;
+    const spaceId = spaceCtx.getCurrentSpaceId();
+    if (spaceId > 0) header['X-Space-Id'] = String(spaceId);
     wx.request({
       url: BASE + path,
       method: options.method || 'GET',
@@ -40,6 +44,9 @@ function request(path, options) {
         }
         const err = data.error || { code: 'HTTP_' + res.statusCode, msg: '请求失败' };
         if (res.statusCode === 401) clearToken();
+        if (err.code === 'NOT_MEMBER' || err.code === 'SPACE_NOT_FOUND') {
+          spaceCtx.clearCurrentSpace();
+        }
         reject(err);
       },
       fail: function () {
@@ -61,6 +68,8 @@ function login() {
           .then(function (r) {
             setToken(r.token);
             setCachedUser(r.user);
+            if (r.active_space_id) spaceCtx.setCurrentSpaceId(r.active_space_id);
+            if (Array.isArray(r.spaces)) spaceCtx.setCachedSpaces(r.spaces);
             resolve(r);
           })
           .catch(reject);
@@ -78,6 +87,26 @@ function ensureLogin() {
 }
 
 function me() { return request('/me'); }
+
+// ===== 关系空间 =====
+function getSpaceId() { return spaceCtx.getCurrentSpaceId(); }
+function setSpaceId(id) { return spaceCtx.setCurrentSpaceId(id); }
+function clearSpace() { spaceCtx.clearCurrentSpace(); }
+function listSpaces() {
+  return request('/spaces').then(function (r) {
+    spaceCtx.setCachedSpaces(r.spaces || []);
+    return r;
+  });
+}
+function createSpace(data) { return request('/spaces', { method: 'POST', data: data || {} }); }
+function joinSpace(code, myLabel) {
+  return request('/spaces/join', { method: 'POST', data: { code: code, my_label: myLabel || '' } });
+}
+function getSpace(id) { return request('/spaces/' + id); }
+function updateSpace(id, data) { return request('/spaces/' + id, { method: 'PATCH', data: data || {} }); }
+function leaveSpace(id) { return request('/spaces/' + id + '/leave', { method: 'POST', data: { confirm: true } }); }
+function markRead(id) { return request('/messages/read', { method: 'POST', data: { id: id || 0 } }); }
+
 function saveProfile(nickname, avatar) { return request('/profile', { method: 'POST', data: { nickname: nickname || '', avatar: avatar || '' } }); }
 function createCouple() { return request('/couple/create', { method: 'POST' }); }
 function joinCouple(code) { return request('/couple/join', { method: 'POST', data: { code: code } }); }
@@ -137,6 +166,16 @@ module.exports = {
   getCachedUser: getCachedUser,
   setCachedUser: setCachedUser,
   me: me,
+  getSpaceId: getSpaceId,
+  setSpaceId: setSpaceId,
+  clearSpace: clearSpace,
+  listSpaces: listSpaces,
+  createSpace: createSpace,
+  joinSpace: joinSpace,
+  getSpace: getSpace,
+  updateSpace: updateSpace,
+  leaveSpace: leaveSpace,
+  markRead: markRead,
   saveProfile: saveProfile,
   createCouple: createCouple,
   joinCouple: joinCouple,

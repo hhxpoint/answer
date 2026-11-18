@@ -6,6 +6,16 @@
   <view wx:elif="{{errorText}}" class="state err">{{errorText}}</view>
 
   <block wx:else>
+    <!-- 当前关系空间 -->
+    <view class="space-bar" bindtap="goSpaces">
+      <view class="space-emblem rel-{{relationKey}}">{{relationShort}}</view>
+      <view class="space-bar-info">
+        <view class="space-bar-title">{{spaceTitle}}</view>
+        <view class="space-bar-sub">{{relationLine}}</view>
+      </view>
+      <view class="space-bar-switch">切换</view>
+    </view>
+
     <view class="hero">
       <view class="avatar-pair">
         <image wx:if="{{myAvatar}}" class="avatar-sm me" src="{{myAvatar}}" mode="aspectFill"></image>
@@ -14,7 +24,7 @@
         <view wx:else class="avatar-sm ta">{{partnerInitial}}</view>
       </view>
       <view class="hero-title">我们的小火苗</view>
-      <view class="hero-sub">在一起第 {{days}} 天 · 连续守护 {{pet.streak}} 天</view>
+      <view class="hero-sub">相伴第 {{days}} 天 · 连续守护 {{pet.streak}} 天</view>
     </view>
 
     <view class="pet-card">
@@ -67,7 +77,7 @@
         </view>
         <view class="chip">
           <view class="chip-num">{{days}}</view>
-          <view class="chip-label">在一起</view>
+          <view class="chip-label">相伴</view>
         </view>
       </view>
     </view>

@@ -1,4 +1,5 @@
 const api = require('../../utils/couple-api.js');
+const spaceCtx = require('../../utils/space.js');
 
 const SHARE_IMAGE = '/assets/couple-share.png';
 
@@ -36,6 +37,7 @@ Page({
       .then(function () { return api.me(); })
       .then(function (res) {
         const couple = res.couple;
+        if (couple && couple.id) spaceCtx.setCurrentSpaceId(couple.id);
         const nick = (res.user && res.user.nickname) || '';
         const avatar = api.absUrl(res.user && res.user.avatar);
 
@@ -90,6 +92,7 @@ Page({
     this.setData({ saving: true });
     api.createCouple()
       .then(function (res) {
+        if (res.couple && res.couple.id) spaceCtx.setCurrentSpaceId(res.couple.id);
         that.setData({
           saving: false,
           step: 'created',
@@ -151,7 +154,8 @@ Page({
     if (this.data.joining) return;
     this.setData({ joining: true });
     api.joinCouple(code)
-      .then(function () {
+      .then(function (res) {
+        if (res && res.couple && res.couple.id) spaceCtx.setCurrentSpaceId(res.couple.id);
         that.setData({ joining: false });
         wx.showToast({ title: '你们的小火苗亮起来啦', icon: 'none' });
         setTimeout(function () {
