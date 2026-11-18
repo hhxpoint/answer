@@ -84,7 +84,25 @@
 
 ## 5. 版本
 
-- 版本：**1.31.1**（已上传 DevTools 开发版）
+- 版本：**1.31.2**（已上传 DevTools 开发版）
 - 上传：微信开发者工具 CLI
 - 变更文件：8 个（另有文档与截图归档）
 - 详细提交信息见 Git commit
+
+---
+
+## 6. 1.31.2 补丁：小火苗改名点击失效
+
+### 现象
+点首页小火苗名字「宝宝」没有任何反应，无法改名。
+
+### 根因
+- `.pet-ambient` 是宠物卡片里的装饰光晕：`width:540rpx; height:430rpx; bottom:46rpx`，而父级 `.pet` 只有 `330rpx` 高
+- 因此光晕顶部向上溢出约 **146rpx**，正好覆盖 `.pet-name` 和提示文案区域
+- `.pet-ambient` 没有 `pointer-events: none`，点击命中了装饰层而不是名字，`bindtap="renamePet"` 永远不触发
+
+### 修复
+- `.pet-ambient` 增加 `pointer-events: none`
+- `.pet-name` 提升 `z-index` 并增加内边距，扩大可点击区域
+- 「点名字可以给小火苗改名」提示也绑定 `renamePet`
+- 将 `wx.showModal({editable:true})` 替换为**自定义改名弹窗**，避免系统 editable 弹窗在部分基础库/机型上的兼容问题，同时更贴合暖色 UI

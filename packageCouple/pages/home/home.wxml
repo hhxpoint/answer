@@ -31,11 +31,11 @@
       <view class="pet-glow"></view>
       <view class="float-exp" wx:if="{{toast}}">{{toast}}</view>
 
-      <view class="pet-name" bindtap="renamePet">
+      <view class="pet-name" bindtap="renamePet" hover-class="pet-name-hover">
         <text class="pet-name-text">{{petName}}</text>
         <text class="pet-name-edit">✎</text>
       </view>
-      <view class="pet-name-tip">点名字可以给小火苗改名</view>
+      <view class="pet-name-tip" bindtap="renamePet">点名字可以给小火苗改名</view>
 
       <view class="pet">
         <view class="pet-ambient"></view>
@@ -154,5 +154,27 @@
     </view>
 
     <view class="footer">每天来看看小火苗，它就会长得更好看一点</view>
+    <!-- 小火苗改名：自定义弹窗，避免 wx.showModal editable 兼容性/点击被装饰层拦截 -->
+    <view wx:if="{{renameVisible}}" class="rename-mask" catchtouchmove="noop" bindtap="closeRename">
+      <view class="rename-card" catchtap="noop">
+        <view class="rename-kicker">NAME YOUR LITTLE FLAME</view>
+        <view class="rename-title">给小火苗起个名字</view>
+        <view class="rename-sub">这个名字会出现在你们的关系空间里</view>
+        <input
+          class="rename-input"
+          value="{{renameValue}}"
+          placeholder="比如：小团团、火苗球"
+          maxlength="12"
+          focus="{{renameVisible}}"
+          confirm-type="done"
+          bindinput="onRenameInput"
+          bindconfirm="confirmRename"
+        />
+        <view class="rename-actions">
+          <view class="rename-cancel" bindtap="closeRename">取消</view>
+          <view class="rename-save {{renaming ? 'disabled' : ''}}" bindtap="confirmRename">{{renaming ? '保存中…' : '保存名字'}}</view>
+        </view>
+      </view>
+    </view>
   </block>
 </view>

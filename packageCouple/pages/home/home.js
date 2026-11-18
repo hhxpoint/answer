@@ -29,6 +29,9 @@ Page({
     nextAnnivText: '把重要的日子圈起来',
     days: 1,
     toast: '',
+    renameVisible: false,
+    renameValue: '',
+    renaming: false,
     acting: false,
     alone: false,
     inviteCode: '',
@@ -194,32 +197,52 @@ Page({
   },
 
   renamePet: function () {
-    const that = this;
     if (!this.data.pet) return;
-    wx.showModal({
-      title: '给小火苗起个名字',
-      editable: true,
-      placeholderText: '比如：小团团、火苗球',
-      content: this.data.pet.name || '',
-      success: function (res) {
-        if (!res.confirm) return;
-        const name = (res.content || '').trim();
-        if (!name) {
-          wx.showToast({ title: '名字不能为空', icon: 'none' });
-          return;
-        }
-        api.renamePet(name)
-          .then(function (r) {
-            that.setData({ petName: (r.pet && r.pet.name) || name });
-            wx.showToast({ title: '名字改好啦', icon: 'none' });
-            that.load();
-          })
-          .catch(function (err) {
-            wx.showToast({ title: err.msg || '改名失败', icon: 'none' });
-          });
-      }
+    this.setData({
+      renameVisible: true,
+      renameValue: this.data.pet.name || this.data.petName || ''
     });
   },
+
+  closeRename: function () {
+    if (this.data.renaming) return;
+    this.setData({ renameVisible: false });
+  },
+
+  onRenameInput: function (e) {
+    this.setData({ renameValue: e.detail.value });
+  },
+
+  confirmRename: function () {
+    const that = this;
+    if (this.data.renaming) return;
+    const name = (this.data.renameValue || '').trim();
+    if (!name) {
+      wx.showToast({ title: '名字不能为空', icon: 'none' });
+      return;
+    }
+    if (name.length > 12) {
+      wx.showToast({ title: '名字最多 12 个字', icon: 'none' });
+      return;
+    }
+    this.setData({ renaming: true });
+    api.renamePet(name)
+      .then(function (r) {
+        that.setData({
+          renaming: false,
+          renameVisible: false,
+          petName: (r.pet && r.pet.name) || name
+        });
+        wx.showToast({ title: '名字改好啦', icon: 'none' });
+        that.load();
+      })
+      .catch(function (err) {
+        that.setData({ renaming: false });
+        wx.showToast({ title: err.msg || '改名失败', icon: 'none' });
+      });
+  },
+
+  noop: function () {},
 
   goChat: function () {
     wx.navigateTo({ url: '/packageCouple/pages/chat/chat' });

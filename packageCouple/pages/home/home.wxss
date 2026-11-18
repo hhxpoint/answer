@@ -1,4 +1,4 @@
-page {
+﻿page {
   background: linear-gradient(180deg, #fff7f2 0%, #ffece4 55%, #ffe3dd 100%);
   min-height: 100%;
 }
@@ -153,10 +153,16 @@ button::after {
 
 .pet-name {
   position: relative;
+  z-index: 3;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 4rpx;
+  padding: 6rpx 20rpx;
+  border-radius: 999rpx;
+}
+.pet-name-hover {
+  background: rgba(255, 238, 224, 0.9);
 }
 .pet-name-text {
   font-size: 30rpx;
@@ -193,6 +199,7 @@ button::after {
   border-radius: 50%;
   background: radial-gradient(closest-side, rgba(255, 176, 112, 0.42), rgba(255, 176, 112, 0));
   animation: ambientPulse 3.8s ease-in-out infinite;
+  pointer-events: none;
 }
 .flame {
   position: relative;
@@ -381,6 +388,7 @@ button::after {
   font-weight: 800;
   color: #ff7d5c;
   text-shadow: 0 4rpx 12rpx rgba(255, 140, 100, 0.35);
+  pointer-events: none;
   animation: rise 0.95s ease-out forwards;
   z-index: 5;
 }
@@ -667,3 +675,84 @@ button::after {
   70% { opacity: 0.5; }
   100% { opacity: 0; transform: translate(6rpx, -150rpx) scale(0.2); }
 }
+
+/* ===== 小火苗改名弹窗 ===== */
+.rename-mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 48rpx;
+  background: rgba(58, 38, 28, 0.34);
+}
+.rename-card {
+  width: 100%;
+  padding: 40rpx 34rpx 28rpx;
+  border-radius: 34rpx;
+  background: #fffaf5;
+  border: 1rpx solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 28rpx 70rpx rgba(120, 80, 60, 0.22);
+}
+.rename-kicker {
+  font-size: 17rpx;
+  letter-spacing: 3rpx;
+  color: #c08a6a;
+  text-align: center;
+}
+.rename-title {
+  margin-top: 12rpx;
+  font-size: 34rpx;
+  font-weight: 800;
+  color: #4a342b;
+  text-align: center;
+}
+.rename-sub {
+  margin-top: 8rpx;
+  font-size: 20rpx;
+  color: #b49a88;
+  text-align: center;
+}
+.rename-input {
+  margin-top: 26rpx;
+  height: 92rpx;
+  padding: 0 26rpx;
+  border-radius: 22rpx;
+  background: #fdf3e9;
+  border: 1rpx solid #f0dccd;
+  font-size: 28rpx;
+  color: #4a342b;
+  text-align: center;
+}
+.rename-actions {
+  display: flex;
+  margin-top: 24rpx;
+}
+.rename-cancel,
+.rename-save {
+  flex: 1;
+  height: 78rpx;
+  line-height: 78rpx;
+  border-radius: 999rpx;
+  font-size: 25rpx;
+  font-weight: 600;
+  text-align: center;
+}
+.rename-cancel {
+  margin-right: 16rpx;
+  color: #a78c7e;
+  background: #f8eee5;
+}
+.rename-save {
+  color: #ffffff;
+  background: linear-gradient(135deg, #f3a06a, #e07e64);
+  box-shadow: 0 10rpx 22rpx rgba(214, 122, 78, 0.22);
+}
+.rename-save.disabled {
+  opacity: 0.6;
+}
+
