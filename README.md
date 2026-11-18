@@ -96,7 +96,7 @@ answer/
 - 本地检索：菜名、食材、时间、口味、分类；无网络请求
 - 冰箱模式：勾选现有食材 → 匹配度、缺料提示
 - 「今晚吃这个」随机推荐、本地收藏/历史/最近搜索
-- 照片来自 Wikipedia/Commons（CC/PD，带许可记录），无合格照片的菜谱使用统一设计封面
+- 照片来自 Pexels（免费商用）与 Wikipedia/Commons（CC/PD，带许可记录），40 道全部有真实照片
 - 模块文档：[docs/modules/recipe/README.md](docs/modules/recipe/README.md)
 
 > 收藏存 `wx.setStorage`，不跨设备；纯本地意味着新增菜谱需要发版。

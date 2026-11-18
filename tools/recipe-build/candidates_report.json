@@ -1,0 +1,509 @@
+[
+  {
+    "id": "fanqie_chaodan",
+    "title": "番茄炒蛋",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_candidates/fanqie_chaodan_0.jpg",
+        "width": 1568,
+        "height": 1000,
+        "license": "CC BY-SA 4.0",
+        "artist": "三島堂",
+        "landing": "https://commons.wikimedia.org/wiki/File:%E7%95%AA%E8%8C%84%E7%82%92%E8%9B%8B2.PNG",
+        "orig_title": "番茄炒蛋2.PNG",
+        "source": "zh.wikipedia"
+      }
+    ]
+  },
+  {
+    "id": "gongbao_jiding",
+    "title": "宫保鸡丁",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_candidates/gongbao_jiding_0.jpg",
+        "width": 3008,
+        "height": 2000,
+        "license": "CC BY-SA 3.0",
+        "artist": "Steven G. Johnson",
+        "landing": "https://commons.wikimedia.org/wiki/File:Kung-pao-shanghai.jpg",
+        "orig_title": "Kung-pao-shanghai.jpg",
+        "source": "zh.wikipedia"
+      }
+    ]
+  },
+  {
+    "id": "mapo_doufu",
+    "title": "麻婆豆腐",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_candidates/mapo_doufu_0.jpg",
+        "width": 2304,
+        "height": 3456,
+        "license": "CC BY-SA 3.0",
+        "artist": "Archon6812",
+        "landing": "https://commons.wikimedia.org/wiki/File:Billyfoodmabodofu3.jpg",
+        "orig_title": "Billyfoodmabodofu3.jpg",
+        "source": "zh.wikipedia"
+      }
+    ]
+  },
+  {
+    "id": "yuxiang_rousi",
+    "title": "鱼香肉丝",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_candidates/yuxiang_rousi_0.jpg",
+        "width": 2048,
+        "height": 1371,
+        "license": "CC BY-SA 2.0",
+        "artist": "avlxyz on flickr",
+        "landing": "https://commons.wikimedia.org/wiki/File:Fish_flavoured_sliced_pork_from_Melbourne.jpg",
+        "orig_title": "Fish_flavoured_sliced_pork_from_Melbourne.jpg",
+        "source": "en.wikipedia"
+      }
+    ]
+  },
+  {
+    "id": "huiguorou",
+    "title": "回锅肉",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_candidates/huiguorou_0.jpg",
+        "width": 3869,
+        "height": 2580,
+        "license": "CC BY-SA 4.0",
+        "artist": "N509FZ",
+        "landing": "https://commons.wikimedia.org/wiki/File:Huiguorou_made_from_Neijiang_local_pork_at_Daqian_Restaurant,_Beidadi_(20251011111845).jpg",
+        "orig_title": "Huiguorou_made_from_Neijiang_local_pork_at_Daqian_Restaurant,_Beidadi_(20251011111845).jpg",
+        "source": "zh.wikipedia"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_candidates/huiguorou_1.jpg",
+        "width": 5472,
+        "height": 3648,
+        "license": "CC BY 2.0",
+        "artist": "Guilhem Vellut from Paris, France",
+        "landing": "https://commons.wikimedia.org/wiki/File:Twice_cooked_pork,_Jia_Yan,_5_rue_Humblot,_Paris_003.jpg",
+        "orig_title": "Twice_cooked_pork,_Jia_Yan,_5_rue_Humblot,_Paris_003.jpg",
+        "source": "en.wikipedia"
+      }
+    ]
+  },
+  {
+    "id": "qingjiao_rousi",
+    "title": "青椒肉丝",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_candidates/qingjiao_rousi_0.jpg",
+        "width": 640,
+        "height": 480,
+        "license": "CC BY-SA 3.0",
+        "artist": "Bakkai撮影",
+        "landing": "https://commons.wikimedia.org/wiki/File:Pepper_steak.jpg",
+        "orig_title": "Pepper_steak.jpg",
+        "source": "en.wikipedia"
+      }
+    ]
+  },
+  {
+    "id": "hongshao_qiezi",
+    "title": "红烧茄子",
+    "candidates": []
+  },
+  {
+    "id": "suanrong_xilanhua",
+    "title": "蒜蓉西兰花",
+    "candidates": []
+  },
+  {
+    "id": "shousi_baocai",
+    "title": "手撕包菜",
+    "candidates": []
+  },
+  {
+    "id": "ganbian_doujiao",
+    "title": "干煸豆角",
+    "candidates": []
+  },
+  {
+    "id": "kele_jichi",
+    "title": "可乐鸡翅",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_candidates/kele_jichi_0.jpg",
+        "width": 800,
+        "height": 800,
+        "license": "CC BY-SA 4.0",
+        "artist": "Wuzhiya",
+        "landing": "https://commons.wikimedia.org/wiki/File:%E5%8F%AF%E4%B9%90%E9%B8%A1%E7%BF%85.jpg",
+        "orig_title": "可乐鸡翅.jpg",
+        "source": "zh.wikipedia"
+      }
+    ]
+  },
+  {
+    "id": "suanla_tudousi",
+    "title": "酸辣土豆丝",
+    "candidates": []
+  },
+  {
+    "id": "suantai_chaorou",
+    "title": "蒜苔炒肉",
+    "candidates": []
+  },
+  {
+    "id": "jiucai_chaodan",
+    "title": "韭菜炒蛋",
+    "candidates": []
+  },
+  {
+    "id": "suanrong_fensi_wawacai",
+    "title": "蒜蓉粉丝娃娃菜",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_candidates/suanrong_fensi_wawacai_0.jpg",
+        "width": 3120,
+        "height": 4160,
+        "license": "CC0",
+        "artist": "Bayartai",
+        "landing": "https://commons.wikimedia.org/wiki/File:Napa_cabbages.png",
+        "orig_title": "Napa_cabbages.png",
+        "source": "en.wikipedia"
+      }
+    ]
+  },
+  {
+    "id": "liangban_huanggua",
+    "title": "凉拌黄瓜",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_candidates/liangban_huanggua_0.jpg",
+        "width": 1600,
+        "height": 900,
+        "license": "CC BY 2.0",
+        "artist": "Jose Nicdao from San Jose, United States",
+        "landing": "https://commons.wikimedia.org/wiki/File:Cucumber_Salad_(30974695127).jpg",
+        "orig_title": "Cucumber_Salad_(30974695127).jpg",
+        "source": "en.wikipedia"
+      }
+    ]
+  },
+  {
+    "id": "qingchao_shishu",
+    "title": "清炒时蔬",
+    "candidates": []
+  },
+  {
+    "id": "xianggu_huaji",
+    "title": "香菇滑鸡",
+    "candidates": []
+  },
+  {
+    "id": "zicai_danhua_tang",
+    "title": "紫菜蛋花汤",
+    "candidates": []
+  },
+  {
+    "id": "fanqie_dantang",
+    "title": "番茄蛋汤",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_candidates/fanqie_dantang_0.jpg",
+        "width": 5542,
+        "height": 3760,
+        "license": "CC BY 2.0",
+        "artist": "Ella Olsson from Stockholm, Sweden",
+        "landing": "https://commons.wikimedia.org/wiki/File:Tomato_soup,_plant-based_(44040252791).jpg",
+        "orig_title": "Tomato_soup,_plant-based_(44040252791).jpg",
+        "source": "en.wikipedia"
+      }
+    ]
+  },
+  {
+    "id": "donggua_paigu_tang",
+    "title": "冬瓜排骨汤",
+    "candidates": []
+  },
+  {
+    "id": "yumi_paigu_tang",
+    "title": "玉米排骨汤",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_candidates/yumi_paigu_tang_0.jpg",
+        "width": 2592,
+        "height": 3872,
+        "license": "CC BY-SA 3.0",
+        "artist": "Laurier",
+        "landing": "https://commons.wikimedia.org/wiki/File:Corn_soup.jpg",
+        "orig_title": "Corn_soup.jpg",
+        "source": "en.wikipedia"
+      }
+    ]
+  },
+  {
+    "id": "yiner_lianzi_geng",
+    "title": "银耳莲子羹",
+    "candidates": []
+  },
+  {
+    "id": "dan_chaofan",
+    "title": "蛋炒饭",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_candidates/dan_chaofan_0.jpg",
+        "width": 3843,
+        "height": 2688,
+        "license": "CC BY 4.0",
+        "artist": "Vyacheslav Argenberg",
+        "landing": "https://commons.wikimedia.org/wiki/File:Koh_Mak,_Thailand,_Fried_rice_with_seafood,_Thai_fried_rice.jpg",
+        "orig_title": "Koh_Mak,_Thailand,_Fried_rice_with_seafood,_Thai_fried_rice.jpg",
+        "source": "en.wikipedia"
+      }
+    ]
+  },
+  {
+    "id": "fanqie_jidan_mian",
+    "title": "番茄鸡蛋面",
+    "candidates": []
+  },
+  {
+    "id": "congyou_banmian",
+    "title": "葱油拌面",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_candidates/congyou_banmian_0.jpg",
+        "width": 1920,
+        "height": 1080,
+        "license": "CC0",
+        "artist": "Suginami",
+        "landing": "https://commons.wikimedia.org/wiki/File:%E8%91%B1%E8%8A%B1%E8%91%B1%E6%B2%B9%E6%8B%8C%E9%9D%A2.jpg",
+        "orig_title": "葱花葱油拌面.jpg",
+        "source": "zh.wikipedia"
+      }
+    ]
+  },
+  {
+    "id": "gali_jifan",
+    "title": "咖喱鸡饭",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_candidates/gali_jifan_0.jpg",
+        "width": 3797,
+        "height": 2848,
+        "license": "CC0",
+        "artist": "Ocdp",
+        "landing": "https://commons.wikimedia.org/wiki/File:Beef_curry_rice_003.jpg",
+        "orig_title": "Beef_curry_rice_003.jpg",
+        "source": "en.wikipedia"
+      }
+    ]
+  },
+  {
+    "id": "lurou_fan",
+    "title": "卤肉饭",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_candidates/lurou_fan_0.jpg",
+        "width": 2048,
+        "height": 1277,
+        "license": "CC BY 2.0",
+        "artist": "總統府",
+        "landing": "https://commons.wikimedia.org/wiki/File:04.28_%E7%B8%BD%E7%B5%B1%E9%99%AA%E5%90%8C%E6%B3%95%E5%9C%8B%E5%8F%83%E8%AD%B0%E9%99%A2%E5%89%AF%E8%AD%B0%E9%95%B7%E6%9A%A8%E5%8F%8B%E8%87%BA%E5%B0%8F%E7%B5%84%E4%B8%BB%E5%B8%AD%E6%9D%8E%E5%AF%9F%E8%A8%AA%E5%9C%98%E7%94%A8%E9%A4%90.jpg",
+        "orig_title": "04.28_總統陪同法國參議院副議長暨友臺小組主席李察訪團用餐.jpg",
+        "source": "en.wikipedia"
+      }
+    ]
+  },
+  {
+    "id": "huangmenji_mifan",
+    "title": "黄焖鸡米饭",
+    "candidates": []
+  },
+  {
+    "id": "chaomian",
+    "title": "炒面",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_candidates/chaomian_0.jpg",
+        "width": 2534,
+        "height": 1677,
+        "license": "CC BY-SA 2.0",
+        "artist": "pelican from Tokyo, Japan",
+        "landing": "https://commons.wikimedia.org/wiki/File:Subgum_chow_mein.jpg",
+        "orig_title": "Subgum_chow_mein.jpg",
+        "source": "zh.wikipedia"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_candidates/chaomian_1.jpg",
+        "width": 5184,
+        "height": 3888,
+        "license": "CC BY-SA 4.0",
+        "artist": "Peachyeung316",
+        "landing": "https://commons.wikimedia.org/wiki/File:Homemade_Chow_mein_with_shrimps_and_meat_with_a_choy_and_Choung.jpg",
+        "orig_title": "Homemade_Chow_mein_with_shrimps_and_meat_with_a_choy_and_Choung.jpg",
+        "source": "en.wikipedia"
+      }
+    ]
+  },
+  {
+    "id": "pidan_shourou_zhou",
+    "title": "皮蛋瘦肉粥",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_candidates/pidan_shourou_zhou_0.jpg",
+        "width": 1000,
+        "height": 1068,
+        "license": "CC BY-SA 3.0",
+        "artist": "Pokman817",
+        "landing": "https://commons.wikimedia.org/wiki/File:Pork_preserved_duck_egg_congee.jpg",
+        "orig_title": "Pork_preserved_duck_egg_congee.jpg",
+        "source": "zh.wikipedia"
+      }
+    ]
+  },
+  {
+    "id": "sanmingzhi",
+    "title": "三明治",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_candidates/sanmingzhi_0.jpg",
+        "width": 4272,
+        "height": 2848,
+        "license": "CC BY 2.0",
+        "artist": "Jennifer from Vancouver, Canada",
+        "landing": "https://commons.wikimedia.org/wiki/File:Toasted_tomato,_avocado,_cucumber_and_hummus_sandwich_(4815088397).jpg",
+        "orig_title": "Toasted_tomato,_avocado,_cucumber_and_hummus_sandwich_(4815088397).jpg",
+        "source": "zh.wikipedia"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_candidates/sanmingzhi_1.jpg",
+        "width": 4032,
+        "height": 3024,
+        "license": "CC BY-SA 4.0",
+        "artist": "Jami430",
+        "landing": "https://commons.wikimedia.org/wiki/File:Bacon,_lettuce,_tomato,_and_avocado.jpg",
+        "orig_title": "Bacon,_lettuce,_tomato,_and_avocado.jpg",
+        "source": "en.wikipedia"
+      }
+    ]
+  },
+  {
+    "id": "jiandan",
+    "title": "煎蛋",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_candidates/jiandan_0.jpg",
+        "width": 3888,
+        "height": 5184,
+        "license": "CC BY-SA 4.0",
+        "artist": "Peachyeung316",
+        "landing": "https://commons.wikimedia.org/wiki/File:Sunny_Side_Up_with_toast.jpg",
+        "orig_title": "Sunny_Side_Up_with_toast.jpg",
+        "source": "zh.wikipedia"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_candidates/jiandan_1.jpg",
+        "width": 3641,
+        "height": 2261,
+        "license": "CC BY 2.0",
+        "artist": "Matthew Murdoch",
+        "landing": "https://commons.wikimedia.org/wiki/File:Fried_Egg_2.jpg",
+        "orig_title": "Fried_Egg_2.jpg",
+        "source": "en.wikipedia"
+      }
+    ]
+  },
+  {
+    "id": "zheng_dangeng",
+    "title": "蒸蛋羹",
+    "candidates": []
+  },
+  {
+    "id": "congyoubing",
+    "title": "葱油饼",
+    "candidates": []
+  },
+  {
+    "id": "hongshao_rou",
+    "title": "红烧肉",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_candidates/hongshao_rou_0.jpg",
+        "width": 950,
+        "height": 685,
+        "license": "CC BY 2.0",
+        "artist": "FotoosVanRobin Photostream",
+        "landing": "https://commons.wikimedia.org/wiki/File:%E7%B4%85%E7%87%92%E8%82%89_Braised_pork_in_brown_sauce.jpg",
+        "orig_title": "紅燒肉_Braised_pork_in_brown_sauce.jpg",
+        "source": "en.wikipedia"
+      }
+    ]
+  },
+  {
+    "id": "qingzheng_luyu",
+    "title": "清蒸鲈鱼",
+    "candidates": []
+  },
+  {
+    "id": "tangcu_paigu",
+    "title": "糖醋排骨",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_candidates/tangcu_paigu_0.jpg",
+        "width": 640,
+        "height": 640,
+        "license": "CC BY 2.0",
+        "artist": "Lim Ashley",
+        "landing": "https://commons.wikimedia.org/wiki/File:T%C3%A1ngc%C3%B9_p%C3%A1ig%C7%94.jpg",
+        "orig_title": "Tángcù_páigǔ.jpg",
+        "source": "zh.wikipedia"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_candidates/tangcu_paigu_1.jpg",
+        "width": 3920,
+        "height": 2940,
+        "license": "CC BY-SA 3.0",
+        "artist": "ProjectManhattan",
+        "landing": "https://commons.wikimedia.org/wiki/File:Sweet_and_sour_pork.jpg",
+        "orig_title": "Sweet_and_sour_pork.jpg",
+        "source": "en.wikipedia"
+      }
+    ]
+  },
+  {
+    "id": "hongshao_jitui",
+    "title": "红烧鸡腿",
+    "candidates": []
+  },
+  {
+    "id": "xihongshi_niunan",
+    "title": "西红柿牛腩",
+    "candidates": []
+  }
+]

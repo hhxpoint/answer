@@ -1,0 +1,1722 @@
+[
+  {
+    "id": "fanqie_chaodan",
+    "title": "番茄炒蛋",
+    "query": "tomato egg stir fry",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/fanqie_chaodan_0.jpg",
+        "alt": "Free Bowl of delicious tomato and egg stir fry with chopsticks on wooden table. Stock Photo",
+        "score": 2,
+        "id": "29529570",
+        "page": "https://www.pexels.com/photo/29529570/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/fanqie_chaodan_1.jpg",
+        "alt": "Free A vibrant shakshuka with eggs simmering in tomatoes and peppers on a stovetop. Stock Photo",
+        "score": 2,
+        "id": "8366622",
+        "page": "https://www.pexels.com/photo/8366622/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/fanqie_chaodan_2.jpg",
+        "alt": "Free Minimalist flat lay of eggs and cherry tomatoes with a bowl on a white backdrop. Stock Photo",
+        "score": 2,
+        "id": "13428093",
+        "page": "https://www.pexels.com/photo/13428093/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/fanqie_chaodan_3.jpg",
+        "alt": "Free Delicious eggs in tomato sauce with basil, spaghetti, and fresh tomatoes on a wooden table. Stock Photo",
+        "score": 2,
+        "id": "691114",
+        "page": "https://www.pexels.com/photo/691114/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "gongbao_jiding",
+    "title": "宫保鸡丁",
+    "query": "kung pao chicken",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/gongbao_jiding_0.jpg",
+        "alt": "Free Tasty Kung Pao chicken dish served on a white plate with garnish, showcasing vibrant colors and textures. Stock Photo",
+        "score": 2,
+        "id": "30708204",
+        "page": "https://www.pexels.com/photo/30708204/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/gongbao_jiding_1.jpg",
+        "alt": "Free Mouthwatering Kung Pao Chicken garnished with sesame seeds and sauce, offering a flavorful dining experience. Stock Photo",
+        "score": 2,
+        "id": "36694549",
+        "page": "https://www.pexels.com/photo/36694549/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/gongbao_jiding_2.jpg",
+        "alt": "chicken curry",
+        "score": 1,
+        "id": "29684985",
+        "page": "https://www.pexels.com/photo/29684985/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/gongbao_jiding_3.jpg",
+        "alt": "butter chicken",
+        "score": 1,
+        "id": "37295815",
+        "page": "https://www.pexels.com/photo/37295815/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "mapo_doufu",
+    "title": "麻婆豆腐",
+    "query": "mapo tofu",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/mapo_doufu_0.jpg",
+        "alt": "Free Appetizing mapo tofu served in a white bowl with decorative autumn leaves. Stock Photo",
+        "score": 2,
+        "id": "34618075",
+        "page": "https://www.pexels.com/photo/34618075/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/mapo_doufu_1.jpg",
+        "alt": "tofu",
+        "score": 1,
+        "id": "8954474",
+        "page": "https://www.pexels.com/photo/8954474/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/mapo_doufu_2.jpg",
+        "alt": "Free Close-up of a flavorful tofu dish with sauce in a traditional pot, perfect for a culinary experience. Stock Photo",
+        "score": 1,
+        "id": "20943933",
+        "page": "https://www.pexels.com/photo/20943933/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/mapo_doufu_3.jpg",
+        "alt": "Free Plate of hot tofu with rice and greens served on a wooden table in an indoor setting. Stock Photo",
+        "score": 1,
+        "id": "38453084",
+        "page": "https://www.pexels.com/photo/38453084/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "yuxiang_rousi",
+    "title": "鱼香肉丝",
+    "query": "shredded pork",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/yuxiang_rousi_0.jpg",
+        "alt": "Free Golden french fries loaded with savory shredded pork in a basket, perfect for hearty snacking. Stock Photo",
+        "score": 2,
+        "id": "30500757",
+        "page": "https://www.pexels.com/photo/30500757/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/yuxiang_rousi_1.jpg",
+        "alt": "Free A savory dish of tender Asian pork slices served with fresh shredded cabbage. Stock Photo",
+        "score": 2,
+        "id": "37297736",
+        "page": "https://www.pexels.com/photo/37297736/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/yuxiang_rousi_2.jpg",
+        "alt": "pork",
+        "score": 1,
+        "id": "38843571",
+        "page": "https://www.pexels.com/photo/38843571/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/yuxiang_rousi_3.jpg",
+        "alt": "Free Close-up of a gourmet pulled pork sandwich with pesto and grilled cheese on rustic bread. Stock Photo",
+        "score": 1,
+        "id": "30406034",
+        "page": "https://www.pexels.com/photo/30406034/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "huiguorou",
+    "title": "回锅肉",
+    "query": "twice cooked pork",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/huiguorou_0.jpg",
+        "alt": "pork",
+        "score": 1,
+        "id": "38843571",
+        "page": "https://www.pexels.com/photo/38843571/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/huiguorou_1.jpg",
+        "alt": "Free Mouth-watering glazed roast pork slices served with fresh microgreens. Stock Photo",
+        "score": 1,
+        "id": "29432175",
+        "page": "https://www.pexels.com/photo/29432175/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/huiguorou_2.jpg",
+        "alt": "Free Top view of a gourmet pork belly dish with garnishing vegetables on a white plate. Stock Photo",
+        "score": 1,
+        "id": "30623479",
+        "page": "https://www.pexels.com/photo/30623479/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/huiguorou_3.jpg",
+        "alt": "Free Savor the taste of tender braised pork belly in a rich, flavorful sauce. Stock Photo",
+        "score": 1,
+        "id": "34474143",
+        "page": "https://www.pexels.com/photo/34474143/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "qingjiao_rousi",
+    "title": "青椒肉丝",
+    "query": "pepper pork",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/qingjiao_rousi_0.jpg",
+        "alt": "Free Mouth-watering pork ribs with roasted green peppers, perfect for a hearty meal. Stock Photo",
+        "score": 2,
+        "id": "16073914",
+        "page": "https://www.pexels.com/photo/16073914/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/qingjiao_rousi_1.jpg",
+        "alt": "Free Fresh raw pork chop seasoned with peppercorns on wooden board surrounded by garlic, tomatoes, and herbs. Stock Photo",
+        "score": 2,
+        "id": "7333259",
+        "page": "https://www.pexels.com/photo/7333259/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/qingjiao_rousi_2.jpg",
+        "alt": "Free Close-up of grilled pork slices with oranges and peppers, ideal for festive meals. Stock Photo",
+        "score": 2,
+        "id": "14833804",
+        "page": "https://www.pexels.com/photo/14833804/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/qingjiao_rousi_3.jpg",
+        "alt": "pork",
+        "score": 1,
+        "id": "38843571",
+        "page": "https://www.pexels.com/photo/38843571/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "hongshao_qiezi",
+    "title": "红烧茄子",
+    "query": "braised eggplant",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/hongshao_qiezi_0.jpg",
+        "alt": "eggplant",
+        "score": 1,
+        "id": "34096648",
+        "page": "https://www.pexels.com/photo/34096648/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/hongshao_qiezi_1.jpg",
+        "alt": "Free Delicious grilled eggplant and pepper dish served in soy sauce. Perfect Asian cuisine delicacy. Stock Photo",
+        "score": 1,
+        "id": "37297760",
+        "page": "https://www.pexels.com/photo/37297760/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/hongshao_qiezi_2.jpg",
+        "alt": "Free A close-up view of freshly harvested organic eggplants, ideal for healthy cooking. Stock Photo",
+        "score": 1,
+        "id": "6316542",
+        "page": "https://www.pexels.com/photo/6316542/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/hongshao_qiezi_3.jpg",
+        "alt": "Free Close-up of grilled eggplants and bell peppers on a plate, garnished with herbs. Stock Photo",
+        "score": 1,
+        "id": "9433006",
+        "page": "https://www.pexels.com/photo/9433006/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "suanrong_xilanhua",
+    "title": "蒜蓉西兰花",
+    "query": "garlic broccoli",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/suanrong_xilanhua_0.jpg",
+        "alt": "broccoli",
+        "score": 1,
+        "id": "7676071",
+        "page": "https://www.pexels.com/photo/7676071/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/suanrong_xilanhua_1.jpg",
+        "alt": "Free Close-up of fresh broccoli and garlic with celery on a wooden board, highlighting organic and healthy eating. Stock Photo",
+        "score": 1,
+        "id": "5620900",
+        "page": "https://www.pexels.com/photo/5620900/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/suanrong_xilanhua_2.jpg",
+        "alt": "Free A fresh and appetizing shrimp and broccoli pasta, perfect for a healthy meal. Stock Photo",
+        "score": 1,
+        "id": "38836538",
+        "page": "https://www.pexels.com/photo/38836538/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/suanrong_xilanhua_3.jpg",
+        "alt": "Free A vibrant collection of fresh organic vegetables including broccoli, bell peppers, celery, and garlic. Stock Photo",
+        "score": 1,
+        "id": "5620877",
+        "page": "https://www.pexels.com/photo/5620877/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "shousi_baocai",
+    "title": "手撕包菜",
+    "query": "stir fried cabbage",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/shousi_baocai_0.jpg",
+        "alt": "cabbage",
+        "score": 1,
+        "id": "6316537",
+        "page": "https://www.pexels.com/photo/6316537/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/shousi_baocai_1.jpg",
+        "alt": "Free Close-up of stir-fried noodles with cabbage cooked in a large wok. Stock Photo",
+        "score": 1,
+        "id": "5602458",
+        "page": "https://www.pexels.com/photo/5602458/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/shousi_baocai_2.jpg",
+        "alt": "Free Close-up of grilled cabbage wedges in a skillet on a kitchen stove. Stock Photo",
+        "score": 1,
+        "id": "37332207",
+        "page": "https://www.pexels.com/photo/37332207/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/shousi_baocai_3.jpg",
+        "alt": "Free Freshly cooked Indian cabbage stir fry with spices, served in a bowl. Stock Photo",
+        "score": 1,
+        "id": "36608305",
+        "page": "https://www.pexels.com/photo/36608305/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "ganbian_doujiao",
+    "title": "干煸豆角",
+    "query": "green beans",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/ganbian_doujiao_0.jpg",
+        "alt": "Free A detailed view of fresh green beans creating a textured, natural pattern. Stock Photo",
+        "score": 2,
+        "id": "36525890",
+        "page": "https://www.pexels.com/photo/36525890/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/ganbian_doujiao_1.jpg",
+        "alt": "Free Close-up of fresh green beans in a white bowl placed on grass, captured outdoors. Stock Photo",
+        "score": 2,
+        "id": "4983086",
+        "page": "https://www.pexels.com/photo/4983086/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/ganbian_doujiao_2.jpg",
+        "alt": "Free A close-up of fresh green beans piled together, showcasing their natural texture and color. Stock Photo",
+        "score": 2,
+        "id": "33256553",
+        "page": "https://www.pexels.com/photo/33256553/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/ganbian_doujiao_3.jpg",
+        "alt": "Free A heap of fresh green beans, captured in a top view, showcasing natural vibrancy. Stock Photo",
+        "score": 2,
+        "id": "20051071",
+        "page": "https://www.pexels.com/photo/20051071/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "kele_jichi",
+    "title": "可乐鸡翅",
+    "query": "chicken wings",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/kele_jichi_0.jpg",
+        "alt": "Free Appetizing shot of a hand holding a glazed chicken wing over a plate of fries, perfect for food lovers. Stock Photo",
+        "score": 2,
+        "id": "36989868",
+        "page": "https://www.pexels.com/photo/36989868/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/kele_jichi_1.jpg",
+        "alt": "Free Golden brown crispy fried chicken wings served on a white plate, perfect for a tasty meal or snack. Stock Photo",
+        "score": 2,
+        "id": "32067295",
+        "page": "https://www.pexels.com/photo/32067295/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/kele_jichi_2.jpg",
+        "alt": "Free Delicious grilled chicken wings paired with sautéed zucchini and potatoes, garnished with sprouts. Stock Photo",
+        "score": 2,
+        "id": "17615604",
+        "page": "https://www.pexels.com/photo/17615604/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/kele_jichi_3.jpg",
+        "alt": "Free Delicious spicy chicken wings garnished with red chilies, perfect for a flavorful meal. Stock Photo",
+        "score": 2,
+        "id": "7230625",
+        "page": "https://www.pexels.com/photo/7230625/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "suanla_tudousi",
+    "title": "酸辣土豆丝",
+    "query": "shredded potato",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/suanla_tudousi_0.jpg",
+        "alt": "potatoes",
+        "score": 1,
+        "id": "36400786",
+        "page": "https://www.pexels.com/photo/36400786/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/suanla_tudousi_1.jpg",
+        "alt": "mashed potatoes",
+        "score": 1,
+        "id": "13422423",
+        "page": "https://www.pexels.com/photo/13422423/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/suanla_tudousi_2.jpg",
+        "alt": "potato chips",
+        "score": 1,
+        "id": "34466116",
+        "page": "https://www.pexels.com/photo/34466116/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/suanla_tudousi_3.jpg",
+        "alt": "sweet potatoes",
+        "score": 1,
+        "id": "7456548",
+        "page": "https://www.pexels.com/photo/7456548/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "suantai_chaorou",
+    "title": "蒜苔炒肉",
+    "query": "garlic scapes",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/suantai_chaorou_0.jpg",
+        "alt": "Free Detailed macro shot of a garlic scape with vivid green tones against a dark background. Stock Photo",
+        "score": 2,
+        "id": "37595265",
+        "page": "https://www.pexels.com/photo/37595265/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/suantai_chaorou_1.jpg",
+        "alt": "garlic",
+        "score": 1,
+        "id": "6576763",
+        "page": "https://www.pexels.com/photo/6576763/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/suantai_chaorou_2.jpg",
+        "alt": "Free A bunch of freshly harvested garlic bulbs arranged on a floral cloth, showcasing natural textures and earthy tones. Stock Photo",
+        "score": 1,
+        "id": "38461213",
+        "page": "https://www.pexels.com/photo/38461213/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/suantai_chaorou_3.jpg",
+        "alt": "Free Bunch of fresh garlic chives displayed on a colorful checkered towel, perfect for culinary use. Stock Photo",
+        "score": 1,
+        "id": "33199882",
+        "page": "https://www.pexels.com/photo/33199882/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "jiucai_chaodan",
+    "title": "韭菜炒蛋",
+    "query": "omelette",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/jiucai_chaodan_0.jpg",
+        "alt": "Free Top view of a delicious egg omelette served with fresh cucumber slices on a white plate. Stock Photo",
+        "score": 2,
+        "id": "15481458",
+        "page": "https://www.pexels.com/photo/15481458/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/jiucai_chaodan_1.jpg",
+        "alt": "Free Appetizing omelette with fresh veggies and cream cheese on a plate, perfect breakfast. Stock Photo",
+        "score": 2,
+        "id": "23884204",
+        "page": "https://www.pexels.com/photo/23884204/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/jiucai_chaodan_2.jpg",
+        "alt": "scrambled eggs",
+        "score": 1,
+        "id": "7696496",
+        "page": "https://www.pexels.com/photo/7696496/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/jiucai_chaodan_3.jpg",
+        "alt": "eggs",
+        "score": 1,
+        "id": "4110225",
+        "page": "https://www.pexels.com/photo/4110225/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "suanrong_fensi_wawacai",
+    "title": "蒜蓉粉丝娃娃菜",
+    "query": "napa cabbage",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/suanrong_fensi_wawacai_0.jpg",
+        "alt": "Free Close-up of fresh Napa cabbage leaves arranged on a burlap surface, showcasing texture and greenery. Stock Photo",
+        "score": 2,
+        "id": "16275972",
+        "page": "https://www.pexels.com/photo/16275972/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/suanrong_fensi_wawacai_1.jpg",
+        "alt": "Free Close-up of a Napa cabbage on a rustic wooden table with a woven basket background. Stock Photo",
+        "score": 2,
+        "id": "36165467",
+        "page": "https://www.pexels.com/photo/36165467/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/suanrong_fensi_wawacai_2.jpg",
+        "alt": "Free A detailed close-up of fresh and vibrant green Napa cabbages. Stock Photo",
+        "score": 2,
+        "id": "18473570",
+        "page": "https://www.pexels.com/photo/18473570/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/suanrong_fensi_wawacai_3.jpg",
+        "alt": "Free A close-up of fresh Napa cabbage bunches with dramatic lighting highlighting the texture. Stock Photo",
+        "score": 2,
+        "id": "36282128",
+        "page": "https://www.pexels.com/photo/36282128/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "liangban_huanggua",
+    "title": "凉拌黄瓜",
+    "query": "cucumber salad",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/liangban_huanggua_0.jpg",
+        "alt": "cucumber",
+        "score": 1,
+        "id": "39490165",
+        "page": "https://www.pexels.com/photo/39490165/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/liangban_huanggua_1.jpg",
+        "alt": "Free A vibrant vegetable salad featuring fresh cucumbers and tomatoes in a ceramic bowl. Stock Photo",
+        "score": 1,
+        "id": "15059716",
+        "page": "https://www.pexels.com/photo/15059716/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/liangban_huanggua_2.jpg",
+        "alt": "Free Crisp cucumber salad with chili and sesame in a stoneware bowl, perfect for an Asian-inspired meal. Stock Photo",
+        "score": 1,
+        "id": "12077975",
+        "page": "https://www.pexels.com/photo/12077975/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/liangban_huanggua_3.jpg",
+        "alt": "Free Hand slicing fresh radishes into a bowl of cucumbers for a healthy salad. Stock Photo",
+        "score": 1,
+        "id": "9005777",
+        "page": "https://www.pexels.com/photo/9005777/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "qingchao_shishu",
+    "title": "清炒时蔬",
+    "query": "stir fried vegetables",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/qingchao_shishu_0.jpg",
+        "alt": "vegetables",
+        "score": 1,
+        "id": "5425794",
+        "page": "https://www.pexels.com/photo/5425794/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/qingchao_shishu_1.jpg",
+        "alt": "vegetable",
+        "score": 1,
+        "id": "37321079",
+        "page": "https://www.pexels.com/photo/37321079/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/qingchao_shishu_2.jpg",
+        "alt": "green vegetables",
+        "score": 1,
+        "id": "11509871",
+        "page": "https://www.pexels.com/photo/11509871/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/qingchao_shishu_3.jpg",
+        "alt": "cutting vegetables",
+        "score": 1,
+        "id": "34051475",
+        "page": "https://www.pexels.com/photo/34051475/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "xianggu_huaji",
+    "title": "香菇滑鸡",
+    "query": "mushroom chicken",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/xianggu_huaji_0.jpg",
+        "alt": "Free A carefully plated meal featuring chicken, vegetable rice, and mushrooms on a ceramic plate. Stock Photo",
+        "score": 2,
+        "id": "31960616",
+        "page": "https://www.pexels.com/photo/31960616/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/xianggu_huaji_1.jpg",
+        "alt": "Free Plate of creamy mushroom chicken garnished with herbs and cherry tomatoes. Stock Photo",
+        "score": 2,
+        "id": "31233887",
+        "page": "https://www.pexels.com/photo/31233887/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/xianggu_huaji_2.jpg",
+        "alt": "Free A savory bowl of creamy chicken and mushroom soup garnished to perfection. Stock Photo",
+        "score": 2,
+        "id": "28896610",
+        "page": "https://www.pexels.com/photo/28896610/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/xianggu_huaji_3.jpg",
+        "alt": "Free Delicious gourmet chicken dish served with mushrooms, greens, and sauce on an elegant plate. Stock Photo",
+        "score": 2,
+        "id": "37045066",
+        "page": "https://www.pexels.com/photo/37045066/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "zicai_danhua_tang",
+    "title": "紫菜蛋花汤",
+    "query": "seaweed soup",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/zicai_danhua_tang_0.jpg",
+        "alt": "Free Close-up of traditional miso soup with seaweed and scallions in a black and red bowl. Stock Photo",
+        "score": 2,
+        "id": "31317049",
+        "page": "https://www.pexels.com/photo/31317049/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/zicai_danhua_tang_1.jpg",
+        "alt": "Free Hot and savory Asian soup featuring enoki mushrooms, tofu, seaweed, and bok choy in a rich broth. Stock Photo",
+        "score": 2,
+        "id": "36647667",
+        "page": "https://www.pexels.com/photo/36647667/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/zicai_danhua_tang_2.jpg",
+        "alt": "Free Close-up of a spicy udon noodle soup with tofu, seaweed, and vegetables. Stock Photo",
+        "score": 2,
+        "id": "2132942",
+        "page": "https://www.pexels.com/photo/2132942/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/zicai_danhua_tang_3.jpg",
+        "alt": "Free Delicious Korean noodle soup with spicy broth, vegetables, and seaweed. Stock Photo",
+        "score": 2,
+        "id": "8883368",
+        "page": "https://www.pexels.com/photo/8883368/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "fanqie_dantang",
+    "title": "番茄蛋汤",
+    "query": "tomato soup",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/fanqie_dantang_0.jpg",
+        "alt": "Free Creamy tomato soup garnished with basil, served with bread and garlic. Stock Photo",
+        "score": 2,
+        "id": "17302314",
+        "page": "https://www.pexels.com/photo/17302314/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/fanqie_dantang_1.jpg",
+        "alt": "Free A warm tomato soup bowl garnished with basil and cheese cubes beside grilled bread. Stock Photo",
+        "score": 2,
+        "id": "34326259",
+        "page": "https://www.pexels.com/photo/34326259/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/fanqie_dantang_2.jpg",
+        "alt": "Free Overhead view of tomato soup with text and spoons on marble surface in sunlight. Stock Photo",
+        "score": 2,
+        "id": "3832337",
+        "page": "https://www.pexels.com/photo/3832337/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/fanqie_dantang_3.jpg",
+        "alt": "Free Stylish tomato soup in elegant setting with dried flowers and magazine. Stock Photo",
+        "score": 2,
+        "id": "5203692",
+        "page": "https://www.pexels.com/photo/5203692/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "donggua_paigu_tang",
+    "title": "冬瓜排骨汤",
+    "query": "winter melon soup",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/donggua_paigu_tang_0.jpg",
+        "alt": "Free A bowl of Asian winter melon soup with shrimp garnished with fresh cilantro. Stock Photo",
+        "score": 2,
+        "id": "37332344",
+        "page": "https://www.pexels.com/photo/37332344/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/donggua_paigu_tang_1.jpg",
+        "alt": "Free A delicious bowl of Asian shrimp and melon soup, perfect for gourmet cuisine lovers. Stock Photo",
+        "score": 2,
+        "id": "37332333",
+        "page": "https://www.pexels.com/photo/37332333/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/donggua_paigu_tang_2.jpg",
+        "alt": "Free A vibrant green melon soup garnished with fresh mint leaves in a textured bowl. Stock Photo",
+        "score": 2,
+        "id": "15239056",
+        "page": "https://www.pexels.com/photo/15239056/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/donggua_paigu_tang_3.jpg",
+        "alt": "pumpkin soup",
+        "score": 1,
+        "id": "29172203",
+        "page": "https://www.pexels.com/photo/29172203/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "yumi_paigu_tang",
+    "title": "玉米排骨汤",
+    "query": "corn soup",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/yumi_paigu_tang_0.jpg",
+        "alt": "Free Warm chicken soup with corn, carrot, and parsley, perfect for comforting meals. Stock Photo",
+        "score": 2,
+        "id": "29538430",
+        "page": "https://www.pexels.com/photo/29538430/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/yumi_paigu_tang_1.jpg",
+        "alt": "Free Close-up of flavorful chicken corn soup with cilantro garnish in a white bowl. Stock Photo",
+        "score": 2,
+        "id": "29538427",
+        "page": "https://www.pexels.com/photo/29538427/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/yumi_paigu_tang_2.jpg",
+        "alt": "Free A mouth-watering pasta soup with corn and mushrooms served in a sleek black ceramic bowl. Stock Photo",
+        "score": 2,
+        "id": "24186314",
+        "page": "https://www.pexels.com/photo/24186314/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/yumi_paigu_tang_3.jpg",
+        "alt": "Free A cozy cafe brunch featuring corn soup, coffee, and a relaxed atmosphere. Stock Photo",
+        "score": 2,
+        "id": "23417409",
+        "page": "https://www.pexels.com/photo/23417409/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "yiner_lianzi_geng",
+    "title": "银耳莲子羹",
+    "query": "mushroom soup",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/yiner_lianzi_geng_0.jpg",
+        "alt": "Free Close-up of a creamy mushroom and bacon soup in a ceramic bowl, perfect for cozy dining. Stock Photo",
+        "score": 2,
+        "id": "29653180",
+        "page": "https://www.pexels.com/photo/29653180/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/yiner_lianzi_geng_1.jpg",
+        "alt": "Free A close-up of mushroom soup garnished with parsley, served with lemon and toast on a light green background. Stock Photo",
+        "score": 2,
+        "id": "14774702",
+        "page": "https://www.pexels.com/photo/14774702/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/yiner_lianzi_geng_2.jpg",
+        "alt": "Free Warm and creamy mushroom soup garnished with mushrooms and herbs in a rustic bowl. Stock Photo",
+        "score": 2,
+        "id": "39927805",
+        "page": "https://www.pexels.com/photo/39927805/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/yiner_lianzi_geng_3.jpg",
+        "alt": "Free Close-up of a rich mushroom soup topped with creamy swirl and olive oil, perfect for gourmet cuisine enthusiasts. Stock Photo",
+        "score": 2,
+        "id": "4870486",
+        "page": "https://www.pexels.com/photo/4870486/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "dan_chaofan",
+    "title": "蛋炒饭",
+    "query": "fried rice",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/dan_chaofan_0.jpg",
+        "alt": "Free Appetizing shrimp fried rice with cucumbers in a bowl on wooden table. Stock Photo",
+        "score": 2,
+        "id": "34683317",
+        "page": "https://www.pexels.com/photo/34683317/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/dan_chaofan_1.jpg",
+        "alt": "Free A plate of colorful homemade fried rice served on a decorated dish. Stock Photo",
+        "score": 2,
+        "id": "24334865",
+        "page": "https://www.pexels.com/photo/24334865/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/dan_chaofan_2.jpg",
+        "alt": "Free Delicious crispy fried chicken served on savory fried rice with green onions. Stock Photo",
+        "score": 2,
+        "id": "24206106",
+        "page": "https://www.pexels.com/photo/24206106/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/dan_chaofan_3.jpg",
+        "alt": "Free Appetizing plate of fried rice served with fresh vegetables like cucumber and tomatoes. Stock Photo",
+        "score": 2,
+        "id": "30392941",
+        "page": "https://www.pexels.com/photo/30392941/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "fanqie_jidan_mian",
+    "title": "番茄鸡蛋面",
+    "query": "tomato noodles",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/fanqie_jidan_mian_0.jpg",
+        "alt": "Free Bowl of savory ramen noodle soup with tomatoes and peppers. Stock Photo",
+        "score": 2,
+        "id": "39999744",
+        "page": "https://www.pexels.com/photo/39999744/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/fanqie_jidan_mian_1.jpg",
+        "alt": "Free A plate of freshly prepared mixed vegetable noodles garnished with sliced tomatoes and greens. Stock Photo",
+        "score": 2,
+        "id": "17184357",
+        "page": "https://www.pexels.com/photo/17184357/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/fanqie_jidan_mian_2.jpg",
+        "alt": "noodles",
+        "score": 1,
+        "id": "4223948",
+        "page": "https://www.pexels.com/photo/4223948/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/fanqie_jidan_mian_3.jpg",
+        "alt": "tomato sauce",
+        "score": 1,
+        "id": "5056828",
+        "page": "https://www.pexels.com/photo/5056828/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "congyou_banmian",
+    "title": "葱油拌面",
+    "query": "scallion noodles",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/congyou_banmian_0.jpg",
+        "alt": "Free A bowl of homemade vegetable noodles garnished with fresh scallions and herbs. Stock Photo",
+        "score": 2,
+        "id": "27238149",
+        "page": "https://www.pexels.com/photo/27238149/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/congyou_banmian_1.jpg",
+        "alt": "Free A mouth-watering dish of shrimp udon noodles garnished with scallions and chili flakes. Stock Photo",
+        "score": 2,
+        "id": "7452589",
+        "page": "https://www.pexels.com/photo/7452589/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/congyou_banmian_2.jpg",
+        "alt": "Free Appetizing dish of stir-fried noodles topped with a fried egg, garnished with scallions. Stock Photo",
+        "score": 2,
+        "id": "38570836",
+        "page": "https://www.pexels.com/photo/38570836/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/congyou_banmian_3.jpg",
+        "alt": "Free Deliciously spiced ramen noodle soup garnished with fresh scallions in a close-up view. Stock Photo",
+        "score": 2,
+        "id": "8636307",
+        "page": "https://www.pexels.com/photo/8636307/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "gali_jifan",
+    "title": "咖喱鸡饭",
+    "query": "curry rice",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/gali_jifan_0.jpg",
+        "alt": "Free A close-up of spicy curry served with steamed rice on a plate. Stock Photo",
+        "score": 2,
+        "id": "39984358",
+        "page": "https://www.pexels.com/photo/39984358/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/gali_jifan_1.jpg",
+        "alt": "Free Savor the authentic taste of Japanese curry with rice and potato croquette, served with side salad. Stock Photo",
+        "score": 2,
+        "id": "18548422",
+        "page": "https://www.pexels.com/photo/18548422/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/gali_jifan_2.jpg",
+        "alt": "Free Enjoy a flavorful Thai curry with rice, served outdoors with a refreshing beverage. Stock Photo",
+        "score": 2,
+        "id": "19915907",
+        "page": "https://www.pexels.com/photo/19915907/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/gali_jifan_3.jpg",
+        "alt": "Free Delicious spicy vegetable curry served with fluffy fried rice on a white plate, perfect for Asian cuisine lovers. Stock Photo",
+        "score": 2,
+        "id": "38104220",
+        "page": "https://www.pexels.com/photo/38104220/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "lurou_fan",
+    "title": "卤肉饭",
+    "query": "braised pork rice",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/lurou_fan_0.jpg",
+        "alt": "Free A savory bowl of braised pork with rice and vegetables on a wooden table. Stock Photo",
+        "score": 2,
+        "id": "5305437",
+        "page": "https://www.pexels.com/photo/5305437/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/lurou_fan_1.jpg",
+        "alt": "Free A savory pork rice bowl topped with vegetables and flavorful seasonings. Stock Photo",
+        "score": 2,
+        "id": "5305439",
+        "page": "https://www.pexels.com/photo/5305439/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/lurou_fan_2.jpg",
+        "alt": "Free Savor a tasty Asian rice bowl with seasoned pork, fresh greens, and rice. Stock Photo",
+        "score": 2,
+        "id": "35112963",
+        "page": "https://www.pexels.com/photo/35112963/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/lurou_fan_3.jpg",
+        "alt": "Free Delicious Taiwanese braised pork rice topped with a soft boiled egg, served in Puli, Taiwan. Stock Photo",
+        "score": 2,
+        "id": "36738568",
+        "page": "https://www.pexels.com/photo/36738568/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "huangmenji_mifan",
+    "title": "黄焖鸡米饭",
+    "query": "braised chicken rice",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/huangmenji_mifan_0.jpg",
+        "alt": "Free Delicious Asian meal featuring chicken drumstick, rice, and assorted vegetable sides. A mouthwatering feast. Stock Photo",
+        "score": 2,
+        "id": "5266092",
+        "page": "https://www.pexels.com/photo/5266092/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/huangmenji_mifan_1.jpg",
+        "alt": "Free Close-up of savory Asian chicken feet served with rice and greens on a metal plate. Stock Photo",
+        "score": 2,
+        "id": "17664413",
+        "page": "https://www.pexels.com/photo/17664413/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/huangmenji_mifan_2.jpg",
+        "alt": "Free Tantalizing close-up of chicken and rice with herbs and egg on a green plate. Stock Photo",
+        "score": 2,
+        "id": "6646168",
+        "page": "https://www.pexels.com/photo/6646168/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/huangmenji_mifan_3.jpg",
+        "alt": "Free A delectable Asian chicken dish served with rice and fresh lettuce, perfect for food photography. Stock Photo",
+        "score": 2,
+        "id": "13294530",
+        "page": "https://www.pexels.com/photo/13294530/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "chaomian",
+    "title": "炒面",
+    "query": "chow mein",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/chaomian_0.jpg",
+        "alt": "Free A tempting plate of vegetable chow mein with noodles and veggies on a table. Stock Photo",
+        "score": 2,
+        "id": "3926135",
+        "page": "https://www.pexels.com/photo/3926135/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/chaomian_1.jpg",
+        "alt": "noodles",
+        "score": 1,
+        "id": "4223948",
+        "page": "https://www.pexels.com/photo/4223948/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/chaomian_2.jpg",
+        "alt": "instant noodles",
+        "score": 1,
+        "id": "39007274",
+        "page": "https://www.pexels.com/photo/39007274/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/chaomian_3.jpg",
+        "alt": "Free A street vendor serving freshly cooked noodles at a bustling outdoor market. Stock Photo",
+        "score": 1,
+        "id": "104884",
+        "page": "https://www.pexels.com/photo/104884/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "pidan_shourou_zhou",
+    "title": "皮蛋瘦肉粥",
+    "query": "congee",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/pidan_shourou_zhou_0.jpg",
+        "alt": "porridge",
+        "score": 1,
+        "id": "4071738",
+        "page": "https://www.pexels.com/photo/4071738/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/pidan_shourou_zhou_1.jpg",
+        "alt": "Free A close-up of mung bean and rice porridge served in an ornate blue and white ceramic bowl on a wooden surface. Stock Photo",
+        "score": 1,
+        "id": "5652188",
+        "page": "https://www.pexels.com/photo/5652188/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/pidan_shourou_zhou_2.jpg",
+        "alt": "Free Close-up of savory Asian pork congee garnished with cilantro and mushrooms in a traditional bowl. Stock Photo",
+        "score": 1,
+        "id": "8305573",
+        "page": "https://www.pexels.com/photo/8305573/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/pidan_shourou_zhou_3.jpg",
+        "alt": "Free Warm and comforting homemade rice porridge with scallions in a ceramic bowl, perfect for breakfast. Stock Photo",
+        "score": 1,
+        "id": "32835478",
+        "page": "https://www.pexels.com/photo/32835478/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "sanmingzhi",
+    "title": "三明治",
+    "query": "sandwich",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/sanmingzhi_0.jpg",
+        "alt": "sandwiches",
+        "score": 1,
+        "id": "24796900",
+        "page": "https://www.pexels.com/photo/24796900/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/sanmingzhi_1.jpg",
+        "alt": "Free A delectable toasted sandwich paired with crispy golden French fries, perfect for a lunch snack. Stock Photo",
+        "score": 1,
+        "id": "11256670",
+        "page": "https://www.pexels.com/photo/11256670/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/sanmingzhi_2.jpg",
+        "alt": "Free Close-up of a BLT sandwich with lettuce, tomato, and bacon served with orange juice. Stock Photo",
+        "score": 1,
+        "id": "19202817",
+        "page": "https://www.pexels.com/photo/19202817/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/sanmingzhi_3.jpg",
+        "alt": "Free Plate of grilled sandwiches with a cappuccino on a wooden table, perfect for a cozy cafe ambiance. Stock Photo",
+        "score": 1,
+        "id": "35054704",
+        "page": "https://www.pexels.com/photo/35054704/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "jiandan",
+    "title": "煎蛋",
+    "query": "fried egg",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/jiandan_0.jpg",
+        "alt": "egg",
+        "score": 1,
+        "id": "9928538",
+        "page": "https://www.pexels.com/photo/9928538/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/jiandan_1.jpg",
+        "alt": "boiled eggs",
+        "score": 1,
+        "id": "36227428",
+        "page": "https://www.pexels.com/photo/36227428/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/jiandan_2.jpg",
+        "alt": "eggs",
+        "score": 1,
+        "id": "4110225",
+        "page": "https://www.pexels.com/photo/4110225/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/jiandan_3.jpg",
+        "alt": "scrambled eggs",
+        "score": 1,
+        "id": "7696496",
+        "page": "https://www.pexels.com/photo/7696496/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "zheng_dangeng",
+    "title": "蒸蛋羹",
+    "query": "steamed egg",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/zheng_dangeng_0.jpg",
+        "alt": "Free A street vendor prepares steaming egg bread on a large grill at a bustling night market. Stock Photo",
+        "score": 2,
+        "id": "40953708",
+        "page": "https://www.pexels.com/photo/40953708/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/zheng_dangeng_1.jpg",
+        "alt": "Free Close-up of Korean steamed egg served in black pot garnished with green onions. Stock Photo",
+        "score": 2,
+        "id": "39531127",
+        "page": "https://www.pexels.com/photo/39531127/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/zheng_dangeng_2.jpg",
+        "alt": "Free Top view of eggs being cooked in an electric egg steamer with mist on lid. Stock Photo",
+        "score": 2,
+        "id": "20472724",
+        "page": "https://www.pexels.com/photo/20472724/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/zheng_dangeng_3.jpg",
+        "alt": "Free A steamy Korean egg dish garnished with green onions in a black bowl. Stock Photo",
+        "score": 2,
+        "id": "35833815",
+        "page": "https://www.pexels.com/photo/35833815/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "congyoubing",
+    "title": "葱油饼",
+    "query": "scallion pancake",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/congyoubing_0.jpg",
+        "alt": "Free Tasty Korean scallion pancakes served with sesame dipping sauce on a ceramic plate, styled with chopsticks. Stock Photo",
+        "score": 2,
+        "id": "13887556",
+        "page": "https://www.pexels.com/photo/13887556/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/congyoubing_1.jpg",
+        "alt": "Free Delicious Bánh Căn Vietnamese rice pancakes garnished with scallions and crispy shallots. Stock Photo",
+        "score": 2,
+        "id": "31563462",
+        "page": "https://www.pexels.com/photo/31563462/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/congyoubing_2.jpg",
+        "alt": "pancake",
+        "score": 1,
+        "id": "30299143",
+        "page": "https://www.pexels.com/photo/30299143/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/congyoubing_3.jpg",
+        "alt": "pancakes",
+        "score": 1,
+        "id": "730922",
+        "page": "https://www.pexels.com/photo/730922/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "hongshao_rou",
+    "title": "红烧肉",
+    "query": "braised pork belly",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/hongshao_rou_0.jpg",
+        "alt": "Free Savor the taste of tender braised pork belly in a rich, flavorful sauce. Stock Photo",
+        "score": 2,
+        "id": "34474143",
+        "page": "https://www.pexels.com/photo/34474143/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/hongshao_rou_1.jpg",
+        "alt": "Free Close-up of braised pork belly with sauce on bok choy, showcasing a delicious Chinese dish. Stock Photo",
+        "score": 2,
+        "id": "8256965",
+        "page": "https://www.pexels.com/photo/8256965/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/hongshao_rou_2.jpg",
+        "alt": "Free Close-up of braised pork garnished with vegetables and chopsticks, perfect for food photography. Stock Photo",
+        "score": 2,
+        "id": "8256994",
+        "page": "https://www.pexels.com/photo/8256994/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/hongshao_rou_3.jpg",
+        "alt": "Free A visually appealing braised pork dish garnished with greens, captured up close. Stock Photo",
+        "score": 2,
+        "id": "8257002",
+        "page": "https://www.pexels.com/photo/8257002/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "qingzheng_luyu",
+    "title": "清蒸鲈鱼",
+    "query": "steamed fish",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/qingzheng_luyu_0.jpg",
+        "alt": "Free Delicious steamed fish topped with mushrooms and fresh herbs on a ceramic plate, perfect for culinary presentations. Stock Photo",
+        "score": 2,
+        "id": "8983415",
+        "page": "https://www.pexels.com/photo/8983415/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/qingzheng_luyu_1.jpg",
+        "alt": "Free Steamed fish with lime slices and spices in a ceramic dish, perfect for Asian cuisine lovers. Stock Photo",
+        "score": 2,
+        "id": "33896073",
+        "page": "https://www.pexels.com/photo/33896073/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/qingzheng_luyu_2.jpg",
+        "alt": "Free A tempting dish of steamed fish garnished with mushrooms and green onions, beautifully plated on a wooden table. Stock Photo",
+        "score": 2,
+        "id": "8983413",
+        "page": "https://www.pexels.com/photo/8983413/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/qingzheng_luyu_3.jpg",
+        "alt": "Free A beautifully presented steamed fish with lime, herbs, and spices, showcasing vibrant food textures. Stock Photo",
+        "score": 2,
+        "id": "5695580",
+        "page": "https://www.pexels.com/photo/5695580/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "tangcu_paigu",
+    "title": "糖醋排骨",
+    "query": "sweet and sour pork",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/tangcu_paigu_0.jpg",
+        "alt": "Free A tasty plate of sweet and sour pork with veggies on a white background. Stock Photo",
+        "score": 3,
+        "id": "5848495",
+        "page": "https://www.pexels.com/photo/5848495/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/tangcu_paigu_1.jpg",
+        "alt": "Free Delicious sweet and sour pork served with bell peppers and garnished with parsley on a plate. Stock Photo",
+        "score": 3,
+        "id": "7949919",
+        "page": "https://www.pexels.com/photo/7949919/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/tangcu_paigu_2.jpg",
+        "alt": "Free Savor the flavors of a homemade sweet and sour dish featuring pineapple and vegetables in a vibrant sauce. Stock Photo",
+        "score": 2,
+        "id": "15797951",
+        "page": "https://www.pexels.com/photo/15797951/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/tangcu_paigu_3.jpg",
+        "alt": "Free Close-up of sweet and sour chicken with peppers and pineapple using chopsticks. Stock Photo",
+        "score": 2,
+        "id": "5848535",
+        "page": "https://www.pexels.com/photo/5848535/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "hongshao_jitui",
+    "title": "红烧鸡腿",
+    "query": "braised chicken",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/hongshao_jitui_0.jpg",
+        "alt": "roast chicken",
+        "score": 1,
+        "id": "7508167",
+        "page": "https://www.pexels.com/photo/7508167/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/hongshao_jitui_1.jpg",
+        "alt": "grilled chicken",
+        "score": 1,
+        "id": "28635476",
+        "page": "https://www.pexels.com/photo/28635476/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/hongshao_jitui_2.jpg",
+        "alt": "fried chicken",
+        "score": 1,
+        "id": "9872916",
+        "page": "https://www.pexels.com/photo/9872916/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/hongshao_jitui_3.jpg",
+        "alt": "chicken dish",
+        "score": 1,
+        "id": "19141541",
+        "page": "https://www.pexels.com/photo/19141541/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  },
+  {
+    "id": "xihongshi_niunan",
+    "title": "西红柿牛腩",
+    "query": "beef brisket",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/pexels_imgs/xihongshi_niunan_0.jpg",
+        "alt": "Free A sumptuous beef brisket topped with red onions in rich gravy, perfect for a hearty meal. Stock Photo",
+        "score": 2,
+        "id": "32986967",
+        "page": "https://www.pexels.com/photo/32986967/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/pexels_imgs/xihongshi_niunan_1.jpg",
+        "alt": "Free Close-up of a hand slicing juicy, smoked beef brisket on a wooden cutting board, showcasing deliciously cooked meat. Stock Photo",
+        "score": 2,
+        "id": "12645502",
+        "page": "https://www.pexels.com/photo/12645502/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/pexels_imgs/xihongshi_niunan_2.jpg",
+        "alt": "Free Chef with glove slicing tender smoked beef brisket on a white cutting board indoors. Stock Photo",
+        "score": 2,
+        "id": "34519789",
+        "page": "https://www.pexels.com/photo/34519789/",
+        "license": "Pexels License (free to use)"
+      },
+      {
+        "index": 3,
+        "file": "/tmp/pexels_imgs/xihongshi_niunan_3.jpg",
+        "alt": "beef",
+        "score": 1,
+        "id": "6545671",
+        "page": "https://www.pexels.com/photo/6545671/",
+        "license": "Pexels License (free to use)"
+      }
+    ]
+  }
+]

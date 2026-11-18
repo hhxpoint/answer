@@ -1,0 +1,538 @@
+[
+  {
+    "id": "hongshao_qiezi",
+    "title": "红烧茄子",
+    "query": "braised eggplant",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_fill/hongshao_qiezi_0.jpg",
+        "license": "CC0",
+        "artist": "Andy Li",
+        "landing": "https://commons.wikimedia.org/wiki/File:Braised_Aubergine_in_Sweet_Soy_Sauce_-_Aberdeen_Seafood_2026-01-05.jpg",
+        "orig_title": "Braised Aubergine in Sweet Soy Sauce - Aberdeen Seafood 2026-01-05.jpg",
+        "width": 8160,
+        "height": 6144
+      }
+    ]
+  },
+  {
+    "id": "suanrong_xilanhua",
+    "title": "蒜蓉西兰花",
+    "query": "broccoli stir fry",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_fill/suanrong_xilanhua_0.jpg",
+        "license": "CC BY 2.0",
+        "artist": "Stephanie from Austin TX",
+        "landing": "https://commons.wikimedia.org/wiki/File:Seitan_and_broccoli_stir-fry_with_barbecue_sauce_on_mashed_potatoes_(13430987953).jpg",
+        "orig_title": "Seitan and broccoli stir-fry with barbecue sauce on mashed potatoes (13430987953).jpg",
+        "width": 612,
+        "height": 612
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_fill/suanrong_xilanhua_1.jpg",
+        "license": "CC BY 2.0",
+        "artist": "jeffreyw",
+        "landing": "https://commons.wikimedia.org/wiki/File:Shrimp_and_broccoli_stir_fry_(8374790146).jpg",
+        "orig_title": "Shrimp and broccoli stir fry (8374790146).jpg",
+        "width": 4928,
+        "height": 3264
+      }
+    ]
+  },
+  {
+    "id": "shousi_baocai",
+    "title": "手撕包菜",
+    "query": "cabbage stir fry",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_fill/shousi_baocai_0.jpg",
+        "license": "CC BY 2.0",
+        "artist": "Christopher",
+        "landing": "https://commons.wikimedia.org/wiki/File:Stir_Fried_Cabbage_and_Bacon_%E5%9F%B9%E6%A0%B9%E9%AB%98%E4%B8%BD%E8%8F%9C.jpg",
+        "orig_title": "Stir Fried Cabbage and Bacon 培根高丽菜.jpg",
+        "width": 3568,
+        "height": 2376
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_fill/shousi_baocai_1.jpg",
+        "license": "CC BY 2.0",
+        "artist": "Lablascovegmenu from London",
+        "landing": "https://commons.wikimedia.org/wiki/File:Noodles,_Stir_fried_leek,_cabbage,_turnip_and_pumpkin_(6877698784).jpg",
+        "orig_title": "Noodles, Stir fried leek, cabbage, turnip and pumpkin (6877698784).jpg",
+        "width": 2048,
+        "height": 1536
+      }
+    ]
+  },
+  {
+    "id": "ganbian_doujiao",
+    "title": "干煸豆角",
+    "query": "green beans stir fry",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_fill/ganbian_doujiao_0.jpg",
+        "license": "CC BY-SA 2.0",
+        "artist": "Ewan Munro from London, UK",
+        "landing": "https://commons.wikimedia.org/wiki/File:Sichuan%27s_Spicy_Green_Beans_at_Sichuan_Restaurant,_Acton,_London_(4466367167).jpg",
+        "orig_title": "Sichuan's Spicy Green Beans at Sichuan Restaurant, Acton, London (4466367167).jpg",
+        "width": 3432,
+        "height": 2288
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_fill/ganbian_doujiao_1.jpg",
+        "license": "CC BY 2.0",
+        "artist": "jeffreyw",
+        "landing": "https://commons.wikimedia.org/wiki/File:Green_beans_stir_fry_(4802351530).jpg",
+        "orig_title": "Green beans stir fry (4802351530).jpg",
+        "width": 1600,
+        "height": 1063
+      }
+    ]
+  },
+  {
+    "id": "suanla_tudousi",
+    "title": "酸辣土豆丝",
+    "query": "shredded potato",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_fill/suanla_tudousi_0.jpg",
+        "license": "CC BY 3.0",
+        "artist": "Biswarup Ganguly",
+        "landing": "https://commons.wikimedia.org/wiki/File:Shredded_Potatoes_-_Kolkata_2011-04-07_2247.JPG",
+        "orig_title": "Shredded Potatoes - Kolkata 2011-04-07 2247.JPG",
+        "width": 4288,
+        "height": 2848
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_fill/suanla_tudousi_1.jpg",
+        "license": "Public domain",
+        "artist": "OSU Special Collections &amp; Archives",
+        "landing": "https://commons.wikimedia.org/wiki/File:Dehydrated_shredded_potatoes.jpg",
+        "orig_title": "Dehydrated shredded potatoes.jpg",
+        "width": 2000,
+        "height": 1633
+      }
+    ]
+  },
+  {
+    "id": "suantai_chaorou",
+    "title": "蒜苔炒肉",
+    "query": "garlic scapes",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_fill/suantai_chaorou_0.jpg",
+        "license": "CC BY-SA 3.0",
+        "artist": "Jonathunder",
+        "landing": "https://commons.wikimedia.org/wiki/File:GarlicBasket.jpg",
+        "orig_title": "GarlicBasket.jpg",
+        "width": 3224,
+        "height": 2304
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_fill/suantai_chaorou_1.jpg",
+        "license": "CC BY 2.0",
+        "artist": "Hyeon-Jeong Suk",
+        "landing": "https://commons.wikimedia.org/wiki/File:Maneuljjongjangajji_(pickled_garlic_scapes).jpg",
+        "orig_title": "Maneuljjongjangajji (pickled garlic scapes).jpg",
+        "width": 3456,
+        "height": 2304
+      }
+    ]
+  },
+  {
+    "id": "suanrong_fensi_wawacai",
+    "title": "蒜蓉粉丝娃娃菜",
+    "query": "napa cabbage",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_fill/suanrong_fensi_wawacai_0.jpg",
+        "license": "CC BY 3.0 us",
+        "artist": "Forest and Kim Starr",
+        "landing": "https://commons.wikimedia.org/wiki/File:Starr-070730-7855-Brassica_rapa-Napa_cabbage-Foodland_Pukalani-Maui_(24890474225).jpg",
+        "orig_title": "Starr-070730-7855-Brassica rapa-Napa cabbage-Foodland Pukalani-Maui (24890474225).jpg",
+        "width": 2112,
+        "height": 2816
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_fill/suanrong_fensi_wawacai_1.jpg",
+        "license": "CC0",
+        "artist": "Judgefloro",
+        "landing": "https://commons.wikimedia.org/wiki/File:6094Chicken_napa_cabbage_01.jpg",
+        "orig_title": "6094Chicken napa cabbage 01.jpg",
+        "width": 4608,
+        "height": 3456
+      }
+    ]
+  },
+  {
+    "id": "liangban_huanggua",
+    "title": "凉拌黄瓜",
+    "query": "cucumber salad",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_fill/liangban_huanggua_0.jpg",
+        "license": "CC BY 2.0",
+        "artist": "Karen and Brad Emerson",
+        "landing": "https://commons.wikimedia.org/wiki/File:Cucumber_salad_(7583512640).jpg",
+        "orig_title": "Cucumber salad (7583512640).jpg",
+        "width": 1879,
+        "height": 1879
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_fill/liangban_huanggua_1.jpg",
+        "license": "CC BY-SA 4.0",
+        "artist": "Voxbyrox",
+        "landing": "https://commons.wikimedia.org/wiki/File:Cucumber_onion_and_tomato_salad_with_mint_coriander_and_lemon.jpg",
+        "orig_title": "Cucumber onion and tomato salad with mint coriander and lemon.jpg",
+        "width": 945,
+        "height": 2048
+      }
+    ]
+  },
+  {
+    "id": "qingchao_shishu",
+    "title": "清炒时蔬",
+    "query": "stir fried vegetables",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_fill/qingchao_shishu_0.jpg",
+        "license": "CC BY 3.0",
+        "artist": "Biswarup Ganguly",
+        "landing": "https://commons.wikimedia.org/wiki/File:Stir-fried_Mashed_Vegetables_-_Kolkata_2011-02-18_1415.JPG",
+        "orig_title": "Stir-fried Mashed Vegetables - Kolkata 2011-02-18 1415.JPG",
+        "width": 4288,
+        "height": 2848
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_fill/qingchao_shishu_1.jpg",
+        "license": "CC BY 3.0",
+        "artist": "Biswarup Ganguly",
+        "landing": "https://commons.wikimedia.org/wiki/File:Stir-fried_Mashed_Vegetables_-_Kolkata_2011-02-18_1418.JPG",
+        "orig_title": "Stir-fried Mashed Vegetables - Kolkata 2011-02-18 1418.JPG",
+        "width": 4288,
+        "height": 2848
+      }
+    ]
+  },
+  {
+    "id": "xianggu_huaji",
+    "title": "香菇滑鸡",
+    "query": "mushroom chicken",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_fill/xianggu_huaji_0.jpg",
+        "license": "CC BY-SA 3.0",
+        "artist": "Oddbodz",
+        "landing": "https://commons.wikimedia.org/wiki/File:Chicken_Pie.JPG",
+        "orig_title": "Chicken Pie.JPG",
+        "width": 701,
+        "height": 528
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_fill/xianggu_huaji_1.jpg",
+        "license": "CC BY-SA 3.0",
+        "artist": "Coikasllo",
+        "landing": "https://commons.wikimedia.org/wiki/File:HKCEC_%E7%81%A3%E4%BB%94%E6%9C%83%E5%B1%95_Wan_Chai_restaurant_%E6%B8%AF%E7%81%A3%E8%8C%B6%E9%A4%90%E5%BB%B3_Harbour_Kitchen_bakery_cakes_May-2013_Mushroom_%26_Chicken_Pie.JPG",
+        "orig_title": "HKCEC 灣仔會展 Wan Chai restaurant 港灣茶餐廳 Harbour Kitchen bakery cakes May-2013 Mushroom & Chicken Pie.JPG",
+        "width": 2048,
+        "height": 1536
+      }
+    ]
+  },
+  {
+    "id": "zicai_danhua_tang",
+    "title": "紫菜蛋花汤",
+    "query": "seaweed soup",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_fill/zicai_danhua_tang_0.jpg",
+        "license": "CC BY 2.0",
+        "artist": "sunday driver",
+        "landing": "https://commons.wikimedia.org/wiki/File:Onsen_tamago_in_seaweed_soup_by_sunday_driver.jpg",
+        "orig_title": "Onsen tamago in seaweed soup by sunday driver.jpg",
+        "width": 600,
+        "height": 800
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_fill/zicai_danhua_tang_1.jpg",
+        "license": "CC BY 2.0",
+        "artist": "naotakem",
+        "landing": "https://commons.wikimedia.org/wiki/File:Twice_cooked_pork,_carrot_and_egg_fritter,_wakame_seaweed_soup,_brown_rice_%E5%9B%9E%E9%8D%8B%E8%82%89%E3%80%81%E3%81%AB%E3%82%93%E3%81%98%E3%82%93%E3%81%97%E3%82%8A%E3%81%97%E3%82%8A%E3%80%81%E3%83%AF%E3%82%AB%E3%83%A1%E3%82%B9%E3%83%BC%E3%83%97%E3%80%81%E7%8E%84%E7%B1%B3.jpg",
+        "orig_title": "Twice cooked pork, carrot and egg fritter, wakame seaweed soup, brown rice 回鍋肉、にんじんしりしり、ワカメスープ、玄米.jpg",
+        "width": 1080,
+        "height": 1080
+      }
+    ]
+  },
+  {
+    "id": "donggua_paigu_tang",
+    "title": "冬瓜排骨汤",
+    "query": "winter melon soup",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_fill/donggua_paigu_tang_0.jpg",
+        "license": "CC BY-SA 3.0",
+        "artist": "Brücke-Osteuropa",
+        "landing": "https://commons.wikimedia.org/wiki/File:Melonensuppe.JPG",
+        "orig_title": "Melonensuppe.JPG",
+        "width": 2560,
+        "height": 1920
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_fill/donggua_paigu_tang_1.jpg",
+        "license": "CC BY-SA 2.0",
+        "artist": "Alpha from Melbourne, Australia",
+        "landing": "https://commons.wikimedia.org/wiki/File:Winter_Melon_and_Seafood_Soup_-_Pre-CNY_Diner_with_the_Yews,_Easy_East.jpg",
+        "orig_title": "Winter Melon and Seafood Soup - Pre-CNY Diner with the Yews, Easy East.jpg",
+        "width": 2048,
+        "height": 1536
+      }
+    ]
+  },
+  {
+    "id": "yumi_paigu_tang",
+    "title": "玉米排骨汤",
+    "query": "corn soup",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_fill/yumi_paigu_tang_0.jpg",
+        "license": "CC BY-SA 3.0",
+        "artist": "Laurier",
+        "landing": "https://commons.wikimedia.org/wiki/File:Corn_soup.jpg",
+        "orig_title": "Corn soup.jpg",
+        "width": 2592,
+        "height": 3872
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_fill/yumi_paigu_tang_1.jpg",
+        "license": "CC BY-SA 4.0",
+        "artist": "Makapaulmea",
+        "landing": "https://commons.wikimedia.org/wiki/File:HK_Shanghai_Maling_Canned_Ham_Luncheon_Meat_Egg_Cream_Style_Corn_Soup_12-2015.JPG",
+        "orig_title": "HK Shanghai Maling Canned Ham Luncheon Meat Egg Cream Style Corn Soup 12-2015.JPG",
+        "width": 4896,
+        "height": 3672
+      }
+    ]
+  },
+  {
+    "id": "yiner_lianzi_geng",
+    "title": "银耳莲子羹",
+    "query": "snow fungus soup",
+    "candidates": []
+  },
+  {
+    "id": "fanqie_jidan_mian",
+    "title": "番茄鸡蛋面",
+    "query": "tomato noodles",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_fill/fanqie_jidan_mian_0.jpg",
+        "license": "CC BY-SA 3.0",
+        "artist": "Banej",
+        "landing": "https://commons.wikimedia.org/wiki/File:Chinese_Noodle_With_Tomato_and_Egg_Sauce.jpg",
+        "orig_title": "Chinese Noodle With Tomato and Egg Sauce.jpg",
+        "width": 3024,
+        "height": 4032
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_fill/fanqie_jidan_mian_1.jpg",
+        "license": "CC BY-SA 4.0",
+        "artist": "Ecliptics",
+        "landing": "https://commons.wikimedia.org/wiki/File:Tomato_ramen_with_beef_20200906.jpg",
+        "orig_title": "Tomato ramen with beef 20200906.jpg",
+        "width": 4000,
+        "height": 2250
+      }
+    ]
+  },
+  {
+    "id": "lurou_fan",
+    "title": "卤肉饭",
+    "query": "braised pork rice",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_fill/lurou_fan_0.jpg",
+        "license": "CC BY 2.0",
+        "artist": "Mori Chan from 台中市 (Taichung)",
+        "landing": "https://commons.wikimedia.org/wiki/File:Braised_pork_rice_in_Taichung.jpg",
+        "orig_title": "Braised pork rice in Taichung.jpg",
+        "width": 3456,
+        "height": 2304
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_fill/lurou_fan_1.jpg",
+        "license": "CC BY-SA 4.0",
+        "artist": "Diamo Laung Bobpuao",
+        "landing": "https://commons.wikimedia.org/wiki/File:Taiwan_Braised_Pork_on_Rice_Festival_20190814.jpg",
+        "orig_title": "Taiwan Braised Pork on Rice Festival 20190814.jpg",
+        "width": 3648,
+        "height": 2432
+      }
+    ]
+  },
+  {
+    "id": "zheng_dangeng",
+    "title": "蒸蛋羹",
+    "query": "steamed egg",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_fill/zheng_dangeng_0.jpg",
+        "license": "CC BY 2.0",
+        "artist": "Kanko*",
+        "landing": "https://commons.wikimedia.org/wiki/File:Chinese_steamed_eggs_by_Kanko.jpg",
+        "orig_title": "Chinese steamed eggs by Kanko.jpg",
+        "width": 640,
+        "height": 480
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_fill/zheng_dangeng_1.jpg",
+        "license": "CC BY-SA 2.0",
+        "artist": "Mr Wabu",
+        "landing": "https://commons.wikimedia.org/wiki/File:Steamed_egg_desert.jpg",
+        "orig_title": "Steamed egg desert.jpg",
+        "width": 800,
+        "height": 601
+      }
+    ]
+  },
+  {
+    "id": "congyoubing",
+    "title": "葱油饼",
+    "query": "scallion pancake",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_fill/congyoubing_0.jpg",
+        "license": "CC BY-SA 3.0",
+        "artist": "by World to Table at Flickr",
+        "landing": "https://commons.wikimedia.org/wiki/File:Korean_scallion_pancake-Pajeon_on_a_pan-01.jpg",
+        "orig_title": "Korean scallion pancake-Pajeon on a pan-01.jpg",
+        "width": 4752,
+        "height": 3168
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_fill/congyoubing_1.jpg",
+        "license": "CC0",
+        "artist": "玄史生",
+        "landing": "https://commons.wikimedia.org/wiki/File:Yilan_Scallion_Pancake_Booth_at_Hongchailin_Camp_Open_Day_Festival_20161224.jpg",
+        "orig_title": "Yilan Scallion Pancake Booth at Hongchailin Camp Open Day Festival 20161224.jpg",
+        "width": 2448,
+        "height": 3264
+      }
+    ]
+  },
+  {
+    "id": "qingzheng_luyu",
+    "title": "清蒸鲈鱼",
+    "query": "steamed fish",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_fill/qingzheng_luyu_0.jpg",
+        "license": "Public domain",
+        "artist": "User:Mattes",
+        "landing": "https://commons.wikimedia.org/wiki/File:Fish_stuffed_with_Thai_herbs.jpg",
+        "orig_title": "Fish stuffed with Thai herbs.jpg",
+        "width": 2464,
+        "height": 1872
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_fill/qingzheng_luyu_1.jpg",
+        "license": "Public domain",
+        "artist": "Mattes (talk) *derivative work: an-d (talk)",
+        "landing": "https://commons.wikimedia.org/wiki/File:Thai_steamed_fish_with_lime_juice-2.jpg",
+        "orig_title": "Thai steamed fish with lime juice-2.jpg",
+        "width": 2481,
+        "height": 1821
+      }
+    ]
+  },
+  {
+    "id": "hongshao_jitui",
+    "title": "红烧鸡腿",
+    "query": "braised chicken",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_fill/hongshao_jitui_0.jpg",
+        "license": "CC BY-SA 3.0",
+        "artist": "ZZArch",
+        "landing": "https://commons.wikimedia.org/wiki/File:Braised_chicken.jpg",
+        "orig_title": "Braised chicken.jpg",
+        "width": 2048,
+        "height": 1536
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_fill/hongshao_jitui_1.jpg",
+        "license": "CC BY-SA 3.0",
+        "artist": "猫猫的日记本",
+        "landing": "https://commons.wikimedia.org/wiki/File:Braised_Shredded_Chicken_with_Ham_and_Dried_Tofu_2011-04.JPG",
+        "orig_title": "Braised Shredded Chicken with Ham and Dried Tofu 2011-04.JPG",
+        "width": 4320,
+        "height": 3240
+      }
+    ]
+  },
+  {
+    "id": "xihongshi_niunan",
+    "title": "西红柿牛腩",
+    "query": "beef brisket",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_fill/xihongshi_niunan_0.jpg",
+        "license": "CC BY-SA 2.0",
+        "artist": "Biskuit",
+        "landing": "https://commons.wikimedia.org/wiki/File:Smitty%27s_Brisket_and_RC_Cola.jpg",
+        "orig_title": "Smitty's Brisket and RC Cola.jpg",
+        "width": 909,
+        "height": 1280
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_fill/xihongshi_niunan_1.jpg",
+        "license": "CC BY-SA 3.0",
+        "artist": "Scottgaspar",
+        "landing": "https://commons.wikimedia.org/wiki/File:Competition_Barbecue_submission._This_is_beef_brisket..jpg",
+        "orig_title": "Competition Barbecue submission. This is beef brisket..jpg",
+        "width": 640,
+        "height": 480
+      }
+    ]
+  }
+]

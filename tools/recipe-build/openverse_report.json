@@ -1,0 +1,748 @@
+[
+  {
+    "id": "suanrong_xilanhua",
+    "q": "broccoli stir fry",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_ov/suanrong_xilanhua_0.jpg",
+        "width": 1024,
+        "height": 678,
+        "license": "by 2.0",
+        "creator": "jeffreyw",
+        "landing": "https://www.flickr.com/photos/7927684@N03/8374790146",
+        "source": "flickr",
+        "title": "Mmm... shrimp and broccoli stir fry"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_ov/suanrong_xilanhua_1.jpg",
+        "width": 765,
+        "height": 1024,
+        "license": "by 2.0",
+        "creator": "Caspy2003",
+        "landing": "https://www.flickr.com/photos/56120667@N08/5402192743",
+        "source": "flickr",
+        "title": "Pork and Broccoli Stir Fry"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/recipe_ov/suanrong_xilanhua_2.jpg",
+        "width": 1024,
+        "height": 681,
+        "license": "by 2.0",
+        "creator": "jules:stonesoup",
+        "landing": "https://www.flickr.com/photos/58367355@N00/7870906960",
+        "source": "flickr",
+        "title": "w4 chicken basil & broccoli stir fry-2"
+      }
+    ]
+  },
+  {
+    "id": "ganbian_doujiao",
+    "q": "green beans stir fry",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_ov/ganbian_doujiao_0.jpg",
+        "width": 1024,
+        "height": 680,
+        "license": "by 2.0",
+        "creator": "jeffreyw",
+        "landing": "https://www.flickr.com/photos/7927684@N03/4802351530",
+        "source": "flickr",
+        "title": "Mmm...green beans stir fry"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_ov/ganbian_doujiao_1.jpg",
+        "width": 1024,
+        "height": 768,
+        "license": "by-sa 2.0",
+        "creator": "wonderyort",
+        "landing": "https://www.flickr.com/photos/11112304@N00/4041466580",
+        "source": "flickr",
+        "title": "Green Bean stir-fry"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/recipe_ov/ganbian_doujiao_2.jpg",
+        "width": 1024,
+        "height": 683,
+        "license": "by 2.0",
+        "creator": "dogplusplus",
+        "landing": "https://www.flickr.com/photos/96626920@N08/29307811418",
+        "source": "flickr",
+        "title": "Green bean stir fry"
+      }
+    ]
+  },
+  {
+    "id": "suanrong_fensi_wawacai",
+    "q": "napa cabbage",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_ov/suanrong_fensi_wawacai_0.jpg",
+        "width": 1024,
+        "height": 768,
+        "license": "by-sa 2.0",
+        "creator": "Phoebe Lim",
+        "landing": "https://www.flickr.com/photos/71837271@N00/8591314087",
+        "source": "flickr",
+        "title": "Bok choy 小白菜 and napa cabbage 奶白菜"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_ov/suanrong_fensi_wawacai_1.jpg",
+        "width": 1024,
+        "height": 766,
+        "license": "by-sa 2.0",
+        "creator": "Laurel Fan",
+        "landing": "https://www.flickr.com/photos/18295242@N00/1208028653",
+        "source": "flickr",
+        "title": "Napa Cabbage"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/recipe_ov/suanrong_fensi_wawacai_2.jpg",
+        "width": 768,
+        "height": 1024,
+        "license": "cc0 1.0",
+        "creator": "Plant pests and diseases",
+        "landing": "https://www.flickr.com/photos/62295966@N07/34795134544",
+        "source": "flickr",
+        "title": "Napa Cabbage (Won Bok, Chinese Cabbage, Celery Cabbage): Bacterial soft rot"
+      }
+    ]
+  },
+  {
+    "id": "qingchao_shishu",
+    "q": "stir fried vegetables",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_ov/qingchao_shishu_0.jpg",
+        "width": 1024,
+        "height": 686,
+        "license": "by-sa 2.0",
+        "creator": "avlxyz",
+        "landing": "https://www.flickr.com/photos/10559879@N00/3516321553",
+        "source": "flickr",
+        "title": "Aunt Lay Leong's Stir Fried Vegetables"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_ov/qingchao_shishu_1.jpg",
+        "width": 1024,
+        "height": 576,
+        "license": "by 2.0",
+        "creator": "Yortw",
+        "landing": "https://www.flickr.com/photos/52293377@N03/6064263631",
+        "source": "flickr",
+        "title": "Day Two Hundred and Twenty Seven - Lamb Steak, Mustard Mash and Stir Fried Vegetables"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/recipe_ov/qingchao_shishu_2.jpg",
+        "width": 1024,
+        "height": 683,
+        "license": "by-sa 2.0",
+        "creator": "robnguyen01",
+        "landing": "https://www.flickr.com/photos/46651916@N00/5463345695",
+        "source": "flickr",
+        "title": "Tofu and Stir Fried Vegetables"
+      }
+    ]
+  },
+  {
+    "id": "zicai_danhua_tang",
+    "q": "seaweed soup",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_ov/zicai_danhua_tang_0.jpg",
+        "width": 1024,
+        "height": 680,
+        "license": "by 2.0",
+        "creator": "motiqua",
+        "landing": "https://www.flickr.com/photos/32889716@N04/6362194289",
+        "source": "flickr",
+        "title": "Seaweed soup"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_ov/zicai_danhua_tang_1.jpg",
+        "width": 1024,
+        "height": 671,
+        "license": "by-sa 2.0",
+        "creator": "Genista",
+        "landing": "https://www.flickr.com/photos/50457550@N00/3002708",
+        "source": "flickr",
+        "title": "seaweed soup"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/recipe_ov/zicai_danhua_tang_2.jpg",
+        "width": 1024,
+        "height": 768,
+        "license": "by-sa 2.0",
+        "creator": "knittymarie",
+        "landing": "https://www.flickr.com/photos/14671121@N03/16927981260",
+        "source": "flickr",
+        "title": "Seaweed Soup"
+      }
+    ]
+  },
+  {
+    "id": "donggua_paigu_tang",
+    "q": "winter melon soup",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_ov/donggua_paigu_tang_0.jpg",
+        "width": 1024,
+        "height": 768,
+        "license": "cc0 1.0",
+        "creator": "roland",
+        "landing": "https://www.flickr.com/photos/35034347371@N01/44513407",
+        "source": "flickr",
+        "title": "Winter melon soup with chicken, duck and mushroom"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_ov/donggua_paigu_tang_1.jpg",
+        "width": 1024,
+        "height": 768,
+        "license": "by 2.0",
+        "creator": "Gary Soup",
+        "landing": "https://www.flickr.com/photos/87117631@N00/11284829704",
+        "source": "flickr",
+        "title": "Winter Melon Soup at Jade Garden"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/recipe_ov/donggua_paigu_tang_2.jpg",
+        "width": 1024,
+        "height": 768,
+        "license": "by 2.0",
+        "creator": "T.Tseng",
+        "landing": "https://www.flickr.com/photos/68147320@N02/26256597227",
+        "source": "flickr",
+        "title": "Clam and winter melon soup, scallion sesame bread, Taiwanese spinach"
+      }
+    ]
+  },
+  {
+    "id": "yiner_lianzi_geng",
+    "q": "snow fungus soup",
+    "candidates": []
+  },
+  {
+    "id": "hongshao_jitui",
+    "q": "braised chicken",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_ov/hongshao_jitui_0.jpg",
+        "width": 1024,
+        "height": 766,
+        "license": "by-sa 2.0",
+        "creator": "Laurel Fan",
+        "landing": "https://www.flickr.com/photos/18295242@N00/52187871",
+        "source": "flickr",
+        "title": "Soy Cider Braised Chicken"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_ov/hongshao_jitui_1.jpg",
+        "width": 1024,
+        "height": 680,
+        "license": "by 2.0",
+        "creator": "jeffreyw",
+        "landing": "https://www.flickr.com/photos/7927684@N03/6838450863",
+        "source": "flickr",
+        "title": "Mmm... honey braised chicken with fried rice"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/recipe_ov/hongshao_jitui_2.jpg",
+        "width": 1024,
+        "height": 691,
+        "license": "by 2.0",
+        "creator": "Gail Frederick",
+        "landing": "https://www.flickr.com/photos/71365354@N00/3183405400",
+        "source": "flickr",
+        "title": "Braised Chicken with all kinds of things"
+      }
+    ]
+  },
+  {
+    "id": "suantai_chaorou",
+    "q": "garlic scapes",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_ov/suantai_chaorou_0.jpg",
+        "width": 1024,
+        "height": 1024,
+        "license": "by-sa 2.0",
+        "creator": "You As A Machine",
+        "landing": "https://www.flickr.com/photos/82815184@N03/7654438002",
+        "source": "flickr",
+        "title": "Garlic Scapes"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_ov/suantai_chaorou_1.jpg",
+        "width": 1024,
+        "height": 684,
+        "license": "by 2.0",
+        "creator": "sporkist",
+        "landing": "https://www.flickr.com/photos/17879025@N00/4719353077",
+        "source": "flickr",
+        "title": "Steak with garlic scape risotto"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/recipe_ov/suantai_chaorou_2.jpg",
+        "width": 768,
+        "height": 1024,
+        "license": "by 2.0",
+        "creator": "aMichiganMom",
+        "landing": "https://www.flickr.com/photos/11172002@N05/3661180635",
+        "source": "flickr",
+        "title": "Garlic Scapes"
+      }
+    ]
+  },
+  {
+    "id": "suanla_tudousi",
+    "q": "shredded potato",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_ov/suanla_tudousi_0.jpg",
+        "width": 1024,
+        "height": 768,
+        "license": "by 2.0",
+        "creator": "Joelk75",
+        "landing": "https://www.flickr.com/photos/75001512@N00/5111966587",
+        "source": "flickr",
+        "title": "shredded potatoes"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_ov/suanla_tudousi_1.jpg",
+        "width": 1024,
+        "height": 768,
+        "license": "by-sa 2.0",
+        "creator": "Gavin Anderson",
+        "landing": "https://www.flickr.com/photos/48292998@N00/8675923087",
+        "source": "flickr",
+        "title": "Fried shredded potato"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/recipe_ov/suanla_tudousi_2.jpg",
+        "width": 1024,
+        "height": 768,
+        "license": "by 2.0",
+        "creator": "Gary Soup",
+        "landing": "https://www.flickr.com/photos/87117631@N00/14110634204",
+        "source": "flickr",
+        "title": "Mixed cold shredded potatoes {liang ban tu dou si) at Terra Cotta Warrior"
+      }
+    ]
+  },
+  {
+    "id": "xianggu_huaji",
+    "q": "mushroom chicken",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_ov/xianggu_huaji_0.jpg",
+        "width": 1024,
+        "height": 681,
+        "license": "by-sa 2.0",
+        "creator": "balise42",
+        "landing": "https://www.flickr.com/photos/22722986@N08/4785773957",
+        "source": "flickr",
+        "title": "Poulet aux champignons et à la noix de pécan / Pecan and mushroom chicken"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_ov/xianggu_huaji_1.jpg",
+        "width": 1024,
+        "height": 681,
+        "license": "by 2.0",
+        "creator": "jules:stonesoup",
+        "landing": "https://www.flickr.com/photos/58367355@N00/14681993436",
+        "source": "flickr",
+        "title": "mushroom chicken"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/recipe_ov/xianggu_huaji_2.jpg",
+        "width": 1024,
+        "height": 768,
+        "license": "by 2.0",
+        "creator": "Clotee Pridgen Allochuku",
+        "landing": "https://www.flickr.com/photos/44846110@N07/4962441110",
+        "source": "flickr",
+        "title": "Maggiano's Little Italy Mushroom Chicken"
+      }
+    ]
+  },
+  {
+    "id": "jiucai_chaodan",
+    "q": "chive omelette",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_ov/jiucai_chaodan_0.jpg",
+        "width": 1024,
+        "height": 681,
+        "license": "by-sa 2.0",
+        "creator": "stu_spivack",
+        "landing": "https://www.flickr.com/photos/35034346243@N01/14754268880",
+        "source": "flickr",
+        "title": "chive omelette"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_ov/jiucai_chaodan_1.jpg",
+        "width": 1024,
+        "height": 686,
+        "license": "by-sa 2.0",
+        "creator": "avlxyz",
+        "landing": "https://www.flickr.com/photos/10559879@N00/4092651880",
+        "source": "flickr",
+        "title": "Roti Omelette - Tom Phat AUD12.90"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/recipe_ov/jiucai_chaodan_2.jpg",
+        "width": 1024,
+        "height": 768,
+        "license": "by-sa 2.0",
+        "creator": "cyanocorax",
+        "landing": "https://www.flickr.com/photos/20462444@N00/3345156977",
+        "source": "flickr",
+        "title": "Crepe omelette street food"
+      }
+    ]
+  },
+  {
+    "id": "qingjiao_rousi",
+    "q": "green pepper pork",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_ov/qingjiao_rousi_0.jpg",
+        "width": 1024,
+        "height": 768,
+        "license": "by-sa 2.0",
+        "creator": "avlxyz",
+        "landing": "https://www.flickr.com/photos/10559879@N00/2403231552",
+        "source": "flickr",
+        "title": "锅巴肉 Crispy Fried Pork with Sweet and Sour Sauce - Original Taste"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_ov/qingjiao_rousi_1.jpg",
+        "width": 1024,
+        "height": 768,
+        "license": "by-sa 2.0",
+        "creator": "pelican",
+        "landing": "https://www.flickr.com/photos/85936780@N00/2317777479",
+        "source": "flickr",
+        "title": "Grilled ground meat filled in bell pepper"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/recipe_ov/qingjiao_rousi_2.jpg",
+        "width": 1024,
+        "height": 768,
+        "license": "by-sa 2.0",
+        "creator": "avlxyz",
+        "landing": "https://www.flickr.com/photos/10559879@N00/3199156218",
+        "source": "flickr",
+        "title": "京都排骨 Peking Pork Cutlets - Red Emperor AUD24"
+      }
+    ]
+  },
+  {
+    "id": "fanqie_jidan_mian",
+    "q": "tomato egg noodles",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_ov/fanqie_jidan_mian_0.jpg",
+        "width": 1024,
+        "height": 768,
+        "license": "by-sa 2.0",
+        "creator": "avlxyz",
+        "landing": "https://www.flickr.com/photos/10559879@N00/2426657413",
+        "source": "flickr",
+        "title": "Scrambled Eggs with Chorizo, Cannelini Beans, Cherry Tomatoes - The Maling Room"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_ov/fanqie_jidan_mian_1.jpg",
+        "width": 1024,
+        "height": 768,
+        "license": "by-sa 2.0",
+        "creator": "avlxyz",
+        "landing": "https://www.flickr.com/photos/10559879@N00/2462987456",
+        "source": "flickr",
+        "title": "Soup with quail egg - Real Dry Noodle - Vietnamese Grill Bar"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/recipe_ov/fanqie_jidan_mian_2.jpg",
+        "width": 1024,
+        "height": 768,
+        "license": "by-sa 2.0",
+        "creator": "avlxyz",
+        "landing": "https://www.flickr.com/photos/10559879@N00/2462157115",
+        "source": "flickr",
+        "title": "Grilled Chicken with Noodles - Vietnamese Grill Bar"
+      }
+    ]
+  },
+  {
+    "id": "shousi_baocai",
+    "q": "cabbage stir fry",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_ov/shousi_baocai_0.jpg",
+        "width": 1024,
+        "height": 768,
+        "license": "by-sa 2.0",
+        "creator": "avlxyz",
+        "landing": "https://www.flickr.com/photos/10559879@N00/608627954",
+        "source": "flickr",
+        "title": "Goat Korma, Butter Chicken, Cabbage Stir-fry with Pilau Rice and Teh Tarik - Cafe Zam Zam"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_ov/shousi_baocai_1.jpg",
+        "width": 1024,
+        "height": 768,
+        "license": "by-sa 2.0",
+        "creator": "wonderyort",
+        "landing": "https://www.flickr.com/photos/11112304@N00/4504326988",
+        "source": "flickr",
+        "title": "Broccoli Cabbage stir-fry with chilli ginger baked tofu"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/recipe_ov/shousi_baocai_2.jpg",
+        "width": 2048,
+        "height": 1536,
+        "license": "by-sa 2.0",
+        "creator": "Alpha from Melbourne, Australia",
+        "landing": "https://commons.wikimedia.org/w/index.php?curid=83134481",
+        "source": "wikimedia",
+        "title": "Goat Korma, Butter Chicken, Cabbage Stir-fry with Pilau Rice and Teh Tarik - Cafe Zam Zam (608627954)"
+      }
+    ]
+  },
+  {
+    "id": "qingzheng_luyu",
+    "q": "steamed fish",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_ov/qingzheng_luyu_0.jpg",
+        "width": 1024,
+        "height": 768,
+        "license": "by-sa 2.0",
+        "creator": "avlxyz",
+        "landing": "https://www.flickr.com/photos/10559879@N00/2500744284",
+        "source": "flickr",
+        "title": "Steamed Fish Fillets - Soup Restaurant"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_ov/qingzheng_luyu_1.jpg",
+        "width": 1024,
+        "height": 768,
+        "license": "by-sa 2.0",
+        "creator": "avlxyz",
+        "landing": "https://www.flickr.com/photos/10559879@N00/2077101997",
+        "source": "flickr",
+        "title": "Steamed Fish with Coconut Milk Kor Mun - Kao Gang AUD6"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/recipe_ov/qingzheng_luyu_2.jpg",
+        "width": 1024,
+        "height": 680,
+        "license": "by 2.0",
+        "creator": "whologwhy",
+        "landing": "https://www.flickr.com/photos/60417477@N00/5402790433",
+        "source": "flickr",
+        "title": "STEAMed FISH"
+      }
+    ]
+  },
+  {
+    "id": "xihongshi_niunan",
+    "q": "beef brisket",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_ov/xihongshi_niunan_0.jpg",
+        "width": 1024,
+        "height": 768,
+        "license": "by-sa 2.0",
+        "creator": "avlxyz",
+        "landing": "https://www.flickr.com/photos/10559879@N00/2171826488",
+        "source": "flickr",
+        "title": "牛腩煲仔饭 Beef Brisket Hotpot Rice - Soup, Box Hill"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_ov/xihongshi_niunan_1.jpg",
+        "width": 1024,
+        "height": 768,
+        "license": "by-sa 2.0",
+        "creator": "avlxyz",
+        "landing": "https://www.flickr.com/photos/10559879@N00/648504777",
+        "source": "flickr",
+        "title": "Beef Brisket and Beef Ball Noodle Soup - Wonton House - with flash"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/recipe_ov/xihongshi_niunan_2.jpg",
+        "width": 1024,
+        "height": 678,
+        "license": "by 2.0",
+        "creator": "jeffreyw",
+        "landing": "https://www.flickr.com/photos/7927684@N03/9437100724",
+        "source": "flickr",
+        "title": "Mmm... beef brisket burritos"
+      }
+    ]
+  },
+  {
+    "id": "mapo_doufu",
+    "q": "mapo tofu",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_ov/mapo_doufu_0.jpg",
+        "width": 1024,
+        "height": 768,
+        "license": "by-sa 2.0",
+        "creator": "avlxyz",
+        "landing": "https://www.flickr.com/photos/10559879@N00/2268560276",
+        "source": "flickr",
+        "title": "麻婆豆腐 Mapo Tofu - Dainty Sichuan"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_ov/mapo_doufu_1.jpg",
+        "width": 1024,
+        "height": 686,
+        "license": "by-sa 2.0",
+        "creator": "avlxyz",
+        "landing": "https://www.flickr.com/photos/10559879@N00/3881397682",
+        "source": "flickr",
+        "title": "麻婆豆腐饭 Mapo Tofu - Sichuan House AUD8.50"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/recipe_ov/mapo_doufu_2.jpg",
+        "width": 1024,
+        "height": 768,
+        "license": "by-sa 2.0",
+        "creator": "avlxyz",
+        "landing": "https://www.flickr.com/photos/10559879@N00/2920680725",
+        "source": "flickr",
+        "title": "麻婆豆腐饭 Mapo Tofu on Rice - Ramen Kingdom"
+      }
+    ]
+  },
+  {
+    "id": "gongbao_jiding",
+    "q": "kung pao chicken",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_ov/gongbao_jiding_0.jpg",
+        "width": 1024,
+        "height": 768,
+        "license": "by-sa 2.0",
+        "creator": "C John Thompson",
+        "landing": "https://www.flickr.com/photos/71266843@N03/6453176819",
+        "source": "flickr",
+        "title": "Kung Pao Chicken - Jadeland Restaurant, Ottawa"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_ov/gongbao_jiding_1.jpg",
+        "width": 1024,
+        "height": 681,
+        "license": "by 2.0",
+        "creator": "jules:stonesoup",
+        "landing": "https://www.flickr.com/photos/58367355@N00/16134413287",
+        "source": "flickr",
+        "title": "kung pao chicken"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/recipe_ov/gongbao_jiding_2.jpg",
+        "width": 1024,
+        "height": 768,
+        "license": "by-sa 2.0",
+        "creator": "C John Thompson",
+        "landing": "https://www.flickr.com/photos/71266843@N03/6650429089",
+        "source": "flickr",
+        "title": "Kung Pao Chicken - Keung Kee Restaurant, Montreal"
+      }
+    ]
+  },
+  {
+    "id": "fanqie_chaodan",
+    "q": "tomato egg",
+    "candidates": [
+      {
+        "index": 0,
+        "file": "/tmp/recipe_ov/fanqie_chaodan_0.jpg",
+        "width": 1024,
+        "height": 681,
+        "license": "by-sa 2.0",
+        "creator": "stu_spivack",
+        "landing": "https://www.flickr.com/photos/35034346243@N01/2898954637",
+        "source": "flickr",
+        "title": "tomato, egg, beef over rice"
+      },
+      {
+        "index": 1,
+        "file": "/tmp/recipe_ov/fanqie_chaodan_1.jpg",
+        "width": 1024,
+        "height": 678,
+        "license": "by 2.0",
+        "creator": "jeffreyw",
+        "landing": "https://www.flickr.com/photos/7927684@N03/9938029304",
+        "source": "flickr",
+        "title": "Mmm... bacon, basil, tomato, egg on sourdough"
+      },
+      {
+        "index": 2,
+        "file": "/tmp/recipe_ov/fanqie_chaodan_2.jpg",
+        "width": 1024,
+        "height": 768,
+        "license": "by-sa 2.0",
+        "creator": "rjw1",
+        "landing": "https://www.flickr.com/photos/48524258@N00/52041327157",
+        "source": "flickr",
+        "title": "fried breakfast with bacon, black pudding, beans, tomato, eggs and toast"
+      }
+    ]
+  }
+]
