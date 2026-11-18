@@ -127,10 +127,44 @@ Page({
     if (!s) return;
     const that = this;
     wx.showActionSheet({
-      itemList: ['修改空间名称', '解除这个关系'],
+      itemList: ['设置关系与称呼', '修改空间名称', '解除这个关系'],
       success: function (res) {
-        if (res.tapIndex === 0) that.renameSpace(s);
-        if (res.tapIndex === 1) that.leaveSpace(s);
+        if (res.tapIndex === 0) that.editRelation(s);
+        if (res.tapIndex === 1) that.renameSpace(s);
+        if (res.tapIndex === 2) that.leaveSpace(s);
+      }
+    });
+  },
+
+  editRelation(s) {
+    const that = this;
+    const types = [
+      { key: 'family', name: '家人' },
+      { key: 'partner', name: '恋人' },
+      { key: 'friend', name: '朋友' },
+      { key: 'custom', name: '自定义' }
+    ];
+    wx.showActionSheet({
+      itemList: types.map(function (t) { return t.name; }),
+      success: function (res) {
+        const t = types[res.tapIndex];
+        if (!t) return;
+        wx.showModal({
+          title: '你在这段关系里的称呼',
+          editable: true,
+          placeholderText: '比如：女儿 / 恋人 / 闺蜜',
+          content: s.my_label || '',
+          success: function (r) {
+            if (!r.confirm) return;
+            const label = (r.content || '').trim();
+            api.updateSpace(s.id, { relation_type: t.key, my_label: label })
+              .then(function () {
+                wx.showToast({ title: '关系已设置', icon: 'none' });
+                that.load();
+              })
+              .catch(function (err) { wx.showToast({ title: err.msg || '设置失败', icon: 'none' }); });
+          }
+        });
       }
     });
   },
