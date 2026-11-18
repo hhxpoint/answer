@@ -1,4 +1,5 @@
 const api = require('../../utils/couple-api.js');
+const share = require('../../utils/share.js');
 const wsClient = require('../../utils/couple-ws.js');
 
 const RECALL_WINDOW = 2 * 60 * 1000; // 与微信一致：2 分钟内可撤回
@@ -369,18 +370,21 @@ Page({
     this.setData({ atBottom: true, newCount: 0 });
   },
 
+
   onShareAppMessage: function () {
     return {
-      title: '🔥 来和我一起养一只小火苗吧，只属于两个人的小空间',
-      path: '/packageCouple/pages/home/home',
-      imageUrl: '/assets/couple-share.png'
+      title: '有些话，只说给懂的人听',
+      path: share.homePath(),
+      imageUrl: share.cover('chat')
     };
   },
 
   onShareTimeline: function () {
     return {
-      title: '🔥 我们的小火苗 · 只属于两个人的小空间',
-      imageUrl: '/assets/couple-share.png'
+      title: '有些话，只说给懂的人听',
+      query: share.timelineQuery(),
+      imageUrl: share.cover('chat')
     };
   }
+
 });

@@ -1,4 +1,5 @@
 const api = require('../../utils/couple-api.js');
+const share = require('../../utils/share.js');
 const wsClient = require('../../utils/couple-ws.js');
 
 const MAX_MS = 60 * 1000;
@@ -553,5 +554,22 @@ Page({
     setTimeout(function () {
       that.setData({ scrollInto: 'msg-' + that.lastId });
     }, 40);
+  },
+
+  onShareAppMessage: function () {
+    return {
+      title: '有些话，想慢慢说给你听',
+      path: share.homePath(),
+      imageUrl: share.cover('listen')
+    };
+  },
+
+  onShareTimeline: function () {
+    return {
+      title: '有些话，想慢慢说给你听',
+      query: share.timelineQuery(),
+      imageUrl: share.cover('listen')
+    };
   }
+
 });

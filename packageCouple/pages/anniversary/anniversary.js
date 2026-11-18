@@ -1,4 +1,5 @@
 const api = require('../../utils/couple-api.js');
+const share = require('../../utils/share.js');
 const wsClient = require('../../utils/couple-ws.js');
 const chineseCalendar = require('../../utils/chinese-calendar.js');
 
@@ -392,5 +393,22 @@ Page({
         }
       }
     });
+  },
+
+  onShareAppMessage: function () {
+    const n = this.data.nextItem;
+    const title = n && n.title
+      ? '距离「' + n.title + '」还有 ' + n.days_left + ' 天'
+      : '重要的日子，值得被记住';
+    return { title: title, path: share.homePath(), imageUrl: share.cover('anniversary') };
+  },
+
+  onShareTimeline: function () {
+    const n = this.data.nextItem;
+    const title = n && n.title
+      ? '距离「' + n.title + '」还有 ' + n.days_left + ' 天'
+      : '重要的日子，值得被记住';
+    return { title: title, query: share.timelineQuery(), imageUrl: share.cover('anniversary') };
   }
+
 });

@@ -1,4 +1,5 @@
 const api = require('../../utils/couple-api.js');
+const share = require('../../utils/share.js');
 const chineseCalendar = require('../../utils/chinese-calendar.js');
 
 const WEEK = ['日', '一', '二', '三', '四', '五', '六'];
@@ -245,5 +246,14 @@ Page({
           });
       }
     });
+  },
+
+  onShareAppMessage: function () {
+    return { title: '重要的日子，值得被记住', path: share.homePath(), imageUrl: share.cover('anniversary') };
+  },
+
+  onShareTimeline: function () {
+    return { title: '重要的日子，值得被记住', query: share.timelineQuery(), imageUrl: share.cover('anniversary') };
   }
+
 });

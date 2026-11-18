@@ -1,4 +1,5 @@
 const api = require('../../utils/couple-api.js');
+const share = require('../../utils/share.js');
 
 const MAX_IMAGES = 9;
 const MAX_BYTES = 1150 * 1024;
@@ -169,5 +170,14 @@ Page({
         that.setData({ publishing: false });
         wx.showToast({ title: (err && err.msg) || '发布失败，再试一次', icon: 'none' });
       });
+  },
+
+  onShareAppMessage: function () {
+    return { title: '今天，也收进我们的时光里', path: share.homePath(), imageUrl: share.cover('timeline') };
+  },
+
+  onShareTimeline: function () {
+    return { title: '今天，也收进我们的时光里', query: share.timelineQuery(), imageUrl: share.cover('timeline') };
   }
+
 });

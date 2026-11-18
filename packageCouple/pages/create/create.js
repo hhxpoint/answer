@@ -1,4 +1,5 @@
 const api = require('../../utils/couple-api.js');
+const share = require('../../utils/share.js');
 const spaceCtx = require('../../utils/space.js');
 
 const TYPES = [
@@ -88,24 +89,30 @@ Page({
     wx.redirectTo({ url: '/packageCouple/pages/home/home?space=' + s.id });
   },
 
+
   onShareAppMessage() {
     const s = this.data.result;
     if (!s || !s.invite_code) {
-      return { title: '🔥 和重要的人，一起养一只小火苗', path: '/packageCouple/pages/spaces/spaces' };
+      return {
+        title: '给这段关系，点亮一只火苗',
+        path: '/packageCouple/pages/spaces/spaces',
+        imageUrl: share.cover('create')
+      };
     }
     return {
       title: '来和我一起养一只小火苗吧',
       path: '/packageCouple/pages/join/join?code=' + encodeURIComponent(s.invite_code),
-      imageUrl: '/assets/couple-share.png'
+      imageUrl: share.cover('join')
     };
   },
 
   onShareTimeline() {
     const s = this.data.result;
     return {
-      title: '和重要的人，一起养一只小火苗',
+      title: s && s.invite_code ? '有人给你留了一只小火苗' : '给这段关系，点亮一只火苗',
       query: s && s.invite_code ? 'code=' + encodeURIComponent(s.invite_code) : '',
-      imageUrl: '/assets/couple-share.png'
+      imageUrl: share.cover(s && s.invite_code ? 'join' : 'create')
     };
-  },
+  }
+
 });

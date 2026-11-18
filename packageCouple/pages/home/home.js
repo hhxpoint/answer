@@ -1,4 +1,5 @@
 const api = require('../../utils/couple-api.js');
+const share = require('../../utils/share.js');
 const spaceCtx = require('../../utils/space.js');
 
 const SHARE_IMAGE = '/assets/couple-share.png';
@@ -249,27 +250,32 @@ Page({
     this.load().then(function () { wx.stopPullDownRefresh(); });
   },
 
+
   onShareAppMessage: function () {
     if (this.data.alone && this.data.inviteCode) {
       return {
-        title: '🔥 来和我一起养一只小火苗吧',
+        title: '我在等一个人，一起点亮这只小火苗',
         path: '/packageCouple/pages/join/join?code=' + encodeURIComponent(this.data.inviteCode),
-        imageUrl: SHARE_IMAGE
+        imageUrl: share.cover('join')
       };
     }
+    const pet = this.data.pet || {};
+    const lv = pet.level || 1;
+    const streak = pet.streak || 0;
     return {
-      title: '我们在养一只小火苗，已经一起守护 ' + ((this.data.pet && this.data.pet.streak) || 0) + ' 天啦',
-      path: '/packageCouple/pages/home/home?space=' + (this.data.couple && this.data.couple.id ? this.data.couple.id : ''),
-      imageUrl: SHARE_IMAGE
+      title: '我们的小火苗 Lv.' + lv + '，已经连续守护 ' + streak + ' 天',
+      path: share.homePath(),
+      imageUrl: share.cover('home')
     };
   },
 
   onShareTimeline: function () {
     const alone = this.data.alone && this.data.inviteCode;
     return {
-      title: alone ? '🔥 来和我一起养一只小火苗吧' : '我们的小火苗 · 只属于两个人的小空间',
-      query: alone ? 'code=' + encodeURIComponent(this.data.inviteCode) : '',
-      imageUrl: SHARE_IMAGE
+      title: alone ? '我在等一个人，一起点亮这只小火苗' : '我们的小火苗 · 只属于两个人的小空间',
+      query: alone ? 'code=' + encodeURIComponent(this.data.inviteCode) : share.timelineQuery(),
+      imageUrl: share.cover(alone ? 'join' : 'home')
     };
   }
+
 });

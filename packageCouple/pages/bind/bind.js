@@ -1,4 +1,5 @@
 const api = require('../../utils/couple-api.js');
+const share = require('../../utils/share.js');
 const spaceCtx = require('../../utils/space.js');
 
 const SHARE_IMAGE = '/assets/couple-share.png';
@@ -168,21 +169,23 @@ Page({
       });
   },
 
+
   onShareAppMessage: function () {
     const code = this.data.inviteCode || '';
     return {
-      title: code ? '🔥 来和我一起养一只小火苗吧' : '🔥 一起养一只只属于两个人的小火苗',
-      path: '/packageCouple/pages/bind/bind' + (code ? '?invite=' + encodeURIComponent(code) : ''),
-      imageUrl: SHARE_IMAGE
+      title: code ? '两个人，一只火苗，等你来点亮' : '两个人，一只火苗',
+      path: '/packageCouple/pages/join/join' + (code ? '?code=' + encodeURIComponent(code) : ''),
+      imageUrl: share.cover('bind')
     };
   },
 
   onShareTimeline: function () {
     const code = this.data.inviteCode || '';
     return {
-      title: '🔥 我们的小火苗 · 只属于两个人的小空间',
-      query: code ? 'invite=' + encodeURIComponent(code) : '',
-      imageUrl: SHARE_IMAGE
+      title: '两个人，一只火苗',
+      query: code ? 'code=' + encodeURIComponent(code) : '',
+      imageUrl: share.cover('bind')
     };
   }
+
 });

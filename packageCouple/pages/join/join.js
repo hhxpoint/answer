@@ -1,4 +1,5 @@
 const api = require('../../utils/couple-api.js');
+const share = require('../../utils/share.js');
 const spaceCtx = require('../../utils/space.js');
 
 const LABELS = ['女儿', '儿子', '爸爸', '妈妈', '恋人', '闺蜜', '死党', '朋友'];
@@ -63,7 +64,23 @@ Page({
       });
   },
 
+
   onShareAppMessage() {
-    return { title: '🔥 和重要的人，一起养一只小火苗', path: '/packageCouple/pages/spaces/spaces', imageUrl: '/assets/couple-share.png' };
+    const code = (this.data.code || '').trim();
+    return {
+      title: '有人给你留了一只小火苗',
+      path: '/packageCouple/pages/join/join' + (code ? '?code=' + encodeURIComponent(code) : ''),
+      imageUrl: share.cover('join')
+    };
   },
+
+  onShareTimeline() {
+    const code = (this.data.code || '').trim();
+    return {
+      title: '有人给你留了一只小火苗',
+      query: code ? 'code=' + encodeURIComponent(code) : '',
+      imageUrl: share.cover('join')
+    };
+  }
+
 });

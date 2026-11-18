@@ -1,4 +1,5 @@
 const api = require('../../utils/couple-api.js');
+const share = require('../../utils/share.js');
 const wsClient = require('../../utils/couple-ws.js');
 
 function pad(n) {
@@ -261,5 +262,22 @@ Page({
         wx.hideLoading();
         wx.showToast({ title: err.msg || '删除失败', icon: 'none' });
       });
+  },
+
+  onShareAppMessage: function () {
+    return {
+      title: '把今天，收进我们的时光',
+      path: share.homePath(),
+      imageUrl: share.cover('timeline')
+    };
+  },
+
+  onShareTimeline: function () {
+    return {
+      title: '把今天，收进我们的时光',
+      query: share.timelineQuery(),
+      imageUrl: share.cover('timeline')
+    };
   }
+
 });

@@ -1,4 +1,5 @@
 const api = require('../../utils/couple-api.js');
+const share = require('../../utils/share.js');
 
 Page({
   data: {
@@ -119,5 +120,18 @@ Page({
       return;
     }
     wx.redirectTo({ url: '/packageCouple/pages/home/home' });
+  },
+
+  onShareAppMessage: function () {
+    return {
+      title: '我们的小火苗 · 只属于两个人的小空间',
+      path: '/packageCouple/pages/spaces/spaces',
+      imageUrl: share.cover('bind')
+    };
+  },
+
+  onShareTimeline: function () {
+    return { title: '我们的小火苗 · 只属于两个人的小空间', imageUrl: share.cover('bind') };
   }
+
 });

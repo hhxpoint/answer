@@ -1,4 +1,5 @@
 const api = require('../../utils/couple-api.js');
+const share = require('../../utils/share.js');
 const spaceCtx = require('../../utils/space.js');
 
 const TYPE_META = {
@@ -213,15 +214,20 @@ Page({
     this.load().then(function () { wx.stopPullDownRefresh(); });
   },
 
+
   onShareAppMessage() {
     return {
-      title: '🔥 和重要的人，一起养一只小火苗',
+      title: '和重要的人，一起养一只火苗',
       path: '/packageCouple/pages/spaces/spaces',
-      imageUrl: '/assets/couple-share.png'
+      imageUrl: share.cover('spaces')
     };
   },
 
   onShareTimeline() {
-    return { title: '和重要的人，一起养一只小火苗', imageUrl: '/assets/couple-share.png' };
-  },
+    return {
+      title: '和重要的人，一起养一只火苗',
+      imageUrl: share.cover('spaces')
+    };
+  }
+
 });
