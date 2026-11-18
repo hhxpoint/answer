@@ -47,7 +47,7 @@
 - 服务端：微信 API keep-alive、`msgSecCheck` 2 分钟短缓存、800ms 超时预算、消息幂等、慢请求/消息时序日志
 - 数据迁移：`messages.client_msg_id` + 索引（`003_chat_idempotency`）；迁移前备份
 - 验证：服务端 24 项测试通过；编译 293 文件 / 产物约 8.22MB
-- **上传受阻**：当前公网 IP `36.28.198.181` 不在小程序上传密钥白名单，需加入后重传 1.31.0
+- 已上传开发版 **1.31.0**（使用微信开发者工具 CLI 上传，避开上传密钥 IP 白名单限制；上传包约 7.8MB）
 - 详细说明：[docs/modules/couple/performance.md](modules/couple/performance.md)
 
 ### 1.30.0 · 2026-11-18 · 小火苗全界面定制分享
