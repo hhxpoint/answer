@@ -34,8 +34,11 @@
         <view wx:if="{{item.system}}" class="system-row">{{item.text}}</view>
 
         <view wx:else class="msg-row {{item.mine ? 'mine' : 'them'}}">
-          <image wx:if="{{item.avatar}}" class="msg-avatar" src="{{item.avatar}}" mode="aspectFill"></image>
-          <view wx:else class="msg-avatar">{{item.avatarText}}</view>
+          <block wx:if="{{item.showAvatar}}">
+            <image wx:if="{{item.avatar}}" class="msg-avatar" src="{{item.avatar}}" mode="aspectFill"></image>
+            <view wx:else class="msg-avatar">{{item.avatarText}}</view>
+          </block>
+          <view wx:else class="msg-avatar msg-avatar-ghost"></view>
 
           <view
             class="bubble {{item.mine ? 'bubble-mine' : 'bubble-them'}}"
@@ -51,12 +54,12 @@
             </view>
             <text class="bubble-text">{{item.content}}</text>
           </view>
+        </view>
 
-          <view wx:if="{{item.mine && (item.pending || item.failed)}}"
-            class="send-status {{item.failed ? 'send-failed' : ''}}"
-            data-id="{{item.id}}" catchtap="retryMessage">
-            {{item.failed ? '发送失败 · 点击重试' : '发送中…'}}
-          </view>
+        <view wx:if="{{item.mine && (item.pending || item.failed)}}"
+          class="send-status {{item.failed ? 'send-failed' : ''}}"
+          data-id="{{item.id}}" catchtap="retryMessage">
+          {{item.failed ? '发送失败 · 点击重试' : '发送中…'}}
         </view>
       </view>
 

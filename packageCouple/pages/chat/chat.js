@@ -287,6 +287,7 @@ Page({
     const pname = this.data.partnerName;
     const rows = [];
     let prevTime = 0;
+    let prevUser = 0;
     this.order.forEach(function (id) {
       const d = that.msgMap[id];
       if (!d || d.id === undefined) return;
@@ -300,6 +301,7 @@ Page({
           showTime: showTime,
           timeText: fmtTime(d.created_at)
         });
+        prevUser = 0;
         return;
       }
       let replyName = '';
@@ -310,10 +312,12 @@ Page({
         replyContent = d.reply.recalled ? '消息已撤回' : (d.reply.content || '');
       }
       const mine = d.user_id === myId;
+      const grouped = !showTime && prevUser === d.user_id;
       rows.push({
         id: id,
         system: false,
         mine: mine,
+        showAvatar: !grouped,
         content: d.content || '',
         created_at: d.created_at,
         showTime: showTime,
@@ -325,6 +329,7 @@ Page({
         avatar: mine ? that.data.myAvatar : that.data.partnerAvatar,
         avatarText: mine ? (that.data.myName || '我').slice(0, 1) : (that.data.partnerInitial || 'TA')
       });
+      prevUser = d.user_id;
     });
     return rows;
   },

@@ -7,7 +7,7 @@ page {
 .page {
   position: relative;
   min-height: 100vh;
-  padding-bottom: 180rpx;
+  padding-bottom: 80rpx;
   overflow: hidden;
   background: linear-gradient(180deg, #fff9f4 0%, #ffefe6 100%);
 }
@@ -36,7 +36,9 @@ page {
 /* ===== 顶部 ===== */
 .hero {
   position: relative;
-  padding: 44rpx 40rpx 4rpx;
+  padding: 64rpx 40rpx 4rpx;
+  padding-top: calc(64rpx + constant(safe-area-inset-top));
+  padding-top: calc(64rpx + env(safe-area-inset-top));
 }
 .hero-title {
   font-size: 46rpx;
@@ -250,9 +252,29 @@ page {
 /* ===== 列表 ===== */
 .list-head {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   margin: 30rpx 38rpx 12rpx;
+}
+.list-head-left {
+  display: flex;
+  align-items: baseline;
+  gap: 12rpx;
+}
+.list-add {
+  flex-shrink: 0;
+  height: 54rpx;
+  line-height: 54rpx;
+  padding: 0 22rpx;
+  border-radius: 999rpx;
+  background: #fff7ef;
+  border: 1rpx solid rgba(233, 123, 62, 0.18);
+  color: #c06a3d;
+  font-size: 21rpx;
+  font-weight: 600;
+}
+.list-add:active {
+  background: #ffefe2;
 }
 .list-title {
   font-size: 28rpx;
@@ -391,28 +413,6 @@ page {
   box-shadow: 0 12rpx 26rpx rgba(255, 140, 110, 0.3);
 }
 
-/* ===== 悬浮按钮 ===== */
-.fab {
-  position: fixed;
-  right: 36rpx;
-  bottom: calc(56rpx + constant(safe-area-inset-bottom));
-  bottom: calc(56rpx + env(safe-area-inset-bottom));
-  display: flex;
-  align-items: center;
-  height: 92rpx;
-  padding: 0 36rpx;
-  border-radius: 999rpx;
-  background: linear-gradient(135deg, #ffb27a, #ff8a7a);
-  color: #ffffff;
-  font-size: 28rpx;
-  font-weight: 600;
-  box-shadow: 0 16rpx 34rpx rgba(255, 140, 110, 0.36);
-  transition: transform 0.15s ease;
-}
-.fab:active {
-  transform: scale(0.95);
-}
-
 .hero {
   animation: fadeUp 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
@@ -424,9 +424,6 @@ page {
 }
 .cal-card {
   animation: fadeUp 0.5s 0.05s cubic-bezier(0.22, 0.61, 0.36, 1) both;
-}
-.fab {
-  animation: fabFloat 3.8s ease-in-out infinite;
 }
 
 @keyframes fadeUp {
@@ -448,8 +445,4 @@ page {
 @keyframes dotPulse {
   0%, 100% { box-shadow: 0 0 0 0 rgba(255, 140, 110, 0.35); }
   50% { box-shadow: 0 0 0 10rpx rgba(255, 140, 110, 0); }
-}
-@keyframes fabFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6rpx); }
 }

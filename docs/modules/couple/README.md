@@ -25,7 +25,7 @@
 | 侧耳倾听 | `listen` | 按住说话（≤60s）、上滑取消、播放、撤回、内容审核 |
 | 分享 | 全部页面 | 9 张定制封面 + 按页面定制文案（大厅/创建/加入/主页/悄悄话/时光/纪念日/语音/资料） |
 
-> 延迟与流畅度优化见 [performance.md](performance.md)。
+> 延迟与流畅度优化见 [performance.md](performance.md)；界面协调性优化见 [ui-refinement.md](ui-refinement.md)。
 
 ---
 

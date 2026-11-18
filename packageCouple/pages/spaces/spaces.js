@@ -30,7 +30,8 @@ function decorate(s) {
   const meta = relMeta(s.relation_type);
   const partner = s.partner || null;
   const partnerName = (partner && partner.nickname) || '';
-  const title = s.title || (partnerName ? '和' + partnerName + '的小火苗' : '等待对方的小火苗');
+  const displayName = partnerName && /[A-Za-z0-9]/.test(partnerName) ? ' ' + partnerName + ' ' : partnerName;
+  const title = s.title || (partnerName ? '和' + displayName + '的小火苗' : '等待对方的小火苗');
   const labels = [];
   if (s.my_label) labels.push('我 · ' + s.my_label);
   if (s.partner_label) labels.push((partnerName || '对方') + ' · ' + s.partner_label);

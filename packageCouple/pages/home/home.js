@@ -113,7 +113,8 @@ Page({
     const alone = !couple.partner;
     const partnerName = (couple.partner && couple.partner.nickname) || 'TA';
     const meta = TYPE_META[couple.relation_type] || TYPE_META.unset;
-    const spaceTitle = couple.title || (partnerName ? '和' + partnerName + '的小火苗' : '等待对方的小火苗');
+    const partnerLabel = partnerName && /[A-Za-z0-9]/.test(partnerName) ? ' ' + partnerName + ' ' : partnerName;
+    const spaceTitle = couple.title || (partnerName ? '和' + partnerLabel + '的小火苗' : '等待对方的小火苗');
     const relationBits = [];
     if (couple.my_label) relationBits.push('我 · ' + couple.my_label);
     if (couple.partner_label) relationBits.push((partnerName || '对方') + ' · ' + couple.partner_label);

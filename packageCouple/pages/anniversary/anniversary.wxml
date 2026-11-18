@@ -55,8 +55,11 @@
     </view>
 
     <view class="list-head" wx:if="{{hasData}}">
-      <view class="list-title">全部纪念日</view>
-      <view class="list-count">{{total}} 个</view>
+      <view class="list-head-left">
+        <view class="list-title">全部纪念日</view>
+        <view class="list-count">{{total}} 个</view>
+      </view>
+      <view class="list-add" bindtap="goEdit">＋ 添加</view>
     </view>
 
     <view class="list" wx:if="{{hasData}}">
@@ -86,6 +89,4 @@
       <view class="empty-btn" bindtap="goEdit">添加第一个纪念日</view>
     </view>
   </block>
-
-  <view class="fab" bindtap="goEdit">＋ 添加纪念日</view>
 </view>
