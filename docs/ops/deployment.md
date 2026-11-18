@@ -102,6 +102,7 @@ ADMIN_USER=<独立面板用户名>
 ADMIN_PASS=<独立面板强密码>
 WX_MSG_TOKEN=<微信消息推送 Token，与公众平台一致>
 WX_MSG_AES_KEY=<43 位 EncodingAESKey>
+MULTI_SPACE_ENABLED=1   # 多关系空间开关：0=旧行为，1=启用空间大厅/ X-Space-Id
 ```
 
 生成随机密钥示例：

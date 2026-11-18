@@ -17,6 +17,7 @@ README.md（根目录）
        ├─ docs/modules/overview.md        ← 每个子包负责什么
        ├─ docs/modules/couple/README.md   ← 小火苗模块详解（核心）
        │    ├─ docs/modules/couple/server.md
+       │    ├─ docs/modules/couple/multi-space.md  ← 多关系空间改造
        │    └─ docs/modules/couple/release.md
        ├─ docs/modules/recipe/README.md   ← 今天吃什么（纯本地菜谱）
        ├─ docs/ops/deployment.md          ← 服务端怎么部、怎么配
@@ -36,6 +37,7 @@ README.md（根目录）
 | [modules/overview.md](modules/overview.md) | 快速定位某个功能在哪个子包 |
 | [modules/couple/README.md](modules/couple/README.md) | 小火苗模块的产品设计、页面、数据结构、前端实现 |
 | [modules/couple/server.md](modules/couple/server.md) | 服务端接口、SQLite 表、WebSocket、管理后台、内容安全 |
+| [modules/couple/multi-space.md](modules/couple/multi-space.md) | 多关系空间：数据模型、API、兼容、测试、回滚 |
 | [modules/couple/release.md](modules/couple/release.md) | 上传/预览/体验版/审核/隐私协议/发布检查单 |
 | [modules/recipe/README.md](modules/recipe/README.md) | 「今天吃什么」纯本地菜谱：数据、检索、冰箱模式、图片许可与构建 |
 | [ops/deployment.md](ops/deployment.md) | 服务器路径、systemd、nginx、环境变量、部署脚本 |
