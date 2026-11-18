@@ -1,0 +1,20 @@
+<view class="page">
+  <view class="head">
+    <view class="head-title">图片来源与许可</view>
+    <view class="head-sub">共 {{total}} 道菜谱，其中 {{photoCount}} 道使用真实照片；其余为统一设计封面</view>
+  </view>
+
+  <view class="note">
+    照片来自 Wikimedia Commons（维基百科），遵循各自 CC / Public Domain 许可，
+    可在原链接查看完整授权信息。点击条目可复制来源。
+  </view>
+
+  <view class="item" wx:for="{{list}}" wx:key="id" data-i="{{index}}" bindtap="copy">
+    <view class="item-title">{{item.title}}</view>
+    <view class="item-meta">{{item.source}} · {{item.license}}</view>
+    <view class="item-artist" wx:if="{{item.artist}}">作者：{{item.artist}}</view>
+    <view class="item-link">原图页面：{{item.landing}}</view>
+  </view>
+
+  <view class="foot">如需替换某张图片，修改 packageRecipe/data/credits.js 并重新打包即可</view>
+</view>

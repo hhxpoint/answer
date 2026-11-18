@@ -34,6 +34,16 @@
 
   "subPackages": [
     {
+      "root": "packageRecipe",
+      "pages": [
+        "pages/home/home",
+        "pages/detail/detail",
+        "pages/fridge/fridge",
+        "pages/favorites/favorites",
+        "pages/sources/sources"
+      ]
+    },
+    {
       "root": "packageCouple",
       "pages": [
         "pages/home/home",

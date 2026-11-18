@@ -1,0 +1,420 @@
+// 图片版权信息（仅收录有明确许可的图片），由 tools/recipe-build 生成
+module.exports = [
+  {
+    "id": "fanqie_chaodan",
+    "title": "番茄炒蛋",
+    "image": "/packageRecipe/assets/recipes/fanqie_chaodan.jpg",
+    "source": "Wikipedia / Wikimedia Commons",
+    "license": "CC BY-SA 4.0",
+    "artist": "三島堂",
+    "landing": "https://commons.wikimedia.org/wiki/File:%E7%95%AA%E8%8C%84%E7%82%92%E8%9B%8B2.PNG",
+    "orig_title": "番茄炒蛋2.PNG",
+    "width": 1568,
+    "height": 1000
+  },
+  {
+    "id": "gongbao_jiding",
+    "title": "宫保鸡丁",
+    "image": "/packageRecipe/assets/recipes/gongbao_jiding.jpg",
+    "source": "Wikipedia / Wikimedia Commons",
+    "license": "CC BY-SA 3.0",
+    "artist": "Steven G. Johnson",
+    "landing": "https://commons.wikimedia.org/wiki/File:Kung-pao-shanghai.jpg",
+    "orig_title": "Kung-pao-shanghai.jpg",
+    "width": 3008,
+    "height": 2000
+  },
+  {
+    "id": "mapo_doufu",
+    "title": "麻婆豆腐",
+    "image": "/packageRecipe/assets/recipes/mapo_doufu.jpg",
+    "source": "Wikipedia / Wikimedia Commons",
+    "license": "CC BY-SA 3.0",
+    "artist": "Archon6812",
+    "landing": "https://commons.wikimedia.org/wiki/File:Billyfoodmabodofu3.jpg",
+    "orig_title": "Billyfoodmabodofu3.jpg",
+    "width": 2304,
+    "height": 3456
+  },
+  {
+    "id": "yuxiang_rousi",
+    "title": "鱼香肉丝",
+    "image": "/packageRecipe/assets/recipes/yuxiang_rousi.jpg",
+    "source": "Wikipedia / Wikimedia Commons",
+    "license": "CC BY-SA 3.0",
+    "artist": "Дмитрий Журавлев (dejur)",
+    "landing": "https://commons.wikimedia.org/wiki/File:%E9%B1%BC%E9%A6%99%E8%82%89%E4%B8%9D.jpg",
+    "orig_title": "鱼香肉丝.jpg",
+    "width": 536,
+    "height": 800
+  },
+  {
+    "id": "huiguorou",
+    "title": "回锅肉",
+    "image": "/packageRecipe/assets/recipes/huiguorou.jpg",
+    "source": "Wikipedia / Wikimedia Commons",
+    "license": "CC BY-SA 4.0",
+    "artist": "N509FZ",
+    "landing": "https://commons.wikimedia.org/wiki/File:Huiguorou_made_from_Neijiang_local_pork_at_Daqian_Restaurant,_Beidadi_(20251011111845).jpg",
+    "orig_title": "Huiguorou_made_from_Neijiang_local_pork_at_Daqian_Restaurant,_Beidadi_(20251011111845).jpg",
+    "width": 3869,
+    "height": 2580
+  },
+  {
+    "id": "qingjiao_rousi",
+    "title": "青椒肉丝",
+    "image": "/packageRecipe/assets/recipes/qingjiao_rousi.jpg",
+    "source": "Wikipedia / Wikimedia Commons",
+    "license": "CC BY-SA 3.0",
+    "artist": "Bakkai撮影",
+    "landing": "https://commons.wikimedia.org/wiki/File:Pepper_steak.jpg",
+    "orig_title": "Pepper_steak.jpg",
+    "width": 640,
+    "height": 480
+  },
+  {
+    "id": "hongshao_qiezi",
+    "title": "红烧茄子",
+    "image": "",
+    "source": "",
+    "license": "",
+    "artist": "",
+    "landing": ""
+  },
+  {
+    "id": "suanrong_xilanhua",
+    "title": "蒜蓉西兰花",
+    "image": "",
+    "source": "",
+    "license": "",
+    "artist": "",
+    "landing": ""
+  },
+  {
+    "id": "shousi_baocai",
+    "title": "手撕包菜",
+    "image": "",
+    "source": "",
+    "license": "",
+    "artist": "",
+    "landing": ""
+  },
+  {
+    "id": "ganbian_doujiao",
+    "title": "干煸豆角",
+    "image": "",
+    "source": "",
+    "license": "",
+    "artist": "",
+    "landing": ""
+  },
+  {
+    "id": "kele_jichi",
+    "title": "可乐鸡翅",
+    "image": "/packageRecipe/assets/recipes/kele_jichi.jpg",
+    "source": "Wikipedia / Wikimedia Commons",
+    "license": "CC BY-SA 4.0",
+    "artist": "Wuzhiya",
+    "landing": "https://commons.wikimedia.org/wiki/File:%E5%8F%AF%E4%B9%90%E9%B8%A1%E7%BF%85.jpg",
+    "orig_title": "可乐鸡翅.jpg",
+    "width": 800,
+    "height": 800
+  },
+  {
+    "id": "suanla_tudousi",
+    "title": "酸辣土豆丝",
+    "image": "",
+    "source": "",
+    "license": "",
+    "artist": "",
+    "landing": ""
+  },
+  {
+    "id": "suantai_chaorou",
+    "title": "蒜苔炒肉",
+    "image": "",
+    "source": "",
+    "license": "",
+    "artist": "",
+    "landing": ""
+  },
+  {
+    "id": "jiucai_chaodan",
+    "title": "韭菜炒蛋",
+    "image": "/packageRecipe/assets/recipes/jiucai_chaodan.jpg",
+    "source": "Wikipedia / Wikimedia Commons",
+    "license": "CC BY-SA 4.0",
+    "artist": "Ceeseven",
+    "landing": "https://commons.wikimedia.org/wiki/File:Egg_Foo_Young_in_Hong_Kong.jpg",
+    "orig_title": "Egg_Foo_Young_in_Hong_Kong.jpg",
+    "width": 5520,
+    "height": 4140
+  },
+  {
+    "id": "suanrong_fensi_wawacai",
+    "title": "蒜蓉粉丝娃娃菜",
+    "image": "",
+    "source": "",
+    "license": "",
+    "artist": "",
+    "landing": ""
+  },
+  {
+    "id": "liangban_huanggua",
+    "title": "凉拌黄瓜",
+    "image": "",
+    "source": "",
+    "license": "",
+    "artist": "",
+    "landing": ""
+  },
+  {
+    "id": "qingchao_shishu",
+    "title": "清炒时蔬",
+    "image": "",
+    "source": "",
+    "license": "",
+    "artist": "",
+    "landing": ""
+  },
+  {
+    "id": "xianggu_huaji",
+    "title": "香菇滑鸡",
+    "image": "",
+    "source": "",
+    "license": "",
+    "artist": "",
+    "landing": ""
+  },
+  {
+    "id": "zicai_danhua_tang",
+    "title": "紫菜蛋花汤",
+    "image": "",
+    "source": "",
+    "license": "",
+    "artist": "",
+    "landing": ""
+  },
+  {
+    "id": "fanqie_dantang",
+    "title": "番茄蛋汤",
+    "image": "/packageRecipe/assets/recipes/fanqie_dantang.jpg",
+    "source": "Wikipedia / Wikimedia Commons",
+    "license": "CC BY-SA 3.0",
+    "artist": "NNU-10-HanRongrong",
+    "landing": "https://commons.wikimedia.org/wiki/File:Tomato_and_egg_soup2.jpg",
+    "orig_title": "Tomato_and_egg_soup2.jpg",
+    "width": 2048,
+    "height": 1536
+  },
+  {
+    "id": "donggua_paigu_tang",
+    "title": "冬瓜排骨汤",
+    "image": "",
+    "source": "",
+    "license": "",
+    "artist": "",
+    "landing": ""
+  },
+  {
+    "id": "yumi_paigu_tang",
+    "title": "玉米排骨汤",
+    "image": "",
+    "source": "",
+    "license": "",
+    "artist": "",
+    "landing": ""
+  },
+  {
+    "id": "yiner_lianzi_geng",
+    "title": "银耳莲子羹",
+    "image": "",
+    "source": "",
+    "license": "",
+    "artist": "",
+    "landing": ""
+  },
+  {
+    "id": "dan_chaofan",
+    "title": "蛋炒饭",
+    "image": "/packageRecipe/assets/recipes/dan_chaofan.jpg",
+    "source": "Wikipedia / Wikimedia Commons",
+    "license": "CC BY-SA 4.0",
+    "artist": "Geoffreyrabbit",
+    "landing": "https://commons.wikimedia.org/wiki/File:Homemade_fried_rice_at_home.jpg",
+    "orig_title": "Homemade_fried_rice_at_home.jpg",
+    "width": 4000,
+    "height": 3000
+  },
+  {
+    "id": "fanqie_jidan_mian",
+    "title": "番茄鸡蛋面",
+    "image": "",
+    "source": "",
+    "license": "",
+    "artist": "",
+    "landing": ""
+  },
+  {
+    "id": "congyou_banmian",
+    "title": "葱油拌面",
+    "image": "/packageRecipe/assets/recipes/congyou_banmian.jpg",
+    "source": "Wikipedia / Wikimedia Commons",
+    "license": "CC0",
+    "artist": "Suginami",
+    "landing": "https://commons.wikimedia.org/wiki/File:%E8%91%B1%E8%8A%B1%E8%91%B1%E6%B2%B9%E6%8B%8C%E9%9D%A2.jpg",
+    "orig_title": "葱花葱油拌面.jpg",
+    "width": 1920,
+    "height": 1080
+  },
+  {
+    "id": "gali_jifan",
+    "title": "咖喱鸡饭",
+    "image": "/packageRecipe/assets/recipes/gali_jifan.jpg",
+    "source": "Wikipedia / Wikimedia Commons",
+    "license": "CC BY-SA 4.0",
+    "artist": "Hal 0005",
+    "landing": "https://commons.wikimedia.org/wiki/File:Curry_in_Sapporo_20180211.jpg",
+    "orig_title": "Curry_in_Sapporo_20180211.jpg",
+    "width": 3693,
+    "height": 2920
+  },
+  {
+    "id": "lurou_fan",
+    "title": "卤肉饭",
+    "image": "",
+    "source": "",
+    "license": "",
+    "artist": "",
+    "landing": ""
+  },
+  {
+    "id": "huangmenji_mifan",
+    "title": "黄焖鸡米饭",
+    "image": "/packageRecipe/assets/recipes/huangmenji_mifan.jpg",
+    "source": "Wikipedia / Wikimedia Commons",
+    "license": "CC BY-SA 4.0",
+    "artist": "汮汐",
+    "landing": "https://commons.wikimedia.org/wiki/File:%E9%BB%84%E7%84%96%E9%B8%A1%E7%B1%B3%E9%A5%AD.jpg",
+    "orig_title": "黄焖鸡米饭.jpg",
+    "width": 5344,
+    "height": 3006
+  },
+  {
+    "id": "chaomian",
+    "title": "炒面",
+    "image": "/packageRecipe/assets/recipes/chaomian.jpg",
+    "source": "Wikipedia / Wikimedia Commons",
+    "license": "CC BY-SA 2.0",
+    "artist": "pelican from Tokyo, Japan",
+    "landing": "https://commons.wikimedia.org/wiki/File:Subgum_chow_mein.jpg",
+    "orig_title": "Subgum_chow_mein.jpg",
+    "width": 2534,
+    "height": 1677
+  },
+  {
+    "id": "pidan_shourou_zhou",
+    "title": "皮蛋瘦肉粥",
+    "image": "/packageRecipe/assets/recipes/pidan_shourou_zhou.jpg",
+    "source": "Wikipedia / Wikimedia Commons",
+    "license": "CC BY-SA 3.0",
+    "artist": "Pokman817",
+    "landing": "https://commons.wikimedia.org/wiki/File:Pork_preserved_duck_egg_congee.jpg",
+    "orig_title": "Pork_preserved_duck_egg_congee.jpg",
+    "width": 1000,
+    "height": 1068
+  },
+  {
+    "id": "sanmingzhi",
+    "title": "三明治",
+    "image": "/packageRecipe/assets/recipes/sanmingzhi.jpg",
+    "source": "Wikipedia / Wikimedia Commons",
+    "license": "CC BY 2.0",
+    "artist": "Jennifer from Vancouver, Canada",
+    "landing": "https://commons.wikimedia.org/wiki/File:Toasted_tomato,_avocado,_cucumber_and_hummus_sandwich_(4815088397).jpg",
+    "orig_title": "Toasted_tomato,_avocado,_cucumber_and_hummus_sandwich_(4815088397).jpg",
+    "width": 4272,
+    "height": 2848
+  },
+  {
+    "id": "jiandan",
+    "title": "煎蛋",
+    "image": "/packageRecipe/assets/recipes/jiandan.jpg",
+    "source": "Wikipedia / Wikimedia Commons",
+    "license": "CC BY-SA 4.0",
+    "artist": "Peachyeung316",
+    "landing": "https://commons.wikimedia.org/wiki/File:Sunny_Side_Up_with_toast.jpg",
+    "orig_title": "Sunny_Side_Up_with_toast.jpg",
+    "width": 3888,
+    "height": 5184
+  },
+  {
+    "id": "zheng_dangeng",
+    "title": "蒸蛋羹",
+    "image": "",
+    "source": "",
+    "license": "",
+    "artist": "",
+    "landing": ""
+  },
+  {
+    "id": "congyoubing",
+    "title": "葱油饼",
+    "image": "",
+    "source": "",
+    "license": "",
+    "artist": "",
+    "landing": ""
+  },
+  {
+    "id": "hongshao_rou",
+    "title": "红烧肉",
+    "image": "/packageRecipe/assets/recipes/hongshao_rou.jpg",
+    "source": "Wikipedia / Wikimedia Commons",
+    "license": "CC BY-SA 2.0",
+    "artist": "bryan... from Taipei, Taiwan",
+    "landing": "https://commons.wikimedia.org/wiki/File:Food_%E8%80%81%E5%90%89%E5%A3%AB,_%E4%B8%8A%E6%B5%B7%E8%8F%9C,_%E6%BB%AC%E8%8F%9C,_%E6%9C%AC%E5%B9%AB%E8%8F%9C,_%E4%B8%8A%E6%B5%B7,_%E4%B8%AD%E8%8F%AF%E4%BA%BA%E6%B0%91%E5%85%B1%E5%92%8C%E5%9C%8B,_%E4%B8%AD%E5%9C%8B,_Shanghai,_People%27s_Republic_of_China,_PRC,_China_(30166079710).jpg",
+    "orig_title": "Food_老吉士,_上海菜,_滬菜,_本幫菜,_上海,_中華人民共和國,_中國,_Shanghai,_People's_Republic_of_China,_PRC,_China_(30166079710).jpg",
+    "width": 2570,
+    "height": 2570
+  },
+  {
+    "id": "qingzheng_luyu",
+    "title": "清蒸鲈鱼",
+    "image": "",
+    "source": "",
+    "license": "",
+    "artist": "",
+    "landing": ""
+  },
+  {
+    "id": "tangcu_paigu",
+    "title": "糖醋排骨",
+    "image": "/packageRecipe/assets/recipes/tangcu_paigu.jpg",
+    "source": "Wikipedia / Wikimedia Commons",
+    "license": "CC BY 2.0",
+    "artist": "Lim Ashley",
+    "landing": "https://commons.wikimedia.org/wiki/File:T%C3%A1ngc%C3%B9_p%C3%A1ig%C7%94.jpg",
+    "orig_title": "Tángcù_páigǔ.jpg",
+    "width": 640,
+    "height": 640
+  },
+  {
+    "id": "hongshao_jitui",
+    "title": "红烧鸡腿",
+    "image": "",
+    "source": "",
+    "license": "",
+    "artist": "",
+    "landing": ""
+  },
+  {
+    "id": "xihongshi_niunan",
+    "title": "西红柿牛腩",
+    "image": "",
+    "source": "",
+    "license": "",
+    "artist": "",
+    "landing": ""
+  }
+];

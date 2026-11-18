@@ -18,6 +18,7 @@ README.md（根目录）
        ├─ docs/modules/couple/README.md   ← 小火苗模块详解（核心）
        │    ├─ docs/modules/couple/server.md
        │    └─ docs/modules/couple/release.md
+       ├─ docs/modules/recipe/README.md   ← 今天吃什么（纯本地菜谱）
        ├─ docs/ops/deployment.md          ← 服务端怎么部、怎么配
        ├─ docs/ops/runbook.md             ← 出问题怎么排查、怎么恢复
        ├─ docs/security.md                ← 密钥与安全红线
@@ -36,6 +37,7 @@ README.md（根目录）
 | [modules/couple/README.md](modules/couple/README.md) | 小火苗模块的产品设计、页面、数据结构、前端实现 |
 | [modules/couple/server.md](modules/couple/server.md) | 服务端接口、SQLite 表、WebSocket、管理后台、内容安全 |
 | [modules/couple/release.md](modules/couple/release.md) | 上传/预览/体验版/审核/隐私协议/发布检查单 |
+| [modules/recipe/README.md](modules/recipe/README.md) | 「今天吃什么」纯本地菜谱：数据、检索、冰箱模式、图片许可与构建 |
 | [ops/deployment.md](ops/deployment.md) | 服务器路径、systemd、nginx、环境变量、部署脚本 |
 | [ops/runbook.md](ops/runbook.md) | 故障排查、日志、重启、磁盘内存清理、备份恢复 |
 | [security.md](security.md) | 哪些东西绝对不能提交、密钥轮换、泄露处置 |

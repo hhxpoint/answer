@@ -1,13 +1,13 @@
 # 子包与主包总览
 
-> 来源：`app.json`（2026-11-17 快照）。每个子包在 `app.json.subPackages` 中注册，
+> 来源：`app.json`（2026-11-18 快照）。每个子包在 `app.json.subPackages` 中注册，
 > 页面路径为相对子包根目录的路径。
 
 ## 主包页面（10）
 
 | 页面 | 说明 |
 |---|---|
-| `pages/index/index` | 首页：功能入口、工具宫格、「我们的小火苗」入口 |
+| `pages/index/index` | 首页：功能入口、工具宫格、「我们的小火苗」「今天吃什么」入口 |
 | `pages/search/search` | 搜索 |
 | `pages/quiz/quiz` | 答题/练习 |
 | `pages/calc/calc` | 计算器 |
@@ -18,11 +18,12 @@
 | `pages/emotion-analysis/emotion-analysis` | 情绪分析 |
 | `pages/emotion-history/emotion-history` | 情绪历史 |
 
-## 子包（19）
+## 子包（20）
 
 | 子包 | 页面 | 职责 | 备注 |
 |---|---|---|---|
 | `packageCouple` | home / bind / chat / profile / timeline / timeline-edit / anniversary / anniversary-edit / listen | 双人私密空间（小火苗/悄悄话/时光/纪念日/侧耳倾听） | 依赖 `couple-api` 服务端 |
+| `packageRecipe` | home / detail / fridge / favorites / sources | 纯本地菜谱：检索/冰箱模式/收藏/图片来源 | **无服务端、无网络、无大模型**；数据与图片随包 |
 | `packagepdf` | hash / lab / puzzle / img2pdf / memo | 哈希、实验、拼图、图片转 PDF、备忘录 | 纯前端为主 |
 | `packagetoken` | word / algorithm / exam | 单词、算法、考试 | 题库数据在子包内 |
 | `packageWeather` | weather | 天气 | 需要定位权限 |

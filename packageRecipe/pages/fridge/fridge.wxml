@@ -1,0 +1,60 @@
+<view class="page">
+  <view class="head">
+    <view class="head-title">冰箱里有什么？</view>
+    <view class="head-sub">勾选现有食材，帮你找能做的菜</view>
+  </view>
+
+  <view class="panel">
+    <view class="panel-head">
+      <view class="panel-title">已选 {{selected.length}} 样</view>
+      <view class="panel-clear" bindtap="onClear" wx:if="{{selected.length}}">清空</view>
+    </view>
+    <view class="selected" wx:if="{{selected.length}}">
+      <view class="sel-chip" wx:for="{{selected}}" wx:key="*this" data-name="{{item}}" bindtap="onToggle">
+        {{item}} <text class="sel-x">×</text>
+      </view>
+    </view>
+    <view class="selected-empty" wx:else>还没选食材，下面点一点就行</view>
+
+    <view class="ing-grid">
+      <view class="ing-chip {{selectedMap[item] ? 'ing-on' : ''}}"
+        wx:for="{{ingredients}}" wx:key="*this" data-name="{{item}}" bindtap="onToggle">{{item}}</view>
+    </view>
+
+    <view class="pantry-note">盐、油、生抽、葱姜蒜等基础调料默认有，不占选项</view>
+    <button class="primary-btn" bindtap="onSearch">看看能做什么</button>
+  </view>
+
+  <view class="result" wx:if="{{searched}}">
+    <view class="result-head">
+      <view class="result-title">可以做的菜</view>
+      <view class="result-count">{{results.length}} 道</view>
+    </view>
+    <view class="hint">{{hint}}</view>
+
+    <view class="empty" wx:if="{{!results.length}}">
+      <view class="empty-emoji">🧺</view>
+      <view class="empty-title">暂时没有匹配</view>
+      <view class="empty-desc">少选几样，或换番茄 / 鸡蛋 / 土豆试试</view>
+    </view>
+
+    <view class="card" wx:for="{{results}}" wx:key="id" data-id="{{item.id}}" bindtap="goDetail">
+      <image wx:if="{{item.image}}" class="card-img" src="{{item.image}}" mode="aspectFill" lazy-load />
+      <view wx:else class="card-cover cover-c{{item.coverClass}}">
+        <text class="cover-emoji">{{item.emoji}}</text>
+      </view>
+      <view class="card-body">
+        <view class="card-title">{{item.title}}</view>
+        <view class="card-meta">{{item.time}} 分钟 · {{item.difficulty}} · {{item.servings}} 人份</view>
+        <view class="bar">
+          <view class="bar-in" style="width: {{item.coveragePct}}%"></view>
+        </view>
+        <view class="match">食材匹配 {{item.coveragePct}}%</view>
+        <view class="missing" wx:if="{{item.missingText}}">还差：{{item.missingText}}</view>
+        <view class="missing ok" wx:else>食材齐了，可以直接做</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="foot">菜谱数据全部离线保存在小程序内，不会上传任何食材信息</view>
+</view>

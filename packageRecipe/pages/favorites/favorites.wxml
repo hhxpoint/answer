@@ -1,0 +1,36 @@
+<view class="page">
+  <view class="head">
+    <view class="head-title">我的收藏</view>
+    <view class="head-sub">收藏存在本机，换设备不会同步</view>
+  </view>
+
+  <view class="empty" wx:if="{{!list.length}}">
+    <view class="empty-emoji">🍽️</view>
+    <view class="empty-title">还没有收藏</view>
+    <view class="empty-desc">在菜谱详情页点一下 ❤️ 就会出现在这里</view>
+    <view class="empty-btn" bindtap="goHome">去逛逛</view>
+  </view>
+
+  <view class="card" wx:for="{{list}}" wx:key="id" data-id="{{item.id}}" bindtap="goDetail">
+    <image wx:if="{{item.image}}" class="card-img" src="{{item.image}}" mode="aspectFill" lazy-load />
+    <view wx:else class="card-cover cover-c{{item.coverClass}}">
+      <text class="cover-emoji">{{item.emoji}}</text>
+    </view>
+    <view class="card-body">
+      <view class="card-title">{{item.title}}</view>
+      <view class="card-meta">{{item.metaText}}</view>
+      <view class="card-tags">
+        <text class="tag" wx:for="{{item.tagsShort}}" wx:key="*this">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="section" wx:if="{{historyList.length}}">
+    <view class="section-title">最近看过</view>
+    <view class="his" wx:for="{{historyList}}" wx:key="id" data-id="{{item.id}}" bindtap="goDetail">
+      <text class="his-emoji">{{item.emoji}}</text>
+      <text class="his-title">{{item.title}}</text>
+      <text class="his-meta">{{item.time}} 分钟</text>
+    </view>
+  </view>
+</view>

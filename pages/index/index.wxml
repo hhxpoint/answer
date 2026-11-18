@@ -15,6 +15,17 @@
   <view class="couple-entry-arrow">›</view>
 </view>
 
+<!-- 今天吃什么（纯本地菜谱）入口 -->
+<view class="recipe-entry" bindtap="goRecipe">
+  <view class="recipe-entry-glow"></view>
+  <view class="recipe-entry-icon">🍳</view>
+  <view class="recipe-entry-text">
+    <view class="recipe-entry-title">今天吃什么</view>
+    <view class="recipe-entry-sub">40 道家常菜 · 按食材找菜谱 · 离线可用</view>
+  </view>
+  <view class="recipe-entry-arrow">›</view>
+</view>
+
 <swiper class="swiper" autoplay interval="3000" circular>
   <swiper-item>
     <image class="swiper-img" src="/assets/banner1.png"></image>

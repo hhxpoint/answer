@@ -33,7 +33,11 @@
   "compileType": "miniprogram",
   "simulatorPluginLibVersion": {},
   "packOptions": {
-    "ignore": [],
+    "ignore": [
+      { "type": "folder", "value": "tools" },
+      { "type": "folder", "value": "docs" },
+      { "type": "suffix", "value": ".md" }
+    ],
     "include": []
   },
   "appid": "wx0c0dcd5aec680fb9",

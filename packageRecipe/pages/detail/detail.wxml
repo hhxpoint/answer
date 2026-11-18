@@ -1,0 +1,99 @@
+<view class="page" wx:if="{{recipe}}">
+  <!-- 封面 -->
+  <view class="cover-wrap">
+    <image wx:if="{{recipe.image}}" class="cover-img" src="{{recipe.image}}" mode="aspectFill" />
+    <view wx:else class="cover-fallback cover-c{{recipe.coverClass}}">
+      <text class="cover-emoji-big">{{recipe.emoji}}</text>
+    </view>
+    <view class="cover-shade"></view>
+    <view class="cover-info">
+      <view class="cover-title">{{recipe.title}}</view>
+      <view class="cover-tags">
+        <text class="cover-tag">{{recipe.category}}</text>
+        <text class="cover-tag">{{recipe.cuisine}}</text>
+        <text class="cover-tag" wx:for="{{recipe.tagsShort}}" wx:key="*this">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="body">
+    <!-- 关键信息 -->
+    <view class="meta-card">
+      <view class="meta-item">
+        <view class="meta-num">{{recipe.time}}</view>
+        <view class="meta-label">分钟</view>
+      </view>
+      <view class="meta-line"></view>
+      <view class="meta-item">
+        <view class="meta-num">{{recipe.difficulty}}</view>
+        <view class="meta-label">难度</view>
+      </view>
+      <view class="meta-line"></view>
+      <view class="meta-item">
+        <view class="meta-num">{{recipe.servings}}</view>
+        <view class="meta-label">人份</view>
+      </view>
+      <view class="meta-line"></view>
+      <view class="meta-item">
+        <view class="meta-num">{{recipe.ingredients.length}}</view>
+        <view class="meta-label">种食材</view>
+      </view>
+    </view>
+
+    <!-- 食材 -->
+    <view class="section">
+      <view class="section-title">食材清单</view>
+      <view class="ing-list">
+        <view class="ing-item" wx:for="{{recipe.ingredients}}" wx:key="*this">
+          <text class="ing-name">{{item[0]}}</text>
+          <text class="ing-amount">{{item[1]}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 步骤 -->
+    <view class="section">
+      <view class="section-title">做法</view>
+      <view class="step" wx:for="{{recipe.steps}}" wx:key="*this">
+        <view class="step-no">{{index + 1}}</view>
+        <view class="step-text">{{item}}</view>
+      </view>
+    </view>
+
+    <!-- 小贴士 -->
+    <view class="tips" wx:if="{{recipe.tips}}">
+      <view class="tips-label">小贴士</view>
+      <view class="tips-text">{{recipe.tips}}</view>
+    </view>
+
+    <!-- 图片来源 -->
+    <view class="credit" wx:if="{{recipe.credit}}" bindtap="copyCredit">
+      <text>图片：{{recipe.credit.source}} · {{recipe.credit.license}}</text>
+      <text class="credit-copy">查看/复制来源</text>
+    </view>
+
+    <!-- 相关推荐 -->
+    <view class="section" wx:if="{{related.length}}">
+      <view class="section-title">这个分类里还有</view>
+      <view class="related" wx:for="{{related}}" wx:key="id" data-id="{{item.id}}" bindtap="goDetail">
+        <image wx:if="{{item.image}}" class="related-img" src="{{item.image}}" mode="aspectFill" lazy-load />
+        <view wx:else class="related-cover cover-c{{item.coverClass}}">
+          <text class="cover-emoji">{{item.emoji}}</text>
+        </view>
+        <view class="related-body">
+          <view class="related-title">{{item.title}}</view>
+          <view class="related-meta">{{item.time}} 分钟 · {{item.difficulty}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部操作 -->
+  <view class="action-bar">
+    <view class="action-fav {{favorite ? 'fav-on' : ''}}" bindtap="onToggleFavorite">
+      <text class="action-icon">{{favorite ? '❤️' : '🤍'}}</text>
+      <text>{{favorite ? '已收藏' : '收藏'}}</text>
+    </view>
+    <button class="action-share" open-type="share">分享菜谱</button>
+  </view>
+</view>

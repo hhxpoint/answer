@@ -1,0 +1,54 @@
+page { background: #FBF6EF; }
+.page { min-height: 100vh; padding: 0 36rpx 60rpx; color: #3A2E27; }
+
+.head { padding: 36rpx 0 24rpx; }
+.head-title { font-size: 46rpx; font-weight: 700; color: #33251D; }
+.head-sub { font-size: 23rpx; color: #9B897B; margin-top: 10rpx; }
+
+.card {
+  display: flex;
+  background: rgba(255,255,255,0.94);
+  border-radius: 28rpx;
+  padding: 16rpx;
+  margin-bottom: 18rpx;
+  box-shadow: 0 10rpx 26rpx rgba(160,120,84,0.09);
+}
+.card-img, .card-cover { width: 188rpx; height: 188rpx; border-radius: 22rpx; flex-shrink: 0; background: #F1E3D3; }
+.card-cover { display: flex; align-items: center; justify-content: center; }
+.card-body { flex: 1; padding: 6rpx 6rpx 0 20rpx; min-width: 0; }
+.card-title { font-size: 29rpx; font-weight: 700; }
+.card-meta { font-size: 22rpx; color: #A08C7C; margin-top: 8rpx; }
+.card-tags { display: flex; gap: 8rpx; margin-top: 14rpx; }
+.tag { font-size: 20rpx; color: #C06A34; background: #FFF1E4; border-radius: 8rpx; padding: 4rpx 12rpx; }
+
+.section { margin-top: 40rpx; }
+.section-title { font-size: 30rpx; font-weight: 700; margin-bottom: 16rpx; }
+.his {
+  display: flex; align-items: center;
+  padding: 18rpx 22rpx;
+  background: rgba(255,255,255,0.72);
+  border-radius: 18rpx;
+  margin-bottom: 12rpx;
+}
+.his-emoji { font-size: 34rpx; margin-right: 16rpx; }
+.his-title { flex: 1; font-size: 25rpx; }
+.his-meta { font-size: 21rpx; color: #A08C7C; }
+
+.empty { text-align: center; padding: 100rpx 0 40rpx; }
+.empty-emoji { font-size: 80rpx; }
+.empty-title { font-size: 30rpx; font-weight: 600; margin-top: 16rpx; }
+.empty-desc { font-size: 23rpx; color: #A08C7C; margin-top: 10rpx; }
+.empty-btn {
+  display: inline-block; margin-top: 28rpx;
+  padding: 16rpx 40rpx; border-radius: 999rpx;
+  font-size: 25rpx; color: #FFF;
+  background: linear-gradient(135deg, #F5A05F, #E97B3E);
+}
+
+.cover-c1 { background: linear-gradient(135deg, #FFE3C7, #FFD2A8); }
+.cover-c2 { background: linear-gradient(135deg, #FFE9CF, #FCD9A8); }
+.cover-c3 { background: linear-gradient(135deg, #E4F1E0, #CBE6C6); }
+.cover-c4 { background: linear-gradient(135deg, #FFF0D6, #F6DEB4); }
+.cover-c5 { background: linear-gradient(135deg, #FFF3DC, #FFE1BD); }
+.cover-c6 { background: linear-gradient(135deg, #F8DED0, #F0C3AE); }
+.cover-emoji { font-size: 68rpx; }

@@ -9,6 +9,13 @@ Page({
     })
   },
 
+  // 今天吃什么（纯本地菜谱模块）
+  goRecipe() {
+    wx.navigateTo({
+      url: '/packageRecipe/pages/home/home'
+    })
+  },
+
   // 1. 开始答题 (因为是底部的 Tab 之一，必须用 switchTab)
   goQuiz() {
     wx.switchTab({

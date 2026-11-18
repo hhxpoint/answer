@@ -1,7 +1,7 @@
 # answer · 微信小程序
 
 > 一个以「AI 学习助手 + 工具箱」为主，并内置「我们的小火苗」双人私密空间的微信小程序。
-> 当前仓库快照：**2026-11-17**（小程序版本 **1.26.0**）
+> 当前仓库快照：**2026-11-18**（小程序版本 **1.27.0**）
 
 ---
 
@@ -9,11 +9,12 @@
 
 | 维度 | 说明 |
 |---|---|
-| 形态 | 原生微信小程序（WXML / WXSS / JavaScript），主包 + 19 个子包 |
+| 形态 | 原生微信小程序（WXML / WXSS / JavaScript），主包 + 20 个子包 |
 | AppID | `wx0c0dcd5aec680fb9` |
 | 主包页面 | 首页、搜索、刷题、计算、用户、扫码登录、关于、处理、情绪分析、情绪历史 |
 | 主要能力 | 学习问答、题库/考试、AI 问答、AR、目标检测、PDF 工具、天气、棋类、运动、GitHub 资讯、教务查询等 |
 | 特色模块 | **我们的小火苗**：双人绑定 + 虚拟小火苗 + 悄悄话 + 我们的时光 + 纪念日 + 侧耳倾听（语音信箱） |
+| 新增模块 | **今天吃什么**：40 道家常菜、纯本地离线检索、冰箱模式、本地收藏（无服务端/无大模型） |
 | 服务端 | 独立 Node.js 服务（Express + SQLite + WebSocket），部署在 `hhxpoint.me` |
 | 管理后台 | OJ Flask 管理后台的子模块 `/admin/couple/` + 独立备用面板 `/couple-admin/` |
 
@@ -45,6 +46,7 @@ answer/
 ├─ app.js / app.json / app.wxss        # 小程序入口与全局配置
 ├─ pages/                              # 主包页面（10 个）
 ├─ packageCouple/                      # ★「我们的小火苗」双人空间（独立子包）
+├─ packageRecipe/                      # ★「今天吃什么」纯本地菜谱（独立子包）
 ├─ packageAI/  packageAR/  packageDetect/
 ├─ packagepdf/ packageFinance/ packageSport/
 ├─ packageGame/ packageGithub/ packageJwzx/
@@ -86,6 +88,21 @@ answer/
 
 ---
 
+## 「今天吃什么」菜谱模块（纯本地）
+
+独立子包 `packageRecipe`，**不依赖服务端、不接大模型、断网可用**：
+
+- 40 道家常菜结构化数据（食材/步骤/小贴士/分类/标签）
+- 本地检索：菜名、食材、时间、口味、分类；无网络请求
+- 冰箱模式：勾选现有食材 → 匹配度、缺料提示
+- 「今晚吃这个」随机推荐、本地收藏/历史/最近搜索
+- 照片来自 Wikipedia/Commons（CC/PD，带许可记录），无合格照片的菜谱使用统一设计封面
+- 模块文档：[docs/modules/recipe/README.md](docs/modules/recipe/README.md)
+
+> 收藏存 `wx.setStorage`，不跨设备；纯本地意味着新增菜谱需要发版。
+
+---
+
 ## 文档导航
 
 | 文档 | 内容 |
@@ -93,7 +110,8 @@ answer/
 | [docs/README.md](docs/README.md) | 文档总索引与阅读顺序 |
 | [docs/architecture.md](docs/architecture.md) | 整体架构、子包地图、前后端数据流、设计规范 |
 | [docs/changelog.md](docs/changelog.md) | **按版本记录的详细变更历史（可回溯）** |
-| [docs/modules/overview.md](docs/modules/overview.md) | 19 个子包的职责与状态 |
+| [docs/modules/overview.md](docs/modules/overview.md) | 20 个子包的职责与状态 |
+| [docs/modules/recipe/README.md](docs/modules/recipe/README.md) | 纯本地菜谱模块详解（数据/检索/冰箱/图片许可） |
 | [docs/modules/couple/README.md](docs/modules/couple/README.md) | 小火苗模块详解 |
 | [docs/modules/couple/server.md](docs/modules/couple/server.md) | 服务端、接口、数据库、后台、内容安全 |
 | [docs/modules/couple/release.md](docs/modules/couple/release.md) | 发布流程、审核注意事项、隐私合规 |
@@ -109,7 +127,7 @@ answer/
 
 - 默认分支：`main`（稳定可发布分支）
 - 版本号：`1.x.y`，每次上传开发版递增；对外发布以微信后台「体验版/正式版」为准
-- 当前模块版本：**1.26.0**
+- 当前模块版本：**1.27.0**
 - 历史版本与每次改动明细：[docs/changelog.md](docs/changelog.md)
 
 ---

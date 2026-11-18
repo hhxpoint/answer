@@ -9,7 +9,7 @@
 | 层 | 技术 | 说明 |
 |---|---|---|
 | 小程序框架 | 原生微信小程序（WXML / WXSS / JavaScript） | 无跨端框架，直接使用微信能力 |
-| 分包 | 主包 + 19 个子包 | 控制主包体积，按需加载 |
+| 分包 | 主包 + 20 个子包 | 控制主包体积，按需加载 |
 | 前端构建/发布 | `miniprogram-ci` | 命令行上传开发版、生成预览二维码 |
 | 双人空间服务端 | Node.js 20 + Express 4 + better-sqlite3 + ws | 部署在 `hhxpoint.me`，systemd 管理 |
 | 管理后台 | Flask（OJ 项目）子模块 + Node 独立面板 | 只读查看数据，Basic Auth 保护 |
@@ -23,7 +23,7 @@
 flowchart LR
     subgraph MP[微信小程序]
         IDX[主包 pages/index]
-        SUB[19 个子包<br/>packageCouple / packagepdf / packagetoken ...]
+        SUB[20 个子包<br/>packageCouple / packageRecipe / packagepdf / packagetoken ...]
         IDX -->|点击入口| SUB
     end
 
@@ -64,7 +64,7 @@ flowchart LR
 ### 3.1 主包（10 个页面）
 
 ```text
-pages/index/index           首页（含「我们的小火苗」入口卡片）
+pages/index/index           首页（含「我们的小火苗」与「今天吃什么」入口卡片）
 pages/search/search         搜索
 pages/quiz/quiz             答题/练习
 pages/calc/calc             计算器
@@ -81,6 +81,7 @@ pages/emotion-history/...   情绪历史
 完整清单与职责见 [modules/overview.md](modules/overview.md)。重点：
 
 - `packageCouple`：**双人私密空间**（小火苗/悄悄话/时光/纪念日/侧耳倾听），本文档核心
+- `packageRecipe`：**纯本地菜谱「今天吃什么」**（40 道菜、离线检索、冰箱模式、本地收藏），不依赖服务端
 - `packagetoken`：单词、算法、考试
 - `packagepdf`：哈希、实验、拼图、图片转 PDF、备忘录
 - `packageDetect` / `packageAI` / `packageAR`：模型与 AI 相关（独立分包）

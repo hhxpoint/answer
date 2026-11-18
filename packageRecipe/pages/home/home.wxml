@@ -1,0 +1,110 @@
+<view class="page">
+  <!-- 顶部 -->
+  <view class="hero">
+    <view class="hero-badge">🍳 纯本地 · 离线可用</view>
+    <view class="hero-title">今天吃什么</view>
+    <view class="hero-sub">40 道家常菜 · 按食材 / 时间 / 口味找菜谱</view>
+
+    <view class="search-box">
+      <text class="search-icon">⌕</text>
+      <input class="search-input" placeholder="搜菜名、食材，如：番茄 鸡蛋 30分钟"
+        value="{{query}}" confirm-type="search" bindinput="onInput" bindconfirm="onConfirm" />
+      <view wx:if="{{query}}" class="search-clear" bindtap="onClear">×</view>
+      <view class="search-btn" bindtap="onSearchTap">搜索</view>
+    </view>
+
+    <view class="quick-tags">
+      <view class="quick-tag" wx:for="{{quickTags}}" wx:key="*this"
+        data-tag="{{item}}" bindtap="onQuickTag">{{item}}</view>
+    </view>
+  </view>
+
+  <!-- 两个入口 -->
+  <view class="entry-row">
+    <view class="entry-card entry-fridge" bindtap="goFridge">
+      <view class="entry-emoji">🧊</view>
+      <view class="entry-text">
+        <view class="entry-title">冰箱模式</view>
+        <view class="entry-desc">有什么食材，就做什么菜</view>
+      </view>
+    </view>
+    <view class="entry-card entry-fav" bindtap="goFavorites">
+      <view class="entry-emoji">❤️</view>
+      <view class="entry-text">
+        <view class="entry-title">我的收藏</view>
+        <view class="entry-desc">{{favCount}} 道已收藏</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 今晚吃这个 -->
+  <view class="section" wx:if="{{tonight}}">
+    <view class="section-head">
+      <view class="section-title">今晚吃这个</view>
+      <view class="section-action" bindtap="onTonightRefresh">换一个 ↻</view>
+    </view>
+    <view class="tonight-card" bindtap="goDetail" data-id="{{tonight.id}}">
+      <image wx:if="{{tonight.image}}" class="tonight-img" src="{{tonight.image}}" mode="aspectFill" lazy-load />
+      <view wx:else class="tonight-cover cover-c{{tonight.coverClass}}">
+        <text class="cover-emoji">{{tonight.emoji}}</text>
+      </view>
+      <view class="tonight-mask">
+        <view class="tonight-title">{{tonight.title}}</view>
+        <view class="tonight-sub">{{tonight.metaText}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 分类 -->
+  <scroll-view class="cat-bar" scroll-x enable-flex>
+    <view class="cat-chip {{activeCategory === item ? 'cat-on' : ''}}" wx:for="{{categories}}" wx:key="*this"
+      data-cat="{{item}}" bindtap="onCategory">{{item}}</view>
+  </scroll-view>
+
+  <!-- 最近搜索 -->
+  <view class="recent" wx:if="{{recentQueries.length}}">
+    <text class="recent-label">最近搜过</text>
+    <view class="recent-list">
+      <view class="recent-chip" wx:for="{{recentQueries}}" wx:key="*this" data-q="{{item}}" bindtap="onRecentTap">{{item}}</view>
+    </view>
+  </view>
+
+  <!-- 结果 -->
+  <view class="section">
+    <view class="section-head">
+      <view class="section-title">{{searching ? '搜索结果' : '推荐菜谱'}}</view>
+      <view class="section-count">{{results.length}} 道</view>
+    </view>
+    <view class="intro">{{intro}}</view>
+
+    <view class="empty" wx:if="{{!results.length}}">
+      <view class="empty-emoji">🥣</view>
+      <view class="empty-title">暂时没找到</view>
+      <view class="empty-desc">试试只搜一个食材，或放宽时间条件</view>
+      <view class="empty-btn" bindtap="onClear">看看全部</view>
+    </view>
+
+    <view class="card" wx:for="{{results}}" wx:key="id" data-id="{{item.id}}" bindtap="goDetail">
+      <image wx:if="{{item.image}}" class="card-img" src="{{item.image}}" mode="aspectFill" lazy-load />
+      <view wx:else class="card-cover cover-c{{item.coverClass}}">
+        <text class="cover-emoji">{{item.emoji}}</text>
+      </view>
+      <view class="card-body">
+        <view class="card-title">{{item.title}}</view>
+        <view class="card-meta">{{item.metaText}}</view>
+        <view class="card-tags">
+          <text class="tag" wx:for="{{item.tagsShort}}" wx:key="*this">{{item}}</text>
+          <text class="tag tag-soft">{{item.cuisine}}</text>
+        </view>
+        <view class="card-ing">{{item.ingText}}…</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部版权入口 -->
+  <view class="footer">
+    <view class="footer-link" bindtap="goSources">图片来源与许可</view>
+    <view class="footer-text">菜谱为通用做法，仅供日常参考 · 数据全部离线</view>
+  </view>
+</view>
+
