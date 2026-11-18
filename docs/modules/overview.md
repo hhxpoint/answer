@@ -22,7 +22,7 @@
 
 | 子包 | 页面 | 职责 | 备注 |
 |---|---|---|---|
-| `packageCouple` | home / bind / chat / profile / timeline / timeline-edit / anniversary / anniversary-edit / listen | 双人私密空间（小火苗/悄悄话/时光/纪念日/侧耳倾听） | 依赖 `couple-api` 服务端 |
+| `packageCouple` | spaces / create / join / home / bind / chat / profile / timeline / timeline-edit / anniversary / anniversary-edit / listen | 多关系空间：双人关系大厅、小火苗、悄悄话、时光、纪念日、侧耳倾听 | 依赖 `couple-api` 服务端；每个空间数据隔离 |
 | `packageRecipe` | home / detail / fridge / favorites / sources | 纯本地菜谱：检索/冰箱模式/收藏/图片来源 | **无服务端、无网络、无大模型**；数据与图片随包 |
 | `packagepdf` | hash / lab / puzzle / img2pdf / memo | 哈希、实验、拼图、图片转 PDF、备忘录 | 纯前端为主 |
 | `packagetoken` | word / algorithm / exam | 单词、算法、考试 | 题库数据在子包内 |

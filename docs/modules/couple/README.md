@@ -1,7 +1,9 @@
 # 「我们的小火苗」模块详解
 
 > 独立子包：`packageCouple/`
-> 定位：只属于两个人的私密小空间（双人绑定 + 虚拟小火苗 + 文字/相册/纪念日/语音）
+> 定位：和重要的人一起养火苗的私密关系空间（双人绑定 + 虚拟小火苗 + 文字/相册/纪念日/语音）
+> 支持多个双人关系空间：家人/恋人/朋友/自定义，每个空间数据独立，见
+> [multi-space.md](multi-space.md)。
 >
 > 审核措辞提醒：功能命名与文案避免使用「社交」「聊天室」「陌生人」等词，
 > 统一表述为「双人私密空间 / 双人记录 / 语音留言」，并明确"仅绑定双方可见"。
@@ -12,10 +14,12 @@
 
 | 功能 | 页面 | 核心能力 |
 |---|---|---|
-| 双人绑定 | `bind` | 创建空间生成邀请码、邀请码加入、分享卡片邀请、等待对方加入 |
+| 关系空间大厅 | `spaces` | 多个双人空间列表、关系类型/身份标签、小火苗摘要、未读、切换、创建/加入入口 |
+| 创建/加入空间 | `create` / `join` | 选关系类型、我的称呼、空间名、邀请码分享/加入 |
+| 双人绑定 | `bind` | 旧版兼容：创建空间生成邀请码、邀请码加入、等待对方加入 |
 | 个人资料 | `profile` | 微信头像 + 昵称（只强制一次），之后直接进入 |
-| 小火苗主页 | `home` | 宠物状态、投喂/摸摸/抱抱/打卡、改名、双人头像、各模块入口 |
-| 悄悄话 | `chat` | 文字消息、引用回复、2 分钟撤回、实时推送、断线对账 |
+| 小火苗主页 | `home` | 空间栏/切换、宠物状态、投喂/摸摸/抱抱/打卡、改名、双人头像、各模块入口 |
+| 悄悄话 | `chat` | 文字消息、引用回复、2 分钟撤回、实时推送、断线对账、已读 |
 | 我们的时光 | `timeline` / `timeline-edit` | 发布图文、九宫格、分页、实时同步、删除 |
 | 我们的纪念日 | `anniversary` / `anniversary-edit` | 自绘日历、节日小字、每年重复、倒计时、增删改 |
 | 侧耳倾听 | `listen` | 按住说话（≤60s）、上滑取消、播放、撤回、内容审核 |
@@ -27,12 +31,16 @@
 ```text
 packageCouple/
 ├─ utils/
-│  ├─ couple-api.js          # 服务端 REST 封装（token、错误、absUrl）
-│  ├─ couple-ws.js           # WebSocket 封装（心跳、重连）
+│  ├─ couple-api.js          # 服务端 REST 封装（token、X-Space-Id、错误、absUrl）
+│  ├─ couple-ws.js           # WebSocket 封装（心跳、重连、space_id）
+│  ├─ space.js               # 当前空间上下文（storage）
 │  └─ chinese-calendar.js    # 农历转换 + 节日识别（纪念日使用）
 └─ pages/
+   ├─ spaces/spaces.*        # 关系空间大厅（入口）
+   ├─ create/create.*        # 创建关系空间
+   ├─ join/join.*            # 加入关系空间
    ├─ profile/profile.*      # 首次资料：头像 + 昵称
-   ├─ bind/bind.*            # 绑定：创建/加入/等待
+   ├─ bind/bind.*            # 旧版绑定流程（兼容）
    ├─ home/home.*            # 小火苗主页（视觉核心）
    ├─ chat/chat.*            # 悄悄话
    ├─ timeline/timeline.*    # 时光列表
@@ -43,7 +51,7 @@ packageCouple/
 ```
 
 页面在 `app.json.subPackages` 的 `packageCouple.pages` 中注册，顺序：
-home → bind → chat → profile → timeline → timeline-edit → anniversary → anniversary-edit → listen。
+spaces → create → join → home → bind → chat → profile → timeline → timeline-edit → anniversary → anniversary-edit → listen。
 
 ---
 
