@@ -163,11 +163,6 @@
         <view class="card-title">灯神长街</view>
       </view>
 
-      <view class="card" bindtap="gop">
-        <image class="card-icon" src="/assets/course.png"></image>
-        <view class="card-title">应许之地</view>
-      </view>
-
 
 
       <!-- 原神启动（算法网络）按钮 -->

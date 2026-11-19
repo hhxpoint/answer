@@ -151,6 +151,14 @@
         </view>
         <view class="entry-arrow">›</view>
       </view>
+      <view class="entry" bindtap="goDrawGuess">
+        <view class="entry-emoji">🎨</view>
+        <view class="entry-text">
+          <view class="entry-title">你画我猜</view>
+          <view class="entry-sub">一个人画，一个人猜 · 只属于我们俩的小画板</view>
+        </view>
+        <view class="entry-arrow">›</view>
+      </view>
     </view>
 
     <view class="footer">每天来看看小火苗，它就会长得更好看一点</view>

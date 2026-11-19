@@ -46,14 +46,14 @@ npm install
 answer/
 ├─ app.js / app.json / app.wxss        # 小程序入口与全局配置
 ├─ pages/                              # 主包页面（10 个）
-├─ packageCouple/                      # ★「我们的小火苗」双人空间（独立子包）
+├─ packageCouple/                      # ★「我们的小火苗」双人空间（含悄悄话/时光/纪念日/侧耳倾听/你画我猜）
 ├─ packageRecipe/                      # ★「今天吃什么」纯本地菜谱（独立子包）
 ├─ packageAI/  packageAR/  packageDetect/
 ├─ packagepdf/ packageFinance/ packageSport/
 ├─ packageGame/ packageGithub/ packageJwzx/
 ├─ packageWeather/ packageAssets/
 ├─ packagetoken/                       # 刷题 / 单词 / 算法 / 考试
-├─ chess/ bitcoin/ particle/ pictionary/
+├─ chess/ bitcoin/ particle/
 ├─ course/ resume/ ml-modules/
 ├─ components/                         # 自定义组件（含 xr-scene）
 ├─ utils/                              # 公共工具（API 封装、学习中心等）

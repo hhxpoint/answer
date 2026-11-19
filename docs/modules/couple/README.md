@@ -23,6 +23,7 @@
 | 我们的时光 | `timeline` / `timeline-edit` | 发布图文、九宫格、分页、实时同步、删除 |
 | 我们的纪念日 | `anniversary` / `anniversary-edit` | 自绘日历、节日小字、每年重复、倒计时、增删改 |
 | 侧耳倾听 | `listen` | 按住说话（≤60s）、上滑取消、播放、撤回、内容审核 |
+| 你画我猜 | `draw-guess` | 双人实时画板：画手/猜词轮换、词库、计时、计分、断线恢复；仅同一关系空间两人可见 |
 | 分享 | 全部页面 | 9 张定制封面 + 按页面定制文案（大厅/创建/加入/主页/悄悄话/时光/纪念日/语音/资料） |
 
 > 延迟与流畅度优化见 [performance.md](performance.md)；界面协调性优化见 [ui-refinement.md](ui-refinement.md)。
@@ -54,7 +55,7 @@ packageCouple/
 ```
 
 页面在 `app.json.subPackages` 的 `packageCouple.pages` 中注册，顺序：
-spaces → create → join → home → bind → chat → profile → timeline → timeline-edit → anniversary → anniversary-edit → listen。
+spaces → create → join → home → bind → chat → profile → timeline → timeline-edit → anniversary → anniversary-edit → listen → draw-guess。
 
 ---
 

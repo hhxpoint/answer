@@ -7,6 +7,7 @@ function createChatSocket(options) {
   const getSpaceId = options.getSpaceId || function () { return 0; };
   const onMessage = options.onMessage || function () {};
   const onStatus = options.onStatus || function () {};
+  const onReady = options.onReady || function () {};
 
   let task = null;
   let closed = false;
@@ -90,6 +91,7 @@ function createChatSocket(options) {
       }
       if (data.type === 'ready') {
         lastPongAt = Date.now();
+        try { onReady(data); } catch (e) {}
         return;
       }
       onMessage(data);
@@ -125,7 +127,17 @@ function createChatSocket(options) {
 
   start();
 
-  return { close: close };
+  function send(payload) {
+    if (!task) return false;
+    try {
+      task.send({ data: JSON.stringify(payload) });
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  return { close: close, send: send };
 }
 
 module.exports = { createChatSocket: createChatSocket };

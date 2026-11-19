@@ -1,6 +1,10 @@
 {
   "lazyCodeLoading": "requiredComponents",
-  "requiredPrivateInfos": ["getLocation", "startLocationUpdate", "onLocationChange"],
+  "requiredPrivateInfos": [
+    "getLocation",
+    "startLocationUpdate",
+    "onLocationChange"
+  ],
   "permission": {
     "scope.userLocation": {
       "desc": "获取位置信息用于天气服务和运动记录"
@@ -14,24 +18,14 @@
     "pages/index/index",
     "pages/search/search",
     "pages/quiz/quiz",
-    
     "pages/calc/calc",
-    
     "pages/user/user",
-
     "pages/loginscan/loginscan",
-
-  
-    
     "pages/about/about",
-
     "pages/process/process",
-
     "pages/emotion-analysis/emotion-analysis",
-
     "pages/emotion-history/emotion-history"
   ],
-
   "subPackages": [
     {
       "root": "packageRecipe",
@@ -57,46 +51,34 @@
         "pages/timeline-edit/timeline-edit",
         "pages/anniversary/anniversary",
         "pages/anniversary-edit/anniversary-edit",
-        "pages/listen/listen"
+        "pages/listen/listen",
+        "pages/draw-guess/draw-guess"
       ]
     },
     {
       "root": "packagepdf",
       "pages": [
-
         "pages/hash/hash",
-
         "pages/lab/lab",
-
-        
         "pages/puzzle/puzzle",
-
         "pages/img2pdf/img2pdf",
-
         "pages/memo/memo"
       ]
     },
-
     {
       "root": "packagetoken",
       "pages": [
-
         "pages/word/word",
-
         "pages/algorithm/algorithm",
-
         "pages/exam/exam"
       ]
     },
-
     {
       "root": "packageWeather",
       "pages": [
         "pages/weather/weather"
       ]
     },
-
-
     {
       "root": "chess",
       "pages": [
@@ -105,9 +87,6 @@
         "pages/user_info/user_info"
       ]
     },
-
-
-
     {
       "root": "resume",
       "pages": [
@@ -116,19 +95,6 @@
         "pages/preview/preview"
       ]
     },
-
-
-    {
-      "root": "pictionary",
-      "pages": [
-        "pages/pictionary/pictionary",
-        "pages/lobby/lobby",
-        "pages/user_info/user_info"
-      
-      ]
-    },
-
-    
     {
       "root": "bitcoin",
       "pages": [
@@ -136,20 +102,12 @@
         "pages/news-detail/news-detail"
       ]
     },
-
-
-
-    
     {
       "root": "particle",
       "pages": [
         "pages/t"
       ]
     },
-
-    
-
-    
     {
       "root": "course",
       "pages": [
@@ -157,10 +115,6 @@
         "pages/course-copy/course-copy"
       ]
     },
-
-
-
-
     {
       "root": "packageSport",
       "pages": [
@@ -170,7 +124,6 @@
         "pages/achievements/achievements"
       ]
     },
-
     {
       "root": "packageGithub",
       "pages": [
@@ -180,7 +133,6 @@
         "pages/translate/translate"
       ]
     },
-
     {
       "root": "packageAI",
       "name": "ai",
@@ -189,7 +141,6 @@
       ],
       "independent": true
     },
-
     {
       "root": "packageGame",
       "pages": [
@@ -197,27 +148,22 @@
         "pages/report/index"
       ]
     },
-
     {
       "root": "packageAssets",
-      "pages": [
-      ]
+      "pages": []
     },
-
     {
       "root": "packageAR",
       "pages": [
         "pages/ar/ar"
       ]
     },
-
     {
       "root": "packageFinance",
       "pages": [
         "pages/index/index"
       ]
     },
-
     {
       "root": "packageDetect",
       "name": "detect",
@@ -226,7 +172,6 @@
       ],
       "independent": true
     },
-
     {
       "root": "packageJwzx",
       "pages": [
@@ -235,22 +180,17 @@
         "pages/timetable/timetable"
       ]
     }
-
   ],
-
-
-
-
-
   "preloadRule": {
     "pages/index/index": {
       "network": "all",
-      "packages": ["ai", "detect"]
+      "packages": [
+        "ai",
+        "detect"
+      ]
     }
   },
-
   "workers": "worker",
-
   "window": {
     "navigationBarTitleText": "机器学习问答",
     "navigationBarBackgroundColor": "#ffffff",
@@ -281,34 +221,20 @@
         "iconPath": "assets/book.png",
         "selectedIconPath": "assets/book-active.png"
       },
-
       {
         "pagePath": "pages/user/user",
         "text": "个人",
         "iconPath": "assets/memo.png",
         "selectedIconPath": "assets/memo.png"
       },
-
-
-
       {
         "pagePath": "pages/about/about",
         "text": "关于",
         "iconPath": "assets/bo.png",
         "selectedIconPath": "assets/bo.png"
       }
-
-
     ]
   },
-
-
-   
-  "usingComponents": {
-    
-
-    
-  },
-
+  "usingComponents": {},
   "sitemapLocation": "sitemap.json"
 }

@@ -194,15 +194,6 @@ Page({
 
   },
 
-  gop: function() {
-    const savedProfile = wx.getStorageSync('gameProfile');
-    if (savedProfile) {
-      wx.navigateTo({ url: '/pictionary/pages/lobby/lobby' });
-    } else {
-      wx.navigateTo({ url: '/pictionary/pages/user_info/user_info' });
-    }
-  },
-
 
 
   goSport: function() {

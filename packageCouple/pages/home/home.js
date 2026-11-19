@@ -270,6 +270,10 @@ Page({
     wx.navigateTo({ url: '/packageCouple/pages/listen/listen' });
   },
 
+  goDrawGuess: function () {
+    wx.navigateTo({ url: '/packageCouple/pages/draw-guess/draw-guess' });
+  },
+
   onPullDownRefresh: function () {
     this.load().then(function () { wx.stopPullDownRefresh(); });
   },
