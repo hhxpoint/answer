@@ -263,6 +263,17 @@ Page({
     });
   },
 
+  roundMeta: function () {
+    return { game_id: this._gameId, round: this._round };
+  },
+
+  isCurrentRoundEvent: function (p) {
+    if (!p) return false;
+    if (p.game_id && this._gameId && p.game_id !== this._gameId) return false;
+    if (p.round !== undefined && p.round !== null && Number(p.round) !== Number(this._round)) return false;
+    return true;
+  },
+
   // ===== 开局 =====
   selectRounds: function (e) {
     if (this.data.stage === 'playing') return;
@@ -460,6 +471,9 @@ Page({
   // ===== 远端事件 =====
   onRemoteRoundStart: function (p) {
     if (!p || !p.game_id) return;
+    // 旧回合的迟到事件不能覆盖新回合
+    if (this._gameId === p.game_id && Number(p.round) > 0 && Number(p.round) < Number(this._round)) return;
+    if (this._gameId === p.game_id && Number(p.round) === Number(this._round) && this.data.stage === 'playing') return;
     this._gameId = p.game_id;
     this._round = p.round || 1;
     this._drawerId = p.drawer_id || 0;
@@ -495,34 +509,34 @@ Page({
   },
 
   onRemotePoint: function (p) {
-    if (this.data.isDrawer) return;
+    if (this.data.isDrawer || !this.isCurrentRoundEvent(p)) return;
     if (!this._ctx || p.x0 === undefined) return;
     this.drawSegment(p.x0, p.y0, p.x1, p.y1, p.color || '#4a4038', p.size || 7, p.eraser);
   },
 
   onRemoteStroke: function (p) {
-    if (this.data.isDrawer || !p || !p.points) return;
+    if (this.data.isDrawer || !this.isCurrentRoundEvent(p) || !p.points) return;
     this._strokes.push({ points: p.points, color: p.color || '#4a4038', size: p.size || 7, eraser: !!p.eraser });
     this.setData({ strokesCount: this._strokes.length });
     this.redraw();
   },
 
-  onRemoteClear: function () {
-    if (this.data.isDrawer) return;
+  onRemoteClear: function (p) {
+    if (this.data.isDrawer || !this.isCurrentRoundEvent(p)) return;
     this._strokes = [];
     this.setData({ strokesCount: 0 });
     this.redraw();
   },
 
   onRemoteStrokes: function (p) {
-    if (this.data.isDrawer || !p || !p.strokes) return;
+    if (this.data.isDrawer || !this.isCurrentRoundEvent(p) || !p.strokes) return;
     this._strokes = p.strokes;
     this.setData({ strokesCount: this._strokes.length });
     this.redraw();
   },
 
   onRemoteGuess: function (p) {
-    if (!this.data.isDrawer) return;
+    if (!this.data.isDrawer || !this.isCurrentRoundEvent(p)) return;
     const text = String(p.text || '').slice(0, 24);
     this.pushFeed('them', this.data.partnerName + '：' + text);
     if (this._guessed) return;
@@ -539,20 +553,21 @@ Page({
         word: this._myWord,
         scores: this._scores,
         round: this._round,
+        game_id: this._gameId,
       });
       this.finishRound('correct', this.data.partnerId);
     } else {
-      this.sendEvent('wrong', { text: text });
+      this.sendEvent('wrong', Object.assign({ text: text }, this.roundMeta()));
     }
   },
 
   onRemoteWrong: function (p) {
-    if (this.data.isDrawer) return;
+    if (this.data.isDrawer || !this.isCurrentRoundEvent(p)) return;
     this.pushFeed('system', '不太对哦，再看看画里的细节');
   },
 
   onRemoteCorrect: function (p) {
-    if (this.data.isDrawer) return;
+    if (this.data.isDrawer || !this.isCurrentRoundEvent(p)) return;
     this._scores = p.scores || this._scores;
     this.setData({
       myScore: this._scores[this.data.myId] || 0,
@@ -567,6 +582,7 @@ Page({
   },
 
   onRemoteRoundEnd: function (p) {
+    if (!this.isCurrentRoundEvent(p)) return;
     this.teardown();
     this._scores = p.scores || this._scores;
     const isLast = !!p.is_last;
@@ -630,6 +646,7 @@ Page({
   onSyncState: function (p) {
     if (this.data.isDrawer) return;
     if (!p || !p.game_id || p.game_id !== this._gameId) return;
+    if (p.round !== undefined && Number(p.round) !== Number(this._round)) return;
     this._round = p.round || this._round;
     this._drawerId = p.drawer_id || this._drawerId;
     this._scores = p.scores || this._scores;
@@ -650,7 +667,7 @@ Page({
   },
 
   onRemoteHint: function (p) {
-    if (this.data.isDrawer) return;
+    if (this.data.isDrawer || !this.isCurrentRoundEvent(p)) return;
     this.setData({ hintText: p.hint ? '提示：' + p.hint : '' });
   },
 
@@ -756,10 +773,10 @@ Page({
     const now = Date.now();
     if (now - this._lastSend > 45) {
       this._lastSend = now;
-      this.sendEvent('point', {
+      this.sendEvent('point', Object.assign({
         x0: from.x, y0: from.y, x1: p.x, y1: p.y,
         color: this.data.currentColor, size: this.data.currentSize, eraser: this.data.isEraser,
-      });
+      }, this.roundMeta()));
     }
   },
 
@@ -775,7 +792,7 @@ Page({
       };
       this._strokes.push(stroke);
       this.setData({ strokesCount: this._strokes.length });
-      this.sendEvent('stroke', stroke);
+      this.sendEvent('stroke', Object.assign({}, stroke, this.roundMeta()));
     }
     this._current = [];
     this._lastPoint = null;
@@ -863,18 +880,18 @@ Page({
     this._strokes.pop();
     this.setData({ strokesCount: this._strokes.length });
     this.redraw();
-    this.sendEvent('strokes', { strokes: this._strokes });
+    this.sendEvent('strokes', Object.assign({ strokes: this._strokes }, this.roundMeta()));
   },
   clearBoard: function () {
     if (!this.data.isDrawer) return;
     this._strokes = [];
     this.setData({ strokesCount: 0 });
     this.redraw();
-    this.sendEvent('clear');
+    this.sendEvent('clear', this.roundMeta());
   },
   sendHint: function () {
     if (!this.data.isDrawer || !this._myWord) return;
-    this.sendEvent('hint', { hint: this._myWord.charAt(0) + '＿' });
+    this.sendEvent('hint', Object.assign({ hint: this._myWord.charAt(0) + '＿' }, this.roundMeta()));
     this.pushFeed('system', '你给了一个提示');
   },
 
@@ -888,7 +905,7 @@ Page({
     if (!text) return;
     this.setData({ guessText: '' });
     this.pushFeed('me', '你猜：' + text);
-    this.sendEvent('guess', { text: text });
+    this.sendEvent('guess', Object.assign({ text: text }, this.roundMeta()));
   },
 
   // ===== 结果/分享 =====

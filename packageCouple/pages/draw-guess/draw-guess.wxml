@@ -153,7 +153,7 @@
       </view>
     </view>
 
-    <view wx:if="{{!isDrawer}}" class="guess-bar">
+    <view wx:if="{{!isDrawer && stage === 'playing'}}" hidden="{{isDrawer}}" class="guess-bar">
       <input
         class="guess-input"
         value="{{guessText}}"
