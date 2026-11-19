@@ -1,7 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="#F4F1EA">
-  <rect width="400" height="300" fill="#E8E5DC"/>
-  <rect x="20" y="20" width="360" height="260" fill="#F4F1EA" stroke="#DDDDDD" stroke-width="2"/>
-  <text x="200" y="140" text-anchor="middle" font-family="Georgia, serif" font-size="48" fill="#CCCCCC">TECH</text>
-  <text x="200" y="180" text-anchor="middle" font-family="Georgia, serif" font-size="24" fill="#DDDDDD">DAILY</text>
-  <line x1="100" y1="200" x2="300" y2="200" stroke="#DDDDDD" stroke-width="1"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" fill="#F4F1EA" viewBox="0 0 400 300"><rect width="400" height="300" fill="#E8E5DC"/><rect width="360" height="260" x="20" y="20" fill="#F4F1EA" stroke="#DDD" stroke-width="2"/><text x="200" y="140" fill="#CCC" font-family="Georgia, serif" font-size="48" text-anchor="middle">TECH</text><text x="200" y="180" fill="#DDD" font-family="Georgia, serif" font-size="24" text-anchor="middle">DAILY</text><line x1="100" x2="300" y1="200" y2="200" stroke="#DDD" stroke-width="1"/></svg>
