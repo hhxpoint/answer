@@ -487,6 +487,18 @@ page {
   padding: 6rpx 14rpx;
   border-radius: 999rpx;
 }
+.board-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 14rpx 26rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 250, 243, 0.9);
+  color: #a8917b;
+  font-size: 21rpx;
+  box-shadow: 0 6rpx 18rpx rgba(135, 103, 75, 0.08);
+}
 .reveal-layer {
   position: absolute;
   top: 0; right: 0; bottom: 0; left: 0;

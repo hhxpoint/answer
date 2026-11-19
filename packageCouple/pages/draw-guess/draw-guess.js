@@ -88,6 +88,7 @@ Page({
     sizes: SIZES,
     isEraser: false,
     strokesCount: 0,
+    boardReady: false,
 
     feed: [],
     guessText: '',
@@ -305,7 +306,11 @@ Page({
     this._guessed = false;
     this._roundEnding = false;
     this._strokes = [];
+    // 画布可能因上一局/结算被销毁重建，必须重新拿 node
+    this._ctx = null;
+    this._canvas = null;
     this.setData({
+      boardReady: false,
       stage: 'playing',
       round: round,
       isDrawer: isDrawer,
@@ -462,8 +467,11 @@ Page({
     this._guessed = false;
     this._roundEnding = false;
     this._strokes = [];
+    this._ctx = null;
+    this._canvas = null;
     const isDrawer = this._drawerId === this.data.myId;
     this.setData({
+      boardReady: false,
       stage: 'playing',
       round: this._round,
       totalRounds: p.total_rounds || 5,
@@ -666,38 +674,57 @@ Page({
 
   initCanvas: function () {
     const that = this;
-    wx.createSelectorQuery()
-      .in(this)
-      .select('#board')
-      .fields({ node: true, size: true })
-      .boundingClientRect()
-      .exec(function (res) {
-        const info = res && res[0];
-        const rect = res && res[1];
-        if (!info || !info.node) return;
-        const canvas = info.node;
-        let dpr = 1;
-        try { dpr = wx.getSystemInfoSync().pixelRatio || 1; } catch (e) {}
-        const w = info.width || 320;
-        const h = info.height || 320;
-        canvas.width = Math.round(w * dpr);
-        canvas.height = Math.round(h * dpr);
-        const ctx = canvas.getContext('2d');
-        ctx.scale(dpr, dpr);
-        that._canvas = canvas;
-        that._ctx = ctx;
-        that._canvasW = w;
-        that._canvasH = h;
-        that._rect = rect || null;
-        that.redraw();
-      });
+    // 2D canvas 必须用 node 查询；fields 和 rect 分开查，避免链式调用丢失 node
+    const query = wx.createSelectorQuery().in(this);
+    query.select('#board').fields({ node: true, size: true });
+    query.select('#board').boundingClientRect();
+    query.exec(function (res) {
+      const info = res && res[0];
+      const rect = res && res[1];
+      if (!info || !info.node) {
+        // 页面/弹层切换时节点可能还没渲染好，重试几次
+        that._canvasRetry = (that._canvasRetry || 0) + 1;
+        if (that._canvasRetry <= 10) {
+          setTimeout(function () { that.initCanvas(); }, 150);
+        }
+        return;
+      }
+      that._canvasRetry = 0;
+      const canvas = info.node;
+      let dpr = 1;
+      try { dpr = wx.getSystemInfoSync().pixelRatio || 1; } catch (e) {}
+      const w = info.width || 320;
+      const h = info.height || 320;
+      canvas.width = Math.round(w * dpr);
+      canvas.height = Math.round(h * dpr);
+      const ctx = canvas.getContext('2d');
+      ctx.scale(dpr, dpr);
+      that._canvas = canvas;
+      that._ctx = ctx;
+      that._canvasW = w;
+      that._canvasH = h;
+      that._rect = rect || null;
+      that.setData({ boardReady: true });
+      that.redraw();
+    });
   },
 
   pointFromTouch: function (e) {
     const t = (e.touches && e.touches[0]) || (e.changedTouches && e.changedTouches[0]) || {};
     const rect = this._rect || { left: 0, top: 0 };
-    let x = (t.clientX !== undefined ? t.clientX : t.x) - (rect.left || 0);
-    let y = (t.clientY !== undefined ? t.clientY : t.y) - (rect.top || 0);
+    let x = 0;
+    let y = 0;
+    // canvas 触摸事件的 x/y 通常是画布内坐标；pageX/pageY 才是页面坐标。
+    if (t.pageX !== undefined && t.pageY !== undefined) {
+      x = t.pageX - (rect.left || 0);
+      y = t.pageY - (rect.top || 0);
+    } else if (t.clientX !== undefined && t.clientY !== undefined && t.x === undefined) {
+      x = t.clientX - (rect.left || 0);
+      y = t.clientY - (rect.top || 0);
+    } else {
+      x = Number(t.x) || 0;
+      y = Number(t.y) || 0;
+    }
     x = Math.max(0, Math.min(this._canvasW || 320, x));
     y = Math.max(0, Math.min(this._canvasH || 320, y));
     return { x: x / (this._canvasW || 320), y: y / (this._canvasH || 320) };

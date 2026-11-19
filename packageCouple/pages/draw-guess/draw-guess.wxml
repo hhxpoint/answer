@@ -115,6 +115,7 @@
         bindtouchcancel="onTouchEnd"
       ></canvas>
       <view wx:if="{{!isDrawer}}" class="board-tip">看 TA 画，在下面输入答案</view>
+      <view wx:if="{{!boardReady}}" class="board-loading">画板准备中…</view>
       <view wx:if="{{roundReveal}}" class="reveal-layer">
         <view class="reveal-kicker">本回合答案</view>
         <view class="reveal-word">{{roundReveal}}</view>
