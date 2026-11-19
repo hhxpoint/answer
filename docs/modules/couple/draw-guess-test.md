@@ -16,6 +16,14 @@
 
 > 微信开发者工具当前处于**未登录/access_token missing** 状态，`miniprogram-ci`/CLI 无法上传体验版；已用 DevTools 打开项目并确认文件 watch 编译触发，最终真机/模拟器验收需在已登录的 DevTools 中完成。
 
+### 页面逻辑 Node smoke（mock wx）
+
+- 加载真实 `draw-guess.js`，mock `wx` / socket
+- `startGame()` → stage=playing、isDrawer=true、随机词与掩码正常
+- 猜对处理 → `_guessed=true`、猜词方 +100、答案 reveal
+- 远端 `round_start` → stage=playing、isDrawer=false、canGuess=true
+- 结果：`SMOKE_OK`（无渲染层）
+
 ## 2. 服务端集成测试（远程临时实例）
 
 测试文件：`answer-couple-server/tests/pictionary_ws.test.js`
