@@ -48,6 +48,8 @@
 - 画板：`canvas type="2d"`，归一化坐标、45ms 线段节流、橡皮/撤销/清空、暖色治愈画笔
 - 词库：10 类 360+ 词（食物/动物/日常/自然/交通/人物/建筑/娱乐/动作/节日）
 - 文档：[docs/modules/couple/draw-guess.md](modules/couple/draw-guess.md)
+- 已通过微信开发者工具预览/上传开发版 **1.32.0**（6.6MB，主包 681KB，packageCouple 505KB）
+- 测试记录：[docs/modules/couple/draw-guess-test.md](modules/couple/draw-guess-test.md)
 
 ### 1.31.2 · 2026-11-18 · 小火苗改名点击修复
 - 修复：首页点小火苗名字无反应/无法改名
