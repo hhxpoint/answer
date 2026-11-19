@@ -52,8 +52,9 @@ Page({
                 ready: true,
                 nickname: local.nickName || '',
                 avatarPreview: local.avatarUrl || '',
-                errorText: '资料同步失败，可点下方保存重试'
+                errorText: ''
               });
+              wx.showToast({ title: '资料同步失败，请重新保存', icon: 'none' });
             });
           return;
         }
