@@ -13,6 +13,7 @@ const CATEGORY_WORDS = {
   建筑: '城堡 房子 学校 医院 图书馆 博物馆 教堂 塔 桥 摩天轮 游乐园 电影院 超市 餐厅 酒店 机场 车站 灯塔 风车 帐篷 凉亭 长城 金字塔 埃菲尔铁塔 摩天大楼 小屋 树屋',
   娱乐: '钢琴 吉他 小提琴 鼓 话筒 耳机 游戏机 足球 篮球 乒乓球 羽毛球 网球 排球 棒球 保龄球 游泳 滑雪 冲浪 跳绳 秋千 滑梯 积木 拼图 象棋 围棋 扑克牌 风筝 陀螺 弹珠 绘本 电影 相机 画笔 颜料 调色盘',
   动作: '跑步 跳跃 游泳 跳舞 唱歌 画画 读书 写字 吃饭 喝水 睡觉 微笑 哭泣 拥抱 挥手 眨眼 打哈欠 伸懒腰 鼓掌 蹦床 骑自行车 放风筝 堆雪人 吹泡泡 看星星 数星星 打电话 自拍 做鬼脸 转圈圈',
+  节日: '春节 红包 鞭炮 灯笼 春联 烟花 年夜饭 饺子 月饼 粽子 龙舟 汤圆 圣诞树 圣诞帽 南瓜灯 生日蛋糕 蜡烛 礼物 许愿 团圆饭 元宵 七夕 重阳 新年',
 };
 
 const WORDS = [];
@@ -73,6 +74,7 @@ Page({
     hintText: '',
     timeLeft: 60,
     timeText: '1:00',
+    timeUrgent: false,
     myScore: 0,
     partnerScore: 0,
     showResult: false,
@@ -241,6 +243,7 @@ Page({
     if (action === 'clear') return this.onRemoteClear();
     if (action === 'strokes') return this.onRemoteStrokes(p);
     if (action === 'guess') return this.onRemoteGuess(p);
+    if (action === 'wrong') return this.onRemoteWrong(p);
     if (action === 'correct') return this.onRemoteCorrect(p);
     if (action === 'round_end') return this.onRemoteRoundEnd(p);
     if (action === 'game_over') return this.onRemoteGameOver(p);
@@ -368,7 +371,7 @@ Page({
     const that = this;
     const tick = function () {
       const left = Math.max(0, Math.ceil((that._timerEnd - Date.now()) / 1000));
-      that.setData({ timeLeft: left, timeText: timeText(left) });
+      that.setData({ timeLeft: left, timeText: timeText(left), timeUrgent: left <= 10 && left > 0 });
       if (left <= 0) {
         that.teardown();
         if (that.data.isDrawer && that.data.stage === 'playing' && !that._guessed) {
@@ -528,7 +531,14 @@ Page({
         round: this._round,
       });
       this.finishRound('correct', this.data.partnerId);
+    } else {
+      this.sendEvent('wrong', { text: text });
     }
+  },
+
+  onRemoteWrong: function (p) {
+    if (this.data.isDrawer) return;
+    this.pushFeed('system', '不太对哦，再看看画里的细节');
   },
 
   onRemoteCorrect: function (p) {

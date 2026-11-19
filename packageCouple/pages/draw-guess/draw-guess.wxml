@@ -62,7 +62,7 @@
         <view class="round-badge">ROUND {{round}} / {{totalRounds}}</view>
         <view class="top-names">{{isDrawer ? '你来画 · ' + partnerName + ' 来猜' : partnerName + ' 画 · 你来猜'}}</view>
       </view>
-      <view class="timer {{timeLeft <= 10 ? 'urgent' : ''}}">
+      <view class="timer {{timeUrgent ? 'urgent' : ''}}">
         <view class="timer-num">{{timeText}}</view>
         <view class="timer-label">剩余</view>
       </view>
@@ -117,7 +117,7 @@
         <view
           wx:for="{{palette}}"
           wx:key="*this"
-          class="color-dot {{currentColor === item && !isEraser ? 'selected' : ''}}"
+          class="color-dot {{currentColor === item ? 'selected' : ''}}"
           style="background: {{item}};"
           data-color="{{item}}"
           bindtap="selectColor"

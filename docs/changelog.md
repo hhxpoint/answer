@@ -26,7 +26,7 @@
 
 `packageCouple`、`packageAI`、`packageAR`、`packageAssets`、`packageDetect`、`packageFinance`、
 `packageGame`、`packageGithub`、`packageJwzx`、`packageSport`、`packageWeather`、`packagepdf`、
-`packagetoken`、`bitcoin`、`chess`、`course`、`particle`、`pictionary`、`resume`、
+`packagetoken`、`bitcoin`、`chess`、`course`、`particle`、`resume`、
 `pages/loginscan`、`pages/user`、`components/xr-scene`、`utils/jwzx-api.js`、`utils/learning-center.js`、
 新增静态资源（`assets/*.png`、`assets/couple-share.png`）、`package.json`、`package-lock.json`。
 
@@ -38,6 +38,16 @@
 ---
 
 ## 二、小程序版本历史
+
+### 1.32.0 · 2026-11-19 · 你画我猜迁移进双人关系空间
+
+- 新增：`packageCouple/pages/draw-guess`，入口在首页「侧耳倾听」下方
+- 交互：同一关系空间两人实时画/猜，5 轮（可选 3/5/8），画手轮换、计时、计分、提示、结算
+- 通信：复用 `wss://hhxpoint.me/couple-ws`，服务端只校验 token/空间成员并广播；没有房间号/大厅/陌生人
+- 移除：旧的独立 `pictionary` 子包、应许之地入口、`hhxgo.tech` 房间创建逻辑
+- 画板：`canvas type="2d"`，归一化坐标、45ms 线段节流、橡皮/撤销/清空、暖色治愈画笔
+- 词库：10 类 360+ 词（食物/动物/日常/自然/交通/人物/建筑/娱乐/动作/节日）
+- 文档：[docs/modules/couple/draw-guess.md](modules/couple/draw-guess.md)
 
 ### 1.31.2 · 2026-11-18 · 小火苗改名点击修复
 - 修复：首页点小火苗名字无反应/无法改名
