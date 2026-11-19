@@ -724,6 +724,11 @@ Page({
     } else {
       x = Number(t.x) || 0;
       y = Number(t.y) || 0;
+      // 少数基础库的 x/y 是页面坐标：明显超出画布时回退为减去 rect
+      if (x > (this._canvasW || 320) || y > (this._canvasH || 320)) {
+        x -= (rect.left || 0);
+        y -= (rect.top || 0);
+      }
     }
     x = Math.max(0, Math.min(this._canvasW || 320, x));
     y = Math.max(0, Math.min(this._canvasH || 320, y));
