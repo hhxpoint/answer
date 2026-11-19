@@ -1,5 +1,6 @@
 const api = require('../../utils/couple-api.js');
 const share = require('../../utils/share.js');
+const globalProfile = require('../../../utils/global-profile.js');
 
 Page({
   data: {
@@ -28,16 +29,42 @@ Page({
         const user = res.user || {};
         const hasAvatar = !!user.avatar;
         const hasNickname = !!user.nickname;
+
+        // 服务端已有完整资料：直接进入，并回填个人中心
+        if (hasAvatar && hasNickname) {
+          globalProfile.acceptServerUser(user);
+          that.setData({ loading: false, ready: true });
+          that.goNext();
+          return;
+        }
+
+        // 个人中心已经注册：自动带入小火苗，不重复要求头像/昵称
+        const local = globalProfile.getLocalProfile();
+        if (globalProfile.isComplete(local)) {
+          globalProfile.pushLocalProfile(local)
+            .then(function () {
+              that.setData({ loading: false, ready: true });
+              that.goNext();
+            })
+            .catch(function () {
+              that.setData({
+                loading: false,
+                ready: true,
+                nickname: local.nickName || '',
+                avatarPreview: local.avatarUrl || '',
+                errorText: '资料同步失败，可点下方保存重试'
+              });
+            });
+          return;
+        }
+
+        // 都没有：让用户选择微信头像/昵称
         that.setData({
           loading: false,
           ready: true,
-          nickname: user.nickname || '',
-          avatarPreview: hasAvatar ? api.absUrl(user.avatar) : ''
+          nickname: (local && local.nickName) || '',
+          avatarPreview: (local && local.avatarUrl) || ''
         });
-        if (hasAvatar && hasNickname) {
-          // 已经设置过，直接进入下一步，不重复打扰
-          that.goNext();
-        }
       })
       .catch(function (err) {
         that.setData({ loading: false, ready: true, errorText: err.msg || '加载失败，下拉重试' });
@@ -89,6 +116,7 @@ Page({
       api.saveProfile(nickname, avatarData)
         .then(function (res) {
           api.setCachedUser(res.user);
+          globalProfile.acceptServerUser(res.user);
           that.setData({ saving: false });
           wx.showToast({ title: '好啦', icon: 'none' });
           setTimeout(function () { that.goNext(); }, 350);

@@ -1,6 +1,7 @@
 const USER_STORAGE_KEY = 'userProfile';
 const USER_FIRST_REGISTER_AT_KEY = 'userFirstRegisterAt';
 const learningCenter = require('../../utils/learning-center.js');
+const globalProfile = require('../../utils/global-profile.js');
 
 Page({
   data: {
@@ -30,6 +31,7 @@ Page({
 
   onShow() {
     this.loadProfile();
+    this.syncGlobalProfile();
     this.loadLearningDashboard();
   },
 
@@ -173,6 +175,28 @@ Page({
     });
   },
 
+  // 个人中心 ↔ 小火苗：同一份全局资料
+  // 1) 服务端已有资料 -> 回填本地；2) 本地已注册 -> 补同步服务端
+  syncGlobalProfile() {
+    const that = this;
+    // 用户正在编辑已注册资料时，不要用远端覆盖输入框
+    if (this.data.editing && this.data.isRegistered) return;
+    globalProfile.syncFromServer()
+      .then(function () { return globalProfile.pushLocalProfile(); })
+      .then(function () {
+        if (that.data.editing && that.data.isRegistered) return;
+        const latest = globalProfile.getLocalProfile();
+        const shown = that.data.profile;
+        if (latest && latest.nickName &&
+            (!shown || shown.nickName !== latest.nickName || shown.avatarUrl !== latest.avatarUrl)) {
+          that.loadProfile();
+        }
+      })
+      .catch(function () {
+        // 网络失败不影响本地注册；下次 onShow 自动重试
+      });
+  },
+
   onChooseAvatar(e) {
     const avatarUrl = e.detail.avatarUrl;
     if (!avatarUrl) {
@@ -208,6 +232,7 @@ Page({
     }
 
     const oldProfile = wx.getStorageSync(USER_STORAGE_KEY) || {};
+    globalProfile.markLoggedIn();
     const firstRegisterAt = Number(wx.getStorageSync(USER_FIRST_REGISTER_AT_KEY)) || Number(oldProfile.createdAt) || Date.now();
     wx.setStorageSync(USER_FIRST_REGISTER_AT_KEY, firstRegisterAt);
 
@@ -235,6 +260,18 @@ Page({
       title: oldProfile.nickName ? '资料已更新' : '注册成功',
       icon: 'success'
     });
+
+    // 关键：注册/修改后立刻同步到小火苗全局账号；失败则下次 onShow 重试
+    const that = this;
+    globalProfile.pushLocalProfile(profile)
+      .then(function (latest) {
+        if (latest && latest.avatarUrl) {
+          that.loadProfile();
+        }
+      })
+      .catch(function () {
+        wx.showToast({ title: '已保存到本地，联网后同步', icon: 'none' });
+      });
   },
 
   startEdit() {
@@ -255,6 +292,7 @@ Page({
         if (!res.confirm) {
           return;
         }
+        globalProfile.clearSession();
         wx.removeStorageSync(USER_STORAGE_KEY);
         this.loadProfile();
         wx.showToast({

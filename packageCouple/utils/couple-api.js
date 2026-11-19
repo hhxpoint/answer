@@ -68,6 +68,7 @@ function login() {
           .then(function (r) {
             setToken(r.token);
             setCachedUser(r.user);
+            try { wx.removeStorageSync('globalProfileLoggedOut'); } catch (e) {}
             if (r.active_space_id) spaceCtx.setCurrentSpaceId(r.active_space_id);
             if (Array.isArray(r.spaces)) spaceCtx.setCachedSpaces(r.spaces);
             resolve(r);
@@ -82,7 +83,10 @@ function login() {
 }
 
 function ensureLogin() {
-  if (getToken()) return Promise.resolve();
+  if (getToken()) {
+    try { wx.removeStorageSync('globalProfileLoggedOut'); } catch (e) {}
+    return Promise.resolve();
+  }
   return login();
 }
 

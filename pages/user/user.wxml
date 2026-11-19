@@ -14,7 +14,7 @@
       <image class="avatar" src="{{profile.avatarUrl}}" mode="aspectFill"></image>
       <view class="hero-profile-main">
         <text class="nickname">{{profile.nickName}}</text>
-        <!-- <text class="meta">已注册 · 资料已保存到本地</text> -->
+        <text class="meta">已注册 · 资料已同步到小火苗与个人中心</text>
       </view>
     </view>
 
@@ -180,8 +180,8 @@
 
   <view class="panel glass-card" wx:if="{{!isRegistered || editing}}">
     <view class="panel-title-row">
-      <text class="panel-title">注册信息</text>
-      <text class="panel-tip">必填项</text>
+      <text class="panel-title">全局注册信息</text>
+      <text class="panel-tip">个人中心 / 小火苗通用</text>
     </view>
 
     <view class="field-card">
