@@ -71,6 +71,7 @@
       <view class="top-left">
         <view class="round-badge">ROUND {{round}} / {{totalRounds}}</view>
         <view class="top-names">{{isDrawer ? '你来画 · ' + partnerName + ' 来猜' : partnerName + ' 画 · 你来猜'}}</view>
+        <view class="top-conn {{online ? 'ok' : 'bad'}}">{{online ? connText : '连接已断开，正在重连'}}</view>
       </view>
       <view class="timer {{timeUrgent ? 'urgent' : ''}}">
         <view class="timer-num">{{timeText}}</view>

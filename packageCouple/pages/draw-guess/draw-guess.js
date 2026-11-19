@@ -100,6 +100,17 @@ Page({
   },
 
   onLoad: function () {
+    // 单页面实例：分享/快速双击入口时不再叠加第二个游戏页面（避免双 socket 互相打架）
+    const app = getApp();
+    if (app && app.globalData && app.globalData.drawGuessPage &&
+        app.globalData.drawGuessPage !== this && getCurrentPages().length > 1) {
+      wx.navigateBack({ delta: 1 });
+      return;
+    }
+    if (app && app.globalData) app.globalData.drawGuessPage = this;
+    this._pageOwner = true;
+    this._socketAlive = false;
+
     this._strokes = [];
     this._current = [];
     this._drawing = false;
@@ -170,10 +181,15 @@ Page({
   },
 
   onShow: function () {
-    if (!this._loading && this.data.myId && (!this._socket || !this.data.online)) {
-      this.connect();
+    if (!this._loading && this.data.myId) {
+      this.ensureSocket();
     }
     if (this.data.stage === 'playing') this.redraw();
+  },
+
+  onHide: function () {
+    // 切后台/被其他页面遮挡后，回前台强制重建 socket，避免“假在线”
+    this._socketAlive = false;
   },
 
   onUnload: function () {
@@ -182,6 +198,11 @@ Page({
       try { this._socket.send({ type: 'pictionary', payload: { action: 'leave' } }); } catch (e) {}
       this._socket.close();
       this._socket = null;
+    }
+    this._socketAlive = false;
+    const app = getApp();
+    if (app && app.globalData && app.globalData.drawGuessPage === this) {
+      app.globalData.drawGuessPage = null;
     }
   },
 
@@ -193,6 +214,11 @@ Page({
   },
 
   // ===== 连接 =====
+  ensureSocket: function () {
+    if (this._socket && this._socketAlive && this.data.online) return;
+    this.connect();
+  },
+
   connect: function () {
     if (!this.data.partnerId) return;
     if (this._socket) {
@@ -200,19 +226,25 @@ Page({
       this._socket = null;
     }
     const that = this;
+    this._socketAlive = false;
     this.setData({ connText: '连接中…' });
     this._socket = wsClient.createChatSocket({
       getToken: api.getToken,
       getSpaceId: api.getSpaceId,
       onStatus: function (status) {
         if (status === 'offline') {
+          that._socketAlive = false;
           that.setData({ online: false, partnerOnline: false, connText: '网络重连中…' });
+        } else if (status === 'online') {
+          that._socketAlive = true;
         }
       },
       onReady: function (data) {
+        that._socketAlive = true;
         const online = (data && data.online) || [];
         const partnerOnline = online.indexOf(that.data.partnerId) >= 0;
         that.setData({ online: true, partnerOnline: partnerOnline, connText: partnerOnline ? 'TA 在线' : '等 TA 上线' });
+        // 页面从后台/断线恢复时主动拉一次状态，避免错过 round_start
         if (that._gameId && (that.data.stage === 'playing' || that.data.stage === 'result')) {
           that.sendEvent('sync_req');
         }
@@ -282,6 +314,11 @@ Page({
 
   startGame: function () {
     if (!this.data.ready || this.data.errorText) return;
+    if (!this.data.online) {
+      wx.showToast({ title: '正在重连，稍等一下', icon: 'none' });
+      this.ensureSocket();
+      return;
+    }
     if (!this.data.partnerOnline) {
       wx.showToast({ title: '等 TA 上线再开始吧', icon: 'none' });
       return;
@@ -754,6 +791,11 @@ Page({
 
   onTouchStart: function (e) {
     if (!this.data.isDrawer || this.data.stage !== 'playing') return;
+    if (!this.data.online) {
+      wx.showToast({ title: '正在重连，稍等一下', icon: 'none' });
+      this.ensureSocket();
+      return;
+    }
     if (!this._ctx) this.initCanvas();
     const p = this.pointFromTouch(e);
     this._drawing = true;
@@ -764,7 +806,7 @@ Page({
   },
 
   onTouchMove: function (e) {
-    if (!this._drawing || !this.data.isDrawer) return;
+    if (!this._drawing || !this.data.isDrawer || !this.data.online) return;
     const p = this.pointFromTouch(e);
     const from = this._lastPoint || p;
     this.drawSegment(from.x, from.y, p.x, p.y, this.data.currentColor, this.data.currentSize, this.data.isEraser);
@@ -901,6 +943,11 @@ Page({
   },
   submitGuess: function () {
     if (!this.data.canGuess || this.data.isDrawer) return;
+    if (!this.data.online) {
+      wx.showToast({ title: '正在重连，稍等一下', icon: 'none' });
+      this.ensureSocket();
+      return;
+    }
     const text = (this.data.guessText || '').trim();
     if (!text) return;
     this.setData({ guessText: '' });

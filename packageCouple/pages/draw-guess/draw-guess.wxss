@@ -362,6 +362,17 @@ page {
   color: #6d5948;
   font-weight: 600;
 }
+.top-conn {
+  margin-top: 8rpx;
+  font-size: 18rpx;
+  color: #a08a75;
+}
+.top-conn.ok {
+  color: #6f9a7d;
+}
+.top-conn.bad {
+  color: #c77e63;
+}
 .timer {
   width: 120rpx;
   height: 108rpx;
