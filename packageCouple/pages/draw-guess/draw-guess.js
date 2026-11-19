@@ -459,6 +459,7 @@ Page({
     this._drawerId = p.drawer_id || 0;
     this._scores = p.scores || {};
     this._guessed = false;
+    this._roundEnding = false;
     this._strokes = [];
     const isDrawer = this._drawerId === this.data.myId;
     this.setData({
