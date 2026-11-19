@@ -95,6 +95,7 @@ Page({
     scrollTo: '',
     roundReveal: '',
     roundRevealSub: '',
+    shareVisible: false,
   },
 
   onLoad: function () {
@@ -878,21 +879,33 @@ Page({
     this.setData({ feed: feed, scrollTo: 'feed-' + item.id });
   },
 
+  openShare: function () {
+    this.setData({ shareVisible: true });
+  },
+
+  closeShare: function () {
+    this.setData({ shareVisible: false });
+  },
+
+  onShareTap: function () {
+    this.setData({ shareVisible: false });
+  },
+
   noop: function () {},
 
   onShareAppMessage: function () {
     return {
-      title: '来和我一起玩你画我猜吧，只有我们两个人的小画板',
-      path: '/packageCouple/pages/draw-guess/draw-guess',
-      imageUrl: '/assets/couple-share.png',
+      title: '我画了一张只有你能猜的画，来看看？',
+      path: '/packageCouple/pages/draw-guess/draw-guess?from=share',
+      imageUrl: '/assets/draw-guess-share.png',
     };
   },
 
   onShareTimeline: function () {
     return {
-      title: '我们的小火苗 · 你画我猜',
-      query: '',
-      imageUrl: '/assets/couple-share.png',
+      title: '你画我猜 · 只属于我们俩的小画板',
+      query: 'from=timeline',
+      imageUrl: '/assets/draw-guess-share.png',
     };
   },
 });

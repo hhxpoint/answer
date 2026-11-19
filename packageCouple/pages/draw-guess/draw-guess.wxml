@@ -40,9 +40,19 @@
       </view>
     </view>
 
-    <button class="start-btn" bindtap="startGame" disabled="{{!partnerOnline}}">
-      {{partnerOnline ? '开始画画' : '等 TA 一起'}}
-    </button>
+    <view class="lobby-actions">
+      <view class="start-btn {{partnerOnline ? 'is-ready' : 'is-waiting'}}" bindtap="startGame">
+        <view class="start-btn-main">{{partnerOnline ? '开始画画' : '等 TA 一起'}}</view>
+        <view class="start-btn-sub">
+          {{partnerOnline ? '画给 TA 看，猜猜你画的是什么' : 'TA 上线后就能开局'}}
+        </view>
+        <view wx:if="{{!partnerOnline}}" class="waiting-dots"><text></text><text></text><text></text></view>
+      </view>
+      <view class="share-pill" bindtap="openShare">
+        <text class="share-pill-icon">↗</text>
+        <text>分享这块小画板</text>
+      </view>
+    </view>
 
     <view wx:if="{{errorText}}" class="error-text">{{errorText}}</view>
 
@@ -182,10 +192,38 @@
           <view class="result-num">{{partnerScore}}</view>
         </view>
       </view>
+      <view class="result-share" bindtap="openShare">
+        <text class="result-share-icon">↗</text>
+        <text>把这张小画板分享给 TA</text>
+      </view>
       <view class="result-actions">
         <button class="result-btn primary" bindtap="again">再画一局</button>
         <button class="result-btn ghost" bindtap="backHome">回到小火苗</button>
       </view>
+    </view>
+  </view>
+
+  <!-- 分享画面：高级版小画板邀请卡 -->
+  <view wx:if="{{shareVisible}}" class="share-mask" catchtap="closeShare">
+    <view class="share-card" catchtap="noop">
+      <view class="share-kicker">A LITTLE GAME FOR TWO</view>
+      <view class="share-title">把这幅画<br/>递给 {{partnerName}}</view>
+      <view class="share-sub">只属于你们两个人的小画板，画得笨拙也算数。</view>
+      <image class="share-preview" src="/assets/draw-guess-share.png" mode="widthFix"></image>
+      <view class="share-meta">
+        <view class="share-meta-avatar">
+          <image wx:if="{{myAvatar}}" src="{{myAvatar}}" mode="aspectFill"></image>
+          <text wx:else>{{myInitial}}</text>
+        </view>
+        <view class="share-meta-heart">♡</view>
+        <view class="share-meta-avatar">
+          <image wx:if="{{partnerAvatar}}" src="{{partnerAvatar}}" mode="aspectFill"></image>
+          <text wx:else>{{partnerInitial}}</text>
+        </view>
+        <view class="share-meta-text">只给你们俩看</view>
+      </view>
+      <button class="share-btn" open-type="share" bindtap="onShareTap">分享给 TA</button>
+      <view class="share-cancel" bindtap="closeShare">先不分享</view>
     </view>
   </view>
 </view>
