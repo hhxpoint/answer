@@ -9,6 +9,7 @@ const USER_KEY = 'couple_user';
 const SPACE_KEY = 'couple_space_id';
 const SPACES_KEY = 'couple_spaces_cache';
 const LOGGED_OUT_KEY = 'globalProfileLoggedOut';
+const DIRTY_KEY = 'globalProfileDirty';
 const BASE = 'https://hhxpoint.me/couple-api';
 
 let loginPromise = null;
@@ -67,6 +68,7 @@ function acceptServerUser(user) {
       avatar: user.avatar || '',
     });
   }
+  storageRemove(DIRTY_KEY);
   return saveLocalProfile({
     userId: user.id ? 'u' + user.id : old.userId,
     nickName: user.nickname || old.nickName || '',
@@ -80,12 +82,22 @@ function clearSession() {
   storageRemove(SPACE_KEY);
   storageRemove(SPACES_KEY);
   storageSet(LOGGED_OUT_KEY, 1);
+  storageRemove(DIRTY_KEY);
 }
 function isLoggedOut() {
   return !!storageGet(LOGGED_OUT_KEY, false);
 }
 function markLoggedIn() {
   storageRemove(LOGGED_OUT_KEY);
+}
+function markDirty() {
+  storageSet(DIRTY_KEY, 1);
+}
+function isDirty() {
+  return !!storageGet(DIRTY_KEY, false);
+}
+function clearDirty() {
+  storageRemove(DIRTY_KEY);
 }
 
 function request(path, options, retried) {
@@ -188,6 +200,8 @@ function avatarInput(profile) {
 // 服务端已有资料 -> 本地（个人中心）
 function syncFromServer() {
   if (isLoggedOut()) return Promise.resolve(null);
+  // 本地有尚未同步的修改时，先不拿旧服务端资料覆盖
+  if (isDirty()) return Promise.resolve(getLocalProfile());
   return ensureLogin()
     .then(function () { return request('/me'); })
     .then(function (res) {
@@ -248,4 +262,9 @@ module.exports = {
   getToken: getToken,
   absUrl: absUrl,
   clearSession: clearSession,
+  markDirty: markDirty,
+  isDirty: isDirty,
+  clearDirty: clearDirty,
+  isLoggedOut: isLoggedOut,
+  markLoggedIn: markLoggedIn,
 };

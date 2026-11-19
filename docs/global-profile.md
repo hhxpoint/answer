@@ -40,7 +40,8 @@
 - **in-flight 去重**：`syncPromise`，并发 `onShow`/提交只发一个同步请求
 - **先比较后写**：服务端 nickname/avatar 与本地一致时不重复 `POST /profile`
 - **头像统一**：本地临时路径读成 base64 上传；服务端返回 `/couple-api/files/avatars/...` 后本地改存绝对 URL
-- **失败不丢本地**：网络失败保留本地 `userProfile`，下次 `onShow` 重试
+- **失败不丢本地**：网络失败保留本地 `userProfile`，并置 `globalProfileDirty`；下次 `onShow` 先重试上传，避免被服务端旧资料覆盖
+- **成功后清脏**：`acceptServerUser` / `pushLocalProfile` 成功后清除 dirty
 - **token 失效**：401 清 token → 重新 `wx.login` → 重试请求
 - **退出登录**：`clearSession()` 清本地资料 + token + 空间缓存，并设置 `globalProfileLoggedOut`，避免个人中心立刻被自动回填
 - **重新登录**：小火苗 `couple-api` 登录成功或已有 token 时清除该标记

@@ -262,6 +262,7 @@ Page({
     });
 
     // 关键：注册/修改后立刻同步到小火苗全局账号；失败则下次 onShow 重试
+    globalProfile.markDirty();
     const that = this;
     globalProfile.pushLocalProfile(profile)
       .then(function (latest) {
@@ -269,8 +270,8 @@ Page({
           that.loadProfile();
         }
       })
-      .catch(function () {
-        wx.showToast({ title: '已保存到本地，联网后同步', icon: 'none' });
+      .catch(function (err) {
+        wx.showToast({ title: (err && err.msg) || '已保存到本地，联网后同步', icon: 'none' });
       });
   },
 

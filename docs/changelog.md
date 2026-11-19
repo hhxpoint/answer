@@ -39,6 +39,13 @@
 
 ## 二、小程序版本历史
 
+### 1.32.3 · 2026-11-19 · 全局资料离线修改保护
+
+- 新增 `globalProfileDirty` 标记：个人中心保存后若服务端同步失败，下次 `onShow` 不会被服务端旧资料覆盖
+- `syncFromServer` 在 dirty 时返回本地资料；`pushLocalProfile` 成功后清除 dirty
+- 头像/昵称同步继续使用服务端 `openid` 唯一身份，不重复建号
+- 文档补充离线草稿语义
+
 ### 1.32.2 · 2026-11-19 · 个人中心与小火苗全局资料同步
 
 - 新增 `utils/global-profile.js`：以服务端 couple 用户（openid 唯一）为全局身份
