@@ -1,10 +1,5 @@
 {
-  "navigationStyle": "custom",
   "navigationBarTitleText": "机器学习问答",
-  "navigationBarBackgroundColor": "#F4EEE4",
-  "navigationBarTextStyle": "black",
-  "backgroundColor": "#F4EEE4",
-  "backgroundTextStyle": "dark",
   "usingComponents": {
     "qa-card": "/components/qa-card/qa-card"
   }

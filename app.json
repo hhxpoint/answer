@@ -198,40 +198,40 @@
     "backgroundTextStyle": "light"
   },
   "tabBar": {
-    "color": "#9B8671",
-    "selectedColor": "#8C5A3C",
-    "backgroundColor": "#F7F1E8",
-    "borderStyle": "white",
+    "color": "#666666",
+    "selectedColor": "#4b7bec",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
     "list": [
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "iconPath": "assets/tab-home.png",
-        "selectedIconPath": "assets/tab-home-active.png"
+        "iconPath": "assets/home.png",
+        "selectedIconPath": "assets/home-active.png"
       },
       {
         "pagePath": "pages/search/search",
         "text": "搜索",
-        "iconPath": "assets/tab-search.png",
-        "selectedIconPath": "assets/tab-search-active.png"
+        "iconPath": "assets/search.png",
+        "selectedIconPath": "assets/search-active.png"
       },
       {
         "pagePath": "pages/quiz/quiz",
         "text": "题库",
-        "iconPath": "assets/tab-book.png",
-        "selectedIconPath": "assets/tab-book-active.png"
+        "iconPath": "assets/book.png",
+        "selectedIconPath": "assets/book-active.png"
       },
       {
         "pagePath": "pages/user/user",
         "text": "个人",
-        "iconPath": "assets/tab-user.png",
-        "selectedIconPath": "assets/tab-user-active.png"
+        "iconPath": "assets/memo.png",
+        "selectedIconPath": "assets/memo.png"
       },
       {
         "pagePath": "pages/about/about",
         "text": "关于",
-        "iconPath": "assets/tab-about.png",
-        "selectedIconPath": "assets/tab-about-active.png"
+        "iconPath": "assets/bo.png",
+        "selectedIconPath": "assets/bo.png"
       }
     ]
   },

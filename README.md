@@ -1,7 +1,7 @@
 # answer · 微信小程序
 
 > 一个以「AI 学习助手 + 工具箱」为主，并内置「我们的小火苗」双人私密空间的微信小程序。
-> 当前仓库快照：**2026-11-19**（小程序版本 **1.33.0**）
+> 当前仓库快照：**2026-11-19**（小程序版本 **1.33.1**）
 
 ---
 
@@ -112,7 +112,6 @@ answer/
 |---|---|
 | [docs/README.md](docs/README.md) | 文档总索引与阅读顺序 |
 | [docs/architecture.md](docs/architecture.md) | 整体架构、子包地图、前后端数据流、设计规范 |
-| [docs/design/home-redesign.md](docs/design/home-redesign.md) | **首页 Quiet Editorial 重塑** |
 | [docs/global-profile.md](docs/global-profile.md) | **全局个人资料同步（个人中心 ↔ 小火苗）** |
 | [docs/changelog.md](docs/changelog.md) | **按版本记录的详细变更历史（可回溯）** |
 | [docs/modules/overview.md](docs/modules/overview.md) | 20 个子包的职责与状态 |
@@ -132,7 +131,7 @@ answer/
 
 - 默认分支：`main`（稳定可发布分支）
 - 版本号：`1.x.y`，每次上传开发版递增；对外发布以微信后台「体验版/正式版」为准
-- 当前模块版本：**1.33.0**
+- 当前模块版本：**1.33.1**
 - 历史版本与每次改动明细：[docs/changelog.md](docs/changelog.md)
 
 ---

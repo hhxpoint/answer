@@ -1,235 +1,240 @@
-<view class="home" style="padding-top: {{statusBarHeight + 52}}px;">
-  <view class="grain"></view>
-
-  <!-- 刊头 -->
-  <view class="masthead">
-    <text class="masthead-brand">ML / NOTES</text>
-    <text class="masthead-date">{{dateText}}</text>
-  </view>
-
-  <!-- 主标题 -->
-  <view class="hero">
-    <view class="hero-eyebrow">A QUIET PLACE TO THINK</view>
-    <view class="hero-title">机器学习<text class="hero-title-it">问答</text></view>
-    <view class="hero-copy">把问题留在这里。<br/>题库、知识点与日常工具，离线优先。</view>
-    <view class="hero-meta">
-      <text>LOCAL-FIRST</text>
-      <text class="hero-meta-dot">·</text>
-      <text>NO CLOUD REQUIRED</text>
-    </view>
-  </view>
-
-  <!-- 两个主入口：留白多，信息少而重 -->
-  <view class="feature-row">
-    <view class="feature feature-flame" bindtap="goCouple" hover-class="pressed">
-      <view class="feature-top">
-        <text class="feature-code">A / RELATIONSHIP</text>
-        <text class="feature-arrow">↗</text>
-      </view>
-      <view class="feature-seal seal-flame"><text class="feature-seal-char">火</text></view>
-      <view class="feature-title">我们的小火苗</view>
-      <view class="feature-copy">和重要的人，一起养一只。</view>
-      <view class="feature-foot">每段关系独立空间</view>
-    </view>
-
-    <view class="feature feature-recipe" bindtap="goRecipe" hover-class="pressed">
-      <view class="feature-top">
-        <text class="feature-code">B / DAILY</text>
-        <text class="feature-arrow">↗</text>
-      </view>
-      <view class="feature-seal seal-recipe"><text class="feature-seal-char">食</text></view>
-      <view class="feature-title">今天吃什么</view>
-      <view class="feature-copy">四十道家常菜，按食材找。</view>
-      <view class="feature-foot">离线可用 · 不联网</view>
-    </view>
-  </view>
-
-  <!-- 01 学习 -->
-  <view class="section">
-    <view class="section-head">
-      <text class="section-no">01</text>
-      <view class="section-label">
-        <text class="section-title">Study</text>
-        <text class="section-cn">学习</text>
-      </view>
-      <view class="section-rule"></view>
-    </view>
-
-    <view class="study-list">
-      <view class="study-row" bindtap="goQuiz" hover-class="pressed">
-        <text class="row-no">01</text>
-        <view class="row-body"><text class="row-title">开始答题</text><text class="row-en">QUIZ / PRACTICE</text></view>
-        <text class="row-arrow">↗</text>
-      </view>
-      <view class="study-row" bindtap="goSearch" hover-class="pressed">
-        <text class="row-no">02</text>
-        <view class="row-body"><text class="row-title">搜索知识点</text><text class="row-en">SEARCH / NOTES</text></view>
-        <text class="row-arrow">↗</text>
-      </view>
-      <view class="study-row" bindtap="goWords" hover-class="pressed">
-        <text class="row-no">03</text>
-        <view class="row-body"><text class="row-title">背单词</text><text class="row-en">VOCABULARY</text></view>
-        <text class="row-arrow">↗</text>
-      </view>
-      <view class="study-row" bindtap="goExam" data-type="408" hover-class="pressed">
-        <text class="row-no">04</text>
-        <view class="row-body"><text class="row-title">408 综合</text><text class="row-en">EXAM / CS</text></view>
-        <text class="row-arrow">↗</text>
-      </view>
-      <view class="study-row" bindtap="goExam" data-type="math1" hover-class="pressed">
-        <text class="row-no">05</text>
-        <view class="row-body"><text class="row-title">数一客观</text><text class="row-en">EXAM / MATH</text></view>
-        <text class="row-arrow">↗</text>
-      </view>
-      <view class="study-row" bindtap="goScores" hover-class="pressed">
-        <text class="row-no">06</text>
-        <view class="row-body"><text class="row-title">成绩查询</text><text class="row-en">ACADEMIC / SCORES</text></view>
-        <text class="row-arrow">↗</text>
-      </view>
-      <view class="study-row" bindtap="goJwzxTimetable" hover-class="pressed">
-        <text class="row-no">07</text>
-        <view class="row-body"><text class="row-title">教务课表</text><text class="row-en">ACADEMIC / SCHEDULE</text></view>
-        <text class="row-arrow">↗</text>
-      </view>
-      <view class="study-row" bindtap="goc" hover-class="pressed">
-        <text class="row-no">08</text>
-        <view class="row-body"><text class="row-title">课程表</text><text class="row-en">COURSE / PLAN</text></view>
-        <text class="row-arrow">↗</text>
+<!-- 我们的小火苗入口 -->
+<view class="couple-entry" bindtap="goCouple">
+  <view class="couple-entry-glow"></view>
+  <view class="couple-entry-flame">
+    <view class="mini-flame">
+      <view class="mini-flame-inner">
+        <view class="mini-flame-core"></view>
       </view>
     </view>
   </view>
+  <view class="couple-entry-text">
+    <view class="couple-entry-title">我们的小火苗</view>
+    <view class="couple-entry-sub">和重要的人，一起养一只 · 每段关系独立空间</view>
+  </view>
+  <view class="couple-entry-arrow">›</view>
+</view>
 
-  <!-- 02 工具 -->
-  <view class="section">
-    <view class="section-head">
-      <text class="section-no">02</text>
-      <view class="section-label">
-        <text class="section-title">Tools</text>
-        <text class="section-cn">工具</text>
-      </view>
-      <view class="section-rule"></view>
+<!-- 今天吃什么（纯本地菜谱）入口 -->
+<view class="recipe-entry" bindtap="goRecipe">
+  <view class="recipe-entry-glow"></view>
+  <view class="recipe-entry-icon">🍳</view>
+  <view class="recipe-entry-text">
+    <view class="recipe-entry-title">今天吃什么</view>
+    <view class="recipe-entry-sub">40 道家常菜 · 按食材找菜谱 · 离线可用</view>
+  </view>
+  <view class="recipe-entry-arrow">›</view>
+</view>
+
+<swiper class="swiper" autoplay interval="3000" circular>
+  <swiper-item>
+    <image class="swiper-img" src="/assets/banner1.png"></image>
+  </swiper-item>
+</swiper>
+
+
+
+<view class="banner">
+  <text class="banner-title">机器学习问答</text>
+
+  <text class="banner-sub">  轻松掌握核心知识点</text>
+</view>
+
+
+
+<view class="container">
+
+  <view class="card-list">
+
+    <view class="card" bindtap="goQuiz">
+      <image class="card-icon" src="/assets/home-active.png"></image>
+      <text class="card-title">开始答题</text>
     </view>
 
-    <view class="tile-grid">
-      <view class="tile" bindtap="goCalc" hover-class="pressed">
-        <view class="tile-top"><text class="tile-code">CALC</text><text class="tile-arrow">↗</text></view>
-        <view class="tile-title">科学计算器</view>
-        <view class="tile-copy">表达式与函数</view>
+
+
+        <!-- 教务在线 - 成绩查询 -->
+        <view class="card" bindtap="goScores">
+          <image class="card-icon" src="/assets/2.png"></image>
+          <view class="card-title">成绩查询</view>
+        </view>
+        
+        <!-- 教务在线 - 教务课表 -->
+        <view class="card" bindtap="goJwzxTimetable">
+          <image class="card-icon" src="/assets/1.png"></image>
+          <view class="card-title">课表</view>
+        </view>
+
+
+    <view class="card" bindtap="goSearch">
+      <image class="card-icon" src="/assets/search-active.png"></image>
+      <text class="card-title">搜索知识点</text>
+    </view>
+
+    <!-- pages/index/index.wxml 找到 card-list 内部 -->
+    <view class="card" bindtap="goWords">
+      <image class="card-icon" src="/assets/word.png"></image>
+      <view class="card-title">背单词</view>
+    </view>
+
+
+    <!-- 408综合 按钮 -->
+    <view class="card" bindtap="goExam" data-type="408">
+      <image class="card-icon" src="/assets/408.png"></image>
+      <view class="card-title">408综合</view>
+    </view>
+
+    <!-- 数一客观 按钮 -->
+    <view class="card" bindtap="goExam" data-type="math1">
+      <image class="card-icon" src="/assets/math1.png"></image>
+      <view class="card-title">数一客观</view>
+    </view>
+
+
+
+
+    <view class="card" bindtap="goCalc">
+      <image class="card-icon" src="/assets/calc.png"></image>
+      <text class="card-title">科学计算器</text>
+    </view>
+
+
+    <!-- 原神启动（算法网络）按钮 -->
+    <view class="card" bindtap="goAlgorithm">
+      <image class="card-icon" src="/assets/bo.png"></image>
+      <view class="card-title">卜神启动</view>
+    </view>
+
+
+    <view class="card" bindtap="goprocess">
+        <image class="card-icon" src="/assets/search-active.png"></image>
+        <view class="card-title">图像处理</view>
       </view>
-      <view class="tile" bindtap="goAlgorithm" hover-class="pressed">
-        <view class="tile-top"><text class="tile-code">ALGO</text><text class="tile-arrow">↗</text></view>
-        <view class="tile-title">卜神启动</view>
-        <view class="tile-copy">算法与网络</view>
+
+    <view class="card" bindtap="golab">
+        <image class="card-icon" src="/assets/book-active.png"></image>
+        <view class="card-title">butterfly</view>
       </view>
-      <view class="tile" bindtap="goprocess" hover-class="pressed">
-        <view class="tile-top"><text class="tile-code">IMG</text><text class="tile-arrow">↗</text></view>
-        <view class="tile-title">图像处理</view>
-        <view class="tile-copy">像素与滤镜</view>
+
+
+    <view class="card" bindtap="gohash">
+      <image class="card-icon" src="/assets/hash.png"></image>
+      <view class="card-title">hash</view>
+    </view>
+
+      <view class="card" bindtap="gopuzzle">
+        <image class="card-icon" src="/assets/puzzle.png"></image>
+        <view class="card-title">puzzle</view>
       </view>
-      <view class="tile" bindtap="golab" hover-class="pressed">
-        <view class="tile-top"><text class="tile-code">LAB</text><text class="tile-arrow">↗</text></view>
-        <view class="tile-title">Butterfly</view>
-        <view class="tile-copy">可视化实验</view>
+
+
+
+    <view class="card" bindtap="gomemo">
+        <image class="card-icon" src="/assets/memo.png"></image>
+        <view class="card-title">coconut</view>
+    </view>
+
+    <view class="card" bindtap="goimg2pdf">
+      <image class="card-icon" src="/assets/img2pdf.png"></image>
+      <view class="card-title">img2pdf</view>
+    </view>
+
+  <!-- 粒子的测试渲染 -->
+      <view class="card" bindtap="got">
+
+        <image class="card-icon" src="/assets/search-active.png"></image>
+        <view class="card-title">particle</view>
       </view>
-      <view class="tile" bindtap="gohash" hover-class="pressed">
-        <view class="tile-top"><text class="tile-code">HASH</text><text class="tile-arrow">↗</text></view>
-        <view class="tile-title">Hash</view>
-        <view class="tile-copy">摘要与校验</view>
+
+
+
+
+
+     <view class="card" bindtap="goc">
+        <image class="card-icon" src="/assets/course.png"></image>
+        <view class="card-title">课程表</view>
       </view>
-      <view class="tile" bindtap="gopuzzle" hover-class="pressed">
-        <view class="tile-top"><text class="tile-code">PZ</text><text class="tile-arrow">↗</text></view>
-        <view class="tile-title">Puzzle</view>
-        <view class="tile-copy">拼图与图像</view>
+
+
+
+
+      <view class="card" bindtap="gochess">
+        <image class="card-icon" src="/assets/course.png"></image>
+        <view class="card-title">灯神长街</view>
       </view>
-      <view class="tile" bindtap="gomemo" hover-class="pressed">
-        <view class="tile-top"><text class="tile-code">MEMO</text><text class="tile-arrow">↗</text></view>
-        <view class="tile-title">Coconut</view>
-        <view class="tile-copy">轻量记事</view>
+
+
+
+      <!-- 原神启动（算法网络）按钮 -->
+    <view class="card" bindtap="goemotion">
+        <image class="card-icon" src="/assets/home-active.png"></image>
+        <view class="card-title">语音大师</view>
       </view>
-      <view class="tile" bindtap="goimg2pdf" hover-class="pressed">
-        <view class="tile-top"><text class="tile-code">PDF</text><text class="tile-arrow">↗</text></view>
-        <view class="tile-title">img2pdf</view>
-        <view class="tile-copy">图片转文档</view>
-      </view>
-      <view class="tile" bindtap="got" hover-class="pressed">
-        <view class="tile-top"><text class="tile-code">FX</text><text class="tile-arrow">↗</text></view>
-        <view class="tile-title">Particle</view>
-        <view class="tile-copy">粒子与渲染</view>
-      </view>
-      <view class="tile" bindtap="goemotion" hover-class="pressed">
-        <view class="tile-top"><text class="tile-code">VOICE</text><text class="tile-arrow">↗</text></view>
-        <view class="tile-title">语音大师</view>
-        <view class="tile-copy">情绪与声音</view>
+
+    <view class="card lite-card" bindtap="goWeather">
+      <view class="lite-emoji">🍊</view>
+      <view class="lite-info">
+        <text class="lite-title">天气系统</text>
+        <text class="lite-sub">实时天气预报</text>
       </view>
     </view>
+
+    <view class="card lite-card" bindtap="goSport">
+      <view class="lite-emoji">🫐</view>
+      <view class="lite-info">
+        <text class="lite-title">运动系统</text>
+        <text class="lite-sub">健身记录与统计</text>
+      </view>
+    </view>
+
+    <view class="card lite-card" bindtap="goGithub">
+      <view class="lite-emoji">🍋</view>
+      <view class="lite-info">
+        <text class="lite-title">Paper Geek</text>
+        <text class="lite-sub">学术日报 · AI论文</text>
+      </view>
+    </view>
+
+    <view class="card lite-card" bindtap="goAR">
+      <view class="lite-emoji">🍇</view>
+      <view class="lite-info">
+        <text class="lite-title">AR 空间</text>
+        <text class="lite-sub">增强现实 · 3D交互</text>
+      </view>
+    </view>
+
+    <view class="card lite-card" bindtap="goFinance">
+      <view class="lite-emoji">🥝</view>
+      <view class="lite-info">
+        <text class="lite-title">指数破壁</text>
+        <text class="lite-sub">全球财富监控</text>
+      </view>
+    </view>
+
+    <view class="card lite-card" bindtap="gob">
+      <view class="lite-emoji">🍑</view>
+      <view class="lite-info">
+        <text class="lite-title">Blockchain</text>
+        <text class="lite-sub">多链浏览器 · 实时行情</text>
+      </view>
+    </view>
+
+    <view class="card lite-card" bindtap="gor">
+      <view class="lite-emoji">🍒</view>
+      <view class="lite-info">
+        <text class="lite-title">简历编辑器</text>
+        <text class="lite-sub">可视化编辑 · 实时预览</text>
+      </view>
+    </view>
+
+    <view class="card lite-card" bindtap="goDetect">
+      <view class="lite-emoji">🍓</view>
+      <view class="lite-info">
+        <text class="lite-title">目标检测</text>
+        <text class="lite-sub">手写数字识别 · 实时检测</text>
+      </view>
+    </view>
+
   </view>
 
-  <!-- 03 实验室 -->
-  <view class="section">
-    <view class="section-head">
-      <text class="section-no">03</text>
-      <view class="section-label">
-        <text class="section-title">Labs</text>
-        <text class="section-cn">实验室</text>
-      </view>
-      <view class="section-rule"></view>
-    </view>
-
-    <view class="tile-grid">
-      <view class="tile tile-soft" bindtap="goWeather" hover-class="pressed">
-        <view class="tile-top"><text class="tile-code">WX</text><text class="tile-arrow">↗</text></view>
-        <view class="tile-title">天气系统</view>
-        <view class="tile-copy">实时天气预报</view>
-      </view>
-      <view class="tile tile-soft" bindtap="goSport" hover-class="pressed">
-        <view class="tile-top"><text class="tile-code">SP</text><text class="tile-arrow">↗</text></view>
-        <view class="tile-title">运动系统</view>
-        <view class="tile-copy">记录与统计</view>
-      </view>
-      <view class="tile tile-soft" bindtap="goGithub" hover-class="pressed">
-        <view class="tile-top"><text class="tile-code">PG</text><text class="tile-arrow">↗</text></view>
-        <view class="tile-title">Paper Geek</view>
-        <view class="tile-copy">学术日报与论文</view>
-      </view>
-      <view class="tile tile-soft" bindtap="goAR" hover-class="pressed">
-        <view class="tile-top"><text class="tile-code">AR</text><text class="tile-arrow">↗</text></view>
-        <view class="tile-title">AR 空间</view>
-        <view class="tile-copy">增强现实与 3D</view>
-      </view>
-      <view class="tile tile-soft" bindtap="goFinance" hover-class="pressed">
-        <view class="tile-top"><text class="tile-code">IDX</text><text class="tile-arrow">↗</text></view>
-        <view class="tile-title">指数破壁</view>
-        <view class="tile-copy">全球财富监控</view>
-      </view>
-      <view class="tile tile-soft" bindtap="gob" hover-class="pressed">
-        <view class="tile-top"><text class="tile-code">BC</text><text class="tile-arrow">↗</text></view>
-        <view class="tile-title">Blockchain</view>
-        <view class="tile-copy">多链浏览器</view>
-      </view>
-      <view class="tile tile-soft" bindtap="gor" hover-class="pressed">
-        <view class="tile-top"><text class="tile-code">CV</text><text class="tile-arrow">↗</text></view>
-        <view class="tile-title">简历编辑器</view>
-        <view class="tile-copy">编辑与预览</view>
-      </view>
-      <view class="tile tile-soft" bindtap="goDetect" hover-class="pressed">
-        <view class="tile-top"><text class="tile-code">DT</text><text class="tile-arrow">↗</text></view>
-        <view class="tile-title">目标检测</view>
-        <view class="tile-copy">手写数字与物体</view>
-      </view>
-      <view class="tile tile-soft" bindtap="gochess" hover-class="pressed">
-        <view class="tile-top"><text class="tile-code">GM</text><text class="tile-arrow">↗</text></view>
-        <view class="tile-title">灯神长街</view>
-        <view class="tile-copy">棋盘与对弈</view>
-      </view>
-    </view>
-  </view>
-
-  <!-- 页脚 -->
-  <view class="footer">
-    <view class="footer-rule"></view>
-    <view class="footer-row">
-      <text class="footer-note">BUILT SLOWLY · USED DAILY</text>
-      <text class="footer-sign">hhxpoint / 2026</text>
-    </view>
-  </view>
 </view>

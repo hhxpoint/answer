@@ -1,351 +1,286 @@
 page {
-  background: #f4eee4;
-  color: #221d18;
-  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
+  background: linear-gradient(180deg, #a8c0ff 0%, #fbc2eb 100%);
+  min-height: 100%;
 }
 
-.home {
-  position: relative;
-  min-height: 100vh;
-  padding: 34rpx 38rpx 70rpx;
-  box-sizing: border-box;
-  background:
-    radial-gradient(120% 70% at 105% -8%, rgba(184, 122, 81, 0.14), transparent 58%),
-    radial-gradient(80% 54% at -10% 38%, rgba(101, 119, 102, 0.10), transparent 62%),
-    #f4eee4;
+.container {
+  padding: 40rpx;
 }
 
-/* 极细纸纹，只做质感，不抢内容 */
-.grain {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.42;
-  background-image:
-    radial-gradient(rgba(72, 53, 37, 0.075) 1rpx, transparent 1rpx),
-    radial-gradient(rgba(96, 74, 53, 0.045) 1rpx, transparent 1rpx);
-  background-size: 11rpx 11rpx, 17rpx 17rpx;
-  background-position: 0 0, 5rpx 7rpx;
+.header {
+  text-align: center;
+  margin-bottom: 60rpx;
 }
 
-.masthead,
-.hero,
-.feature-row,
-.section,
-.footer {
-  position: relative;
-  z-index: 1;
+.title {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #333;
 }
 
-/* ===== 刊头 ===== */
-.masthead {
+.subtitle {
+  font-size: 28rpx;
+  color: #888;
+  margin-top: 10rpx;
+}
+
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40rpx;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 24rpx;
+  padding: 40rpx;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding-top: 4rpx;
-}
-.masthead-brand,
-.masthead-date {
-  font-family: "SF Mono", Menlo, Consolas, monospace;
-  font-size: 18rpx;
-  letter-spacing: 2.4rpx;
-  color: #9a8672;
-}
-.masthead-brand {
-  color: #6f5b48;
+  box-shadow: 0 10rpx 30rpx rgba(0, 0, 0, 0.05);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-/* ===== 主标题 ===== */
-.hero {
-  padding: 86rpx 0 54rpx;
-}
-.hero-eyebrow {
-  font-family: "SF Mono", Menlo, Consolas, monospace;
-  font-size: 17rpx;
-  letter-spacing: 3.6rpx;
-  color: #9b8168;
-  margin-bottom: 22rpx;
-}
-.hero-title {
-  font-family: "Songti SC", "STSong", "Noto Serif SC", "SimSun", serif;
-  font-size: 76rpx;
-  line-height: 1.12;
-  letter-spacing: -1rpx;
-  font-weight: 600;
-  color: #211b16;
-}
-.hero-title-it {
-  color: #995c3d;
-  font-style: italic;
-  margin-left: 4rpx;
-}
-.hero-copy {
-  margin-top: 26rpx;
-  max-width: 590rpx;
-  font-size: 26rpx;
-  line-height: 1.9;
-  letter-spacing: 0.4rpx;
-  color: #756554;
-}
-.hero-meta {
-  margin-top: 28rpx;
-  display: flex;
-  align-items: center;
-  gap: 12rpx;
-  font-family: "SF Mono", Menlo, Consolas, monospace;
-  font-size: 16rpx;
-  letter-spacing: 2rpx;
-  color: #a18a74;
-}
-.hero-meta-dot {
-  color: #c1a78e;
+.card:active {
+  transform: scale(0.96);
+  box-shadow: 0 6rpx 20rpx rgba(0, 0, 0, 0.15);
 }
 
-/* ===== 两个主入口 ===== */
-.feature-row {
-  display: flex;
-  gap: 16rpx;
+.card-icon {
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 30rpx;
 }
-.feature {
-  position: relative;
-  flex: 1;
-  min-width: 0;
-  padding: 22rpx 24rpx 24rpx;
-  box-sizing: border-box;
-  border: 1rpx solid rgba(57, 43, 31, 0.12);
-  border-radius: 18rpx;
-  background: #fbf7f0;
-  transition: opacity 0.15s ease, transform 0.15s ease;
+
+.card-title {
+  font-size: 36rpx;
+  color: #333;
+  font-weight: bold;
 }
-.feature-flame {
-  background: #fbf4ea;
+
+/* 轻量卡片 — 水果 emoji 系列，与上面图片卡片区分但同样优雅 */
+.lite-card {
+  padding: 32rpx 36rpx;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(12px);
+  border: 1rpx solid rgba(255, 255, 255, 0.6);
+  gap: 24rpx;
 }
-.feature-recipe {
-  background: #eef1e9;
-}
-.feature-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.feature-code {
-  font-family: "SF Mono", Menlo, Consolas, monospace;
-  font-size: 15rpx;
-  letter-spacing: 1.6rpx;
-  color: #a08a73;
-}
-.feature-arrow {
-  font-size: 27rpx;
-  color: #8f7157;
-  font-family: Georgia, serif;
-}
-.feature-seal {
-  width: 66rpx;
-  height: 66rpx;
-  margin: 32rpx 0 22rpx;
-  border: 1rpx solid rgba(112, 78, 53, 0.34);
-  border-radius: 50%;
+
+.lite-emoji {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 20rpx;
+  background: rgba(0, 0, 0, 0.03);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-sizing: border-box;
-}
-.seal-flame {
-  background: rgba(183, 106, 72, 0.07);
-}
-.seal-recipe {
-  background: rgba(104, 126, 104, 0.07);
-  border-color: rgba(83, 107, 86, 0.34);
-}
-.feature-seal-char {
-  font-family: "Songti SC", "STSong", "Noto Serif SC", serif;
-  font-size: 30rpx;
-  font-weight: 500;
-  color: #9a5f42;
-  line-height: 1;
-}
-.seal-recipe .feature-seal-char {
-  color: #5f7861;
-}
-.feature-title {
-  font-family: "Songti SC", "STSong", "Noto Serif SC", serif;
-  font-size: 30rpx;
-  font-weight: 600;
-  color: #29211a;
-  letter-spacing: 0.4rpx;
-}
-.feature-copy {
-  margin-top: 8rpx;
-  font-size: 20rpx;
-  line-height: 1.6;
-  color: #7b6a58;
-}
-.feature-foot {
-  margin-top: 22rpx;
-  padding-top: 14rpx;
-  border-top: 1rpx solid rgba(75, 57, 41, 0.10);
-  font-family: "SF Mono", Menlo, Consolas, monospace;
-  font-size: 14rpx;
-  letter-spacing: 0.6rpx;
-  color: #a08b75;
-}
-
-/* ===== 分组标题 ===== */
-.section {
-  margin-top: 70rpx;
-}
-.section-head {
-  display: flex;
-  align-items: baseline;
-  gap: 14rpx;
-  margin-bottom: 12rpx;
-}
-.section-no {
-  font-family: "SF Mono", Menlo, Consolas, monospace;
-  font-size: 16rpx;
-  color: #a98c70;
-  letter-spacing: 1rpx;
-}
-.section-label {
-  display: flex;
-  align-items: baseline;
-  gap: 10rpx;
-}
-.section-title {
-  font-family: Georgia, "Times New Roman", "Songti SC", serif;
-  font-size: 30rpx;
-  font-style: italic;
-  color: #30271f;
-}
-.section-cn {
-  font-size: 18rpx;
-  color: #9e8872;
-  letter-spacing: 2rpx;
-}
-.section-rule {
-  flex: 1;
-  height: 1rpx;
-  background: rgba(74, 56, 39, 0.16);
-  transform: translateY(-5rpx);
-}
-
-/* ===== 学习列表 ===== */
-.study-list {
-  border-top: 1rpx solid rgba(74, 56, 39, 0.14);
-}
-.study-row {
-  display: flex;
-  align-items: center;
-  gap: 20rpx;
-  padding: 25rpx 2rpx 23rpx;
-  border-bottom: 1rpx solid rgba(74, 56, 39, 0.14);
-}
-.row-no {
-  width: 38rpx;
+  font-size: 40rpx;
   flex-shrink: 0;
-  font-family: "SF Mono", Menlo, Consolas, monospace;
-  font-size: 16rpx;
-  color: #ad967e;
 }
-.row-body {
+
+.lite-info {
   flex: 1;
-  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6rpx;
 }
-.row-title {
-  display: block;
-  font-size: 29rpx;
-  font-weight: 500;
-  color: #2b231c;
-  letter-spacing: 0.6rpx;
+
+.lite-title {
+  font-size: 32rpx;
+  color: #333;
+  font-weight: 600;
 }
-.row-en {
-  display: block;
-  margin-top: 5rpx;
-  font-family: "SF Mono", Menlo, Consolas, monospace;
-  font-size: 15rpx;
-  letter-spacing: 1rpx;
-  color: #a08a75;
-}
-.row-arrow {
-  font-family: Georgia, serif;
+
+.lite-sub {
   font-size: 24rpx;
-  color: #a98e75;
+  color: #999;
+  font-weight: 400;
 }
 
-/* ===== 工具/实验室网格 ===== */
-.tile-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14rpx;
+.banner {
+  margin: 40rpx;
+  padding: 60rpx 40rpx;
+  background: linear-gradient(135deg, #6dd5fa, #2980b9);
+  border-radius: 30rpx;
+  color: white;
+  text-align: left;
+  box-shadow: 0 10rpx 30rpx rgba(0, 0, 0, 0.1);
 }
-.tile {
-  width: calc(50% - 7rpx);
-  min-height: 156rpx;
-  padding: 20rpx 22rpx 18rpx;
-  box-sizing: border-box;
-  border: 1rpx solid rgba(74, 56, 39, 0.12);
-  border-radius: 14rpx;
-  background: rgba(255, 251, 245, 0.66);
+
+.banner-title {
+  font-size: 48rpx;
+  font-weight: bold;
 }
-.tile-soft {
-  background: rgba(239, 234, 224, 0.72);
+
+.banner-sub {
+  margin-top: 10rpx;
+  font-size: 28rpx;
+  opacity: 0.9;
 }
-.tile-top {
+
+.swiper {
+  height: 300rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+  margin: 20rpx 40rpx;
+}
+
+.swiper-img {
+  width: 100%;
+  height: 100%;
+}
+
+page[theme="dark"] {
+  background: linear-gradient(180deg, #1e1e1e 0%, #000000 100%);
+}
+
+.banner[theme="dark"] {
+  background: linear-gradient(135deg, #3a3a3a, #1f1f1f);
+}
+
+.card[theme="dark"] {
+  background: #2a2a2a;
+  color: #eee;
+}
+
+.recommend-item[theme="dark"] {
+  background: #2a2a2a;
+  color: #eee;
+}
+
+/* ===== 我们的小火苗 入口 ===== */
+.couple-entry {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  margin: 28rpx 40rpx 4rpx;
+  padding: 26rpx 28rpx;
+  border-radius: 32rpx;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1rpx solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 14rpx 34rpx rgba(178, 138, 160, 0.18);
 }
-.tile-code {
-  font-family: "SF Mono", Menlo, Consolas, monospace;
-  font-size: 14rpx;
-  letter-spacing: 1.6rpx;
-  color: #a18b74;
+.couple-entry:active {
+  transform: scale(0.985);
 }
-.tile-arrow {
-  font-family: Georgia, serif;
+.couple-entry-glow {
+  position: absolute;
+  right: -50rpx;
+  top: -80rpx;
+  width: 240rpx;
+  height: 240rpx;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 196, 150, 0.55), rgba(255, 196, 150, 0));
+}
+.couple-entry-flame {
+  position: relative;
+  width: 76rpx;
+  height: 76rpx;
+  margin-right: 20rpx;
+  border-radius: 50%;
+  background: radial-gradient(90% 90% at 50% 36%, #fff4e2 0%, #ffe2c8 55%, #ffd2bc 100%);
+  box-shadow:
+    0 8rpx 18rpx rgba(255, 150, 120, 0.26),
+    inset 0 2rpx 6rpx rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.mini-flame {
+  position: relative;
+  width: 42rpx;
+  height: 54rpx;
+  animation: couplePulse 2.2s ease-in-out infinite;
+}
+.mini-flame-inner {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 34rpx;
+  height: 46rpx;
+  margin-left: -17rpx;
+  border-radius: 50% 50% 45% 45% / 64% 64% 36% 36%;
+  background:
+    radial-gradient(56% 44% at 35% 25%, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0) 65%),
+    radial-gradient(130% 110% at 50% 100%, #ffd97a 0%, #ffb15c 45%, #ff7d55 78%, #ef4c5e 100%);
+  box-shadow: 0 6rpx 12rpx rgba(255, 120, 80, 0.35);
+}
+.mini-flame-core {
+  position: absolute;
+  left: 50%;
+  bottom: 8rpx;
+  width: 12rpx;
+  height: 16rpx;
+  margin-left: -6rpx;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, #fffbe6, rgba(255, 245, 190, 0.2));
+}
+.couple-entry-text {
+  position: relative;
+  flex: 1;
+}
+.couple-entry-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #5a3a4a;
+  letter-spacing: 1rpx;
+}
+.couple-entry-sub {
+  margin-top: 6rpx;
   font-size: 22rpx;
-  color: #a78d73;
+  color: #9a7f8c;
 }
-.tile-title {
-  margin-top: 24rpx;
-  font-size: 26rpx;
-  font-weight: 500;
-  color: #2a221b;
-  letter-spacing: 0.4rpx;
+.couple-entry-arrow {
+  position: relative;
+  font-size: 40rpx;
+  color: #c9a9b4;
 }
-.tile-copy {
-  margin-top: 5rpx;
-  font-size: 18rpx;
-  color: #98836f;
+@keyframes couplePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
 }
 
-/* ===== 页脚 ===== */
-.footer {
-  margin-top: 78rpx;
-}
-.footer-rule {
-  height: 1rpx;
-  background: rgba(74, 56, 39, 0.16);
-  margin-bottom: 18rpx;
-}
-.footer-row {
+/* ===== 今天吃什么 入口 ===== */
+.recipe-entry {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  margin: 20rpx 40rpx 8rpx;
+  padding: 24rpx 28rpx;
+  border-radius: 32rpx;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(255, 247, 236, 0.98), rgba(255, 236, 214, 0.95));
+  border: 1rpx solid rgba(255, 224, 196, 0.9);
+  box-shadow: 0 14rpx 34rpx rgba(210, 150, 90, 0.16);
 }
-.footer-note,
-.footer-sign {
-  font-family: "SF Mono", Menlo, Consolas, monospace;
-  font-size: 14rpx;
-  letter-spacing: 1.2rpx;
-  color: #a28a73;
+.recipe-entry:active { transform: scale(0.985); }
+.recipe-entry-glow {
+  position: absolute;
+  right: -40rpx;
+  top: -70rpx;
+  width: 220rpx;
+  height: 220rpx;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 210, 160, 0.5), rgba(255, 210, 160, 0));
 }
-
-.pressed {
-  opacity: 0.64;
-  transform: translateY(1rpx);
+.recipe-entry-icon {
+  position: relative;
+  width: 76rpx;
+  height: 76rpx;
+  margin-right: 20rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FFF9F0, #FFE7C8);
+  box-shadow: 0 8rpx 18rpx rgba(220, 150, 80, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  flex-shrink: 0;
 }
+.recipe-entry-text { position: relative; flex: 1; }
+.recipe-entry-title { font-size: 32rpx; font-weight: 700; color: #5A3E2A; letter-spacing: 1rpx; }
+.recipe-entry-sub { margin-top: 6rpx; font-size: 22rpx; color: #A08062; }
+.recipe-entry-arrow { position: relative; font-size: 40rpx; color: #D2B08E; }

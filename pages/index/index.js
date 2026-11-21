@@ -2,26 +2,6 @@ const app = getApp();
 
 
 Page({
-  data: {
-    dateText: '',
-    statusBarHeight: 44
-  },
-
-  onLoad() {
-    const d = new Date();
-    const mm = String(d.getMonth() + 1).padStart(2, '0');
-    const dd = String(d.getDate()).padStart(2, '0');
-    let statusBarHeight = 44;
-    try {
-      const info = wx.getWindowInfo ? wx.getWindowInfo() : wx.getSystemInfoSync();
-      statusBarHeight = Number(info.statusBarHeight) || 44;
-    } catch (e) {}
-    this.setData({
-      dateText: `${mm} / ${dd}`,
-      statusBarHeight: statusBarHeight
-    });
-  },
-
   // 我们的小火苗（关系空间大厅）
   goCouple() {
     wx.navigateTo({
