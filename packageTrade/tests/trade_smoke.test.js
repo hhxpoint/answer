@@ -7,7 +7,7 @@ const estimate = require(ROOT + '/utils/estimate.js');
 const poster = require(ROOT + '/utils/poster.js');
 
 let errors = [];
-if (catalog.ALL.length !== 24) errors.push('model count');
+if (catalog.ALL.length !== 38) errors.push('model count');
 const model = catalog.getModel('legion-y9000p-2025');
 const variant = catalog.getVariant(model, '32-1t');
 const result = estimate.calc(model, variant, { condition: 'A', battery: 'good', repair: 'none', accessory: 'full', warranty: 'expired', screen: 'perfect' });

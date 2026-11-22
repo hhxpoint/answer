@@ -75,5 +75,9 @@ Page({
 
   onShareAppMessage: function () {
     return { title: '游戏本二手行情', path: '/packageTrade/pages/list/list' };
+  },
+
+  onShareTimeline: function () {
+    return { title: '游戏本二手行情 · 38 款' };
   }
 });

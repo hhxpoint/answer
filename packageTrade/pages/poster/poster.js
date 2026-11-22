@@ -40,7 +40,8 @@ Page({
         let dpr = 2;
         try {
           const win = wx.getWindowInfo ? wx.getWindowInfo() : wx.getSystemInfoSync();
-          dpr = Number(win.pixelRatio) || 2;
+          // 2 倍已经足够 1500×2100 导出，避免高 DPR 设备占用过大内存
+          dpr = Math.min(Number(win.pixelRatio) || 2, 2);
         } catch (e) {}
         const W = 750;
         const H = 1050;

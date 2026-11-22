@@ -1206,6 +1206,676 @@ const MODELS = [
     "image": "/packageTrade/assets/devices/razer-blade-16-2024.png",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
     "tagline": "灵刃 · Blade 16 2024"
+  },
+  {
+    "id": "legion-y9000x-2024",
+    "brand": "联想",
+    "brandKey": "lenovo",
+    "series": "拯救者",
+    "model": "Y9000X 2024",
+    "year": 2024,
+    "category": "游戏本",
+    "accent": "#7A4A3A",
+    "launchPrice": 12999,
+    "priceLow": 7200,
+    "priceHigh": 8500,
+    "specs": {
+      "cpu": "i9-14900HX",
+      "gpu": "RTX 4060 8GB",
+      "gpuTgp": 140,
+      "ram": "32GB DDR5",
+      "storage": "1TB SSD",
+      "screen": "16英寸 3.2K",
+      "refresh": "165Hz",
+      "battery": "99Wh",
+      "weight": "2.2kg"
+    },
+    "variants": [
+      {
+        "id": "16-1t",
+        "label": "i9-14900HX / RTX 4060 8GB / 32GB DDR5 / 1TB SSD",
+        "launchPrice": 12999,
+        "priceLow": 7200,
+        "priceHigh": 8500
+      }
+    ],
+    "aliases": [
+      "Y9000X",
+      "拯救者Y9000X"
+    ],
+    "highlights": [
+      "3.2K 高刷屏",
+      "99Wh 大电池",
+      "轻薄性能本"
+    ],
+    "priceBasis": "guide",
+    "specConfidence": "公开资料核对",
+    "image": "/packageTrade/assets/devices/legion-y9000x-2024.png",
+    "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
+    "tagline": "拯救者 · Y9000X 2024"
+  },
+  {
+    "id": "legion-geekpro-g5000-2024",
+    "brand": "联想",
+    "brandKey": "lenovo",
+    "series": "GeekPro",
+    "model": "G5000 2024",
+    "year": 2024,
+    "category": "游戏本",
+    "accent": "#7A4A3A",
+    "launchPrice": 7299,
+    "priceLow": 4000,
+    "priceHigh": 4900,
+    "specs": {
+      "cpu": "i7-14650HX",
+      "gpu": "RTX 4060 8GB",
+      "gpuTgp": 140,
+      "ram": "16GB DDR5",
+      "storage": "1TB SSD",
+      "screen": "16英寸 2.5K",
+      "refresh": "165Hz",
+      "battery": "80Wh",
+      "weight": "2.4kg"
+    },
+    "variants": [
+      {
+        "id": "16-1t",
+        "label": "i7-14650HX / RTX 4060 8GB / 16GB DDR5 / 1TB SSD",
+        "launchPrice": 7299,
+        "priceLow": 4000,
+        "priceHigh": 4900
+      }
+    ],
+    "aliases": [
+      "GeekPro G5000",
+      "联想G5000"
+    ],
+    "highlights": [
+      "主流配置",
+      "2.5K 165Hz",
+      "联想售后"
+    ],
+    "priceBasis": "guide",
+    "specConfidence": "公开资料核对",
+    "image": "/packageTrade/assets/devices/legion-geekpro-g5000-2024.png",
+    "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
+    "tagline": "GeekPro · G5000 2024"
+  },
+  {
+    "id": "rog-zephyrus-g16-2024",
+    "brand": "华硕",
+    "brandKey": "asus",
+    "series": "ROG",
+    "model": "幻16 2024",
+    "year": 2024,
+    "category": "游戏本",
+    "accent": "#2E3A45",
+    "launchPrice": 18999,
+    "priceLow": 10000,
+    "priceHigh": 12000,
+    "specs": {
+      "cpu": "Ultra 9 185H",
+      "gpu": "RTX 4070 8GB",
+      "gpuTgp": 105,
+      "ram": "32GB LPDDR5X",
+      "storage": "1TB SSD",
+      "screen": "16英寸 2.5K OLED",
+      "refresh": "240Hz",
+      "battery": "90Wh",
+      "weight": "1.85kg"
+    },
+    "variants": [
+      {
+        "id": "16-1t",
+        "label": "Ultra 9 185H / RTX 4070 8GB / 32GB LPDDR5X / 1TB SSD",
+        "launchPrice": 18999,
+        "priceLow": 10000,
+        "priceHigh": 12000
+      }
+    ],
+    "aliases": [
+      "幻16",
+      "Zephyrus G16",
+      "ROG幻16"
+    ],
+    "highlights": [
+      "2.5K OLED",
+      "1.85kg",
+      "全能旗舰"
+    ],
+    "priceBasis": "guide",
+    "specConfidence": "公开资料核对",
+    "image": "/packageTrade/assets/devices/rog-zephyrus-g16-2024.png",
+    "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
+    "tagline": "ROG · 幻16 2024"
+  },
+  {
+    "id": "rog-strix-scar-18-2024",
+    "brand": "华硕",
+    "brandKey": "asus",
+    "series": "ROG",
+    "model": "枪神8 Plus 18",
+    "year": 2024,
+    "category": "游戏本",
+    "accent": "#2E3A45",
+    "launchPrice": 22999,
+    "priceLow": 13000,
+    "priceHigh": 15500,
+    "specs": {
+      "cpu": "i9-14900HX",
+      "gpu": "RTX 4080 12GB",
+      "gpuTgp": 175,
+      "ram": "32GB DDR5",
+      "storage": "1TB SSD",
+      "screen": "18英寸 2.5K",
+      "refresh": "240Hz",
+      "battery": "90Wh",
+      "weight": "3.1kg"
+    },
+    "variants": [
+      {
+        "id": "16-1t",
+        "label": "i9-14900HX / RTX 4080 12GB / 32GB DDR5 / 1TB SSD",
+        "launchPrice": 22999,
+        "priceLow": 13000,
+        "priceHigh": 15500
+      }
+    ],
+    "aliases": [
+      "枪神8 Plus",
+      "Strix Scar 18",
+      "ROG枪神"
+    ],
+    "highlights": [
+      "18英寸大屏",
+      "RTX 4080",
+      "240Hz"
+    ],
+    "priceBasis": "guide",
+    "specConfidence": "公开资料核对",
+    "image": "/packageTrade/assets/devices/rog-strix-scar-18-2024.png",
+    "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
+    "tagline": "ROG · 枪神8 Plus 18"
+  },
+  {
+    "id": "omen-16-2024",
+    "brand": "惠普",
+    "brandKey": "hp",
+    "series": "暗影精灵",
+    "model": "暗影精灵10",
+    "year": 2024,
+    "category": "游戏本",
+    "accent": "#44515E",
+    "launchPrice": 7999,
+    "priceLow": 4500,
+    "priceHigh": 5400,
+    "specs": {
+      "cpu": "i7-14700HX",
+      "gpu": "RTX 4060 8GB",
+      "gpuTgp": 140,
+      "ram": "16GB DDR5",
+      "storage": "1TB SSD",
+      "screen": "16.1英寸 2.5K",
+      "refresh": "240Hz",
+      "battery": "83Wh",
+      "weight": "2.4kg"
+    },
+    "variants": [
+      {
+        "id": "16-1t",
+        "label": "i7-14700HX / RTX 4060 8GB / 16GB DDR5 / 1TB SSD",
+        "launchPrice": 7999,
+        "priceLow": 4500,
+        "priceHigh": 5400
+      }
+    ],
+    "aliases": [
+      "暗影精灵10",
+      "OMEN 16",
+      "惠普暗影精灵"
+    ],
+    "highlights": [
+      "2.5K 240Hz",
+      "83Wh",
+      "主流游戏本"
+    ],
+    "priceBasis": "guide",
+    "specConfidence": "公开资料核对",
+    "image": "/packageTrade/assets/devices/omen-16-2024.png",
+    "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
+    "tagline": "暗影精灵 · 暗影精灵10"
+  },
+  {
+    "id": "alienware-m18-2024",
+    "brand": "外星人",
+    "brandKey": "alienware",
+    "series": "Alienware",
+    "model": "m18 R2",
+    "year": 2024,
+    "category": "游戏本",
+    "accent": "#2D3A4A",
+    "launchPrice": 24999,
+    "priceLow": 14000,
+    "priceHigh": 16500,
+    "specs": {
+      "cpu": "i9-14900HX",
+      "gpu": "RTX 4080 12GB",
+      "gpuTgp": 175,
+      "ram": "32GB DDR5",
+      "storage": "1TB SSD",
+      "screen": "18英寸 2.5K",
+      "refresh": "165Hz",
+      "battery": "96Wh",
+      "weight": "4.0kg"
+    },
+    "variants": [
+      {
+        "id": "16-1t",
+        "label": "i9-14900HX / RTX 4080 12GB / 32GB DDR5 / 1TB SSD",
+        "launchPrice": 24999,
+        "priceLow": 14000,
+        "priceHigh": 16500
+      }
+    ],
+    "aliases": [
+      "Alienware m18",
+      "外星人m18",
+      "m18 R2"
+    ],
+    "highlights": [
+      "18英寸旗舰",
+      "RTX 4080",
+      "外星人做工"
+    ],
+    "priceBasis": "guide",
+    "specConfidence": "公开资料核对",
+    "image": "/packageTrade/assets/devices/alienware-m18-2024.png",
+    "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
+    "tagline": "Alienware · m18 R2"
+  },
+  {
+    "id": "predator-helios-18-2024",
+    "brand": "宏碁",
+    "brandKey": "acer",
+    "series": "掠夺者",
+    "model": "战斧18 2024",
+    "year": 2024,
+    "category": "游戏本",
+    "accent": "#4C4C4C",
+    "launchPrice": 21999,
+    "priceLow": 12000,
+    "priceHigh": 14500,
+    "specs": {
+      "cpu": "i9-14900HX",
+      "gpu": "RTX 4080 12GB",
+      "gpuTgp": 175,
+      "ram": "32GB DDR5",
+      "storage": "1TB SSD",
+      "screen": "18英寸 2.5K",
+      "refresh": "250Hz",
+      "battery": "90Wh",
+      "weight": "3.25kg"
+    },
+    "variants": [
+      {
+        "id": "16-1t",
+        "label": "i9-14900HX / RTX 4080 12GB / 32GB DDR5 / 1TB SSD",
+        "launchPrice": 21999,
+        "priceLow": 12000,
+        "priceHigh": 14500
+      }
+    ],
+    "aliases": [
+      "战斧18",
+      "Predator Helios 18",
+      "掠夺者18"
+    ],
+    "highlights": [
+      "18英寸大屏",
+      "250Hz",
+      "RTX 4080"
+    ],
+    "priceBasis": "guide",
+    "specConfidence": "公开资料核对",
+    "image": "/packageTrade/assets/devices/predator-helios-18-2024.png",
+    "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
+    "tagline": "掠夺者 · 战斧18 2024"
+  },
+  {
+    "id": "msi-raider-ge78-2024",
+    "brand": "微星",
+    "brandKey": "msi",
+    "series": "泰坦",
+    "model": "Raider GE78 HX",
+    "year": 2024,
+    "category": "游戏本",
+    "accent": "#3C3C3C",
+    "launchPrice": 23999,
+    "priceLow": 13500,
+    "priceHigh": 16000,
+    "specs": {
+      "cpu": "i9-14900HX",
+      "gpu": "RTX 4080 12GB",
+      "gpuTgp": 175,
+      "ram": "32GB DDR5",
+      "storage": "1TB SSD",
+      "screen": "17英寸 2.5K",
+      "refresh": "240Hz",
+      "battery": "99.9Wh",
+      "weight": "3.1kg"
+    },
+    "variants": [
+      {
+        "id": "16-1t",
+        "label": "i9-14900HX / RTX 4080 12GB / 32GB DDR5 / 1TB SSD",
+        "launchPrice": 23999,
+        "priceLow": 13500,
+        "priceHigh": 16000
+      }
+    ],
+    "aliases": [
+      "Raider GE78",
+      "泰坦GE78",
+      "微星GE78"
+    ],
+    "highlights": [
+      "17英寸大屏",
+      "RTX 4080",
+      "240Hz"
+    ],
+    "priceBasis": "guide",
+    "specConfidence": "公开资料核对",
+    "image": "/packageTrade/assets/devices/msi-raider-ge78-2024.png",
+    "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
+    "tagline": "泰坦 · Raider GE78 HX"
+  },
+  {
+    "id": "gigabyte-aorus-16x-2024",
+    "brand": "技嘉",
+    "brandKey": "gigabyte",
+    "series": "AORUS",
+    "model": "AORUS 16X",
+    "year": 2024,
+    "category": "游戏本",
+    "accent": "#3E4A3F",
+    "launchPrice": 8299,
+    "priceLow": 4300,
+    "priceHigh": 5200,
+    "specs": {
+      "cpu": "i7-14650HX",
+      "gpu": "RTX 4060 8GB",
+      "gpuTgp": 140,
+      "ram": "16GB DDR5",
+      "storage": "1TB SSD",
+      "screen": "16英寸 2.5K",
+      "refresh": "165Hz",
+      "battery": "99Wh",
+      "weight": "2.3kg"
+    },
+    "variants": [
+      {
+        "id": "16-1t",
+        "label": "i7-14650HX / RTX 4060 8GB / 16GB DDR5 / 1TB SSD",
+        "launchPrice": 8299,
+        "priceLow": 4300,
+        "priceHigh": 5200
+      }
+    ],
+    "aliases": [
+      "AORUS 16X",
+      "技嘉16X",
+      "Aorus"
+    ],
+    "highlights": [
+      "99Wh 电池",
+      "2.5K 165Hz",
+      "技嘉主板"
+    ],
+    "priceBasis": "guide",
+    "specConfidence": "公开资料核对",
+    "image": "/packageTrade/assets/devices/gigabyte-aorus-16x-2024.png",
+    "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
+    "tagline": "AORUS · AORUS 16X"
+  },
+  {
+    "id": "hasee-t8-2023",
+    "brand": "神舟",
+    "brandKey": "hasee",
+    "series": "战神",
+    "model": "战神 T8",
+    "year": 2023,
+    "category": "游戏本",
+    "accent": "#4B4038",
+    "launchPrice": 6499,
+    "priceLow": 3200,
+    "priceHigh": 4000,
+    "specs": {
+      "cpu": "i7-13620H",
+      "gpu": "RTX 4060 8GB",
+      "gpuTgp": 140,
+      "ram": "16GB DDR5",
+      "storage": "1TB SSD",
+      "screen": "16英寸 2.5K",
+      "refresh": "165Hz",
+      "battery": "73Wh",
+      "weight": "2.4kg"
+    },
+    "variants": [
+      {
+        "id": "16-1t",
+        "label": "i7-13620H / RTX 4060 8GB / 16GB DDR5 / 1TB SSD",
+        "launchPrice": 6499,
+        "priceLow": 3200,
+        "priceHigh": 4000
+      }
+    ],
+    "aliases": [
+      "战神T8",
+      "神舟T8",
+      "Hasee T8"
+    ],
+    "highlights": [
+      "性价比",
+      "2.5K 165Hz",
+      "RTX 4060"
+    ],
+    "priceBasis": "guide",
+    "specConfidence": "公开资料核对",
+    "image": "/packageTrade/assets/devices/hasee-t8-2023.png",
+    "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
+    "tagline": "战神 · 战神 T8"
+  },
+  {
+    "id": "thunderobot-zero-18-pro-2025",
+    "brand": "雷神",
+    "brandKey": "thunderobot",
+    "series": "ZERO",
+    "model": "ZERO 18 Pro",
+    "year": 2025,
+    "category": "游戏本",
+    "accent": "#334B5A",
+    "launchPrice": 19999,
+    "priceLow": 14500,
+    "priceHigh": 16500,
+    "specs": {
+      "cpu": "Ultra 9 275HX",
+      "gpu": "RTX 5080 16GB",
+      "gpuTgp": 175,
+      "ram": "32GB DDR5",
+      "storage": "1TB SSD",
+      "screen": "18英寸 2.5K",
+      "refresh": "240Hz",
+      "battery": "99Wh",
+      "weight": "3.2kg"
+    },
+    "variants": [
+      {
+        "id": "16-1t",
+        "label": "Ultra 9 275HX / RTX 5080 16GB / 32GB DDR5 / 1TB SSD",
+        "launchPrice": 19999,
+        "priceLow": 14500,
+        "priceHigh": 16500
+      }
+    ],
+    "aliases": [
+      "ZERO 18 Pro",
+      "雷神ZERO",
+      "Thunderobot ZERO"
+    ],
+    "highlights": [
+      "18英寸旗舰",
+      "RTX 5080",
+      "275W 释放"
+    ],
+    "priceBasis": "guide",
+    "specConfidence": "公开资料核对",
+    "image": "/packageTrade/assets/devices/thunderobot-zero-18-pro-2025.png",
+    "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
+    "tagline": "ZERO · ZERO 18 Pro"
+  },
+  {
+    "id": "mechrevo-canglong-16-ultra-2025",
+    "brand": "机械革命",
+    "brandKey": "mechrevo",
+    "series": "苍龙",
+    "model": "苍龙16 Ultra",
+    "year": 2025,
+    "category": "游戏本",
+    "accent": "#5A4B3E",
+    "launchPrice": 16999,
+    "priceLow": 12000,
+    "priceHigh": 14000,
+    "specs": {
+      "cpu": "R9 9955HX3D",
+      "gpu": "RTX 5080 16GB",
+      "gpuTgp": 175,
+      "ram": "32GB DDR5",
+      "storage": "1TB SSD",
+      "screen": "16英寸 2.5K",
+      "refresh": "300Hz",
+      "battery": "99Wh",
+      "weight": "2.6kg"
+    },
+    "variants": [
+      {
+        "id": "16-1t",
+        "label": "R9 9955HX3D / RTX 5080 16GB / 32GB DDR5 / 1TB SSD",
+        "launchPrice": 16999,
+        "priceLow": 12000,
+        "priceHigh": 14000
+      }
+    ],
+    "aliases": [
+      "苍龙16 Ultra",
+      "机械革命苍龙",
+      "Canglong"
+    ],
+    "highlights": [
+      "X3D 处理器",
+      "RTX 5080",
+      "300Hz"
+    ],
+    "priceBasis": "guide",
+    "specConfidence": "公开资料核对",
+    "image": "/packageTrade/assets/devices/mechrevo-canglong-16-ultra-2025.png",
+    "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
+    "tagline": "苍龙 · 苍龙16 Ultra"
+  },
+  {
+    "id": "colorful-yinxing-p15-2024",
+    "brand": "七彩虹",
+    "brandKey": "colorful",
+    "series": "隐星",
+    "model": "隐星 P15",
+    "year": 2024,
+    "category": "游戏本",
+    "accent": "#5A3D4A",
+    "launchPrice": 5999,
+    "priceLow": 3000,
+    "priceHigh": 3800,
+    "specs": {
+      "cpu": "i7-13620H",
+      "gpu": "RTX 4060 8GB",
+      "gpuTgp": 140,
+      "ram": "16GB DDR5",
+      "storage": "1TB SSD",
+      "screen": "15.6英寸 2.5K",
+      "refresh": "165Hz",
+      "battery": "73Wh",
+      "weight": "2.3kg"
+    },
+    "variants": [
+      {
+        "id": "16-1t",
+        "label": "i7-13620H / RTX 4060 8GB / 16GB DDR5 / 1TB SSD",
+        "launchPrice": 5999,
+        "priceLow": 3000,
+        "priceHigh": 3800
+      }
+    ],
+    "aliases": [
+      "隐星P15",
+      "七彩虹隐星",
+      "Colorful P15"
+    ],
+    "highlights": [
+      "入门游戏本",
+      "2.5K 165Hz",
+      "RTX 4060"
+    ],
+    "priceBasis": "guide",
+    "specConfidence": "公开资料核对",
+    "image": "/packageTrade/assets/devices/colorful-yinxing-p15-2024.png",
+    "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
+    "tagline": "隐星 · 隐星 P15"
+  },
+  {
+    "id": "tuf-a14-2024",
+    "brand": "华硕",
+    "brandKey": "asus",
+    "series": "天选",
+    "model": "天选 Air 14",
+    "year": 2024,
+    "category": "游戏本",
+    "accent": "#5B6E63",
+    "launchPrice": 8999,
+    "priceLow": 5500,
+    "priceHigh": 6500,
+    "specs": {
+      "cpu": "R9 8945HS",
+      "gpu": "RTX 4060 8GB",
+      "gpuTgp": 90,
+      "ram": "16GB LPDDR5X",
+      "storage": "1TB SSD",
+      "screen": "14英寸 2.5K",
+      "refresh": "165Hz",
+      "battery": "73Wh",
+      "weight": "1.7kg"
+    },
+    "variants": [
+      {
+        "id": "16-1t",
+        "label": "R9 8945HS / RTX 4060 8GB / 16GB LPDDR5X / 1TB SSD",
+        "launchPrice": 8999,
+        "priceLow": 5500,
+        "priceHigh": 6500
+      }
+    ],
+    "aliases": [
+      "天选Air",
+      "TUF A14",
+      "华硕天选Air"
+    ],
+    "highlights": [
+      "14英寸轻薄",
+      "1.7kg",
+      "RTX 4060"
+    ],
+    "priceBasis": "guide",
+    "specConfidence": "公开资料核对",
+    "image": "/packageTrade/assets/devices/tuf-a14-2024.png",
+    "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
+    "tagline": "天选 · 天选 Air 14"
   }
 ];
 

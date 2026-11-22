@@ -94,5 +94,9 @@ Page({
       title: '游戏本行情 · 个人二手估价单',
       path: '/packageTrade/pages/home/home'
     };
+  },
+
+  onShareTimeline: function () {
+    return { title: '游戏本二手估价 · 38 款行情' };
   }
 });

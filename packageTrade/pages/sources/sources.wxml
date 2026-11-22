@@ -12,7 +12,7 @@
   <view class="source-block">
     <view class="source-kicker">01 / PRICE</view>
     <view class="source-title">价格基准</view>
-    <view class="source-copy">首批 24 款游戏本的参考区间，以官方发售价、公开规格和 2026 年 11 月的市场折旧模型整理。它不是平台成交价，也不是回收报价；实际成交会受地区、供需、验机和双方协商影响。</view>
+    <view class="source-copy">首批 38 款游戏本的参考区间，以官方发售价、公开规格和 2026 年 11 月的市场折旧模型整理。它不是平台成交价，也不是回收报价；实际成交会受地区、供需、验机和双方协商影响。</view>
   </view>
 
   <view class="source-block">
@@ -46,7 +46,7 @@
   </view>
 
   <view class="footer-note">
-    <view>版本数据：2026-11 · 首批 24 款游戏本</view>
+    <view>版本数据：2026-11 · 首批 38 款游戏本</view>
     <view>个人工具 · 非交易平台 · 非社交平台</view>
   </view>
 </view>
