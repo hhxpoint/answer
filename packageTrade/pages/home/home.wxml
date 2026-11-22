@@ -6,15 +6,15 @@
 
   <view class="hero">
     <view class="hero-eyebrow">SECOND / HANDSHAKE</view>
-    <view class="hero-title">游戏本<text class="hero-title-it">二手估价</text></view>
-    <view class="hero-copy">看清真实配置，再谈价格。<br/>38 款主流游戏本 · 行情、成色、个人估价单。</view>
+    <view class="hero-title">二手<text class="hero-title-it">估价</text></view>
+    <view class="hero-copy">看清真实配置，再谈价格。<br/>手机 / 游戏机 / 游戏本全品类 · 行情、成色、个人估价单。</view>
   </view>
 
   <view class="search-box">
     <text class="search-icon">⌕</text>
     <input
       class="search-input"
-      placeholder="搜型号，如：拯救者 / 天选 / 5070"
+      placeholder="搜型号，如：iPhone 15 / Switch / 拯救者"
       placeholder-class="search-placeholder"
       value="{{query}}"
       confirm-type="search"
@@ -38,6 +38,10 @@
   </view>
 
   <view class="filter-block">
+    <view class="category-row">
+      <view class="category-tab {{category === 'all' ? 'on' : ''}}" data-key="all" bindtap="onCategory">全部</view>
+      <view wx:for="{{categories}}" wx:key="key" class="category-tab {{category === item.key ? 'on' : ''}}" data-key="{{item.key}}" bindtap="onCategory">{{item.name}}</view>
+    </view>
     <scroll-view class="brand-scroll" scroll-x enable-flex>
       <view class="brand-tab {{brand === 'all' ? 'on' : ''}}" data-key="all" bindtap="onBrand">全部</view>
       <view
@@ -48,7 +52,7 @@
         bindtap="onBrand"
       >{{item.name}}</view>
     </scroll-view>
-    <view class="gpu-row">
+    <view wx:if="{{showGpu}}" class="gpu-row">
       <view
         wx:for="{{gpuGroups}}"
         wx:key="key"
@@ -78,7 +82,7 @@
     >
       <image class="model-thumb" src="{{item.image}}" mode="aspectFit" lazy-load />
       <view class="model-body">
-        <view class="model-eyebrow">{{item.brand}} · {{item.year}}</view>
+        <view class="model-eyebrow">{{item.brand}} · {{item.categoryName}} · {{item.year}}</view>
         <view class="model-name">{{item.model}}</view>
         <view class="model-spec">{{item.specLine}}</view>
         <view class="model-foot">

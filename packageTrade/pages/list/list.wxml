@@ -23,6 +23,11 @@
     <text wx:if="{{query}}" class="search-clear" bindtap="onClear">×</text>
   </view>
 
+  <view class="category-row">
+    <view class="category-tab {{category === 'all' ? 'on' : ''}}" data-key="all" bindtap="onCategory">全部</view>
+    <view wx:for="{{categories}}" wx:key="key" class="category-tab {{category === item.key ? 'on' : ''}}" data-key="{{item.key}}" bindtap="onCategory">{{item.name}}</view>
+  </view>
+
   <scroll-view class="brand-scroll" scroll-x enable-flex>
     <view class="brand-tab {{brand === 'all' ? 'on' : ''}}" data-key="all" bindtap="onBrand">全部品牌</view>
     <view
@@ -34,7 +39,7 @@
     >{{item.name}}</view>
   </scroll-view>
 
-  <view class="gpu-row">
+  <view wx:if="{{showGpu}}" class="gpu-row">
     <view
       wx:for="{{gpuGroups}}"
       wx:key="key"
@@ -67,7 +72,7 @@
     >
       <image class="model-thumb" src="{{item.image}}" mode="aspectFit" lazy-load />
       <view class="model-body">
-        <view class="model-eyebrow">{{item.brand}} · {{item.year}}</view>
+        <view class="model-eyebrow">{{item.brand}} · {{item.categoryName}} · {{item.year}}</view>
         <view class="model-name">{{item.model}}</view>
         <view class="model-spec">{{item.specLine}}</view>
         <view class="model-foot">

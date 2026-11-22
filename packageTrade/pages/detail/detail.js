@@ -25,16 +25,7 @@ Page({
       return;
     }
     const variant = decorateVariant(catalog.getVariant(model, (options && options.variant) || ''));
-    const specs = [
-      { k: 'CPU', v: model.specs.cpu },
-      { k: 'GPU', v: model.specs.gpu + ' / ' + model.specs.gpuTgp + 'W' },
-      { k: '内存', v: model.specs.ram },
-      { k: '硬盘', v: model.specs.storage },
-      { k: '屏幕', v: model.specs.screen + ' · ' + model.specs.refresh },
-      { k: '电池', v: model.specs.battery },
-      { k: '重量', v: model.specs.weight },
-      { k: '发售价', v: variant.launchText }
-    ];
+    const specs = (model.specItems || []).concat([{ k: '发售价', v: variant.launchText }]);
     this.setData({ model: model, variant: variant, variantId: variant.id, specs: specs });
   },
 
@@ -63,7 +54,7 @@ Page({
   onShareAppMessage: function () {
     const m = this.data.model;
     return {
-      title: m ? (m.brand + ' ' + m.model + ' · 二手参考 ' + m.priceText) : '游戏本二手估价',
+      title: m ? (m.brand + ' ' + m.model + ' · 二手参考 ' + m.priceText) : '二手估价',
       path: m ? '/packageTrade/pages/detail/detail?id=' + m.id : '/packageTrade/pages/home/home'
     };
   }

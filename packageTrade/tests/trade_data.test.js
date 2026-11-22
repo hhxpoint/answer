@@ -4,7 +4,7 @@ const root = path.join(__dirname, '..');
 const catalog = require(root + '/utils/catalog.js');
 const estimate = require(root + '/utils/estimate.js');
 let errors = [];
-if (catalog.ALL.length !== 38) errors.push('models != 38: ' + catalog.ALL.length);
+if (catalog.ALL.length !== 68) errors.push('models != 68: ' + catalog.ALL.length);
 const ids = {};
 catalog.ALL.forEach(function (m) {
   if (ids[m.id]) errors.push('duplicate id ' + m.id);

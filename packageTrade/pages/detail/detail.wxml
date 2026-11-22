@@ -1,17 +1,20 @@
 <view wx:if="{{model}}" class="page detail-page">
   <view class="topline">
-    <text class="kicker">{{model.brand}} / {{model.series}}</text>
+    <text class="kicker">{{model.categoryName}} / {{model.brand}}</text>
     <text class="kicker">{{model.year}}</text>
   </view>
 
   <view class="device-hero">
     <image class="device-image" src="{{model.image}}" mode="aspectFit" />
+    <view wx:if="{{model.imageType === 'placeholder'}}" class="image-note">暂无授权实拍图 · 仅展示型号信息</view>
+    <view wx:elif="{{model.imageType === 'illustration'}}" class="image-note">统一示意图 · 非真机实拍</view>
+    <view wx:elif="{{model.imageAuthor}}" class="image-note">实拍图 · {{model.imageAuthor}} · {{model.imageLicense}}</view>
   </view>
 
   <view class="device-head">
-    <view class="device-brand">{{model.brand}} · {{model.series}}</view>
+    <view class="device-brand">{{model.brand}} · {{model.series}} · {{model.year}}</view>
     <view class="device-name">{{model.model}}</view>
-    <view class="device-sub">{{model.specs.cpu}} / {{model.specs.gpu}}</view>
+    <view class="device-sub">{{model.specLine}}</view>
   </view>
 
   <view class="price-card">

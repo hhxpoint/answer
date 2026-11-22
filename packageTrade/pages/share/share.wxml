@@ -26,17 +26,15 @@
   </view>
 
   <view class="share-specs">
-    <view class="share-spec"><text class="share-k">CPU</text><text class="share-v">{{model.specs.cpu}}</text></view>
-    <view class="share-spec"><text class="share-k">GPU</text><text class="share-v">{{model.specs.gpu}}</text></view>
-    <view class="share-spec"><text class="share-k">内存</text><text class="share-v">{{model.specs.ram}}</text></view>
-    <view class="share-spec"><text class="share-k">硬盘</text><text class="share-v">{{model.specs.storage}}</text></view>
-    <view class="share-spec"><text class="share-k">屏幕</text><text class="share-v">{{model.specs.screen}} · {{model.specs.refresh}}</text></view>
-    <view class="share-spec"><text class="share-k">发售价</text><text class="share-v">¥{{variant.launchPrice}}</text></view>
+    <view wx:for="{{model.specItems}}" wx:key="k" class="share-spec">
+      <text class="share-k">{{item.k}}</text>
+      <text class="share-v">{{item.v}}</text>
+    </view>
   </view>
 
   <view class="share-cta">
     <view class="btn btn-primary" bindtap="goEstimate">我也要估一个</view>
-    <view class="btn btn-ghost" bindtap="goHome">查看 38 款行情</view>
+    <view class="btn btn-ghost" bindtap="goHome">查看全部行情</view>
   </view>
 
   <view class="share-tip">

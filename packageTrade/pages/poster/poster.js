@@ -75,6 +75,7 @@ Page({
       updatedAt: '2026-11',
       brand: model.brand || '',
       year: model.year || '',
+      title: model.categoryTitle || '二手估价单',
       modelName: model.model || '',
       variantLabel: variant.label || '',
       rangeText: result.rangeText || '',

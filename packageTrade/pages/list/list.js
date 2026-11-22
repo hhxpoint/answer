@@ -4,10 +4,13 @@ Page({
   data: {
     updatedAt: catalog.UPDATED_AT,
     query: '',
+    category: 'all',
     brand: 'all',
     gpu: 'all',
+    showGpu: true,
     sort: 'hot',
     brands: [],
+    categories: [],
     gpuGroups: [],
     results: [],
     total: 0,
@@ -22,10 +25,14 @@ Page({
   onLoad: function (options) {
     const q = (options && options.q) || '';
     const brand = (options && options.brand) || 'all';
+    const category = (options && options.category) || 'all';
     this.setData({
       query: q,
+      category: category,
       brand: brand,
-      brands: catalog.brands(),
+      brands: catalog.brands(category),
+      categories: catalog.categories(),
+      showGpu: category === 'laptop' || category === 'all',
       gpuGroups: catalog.gpuGroups()
     });
     this.refresh();
@@ -34,6 +41,7 @@ Page({
   refresh: function () {
     const list = catalog.list({
       query: this.data.query,
+      category: this.data.category,
       brand: this.data.brand,
       gpu: this.data.gpu,
       sort: this.data.sort
@@ -50,7 +58,19 @@ Page({
   },
 
   onClear: function () {
-    this.setData({ query: '', brand: 'all', gpu: 'all', sort: 'hot' });
+    this.setData({ query: '', category: 'all', brand: 'all', gpu: 'all', sort: 'hot', showGpu: true, brands: catalog.brands('all') });
+    this.refresh();
+  },
+
+  onCategory: function (e) {
+    const key = e.currentTarget.dataset.key;
+    this.setData({
+      category: key,
+      brand: 'all',
+      gpu: 'all',
+      showGpu: key === 'laptop' || key === 'all',
+      brands: catalog.brands(key)
+    });
     this.refresh();
   },
 

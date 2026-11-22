@@ -103,7 +103,7 @@ function draw(ctx, data, width, height) {
   // title
   ctx.fillStyle = INK;
   ctx.font = '600 48px "Songti SC", "STSong", "Noto Serif SC", serif';
-  ctx.fillText('游戏本二手估价单', 56, 170);
+  ctx.fillText(data.title || '二手估价单', 56, 170);
 
   ctx.fillStyle = MUTED;
   ctx.font = '22px -apple-system, "PingFang SC", sans-serif';

@@ -12,7 +12,7 @@
   <view class="source-block">
     <view class="source-kicker">01 / PRICE</view>
     <view class="source-title">价格基准</view>
-    <view class="source-copy">首批 38 款游戏本的参考区间，以官方发售价、公开规格和 2026 年 11 月的市场折旧模型整理。它不是平台成交价，也不是回收报价；实际成交会受地区、供需、验机和双方协商影响。</view>
+    <view class="source-copy">全品类 68 款（游戏本 38 / 手机 20 / 游戏机 10）的参考区间。其中游戏本价格来自发售价 + 折旧模型，以官方发售价、公开规格和 2026 年 11 月的市场折旧模型整理。它不是平台成交价，也不是回收报价；实际成交会受地区、供需、验机和双方协商影响。</view>
   </view>
 
   <view class="source-block">
@@ -24,7 +24,7 @@
   <view class="source-block">
     <view class="source-kicker">03 / IMAGES</view>
     <view class="source-title">设备图片</view>
-    <view class="source-copy">全部设备图为统一绘制的示意插画，不是真机实拍，也不代表官方外观细节。这样避免使用未授权的品牌图片，同时保持列表视觉一致。</view>
+    <view class="source-copy">当前只有部分游戏机使用了 Openverse/Wikimedia 的 CC 授权实拍图（已在详情页标注作者/许可证）；其余型号为统一示意图或“暂无授权实拍图”，不冒充实拍。找不到合法授权图时，也不会去盗抓电商图。</view>
   </view>
 
   <view class="source-block">
@@ -46,7 +46,7 @@
   </view>
 
   <view class="footer-note">
-    <view>版本数据：2026-11 · 首批 38 款游戏本</view>
+    <view>版本数据：2026-11 · 全品类 68 款</view>
     <view>个人工具 · 非交易平台 · 非社交平台</view>
   </view>
 </view>

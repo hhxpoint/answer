@@ -9,8 +9,11 @@ Page({
     total: 0,
     intro: '',
     brands: [],
+    categories: [],
+    category: 'all',
     brand: 'all',
     gpu: 'all',
+    showGpu: true,
     gpuGroups: [],
     recordCount: 0,
     loading: true
@@ -18,7 +21,8 @@ Page({
 
   onLoad: function () {
     this.setData({
-      brands: catalog.brands(),
+      brands: catalog.brands('all'),
+      categories: catalog.categories(),
       gpuGroups: catalog.gpuGroups()
     });
     this.refresh();
@@ -31,10 +35,11 @@ Page({
   refresh: function () {
     const list = catalog.list({
       query: this.data.query,
+      category: this.data.category,
       brand: this.data.brand,
       gpu: this.data.gpu
     }).slice(0, 8);
-    const all = catalog.list({ query: this.data.query, brand: this.data.brand, gpu: this.data.gpu });
+    const all = catalog.list({ query: this.data.query, category: this.data.category, brand: this.data.brand, gpu: this.data.gpu });
     this.setData({
       results: list,
       total: all.length,
@@ -56,7 +61,20 @@ Page({
   },
 
   onClear: function () {
-    this.setData({ query: '', brand: 'all', gpu: 'all' });
+    this.setData({ query: '', category: 'all', brand: 'all', gpu: 'all', showGpu: false });
+    this.setData({ brands: catalog.brands('all') });
+    this.refresh();
+  },
+
+  onCategory: function (e) {
+    const key = e.currentTarget.dataset.key;
+    this.setData({
+      category: key,
+      brand: 'all',
+      gpu: 'all',
+      showGpu: key === 'laptop' || key === 'all',
+      brands: catalog.brands(key)
+    });
     this.refresh();
   },
 

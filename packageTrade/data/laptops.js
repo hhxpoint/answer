@@ -52,9 +52,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/legion-y9000p-2024.png",
+    "image": "/packageTrade/assets/devices/legion-y9000p-2024.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "拯救者 · Y9000P 2024"
+    "tagline": "拯救者 · Y9000P 2024",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "legion-y9000p-2025",
@@ -107,9 +111,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/legion-y9000p-2025.png",
+    "image": "/packageTrade/assets/devices/legion-y9000p-2025.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "拯救者 · Y9000P 2025"
+    "tagline": "拯救者 · Y9000P 2025",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "legion-r9000p-2023",
@@ -161,9 +169,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/legion-r9000p-2023.png",
+    "image": "/packageTrade/assets/devices/legion-r9000p-2023.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "拯救者 · R9000P 2023"
+    "tagline": "拯救者 · R9000P 2023",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "legion-y7000p-2024",
@@ -208,9 +220,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/legion-y7000p-2024.png",
+    "image": "/packageTrade/assets/devices/legion-y7000p-2024.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "拯救者 · Y7000P 2024"
+    "tagline": "拯救者 · Y7000P 2024",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "tuf-a15-2023",
@@ -263,9 +279,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/tuf-a15-2023.png",
+    "image": "/packageTrade/assets/devices/tuf-a15-2023.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "天选 · 天选4 A15"
+    "tagline": "天选 · 天选4 A15",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "tuf-f16-2025",
@@ -318,9 +338,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/tuf-f16-2025.png",
+    "image": "/packageTrade/assets/devices/tuf-f16-2025.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "天选 · 天选6 Pro F16"
+    "tagline": "天选 · 天选6 Pro F16",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "tuf-a16-2025",
@@ -373,9 +397,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/tuf-a16-2025.png",
+    "image": "/packageTrade/assets/devices/tuf-a16-2025.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "天选 · 天选6 Pro A16"
+    "tagline": "天选 · 天选6 Pro A16",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "rog-strix-g16-2024",
@@ -421,9 +449,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/rog-strix-g16-2024.png",
+    "image": "/packageTrade/assets/devices/rog-strix-g16-2024.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "ROG · 魔霸新锐 G16"
+    "tagline": "ROG · 魔霸新锐 G16",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "rog-zephyrus-g14-2024",
@@ -469,9 +501,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/rog-zephyrus-g14-2024.png",
+    "image": "/packageTrade/assets/devices/rog-zephyrus-g14-2024.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "ROG · 幻14 2024"
+    "tagline": "ROG · 幻14 2024",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "omen-16-2023",
@@ -517,9 +553,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/omen-16-2023.png",
+    "image": "/packageTrade/assets/devices/omen-16-2023.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "暗影精灵 · 暗影精灵9"
+    "tagline": "暗影精灵 · 暗影精灵9",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "victus-16-2023",
@@ -572,9 +612,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/victus-16-2023.png",
+    "image": "/packageTrade/assets/devices/victus-16-2023.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "光影精灵 · 光影精灵9"
+    "tagline": "光影精灵 · 光影精灵9",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "predator-neo-16-2023",
@@ -620,9 +664,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/predator-neo-16-2023.png",
+    "image": "/packageTrade/assets/devices/predator-neo-16-2023.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "掠夺者 · 战斧 Neo 16"
+    "tagline": "掠夺者 · 战斧 Neo 16",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "nitro-v16-2024",
@@ -668,9 +716,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/nitro-v16-2024.png",
+    "image": "/packageTrade/assets/devices/nitro-v16-2024.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "暗影骑士 · 擎7 V16"
+    "tagline": "暗影骑士 · 擎7 V16",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "msi-katana-15-2023",
@@ -716,9 +768,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/msi-katana-15-2023.png",
+    "image": "/packageTrade/assets/devices/msi-katana-15-2023.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "侠客 · 侠客 15"
+    "tagline": "侠客 · 侠客 15",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "msi-titan-18-2024",
@@ -764,9 +820,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/msi-titan-18-2024.png",
+    "image": "/packageTrade/assets/devices/msi-titan-18-2024.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "泰坦 · 泰坦 18 HX"
+    "tagline": "泰坦 · 泰坦 18 HX",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "mechrevo-jiaolong-16-pro-2023",
@@ -812,9 +872,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/mechrevo-jiaolong-16-pro-2023.png",
+    "image": "/packageTrade/assets/devices/mechrevo-jiaolong-16-pro-2023.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "蛟龙 · 蛟龙16 Pro"
+    "tagline": "蛟龙 · 蛟龙16 Pro",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "mechrevo-yaoshi-16-ultra-2025",
@@ -860,9 +924,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/mechrevo-yaoshi-16-ultra-2025.png",
+    "image": "/packageTrade/assets/devices/mechrevo-yaoshi-16-ultra-2025.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "耀世 · 耀世16 Ultra"
+    "tagline": "耀世 · 耀世16 Ultra",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "thunderobot-lieren-s-ultra-2025",
@@ -908,9 +976,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/thunderobot-lieren-s-ultra-2025.png",
+    "image": "/packageTrade/assets/devices/thunderobot-lieren-s-ultra-2025.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "猎刃 · 猎刃 S Ultra"
+    "tagline": "猎刃 · 猎刃 S Ultra",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "machenike-shuguang-16s-2025",
@@ -956,9 +1028,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/machenike-shuguang-16s-2025.png",
+    "image": "/packageTrade/assets/devices/machenike-shuguang-16s-2025.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "曙光 · 曙光16S"
+    "tagline": "曙光 · 曙光16S",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "colorful-jiangxing-x18-max-2025",
@@ -1004,9 +1080,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/colorful-jiangxing-x18-max-2025.png",
+    "image": "/packageTrade/assets/devices/colorful-jiangxing-x18-max-2025.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "将星 · 将星 X18 Max"
+    "tagline": "将星 · 将星 X18 Max",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "lenovo-loq-15-2023",
@@ -1059,9 +1139,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/lenovo-loq-15-2023.png",
+    "image": "/packageTrade/assets/devices/lenovo-loq-15-2023.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "LOQ · LOQ 15"
+    "tagline": "LOQ · LOQ 15",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "dell-g16-2023",
@@ -1107,9 +1191,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/dell-g16-2023.png",
+    "image": "/packageTrade/assets/devices/dell-g16-2023.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "游匣 · G16 7630"
+    "tagline": "游匣 · G16 7630",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "alienware-m16-2024",
@@ -1155,9 +1243,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/alienware-m16-2024.png",
+    "image": "/packageTrade/assets/devices/alienware-m16-2024.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "Alienware · m16 R2"
+    "tagline": "Alienware · m16 R2",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "razer-blade-16-2024",
@@ -1203,9 +1295,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/razer-blade-16-2024.png",
+    "image": "/packageTrade/assets/devices/razer-blade-16-2024.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "灵刃 · Blade 16 2024"
+    "tagline": "灵刃 · Blade 16 2024",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "legion-y9000x-2024",
@@ -1250,9 +1346,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/legion-y9000x-2024.png",
+    "image": "/packageTrade/assets/devices/legion-y9000x-2024.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "拯救者 · Y9000X 2024"
+    "tagline": "拯救者 · Y9000X 2024",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "legion-geekpro-g5000-2024",
@@ -1297,9 +1397,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/legion-geekpro-g5000-2024.png",
+    "image": "/packageTrade/assets/devices/legion-geekpro-g5000-2024.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "GeekPro · G5000 2024"
+    "tagline": "GeekPro · G5000 2024",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "rog-zephyrus-g16-2024",
@@ -1345,9 +1449,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/rog-zephyrus-g16-2024.png",
+    "image": "/packageTrade/assets/devices/rog-zephyrus-g16-2024.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "ROG · 幻16 2024"
+    "tagline": "ROG · 幻16 2024",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "rog-strix-scar-18-2024",
@@ -1393,9 +1501,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/rog-strix-scar-18-2024.png",
+    "image": "/packageTrade/assets/devices/rog-strix-scar-18-2024.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "ROG · 枪神8 Plus 18"
+    "tagline": "ROG · 枪神8 Plus 18",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "omen-16-2024",
@@ -1441,9 +1553,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/omen-16-2024.png",
+    "image": "/packageTrade/assets/devices/omen-16-2024.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "暗影精灵 · 暗影精灵10"
+    "tagline": "暗影精灵 · 暗影精灵10",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "alienware-m18-2024",
@@ -1489,9 +1605,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/alienware-m18-2024.png",
+    "image": "/packageTrade/assets/devices/alienware-m18-2024.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "Alienware · m18 R2"
+    "tagline": "Alienware · m18 R2",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "predator-helios-18-2024",
@@ -1537,9 +1657,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/predator-helios-18-2024.png",
+    "image": "/packageTrade/assets/devices/predator-helios-18-2024.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "掠夺者 · 战斧18 2024"
+    "tagline": "掠夺者 · 战斧18 2024",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "msi-raider-ge78-2024",
@@ -1585,9 +1709,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/msi-raider-ge78-2024.png",
+    "image": "/packageTrade/assets/devices/msi-raider-ge78-2024.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "泰坦 · Raider GE78 HX"
+    "tagline": "泰坦 · Raider GE78 HX",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "gigabyte-aorus-16x-2024",
@@ -1633,9 +1761,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/gigabyte-aorus-16x-2024.png",
+    "image": "/packageTrade/assets/devices/gigabyte-aorus-16x-2024.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "AORUS · AORUS 16X"
+    "tagline": "AORUS · AORUS 16X",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "hasee-t8-2023",
@@ -1681,9 +1813,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/hasee-t8-2023.png",
+    "image": "/packageTrade/assets/devices/hasee-t8-2023.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "战神 · 战神 T8"
+    "tagline": "战神 · 战神 T8",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "thunderobot-zero-18-pro-2025",
@@ -1729,9 +1865,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/thunderobot-zero-18-pro-2025.png",
+    "image": "/packageTrade/assets/devices/thunderobot-zero-18-pro-2025.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "ZERO · ZERO 18 Pro"
+    "tagline": "ZERO · ZERO 18 Pro",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "mechrevo-canglong-16-ultra-2025",
@@ -1777,9 +1917,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/mechrevo-canglong-16-ultra-2025.png",
+    "image": "/packageTrade/assets/devices/mechrevo-canglong-16-ultra-2025.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "苍龙 · 苍龙16 Ultra"
+    "tagline": "苍龙 · 苍龙16 Ultra",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "colorful-yinxing-p15-2024",
@@ -1825,9 +1969,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/colorful-yinxing-p15-2024.png",
+    "image": "/packageTrade/assets/devices/colorful-yinxing-p15-2024.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "隐星 · 隐星 P15"
+    "tagline": "隐星 · 隐星 P15",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   },
   {
     "id": "tuf-a14-2024",
@@ -1873,9 +2021,13 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/tuf-a14-2024.png",
+    "image": "/packageTrade/assets/devices/tuf-a14-2024.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
-    "tagline": "天选 · 天选 Air 14"
+    "tagline": "天选 · 天选 Air 14",
+    "categoryKey": "laptop",
+    "categoryTitle": "游戏本二手估价单",
+    "imageType": "illustration",
+    "imageNote": "统一示意图，非真机实拍"
   }
 ];
 
