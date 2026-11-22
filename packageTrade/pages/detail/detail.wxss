@@ -1,0 +1,178 @@
+@import "../../common.wxss";
+
+.topline {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 8rpx;
+}
+.device-hero {
+  margin: 22rpx -10rpx 0;
+  padding: 8rpx 0;
+  background: rgba(255, 251, 245, 0.42);
+  border: 1rpx solid rgba(74, 56, 39, 0.1);
+  border-radius: 10rpx;
+}
+.device-image {
+  width: 100%;
+  height: 380rpx;
+}
+.device-head {
+  padding: 26rpx 2rpx 20rpx;
+}
+.device-brand {
+  font-family: "SF Mono", Menlo, monospace;
+  font-size: 16rpx;
+  letter-spacing: 1.6rpx;
+  color: #9c836d;
+}
+.device-name {
+  margin-top: 8rpx;
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 48rpx;
+  font-weight: 600;
+  color: #211b16;
+}
+.device-sub {
+  margin-top: 8rpx;
+  font-size: 22rpx;
+  color: #806d5a;
+}
+.price-card {
+  margin-top: 8rpx;
+  padding: 24rpx 24rpx 22rpx;
+  border: 1rpx solid rgba(74, 56, 39, 0.16);
+  border-radius: 10rpx;
+  background: rgba(255, 251, 245, 0.72);
+}
+.price-kicker {
+  font-family: "SF Mono", Menlo, monospace;
+  font-size: 15rpx;
+  letter-spacing: 1.6rpx;
+  color: #9c836d;
+}
+.price-main {
+  margin-top: 10rpx;
+  font-size: 46rpx;
+}
+.price-meta {
+  margin-top: 8rpx;
+  font-size: 18rpx;
+  color: #9a836c;
+}
+.price-dot {
+  margin: 0 8rpx;
+  color: #bc9d80;
+}
+
+.spec-grid {
+  display: flex;
+  flex-wrap: wrap;
+  border-top: 1rpx solid rgba(74, 56, 39, 0.14);
+}
+.spec-item {
+  width: 50%;
+  box-sizing: border-box;
+  padding: 18rpx 8rpx 16rpx;
+  border-bottom: 1rpx solid rgba(74, 56, 39, 0.12);
+}
+.spec-item:nth-child(odd) {
+  border-right: 1rpx solid rgba(74, 56, 39, 0.12);
+  padding-right: 18rpx;
+}
+.spec-item:nth-child(even) {
+  padding-left: 18rpx;
+}
+.spec-k {
+  font-family: "SF Mono", Menlo, monospace;
+  font-size: 15rpx;
+  letter-spacing: 1.2rpx;
+  color: #a28a73;
+}
+.spec-v {
+  margin-top: 7rpx;
+  font-size: 23rpx;
+  line-height: 1.45;
+  color: #33281e;
+}
+
+.variant-list {
+  border-top: 1rpx solid rgba(74, 56, 39, 0.14);
+}
+.variant-row {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 4rpx;
+  border-bottom: 1rpx solid rgba(74, 56, 39, 0.14);
+}
+.variant-radio {
+  width: 30rpx;
+  height: 30rpx;
+  border: 1rpx solid rgba(74, 56, 39, 0.32);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16rpx;
+}
+.variant-dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+}
+.variant-row.on .variant-radio {
+  border-color: #8f5338;
+}
+.variant-row.on .variant-dot {
+  background: #8f5338;
+}
+.variant-body { flex: 1; min-width: 0; }
+.variant-label {
+  font-size: 24rpx;
+  color: #33281e;
+}
+.variant-price {
+  margin-top: 5rpx;
+  font-size: 18rpx;
+  color: #9a836c;
+}
+.variant-check {
+  font-family: "SF Mono", Menlo, monospace;
+  font-size: 15rpx;
+  color: #8f5338;
+}
+
+.highlight-list {
+  border-top: 1rpx solid rgba(74, 56, 39, 0.14);
+}
+.highlight {
+  display: flex;
+  gap: 16rpx;
+  padding: 17rpx 2rpx;
+  border-bottom: 1rpx solid rgba(74, 56, 39, 0.14);
+  font-size: 23rpx;
+  line-height: 1.55;
+  color: #4d3c2e;
+}
+.highlight-mark {
+  color: #a58b73;
+}
+.basis-note {
+  margin-top: 30rpx;
+  font-size: 18rpx;
+  line-height: 1.8;
+  color: #9a836c;
+}
+.basis-link {
+  margin-top: 8rpx;
+  color: #8f5338;
+}
+.detail-cta {
+  margin-top: 30rpx;
+}
+.detail-cta .btn-primary {
+  width: 100%;
+  height: 92rpx;
+}
+.empty { padding: 90rpx 20rpx; text-align: center; }
+.empty-title { font-family: "Songti SC", serif; font-size: 32rpx; color: #3a2e24; }
+.empty-copy { margin-top: 12rpx; font-size: 22rpx; color: #9a836c; }

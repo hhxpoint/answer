@@ -1,0 +1,238 @@
+@import "../../common.wxss";
+
+.topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10rpx;
+}
+
+.hero {
+  padding: 58rpx 0 38rpx;
+}
+.hero-eyebrow {
+  font-family: "SF Mono", Menlo, monospace;
+  font-size: 16rpx;
+  letter-spacing: 3rpx;
+  color: #9c836d;
+  margin-bottom: 20rpx;
+}
+.hero-title {
+  font-family: "Songti SC", "STSong", "Noto Serif SC", serif;
+  font-size: 68rpx;
+  line-height: 1.15;
+  letter-spacing: -1rpx;
+  font-weight: 600;
+  color: #211b16;
+}
+.hero-title-it {
+  color: #8f5338;
+  font-style: italic;
+  margin-left: 4rpx;
+}
+.hero-copy {
+  margin-top: 22rpx;
+  font-size: 24rpx;
+  line-height: 1.85;
+  color: #756451;
+}
+
+.quick-row {
+  display: flex;
+  gap: 14rpx;
+  margin-top: 24rpx;
+}
+.quick-card {
+  flex: 1;
+  min-width: 0;
+  padding: 22rpx 24rpx;
+  border: 1rpx solid rgba(74, 56, 39, 0.14);
+  border-radius: 10rpx;
+  background: rgba(255, 251, 245, 0.68);
+  box-sizing: border-box;
+}
+.quick-card-sage {
+  background: rgba(232, 238, 229, 0.72);
+}
+.quick-num {
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 46rpx;
+  color: #8f5338;
+  line-height: 1;
+}
+.quick-mark {
+  width: 42rpx;
+  height: 42rpx;
+  border: 1rpx solid rgba(82, 103, 84, 0.5);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Georgia, serif;
+  font-size: 28rpx;
+  font-style: italic;
+  color: #5d735f;
+}
+.quick-title {
+  margin-top: 18rpx;
+  font-size: 25rpx;
+  color: #2c231b;
+  font-weight: 500;
+}
+.quick-sub {
+  margin-top: 5rpx;
+  font-size: 17rpx;
+  color: #9a836c;
+}
+
+.filter-block {
+  margin-top: 30rpx;
+}
+.brand-scroll {
+  white-space: nowrap;
+  width: 100%;
+}
+.brand-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10rpx 20rpx;
+  margin-right: 10rpx;
+  border: 1rpx solid rgba(74, 56, 39, 0.14);
+  border-radius: 4rpx;
+  font-size: 20rpx;
+  color: #806d5a;
+  background: rgba(255, 251, 245, 0.38);
+}
+.brand-tab.on {
+  background: #32281f;
+  border-color: #32281f;
+  color: #f7f0e5;
+}
+.gpu-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10rpx;
+  margin-top: 16rpx;
+}
+.gpu-tab {
+  font-size: 18rpx;
+  color: #9a836c;
+  padding: 6rpx 0;
+  margin-right: 18rpx;
+  border-bottom: 1rpx solid transparent;
+}
+.gpu-tab.on {
+  color: #8f5338;
+  border-bottom-color: #8f5338;
+}
+
+.list-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin: 40rpx 0 18rpx;
+}
+.list-intro {
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 27rpx;
+  color: #33281e;
+}
+.list-note {
+  margin-top: 6rpx;
+  font-size: 16rpx;
+  color: #a18b74;
+}
+.all-link {
+  flex-shrink: 0;
+  font-size: 19rpx;
+  color: #8f5338;
+  padding: 10rpx 0 10rpx 16rpx;
+}
+
+.model-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+.model-card {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 18rpx 16rpx 8rpx;
+  min-height: 194rpx;
+  box-sizing: border-box;
+}
+.model-thumb {
+  width: 218rpx;
+  height: 146rpx;
+  flex-shrink: 0;
+  margin-right: 14rpx;
+}
+.model-body {
+  flex: 1;
+  min-width: 0;
+  padding: 6rpx 0;
+}
+.model-eyebrow {
+  font-family: "SF Mono", Menlo, monospace;
+  font-size: 15rpx;
+  letter-spacing: 1rpx;
+  color: #9c836d;
+}
+.model-name {
+  margin-top: 6rpx;
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #292119;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.model-spec {
+  margin-top: 6rpx;
+  font-size: 18rpx;
+  color: #8b7560;
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.model-foot {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-top: 14rpx;
+  gap: 12rpx;
+}
+.model-price {
+  font-size: 26rpx;
+}
+.model-count {
+  flex-shrink: 0;
+  font-size: 16rpx;
+  color: #a08a73;
+}
+
+.empty {
+  padding: 70rpx 20rpx;
+  text-align: center;
+}
+.empty-title {
+  font-family: "Songti SC", serif;
+  font-size: 30rpx;
+  color: #3a2e24;
+}
+.empty-copy {
+  margin-top: 12rpx;
+  font-size: 22rpx;
+  color: #9a836c;
+}
+.empty-btn {
+  display: inline-flex;
+  margin-top: 26rpx;
+  padding: 0 30rpx;
+  height: 70rpx;
+  font-size: 22rpx;
+}

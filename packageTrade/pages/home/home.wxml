@@ -1,0 +1,102 @@
+<view class="page">
+  <view class="topline">
+    <text class="kicker">TRADE / INDEX</text>
+    <text class="kicker">{{updatedAt}}</text>
+  </view>
+
+  <view class="hero">
+    <view class="hero-eyebrow">SECOND / HANDSHAKE</view>
+    <view class="hero-title">游戏本<text class="hero-title-it">二手估价</text></view>
+    <view class="hero-copy">看清真实配置，再谈价格。<br/>24 款主流游戏本 · 行情、成色、个人估价单。</view>
+  </view>
+
+  <view class="search-box">
+    <text class="search-icon">⌕</text>
+    <input
+      class="search-input"
+      placeholder="搜型号，如：拯救者 / 天选 / 5070"
+      placeholder-class="search-placeholder"
+      value="{{query}}"
+      confirm-type="search"
+      bindinput="onInput"
+      bindconfirm="onConfirm"
+    />
+    <text wx:if="{{query}}" class="search-clear" bindtap="onClear">×</text>
+  </view>
+
+  <view class="quick-row">
+    <view class="quick-card" bindtap="goMy" hover-class="pressed">
+      <view class="quick-num">{{recordCount}}</view>
+      <view class="quick-title">我的估价单</view>
+      <view class="quick-sub">保存在本机 · 不上传</view>
+    </view>
+    <view class="quick-card quick-card-sage" bindtap="goSources" hover-class="pressed">
+      <view class="quick-mark">i</view>
+      <view class="quick-title">数据与边界</view>
+      <view class="quick-sub">来源 · 图片 · 免责声明</view>
+    </view>
+  </view>
+
+  <view class="filter-block">
+    <scroll-view class="brand-scroll" scroll-x enable-flex>
+      <view class="brand-tab {{brand === 'all' ? 'on' : ''}}" data-key="all" bindtap="onBrand">全部</view>
+      <view
+        wx:for="{{brands}}"
+        wx:key="key"
+        class="brand-tab {{brand === item.key ? 'on' : ''}}"
+        data-key="{{item.key}}"
+        bindtap="onBrand"
+      >{{item.name}}</view>
+    </scroll-view>
+    <view class="gpu-row">
+      <view
+        wx:for="{{gpuGroups}}"
+        wx:key="key"
+        class="gpu-tab {{gpu === item.key ? 'on' : ''}}"
+        data-key="{{item.key}}"
+        bindtap="onGpu"
+      >{{item.name}}</view>
+    </view>
+  </view>
+
+  <view class="list-head">
+    <view>
+      <view class="list-intro">{{intro}}</view>
+      <view class="list-note">参考价来自发售价 + 折旧模型，不是成交承诺</view>
+    </view>
+    <view class="all-link" bindtap="goList" hover-class="pressed">全部 ›</view>
+  </view>
+
+  <view class="model-list">
+    <view
+      wx:for="{{results}}"
+      wx:key="id"
+      class="model-card card-surface"
+      data-id="{{item.id}}"
+      bindtap="goDetail"
+      hover-class="pressed"
+    >
+      <image class="model-thumb" src="{{item.image}}" mode="aspectFit" lazy-load />
+      <view class="model-body">
+        <view class="model-eyebrow">{{item.brand}} · {{item.year}}</view>
+        <view class="model-name">{{item.model}}</view>
+        <view class="model-spec">{{item.specLine}}</view>
+        <view class="model-foot">
+          <view class="model-price price-band">{{item.priceText}}</view>
+          <view class="model-count">{{item.variantCount}} 个配置 ›</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{!results.length}}" class="empty">
+    <view class="empty-title">没有匹配的型号</view>
+    <view class="empty-copy">换个关键词，或清空筛选再看看。</view>
+    <view class="empty-btn btn btn-ghost" bindtap="onClear">清空筛选</view>
+  </view>
+
+  <view class="footer-note">
+    <view>本工具只做行情展示与个人估价单生成，不参与交易、不提供评论或社交功能。</view>
+    <view>设备图片为统一示意图，非真机实拍；价格仅供参考。</view>
+  </view>
+</view>

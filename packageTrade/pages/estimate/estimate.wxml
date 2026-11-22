@@ -1,0 +1,174 @@
+<view wx:if="{{model}}" class="page estimate-page">
+  <view class="topline">
+    <text class="kicker">APPRAISAL / INPUT</text>
+    <text class="kicker">{{model.year}}</text>
+  </view>
+
+  <view class="estimate-head">
+    <view class="estimate-title">生成我的<text class="title-it">估价单</text></view>
+    <view class="estimate-sub">{{model.brand}} · {{model.model}}</view>
+    <view class="estimate-variant" bindtap="goDetail">{{variant.label}} <text>更换 ›</text></view>
+  </view>
+
+  <view class="section-head">
+    <text class="section-no">01</text>
+    <text class="section-title">Condition</text>
+    <text class="section-cn">成色</text>
+    <view class="section-line"></view>
+  </view>
+  <view class="option-grid">
+    <view
+      wx:for="{{conditions}}"
+      wx:key="id"
+      class="option-chip {{answers.condition === item.id ? 'on' : ''}}"
+      data-group="condition"
+      data-id="{{item.id}}"
+      bindtap="selectOption"
+      hover-class="pressed"
+    >
+      <view class="option-label">{{item.label}}</view>
+      <view class="option-desc">{{item.desc}}</view>
+    </view>
+  </view>
+
+  <view class="section-head">
+    <text class="section-no">02</text>
+    <text class="section-title">Condition detail</text>
+    <text class="section-cn">细节</text>
+    <view class="section-line"></view>
+  </view>
+
+  <view class="field-block">
+    <view class="field-label">电池健康</view>
+    <view class="option-row">
+      <view
+        wx:for="{{batteries}}"
+        wx:key="id"
+        class="pill {{answers.battery === item.id ? 'on' : ''}}"
+        data-group="battery"
+        data-id="{{item.id}}"
+        bindtap="selectOption"
+      >{{item.label}}</view>
+    </view>
+  </view>
+
+  <view class="field-block">
+    <view class="field-label">维修情况</view>
+    <view class="option-row">
+      <view
+        wx:for="{{repairs}}"
+        wx:key="id"
+        class="pill {{answers.repair === item.id ? 'on' : ''}}"
+        data-group="repair"
+        data-id="{{item.id}}"
+        bindtap="selectOption"
+      >{{item.label}}</view>
+    </view>
+  </view>
+
+  <view class="field-block">
+    <view class="field-label">屏幕状态</view>
+    <view class="option-row">
+      <view
+        wx:for="{{screens}}"
+        wx:key="id"
+        class="pill {{answers.screen === item.id ? 'on' : ''}}"
+        data-group="screen"
+        data-id="{{item.id}}"
+        bindtap="selectOption"
+      >{{item.label}}</view>
+    </view>
+  </view>
+
+  <view class="field-block">
+    <view class="field-label">配件</view>
+    <view class="option-row">
+      <view
+        wx:for="{{accessories}}"
+        wx:key="id"
+        class="pill {{answers.accessory === item.id ? 'on' : ''}}"
+        data-group="accessory"
+        data-id="{{item.id}}"
+        bindtap="selectOption"
+      >{{item.label}}</view>
+    </view>
+  </view>
+
+  <view class="field-block">
+    <view class="field-label">保修</view>
+    <view class="option-row">
+      <view
+        wx:for="{{warranties}}"
+        wx:key="id"
+        class="pill {{answers.warranty === item.id ? 'on' : ''}}"
+        data-group="warranty"
+        data-id="{{item.id}}"
+        bindtap="selectOption"
+      >{{item.label}}</view>
+    </view>
+  </view>
+
+  <view class="section-head">
+    <text class="section-no">03</text>
+    <text class="section-title">Photos</text>
+    <text class="section-cn">实拍（本地）</text>
+    <view class="section-line"></view>
+  </view>
+  <view class="photo-row">
+    <view wx:for="{{photos}}" wx:key="*this" class="photo-item">
+      <image class="photo-img" src="{{item}}" mode="aspectFill" />
+      <view class="photo-del" data-index="{{index}}" bindtap="removePhoto">×</view>
+    </view>
+    <view wx:if="{{photos.length < 4}}" class="photo-add" bindtap="choosePhotos">
+      <view class="photo-plus">＋</view>
+      <view class="photo-add-text">添加照片</view>
+    </view>
+  </view>
+  <view class="photo-note">{{photoNote}}</view>
+
+  <view class="section-head">
+    <text class="section-no">04</text>
+    <text class="section-title">Your price</text>
+    <text class="section-cn">心理价</text>
+    <view class="section-line"></view>
+  </view>
+  <view class="custom-price">
+    <text class="price-symbol">¥</text>
+    <input
+      class="price-input"
+      type="number"
+      placeholder="可以不填"
+      placeholder-class="search-placeholder"
+      value="{{answers.customPrice}}"
+      bindinput="onCustomPrice"
+    />
+    <text class="price-unit">用户自述价</text>
+  </view>
+
+  <view wx:if="{{result}}" class="result-card">
+    <view class="result-kicker">REFERENCE / {{result.confidence}}</view>
+    <view class="result-range price-band">{{result.rangeText}}</view>
+    <view class="result-grid">
+      <view class="result-col"><view class="result-label">快速出手</view><view class="result-num">{{result.quickText}}</view></view>
+      <view class="result-col"><view class="result-label">合理挂价</view><view class="result-num result-accent">{{result.fairText}}</view></view>
+      <view class="result-col"><view class="result-label">耐心价</view><view class="result-num">{{result.patientText}}</view></view>
+    </view>
+    <view wx:if="{{result.customState}}" class="custom-state">{{result.customState}}</view>
+    <view class="result-note">按 {{result.condition.label}} / {{result.battery.label}} / {{result.repair.label}} / {{result.accessory.label}} 折算</view>
+  </view>
+
+  <view class="btn btn-primary generate-btn" bindtap="generate" hover-class="pressed">生成估价单</view>
+  <view class="safe-note">不会上传照片或信息；估价单只保存在本机，可随时删除。</view>
+
+  <view class="footer-note">
+    <view>估价为参考区间，不是成交承诺；实际成交以验机和双方协商为准。</view>
+    <view>设备图片为统一示意图，非真机实拍。</view>
+  </view>
+</view>
+
+<view wx:if="{{notFound}}" class="page">
+  <view class="empty">
+    <view class="empty-title">没有找到这款设备</view>
+    <view class="empty-copy">返回上一页重新选择。</view>
+  </view>
+</view>

@@ -16,6 +16,13 @@ Page({
     })
   },
 
+  // 二手估价（本地工具）
+  goTrade() {
+    wx.navigateTo({
+      url: '/packageTrade/pages/home/home'
+    })
+  },
+
   // 1. 开始答题 (因为是底部的 Tab 之一，必须用 switchTab)
   goQuiz() {
     wx.switchTab({

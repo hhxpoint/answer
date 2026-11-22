@@ -1,0 +1,52 @@
+<view class="page">
+  <view class="topline">
+    <text class="kicker">SOURCES / BOUNDARIES</text>
+    <text class="kicker">2026-11</text>
+  </view>
+
+  <view class="sources-head">
+    <view class="sources-title">数据与<text class="title-it">边界</text></view>
+    <view class="sources-sub">先把“这是什么、不是什么”说清楚。</view>
+  </view>
+
+  <view class="source-block">
+    <view class="source-kicker">01 / PRICE</view>
+    <view class="source-title">价格基准</view>
+    <view class="source-copy">首批 24 款游戏本的参考区间，以官方发售价、公开规格和 2026 年 11 月的市场折旧模型整理。它不是平台成交价，也不是回收报价；实际成交会受地区、供需、验机和双方协商影响。</view>
+  </view>
+
+  <view class="source-block">
+    <view class="source-kicker">02 / SPECS</view>
+    <view class="source-title">配置来源</view>
+    <view class="source-copy">CPU、GPU、功耗、内存、硬盘、屏幕、电池、重量等字段来自公开产品资料整理，并按“型号 + 年份 + 配置”拆分，避免把同名不同代的机器混在一起。若发现字段错误，会在后续版本校正。</view>
+  </view>
+
+  <view class="source-block">
+    <view class="source-kicker">03 / IMAGES</view>
+    <view class="source-title">设备图片</view>
+    <view class="source-copy">全部设备图为统一绘制的示意插画，不是真机实拍，也不代表官方外观细节。这样避免使用未授权的品牌图片，同时保持列表视觉一致。</view>
+  </view>
+
+  <view class="source-block">
+    <view class="source-kicker">04 / PRIVACY</view>
+    <view class="source-title">你的数据</view>
+    <view class="source-copy">估价记录和照片只保存在本机，不上传服务器，不建立公开列表。照片仅用于本机预览；你可以随时在“我的估价单”里删除记录。分享图片由你主动保存和发布。</view>
+  </view>
+
+  <view class="source-block">
+    <view class="source-kicker">05 / SHARING</view>
+    <view class="source-title">分享边界</view>
+    <view class="source-copy">支持把估价单图片分享给好友，或保存后发布到朋友圈。本工具不做公开社区、不做评论/关注/私聊、不做交易撮合，也不提供支付或联系方式收集。</view>
+  </view>
+
+  <view class="source-block">
+    <view class="source-kicker">06 / DISCLAIMER</view>
+    <view class="source-title">免责声明</view>
+    <view class="source-copy">估价仅为个人参考，不构成交易、回收或投资建议。请在真实交易前当面验机、核对配置和保修状态；因参考价与实际成交价差异产生的责任由交易双方自行承担。</view>
+  </view>
+
+  <view class="footer-note">
+    <view>版本数据：2026-11 · 首批 24 款游戏本</view>
+    <view>个人工具 · 非交易平台 · 非社交平台</view>
+  </view>
+</view>

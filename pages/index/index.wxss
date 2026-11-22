@@ -284,3 +284,45 @@ page[theme="dark"] {
 .recipe-entry-title { font-size: 32rpx; font-weight: 700; color: #5A3E2A; letter-spacing: 1rpx; }
 .recipe-entry-sub { margin-top: 6rpx; font-size: 22rpx; color: #A08062; }
 .recipe-entry-arrow { position: relative; font-size: 40rpx; color: #D2B08E; }
+
+/* ===== 二手估价 入口 ===== */
+.trade-entry {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 20rpx 40rpx 8rpx;
+  padding: 24rpx 28rpx;
+  border-radius: 32rpx;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(247, 243, 234, 0.98), rgba(234, 239, 231, 0.96));
+  border: 1rpx solid rgba(197, 210, 196, 0.85);
+  box-shadow: 0 14rpx 34rpx rgba(96, 114, 96, 0.13);
+}
+.trade-entry:active { transform: scale(0.985); }
+.trade-entry-glow {
+  position: absolute;
+  right: -40rpx;
+  top: -70rpx;
+  width: 220rpx;
+  height: 220rpx;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(170, 194, 170, 0.44), rgba(170, 194, 170, 0));
+}
+.trade-entry-icon {
+  position: relative;
+  width: 76rpx;
+  height: 76rpx;
+  margin-right: 20rpx;
+  border-radius: 50%;
+  background: #f8f3e9;
+  box-shadow: 0 8rpx 18rpx rgba(96, 114, 96, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.trade-entry-img { width: 58rpx; height: 58rpx; }
+.trade-entry-text { position: relative; flex: 1; }
+.trade-entry-title { font-size: 32rpx; font-weight: 700; color: #2f3a2e; letter-spacing: 1rpx; }
+.trade-entry-sub { margin-top: 6rpx; font-size: 22rpx; color: #71806b; }
+.trade-entry-arrow { position: relative; font-size: 40rpx; color: #a1b09b; }

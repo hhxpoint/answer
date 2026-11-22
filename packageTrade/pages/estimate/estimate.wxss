@@ -1,0 +1,124 @@
+@import "../../common.wxss";
+
+.topline { display: flex; justify-content: space-between; padding-top: 8rpx; }
+.estimate-head { padding: 40rpx 0 26rpx; }
+.estimate-title {
+  font-family: "Songti SC", "STSong", serif;
+  font-size: 54rpx;
+  font-weight: 600;
+  color: #211b16;
+}
+.title-it { color: #8f5338; font-style: italic; }
+.estimate-sub { margin-top: 12rpx; font-size: 22rpx; color: #7d6a57; }
+.estimate-variant { margin-top: 8rpx; font-size: 19rpx; color: #a18b74; }
+.estimate-variant text { color: #8f5338; margin-left: 8rpx; }
+
+.option-grid { display: flex; flex-wrap: wrap; gap: 10rpx; }
+.option-chip {
+  width: calc(33.33% - 7rpx);
+  box-sizing: border-box;
+  min-height: 112rpx;
+  padding: 16rpx 12rpx;
+  border: 1rpx solid rgba(74, 56, 39, 0.14);
+  border-radius: 8rpx;
+  background: rgba(255, 251, 245, 0.46);
+}
+.option-chip.on {
+  border-color: #8f5338;
+  background: rgba(143, 83, 56, 0.08);
+}
+.option-label { font-size: 22rpx; color: #33281e; }
+.option-desc { margin-top: 5rpx; font-size: 16rpx; line-height: 1.45; color: #9a836c; }
+
+.field-block { margin-top: 22rpx; }
+.field-label { font-size: 20rpx; color: #6e5b49; margin-bottom: 12rpx; }
+.option-row { display: flex; flex-wrap: wrap; gap: 8rpx; }
+.pill {
+  padding: 10rpx 16rpx;
+  border: 1rpx solid rgba(74, 56, 39, 0.14);
+  border-radius: 4rpx;
+  font-size: 19rpx;
+  color: #806d5a;
+  background: rgba(255, 251, 245, 0.4);
+}
+.pill.on {
+  border-color: #8f5338;
+  color: #8f5338;
+  background: rgba(143, 83, 56, 0.07);
+}
+
+.photo-row { display: flex; flex-wrap: wrap; gap: 10rpx; }
+.photo-item, .photo-add {
+  position: relative;
+  width: calc(25% - 8rpx);
+  height: 152rpx;
+  border-radius: 6rpx;
+  overflow: hidden;
+  background: rgba(255, 251, 245, 0.5);
+  border: 1rpx solid rgba(74, 56, 39, 0.13);
+}
+.photo-img { width: 100%; height: 100%; }
+.photo-del {
+  position: absolute;
+  top: 2rpx;
+  right: 6rpx;
+  font-size: 30rpx;
+  color: #fffaf4;
+  text-shadow: 0 1rpx 3rpx rgba(0,0,0,.4);
+}
+.photo-add {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-style: dashed;
+}
+.photo-plus { font-size: 36rpx; color: #a58b73; }
+.photo-add-text { margin-top: 4rpx; font-size: 16rpx; color: #9a836c; }
+.photo-note { margin-top: 10rpx; font-size: 16rpx; color: #a18b74; }
+
+.custom-price {
+  display: flex;
+  align-items: center;
+  height: 84rpx;
+  border-bottom: 1rpx solid rgba(74, 56, 39, 0.24);
+}
+.price-symbol { font-family: "Songti SC", serif; font-size: 34rpx; color: #8f5338; }
+.price-input { flex: 1; margin-left: 10rpx; font-size: 34rpx; color: #221d18; }
+.price-unit { font-size: 17rpx; color: #a18b74; }
+
+.result-card {
+  margin-top: 34rpx;
+  padding: 24rpx;
+  border: 1rpx solid rgba(74, 56, 39, 0.16);
+  border-radius: 10rpx;
+  background: rgba(255, 251, 245, 0.76);
+}
+.result-kicker {
+  font-family: "SF Mono", Menlo, monospace;
+  font-size: 15rpx;
+  letter-spacing: 1.2rpx;
+  color: #9c836d;
+}
+.result-range {
+  margin-top: 8rpx;
+  font-size: 46rpx;
+}
+.result-grid {
+  display: flex;
+  margin-top: 20rpx;
+  padding-top: 18rpx;
+  border-top: 1rpx solid rgba(74, 56, 39, 0.13);
+}
+.result-col { flex: 1; }
+.result-label { font-size: 17rpx; color: #9a836c; }
+.result-num { margin-top: 6rpx; font-size: 25rpx; color: #33281e; }
+.result-accent { color: #8f5338; font-weight: 600; }
+.custom-state { margin-top: 14rpx; font-size: 18rpx; color: #8f5338; }
+.result-note { margin-top: 14rpx; font-size: 17rpx; line-height: 1.6; color: #a18b74; }
+
+.generate-btn { margin-top: 30rpx; height: 92rpx; }
+.safe-note { margin-top: 14rpx; font-size: 16rpx; line-height: 1.6; color: #a18b74; text-align: center; }
+.empty { padding: 90rpx 20rpx; text-align: center; }
+.empty-title { font-family: "Songti SC", serif; font-size: 32rpx; color: #3a2e24; }
+.empty-copy { margin-top: 12rpx; font-size: 22rpx; color: #9a836c; }

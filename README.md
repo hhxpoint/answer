@@ -1,7 +1,7 @@
 # answer · 微信小程序
 
 > 一个以「AI 学习助手 + 工具箱」为主，并内置「我们的小火苗」双人私密空间的微信小程序。
-> 当前仓库快照：**2026-11-19**（小程序版本 **1.33.1**）
+> 当前仓库快照：**2026-11-22**（小程序版本 **1.34.0**）
 
 ---
 
@@ -16,6 +16,7 @@
 | 特色模块 | **我们的小火苗**：双人绑定 + 虚拟小火苗 + 悄悄话 + 我们的时光 + 纪念日 + 侧耳倾听（语音信箱） |
 | 多关系空间 | 一人可拥有多个双人关系空间（家人/恋人/朋友/自定义），大厅切换，每个空间独立小火苗与数据 |
 | 新增模块 | **今天吃什么**：40 道家常菜、纯本地离线检索、冰箱模式、本地收藏（无服务端/无大模型） |
+| 新增模块 | **二手估价**：24 款游戏本行情、真实配置、本地个人估价单、导出图片分享（无交易/无公开列表） |
 | 服务端 | 独立 Node.js 服务（Express + SQLite + WebSocket），部署在 `hhxpoint.me` |
 | 管理后台 | OJ Flask 管理后台的子模块 `/admin/couple/` + 独立备用面板 `/couple-admin/` |
 
@@ -48,6 +49,7 @@ answer/
 ├─ pages/                              # 主包页面（10 个）
 ├─ packageCouple/                      # ★「我们的小火苗」双人空间（含悄悄话/时光/纪念日/侧耳倾听/你画我猜）
 ├─ packageRecipe/                      # ★「今天吃什么」纯本地菜谱（独立子包）
+├─ packageTrade/                       # ★「游戏本二手估价」纯本地估价单（独立子包）
 ├─ packageAI/  packageAR/  packageDetect/
 ├─ packagepdf/ packageFinance/ packageSport/
 ├─ packageGame/ packageGithub/ packageJwzx/
@@ -116,6 +118,7 @@ answer/
 | [docs/changelog.md](docs/changelog.md) | **按版本记录的详细变更历史（可回溯）** |
 | [docs/modules/overview.md](docs/modules/overview.md) | 20 个子包的职责与状态 |
 | [docs/modules/recipe/README.md](docs/modules/recipe/README.md) | 纯本地菜谱模块详解（数据/检索/冰箱/图片许可） |
+| [packageTrade/README.md](packageTrade/README.md) | 游戏本二手估价模块（数据/算法/隐私/测试） |
 | [docs/modules/couple/README.md](docs/modules/couple/README.md) | 小火苗模块详解 |
 | [docs/modules/couple/server.md](docs/modules/couple/server.md) | 服务端、接口、数据库、后台、内容安全 |
 | [docs/modules/couple/release.md](docs/modules/couple/release.md) | 发布流程、审核注意事项、隐私合规 |

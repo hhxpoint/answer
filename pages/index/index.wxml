@@ -26,6 +26,19 @@
   <view class="recipe-entry-arrow">›</view>
 </view>
 
+<!-- 二手估价（游戏本行情 + 个人估价单）入口 -->
+<view class="trade-entry" bindtap="goTrade">
+  <view class="trade-entry-glow"></view>
+  <view class="trade-entry-icon">
+    <image class="trade-entry-img" src="/assets/trade-entry.png" mode="aspectFit"></image>
+  </view>
+  <view class="trade-entry-text">
+    <view class="trade-entry-title">二手估价</view>
+    <view class="trade-entry-sub">游戏本行情 · 生成个人估价单 · 本地保存</view>
+  </view>
+  <view class="trade-entry-arrow">›</view>
+</view>
+
 <swiper class="swiper" autoplay interval="3000" circular>
   <swiper-item>
     <image class="swiper-img" src="/assets/banner1.png"></image>

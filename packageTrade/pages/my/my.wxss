@@ -1,0 +1,29 @@
+@import "../../common.wxss";
+
+.topline { display: flex; justify-content: space-between; padding-top: 8rpx; }
+.my-head { padding: 34rpx 0 22rpx; }
+.my-title { font-family: "Songti SC", "STSong", serif; font-size: 54rpx; font-weight: 600; color: #211b16; }
+.title-it { color: #8f5338; font-style: italic; }
+.my-sub { margin-top: 8rpx; font-size: 19rpx; color: #9a836c; }
+
+.record-list { display: flex; flex-direction: column; gap: 12rpx; }
+.record-card { padding: 22rpx 24rpx; display: flex; align-items: flex-start; }
+.record-main { flex: 1; min-width: 0; }
+.record-brand { font-family: "SF Mono", Menlo, monospace; font-size: 15rpx; letter-spacing: 1rpx; color: #9c836d; }
+.record-name { margin-top: 7rpx; font-family: "Songti SC", "STSong", serif; font-size: 30rpx; font-weight: 600; color: #292119; }
+.record-variant { margin-top: 5rpx; font-size: 18rpx; color: #8b7560; }
+.record-price { margin-top: 12rpx; font-size: 28rpx; }
+.record-date { margin-top: 5rpx; font-size: 16rpx; color: #a18b74; }
+.record-delete { flex-shrink: 0; margin-left: 18rpx; padding: 8rpx 0 8rpx 12rpx; font-size: 18rpx; color: #a18b74; }
+
+.my-actions { margin-top: 22rpx; }
+.my-actions .btn { height: 80rpx; font-size: 22rpx; }
+.clear-link { margin-top: 18rpx; text-align: center; font-size: 18rpx; color: #a18b74; }
+
+.empty { padding: 70rpx 20rpx; text-align: center; }
+.empty-mark { font-family: Georgia, serif; font-size: 42rpx; color: #b39b83; }
+.empty-title { margin-top: 10rpx; font-family: "Songti SC", serif; font-size: 32rpx; color: #3a2e24; }
+.empty-copy { margin-top: 10rpx; font-size: 21rpx; line-height: 1.7; color: #9a836c; }
+.empty-btn { display: inline-flex; margin-top: 24rpx; padding: 0 34rpx; height: 76rpx; font-size: 22rpx; }
+.my-note { margin-top: 40rpx; font-size: 18rpx; line-height: 1.8; color: #9a836c; }
+.my-link { margin-top: 8rpx; color: #8f5338; }

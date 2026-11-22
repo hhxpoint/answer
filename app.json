@@ -28,6 +28,18 @@
   ],
   "subPackages": [
     {
+      "root": "packageTrade",
+      "pages": [
+        "pages/home/home",
+        "pages/list/list",
+        "pages/detail/detail",
+        "pages/estimate/estimate",
+        "pages/poster/poster",
+        "pages/my/my",
+        "pages/sources/sources"
+      ]
+    },
+    {
       "root": "packageRecipe",
       "pages": [
         "pages/home/home",

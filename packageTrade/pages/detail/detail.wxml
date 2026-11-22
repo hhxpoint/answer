@@ -1,0 +1,96 @@
+<view wx:if="{{model}}" class="page detail-page">
+  <view class="topline">
+    <text class="kicker">{{model.brand}} / {{model.series}}</text>
+    <text class="kicker">{{model.year}}</text>
+  </view>
+
+  <view class="device-hero">
+    <image class="device-image" src="{{model.image}}" mode="aspectFit" />
+  </view>
+
+  <view class="device-head">
+    <view class="device-brand">{{model.brand}} · {{model.series}}</view>
+    <view class="device-name">{{model.model}}</view>
+    <view class="device-sub">{{model.specs.cpu}} / {{model.specs.gpu}}</view>
+  </view>
+
+  <view class="price-card">
+    <view class="price-kicker">二手参考区间 · 95 新</view>
+    <view class="price-main price-band">{{variant.priceText}}</view>
+    <view class="price-meta">
+      <text>发售价 {{variant.launchText}}</text>
+      <text class="price-dot">·</text>
+      <text>模型参考 · 非成交承诺</text>
+    </view>
+  </view>
+
+  <view class="section-head">
+    <text class="section-no">01</text>
+    <text class="section-title">Specs</text>
+    <text class="section-cn">真实配置</text>
+    <view class="section-line"></view>
+  </view>
+
+  <view class="spec-grid">
+    <view wx:for="{{specs}}" wx:key="k" class="spec-item">
+      <view class="spec-k">{{item.k}}</view>
+      <view class="spec-v">{{item.v}}</view>
+    </view>
+  </view>
+
+  <view class="section-head">
+    <text class="section-no">02</text>
+    <text class="section-title">Variants</text>
+    <text class="section-cn">配置版本</text>
+    <view class="section-line"></view>
+  </view>
+
+  <view class="variant-list">
+    <view
+      wx:for="{{model.variants}}"
+      wx:key="id"
+      class="variant-row {{variantId === item.id ? 'on' : ''}}"
+      data-id="{{item.id}}"
+      bindtap="selectVariant"
+      hover-class="pressed"
+    >
+      <view class="variant-radio"><view class="variant-dot"></view></view>
+      <view class="variant-body">
+        <view class="variant-label">{{item.label}}</view>
+        <view class="variant-price">参考 ¥{{item.priceLow}} – ¥{{item.priceHigh}}</view>
+      </view>
+      <view class="variant-check">{{variantId === item.id ? '已选' : ''}}</view>
+    </view>
+  </view>
+
+  <view class="section-head">
+    <text class="section-no">03</text>
+    <text class="section-title">Notes</text>
+    <text class="section-cn">选购观察</text>
+    <view class="section-line"></view>
+  </view>
+
+  <view class="highlight-list">
+    <view wx:for="{{model.highlights}}" wx:key="*this" class="highlight">
+      <text class="highlight-mark">—</text>
+      <text>{{item}}</text>
+    </view>
+  </view>
+
+  <view class="basis-note">
+    <view>价格参考：发售价 + 折旧模型；配置来自公开规格整理。</view>
+    <view>设备图片为统一示意图，非真机实拍；估价结果仅供参考。</view>
+    <view class="basis-link" bindtap="goSources">查看数据来源与边界 ›</view>
+  </view>
+
+  <view class="detail-cta">
+    <view class="btn btn-primary" bindtap="goEstimate" hover-class="pressed">生成我的估价单</view>
+  </view>
+</view>
+
+<view wx:if="{{notFound}}" class="page">
+  <view class="empty">
+    <view class="empty-title">没有找到这款设备</view>
+    <view class="empty-copy">可能链接已失效，返回首页重新选择。</view>
+  </view>
+</view>

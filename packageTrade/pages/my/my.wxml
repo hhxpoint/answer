@@ -1,0 +1,41 @@
+<view class="page">
+  <view class="topline">
+    <text class="kicker">LOCAL RECORDS</text>
+    <text class="kicker">{{records.length}} ITEMS</text>
+  </view>
+
+  <view class="my-head">
+    <view class="my-title">我的<text class="title-it">估价单</text></view>
+    <view class="my-sub">只保存在本机 · 不上传 · 可随时删除</view>
+  </view>
+
+  <view wx:if="{{records.length}}" class="record-list">
+    <view wx:for="{{records}}" wx:key="id" class="record-card card-surface">
+      <view class="record-main" data-id="{{item.id}}" bindtap="openRecord" hover-class="pressed">
+        <view class="record-brand">{{item.brand}} · {{item.year}}</view>
+        <view class="record-name">{{item.modelName}}</view>
+        <view class="record-variant">{{item.variantLabel}}</view>
+        <view class="record-price price-band">{{item.result.rangeText}}</view>
+        <view class="record-date">{{item.dateText}} · 参考 {{item.result.confidence}}</view>
+      </view>
+      <view class="record-delete" data-id="{{item.id}}" bindtap="removeRecord">删除</view>
+    </view>
+  </view>
+
+  <view wx:if="{{!records.length}}" class="empty">
+    <view class="empty-mark">—</view>
+    <view class="empty-title">还没有估价单</view>
+    <view class="empty-copy">从行情页选择一款游戏本，填写成色和配件后生成。</view>
+    <view class="empty-btn btn btn-primary" bindtap="goHome">去看行情</view>
+  </view>
+
+  <view wx:if="{{records.length}}" class="my-actions">
+    <view class="btn btn-ghost" bindtap="goHome">继续看行情</view>
+    <view class="clear-link" bindtap="clearAll">清空全部记录</view>
+  </view>
+
+  <view class="my-note">
+    <view>估价单仅供参考，不构成交易承诺；照片与信息不会上传服务器。</view>
+    <view class="my-link" bindtap="goSources">数据来源与边界 ›</view>
+  </view>
+</view>

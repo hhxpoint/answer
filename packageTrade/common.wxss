@@ -1,0 +1,159 @@
+page {
+  background: #f4efe6;
+  color: #221d18;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
+}
+
+.page {
+  padding: 28rpx 36rpx 80rpx;
+  box-sizing: border-box;
+  background:
+    radial-gradient(90% 56% at 104% -8%, rgba(159, 96, 61, 0.12), transparent 58%),
+    radial-gradient(80% 48% at -8% 32%, rgba(98, 115, 99, 0.09), transparent 60%),
+    #f4efe6;
+  min-height: 100vh;
+}
+
+.kicker {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 16rpx;
+  letter-spacing: 2.6rpx;
+  color: #9e846d;
+}
+
+.display {
+  font-family: "Songti SC", "STSong", "Noto Serif SC", "SimSun", serif;
+  font-weight: 600;
+  color: #211b16;
+}
+
+.rule {
+  height: 1rpx;
+  background: rgba(74, 56, 39, 0.16);
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 88rpx;
+  border-radius: 8rpx;
+  box-sizing: border-box;
+  font-size: 28rpx;
+  letter-spacing: 0.6rpx;
+}
+
+.btn-primary {
+  background: #8f5338;
+  color: #fffaf4;
+}
+
+.btn-ghost {
+  border: 1rpx solid rgba(74, 56, 39, 0.24);
+  color: #4f3f31;
+  background: rgba(255, 251, 245, 0.46);
+}
+
+.pressed {
+  opacity: 0.68;
+  transform: translateY(1rpx);
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  height: 82rpx;
+  padding: 0 22rpx;
+  border: 1rpx solid rgba(74, 56, 39, 0.2);
+  border-radius: 8rpx;
+  background: rgba(255, 251, 245, 0.66);
+}
+.search-icon {
+  font-size: 30rpx;
+  color: #9b7b5f;
+  margin-right: 14rpx;
+}
+.search-input {
+  flex: 1;
+  font-size: 25rpx;
+  color: #2a2119;
+}
+.search-placeholder {
+  color: #ad9983;
+}
+.search-clear {
+  padding: 10rpx;
+  font-size: 26rpx;
+  color: #a1886f;
+}
+
+.price-band {
+  color: #8f5338;
+  font-family: "Songti SC", "STSong", serif;
+  font-weight: 600;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rpx 16rpx;
+  border: 1rpx solid rgba(74, 56, 39, 0.16);
+  border-radius: 4rpx;
+  font-size: 19rpx;
+  color: #7b6754;
+  background: rgba(255, 251, 245, 0.48);
+}
+
+.muted {
+  color: #8f7a65;
+}
+
+.small {
+  font-size: 18rpx;
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12rpx;
+  margin: 52rpx 0 18rpx;
+}
+.section-no {
+  font-family: "SF Mono", Menlo, monospace;
+  font-size: 16rpx;
+  color: #a58b73;
+}
+.section-title {
+  font-family: Georgia, "Songti SC", serif;
+  font-size: 30rpx;
+  font-style: italic;
+  color: #33281e;
+}
+.section-cn {
+  font-size: 18rpx;
+  color: #a08a74;
+}
+.section-line {
+  flex: 1;
+  height: 1rpx;
+  background: rgba(74, 56, 39, 0.16);
+  transform: translateY(-4rpx);
+}
+
+.card-surface {
+  border: 1rpx solid rgba(74, 56, 39, 0.13);
+  border-radius: 12rpx;
+  background: rgba(255, 251, 245, 0.7);
+}
+
+.footer-note {
+  margin-top: 56rpx;
+  padding-top: 18rpx;
+  border-top: 1rpx solid rgba(74, 56, 39, 0.15);
+  font-family: "SF Mono", Menlo, monospace;
+  font-size: 15rpx;
+  line-height: 1.8;
+  letter-spacing: 0.6rpx;
+  color: #a28a73;
+}

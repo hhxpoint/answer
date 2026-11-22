@@ -1,0 +1,36 @@
+<view class="page poster-page">
+  <view class="topline">
+    <text class="kicker">APPRAISAL / OUTPUT</text>
+    <text class="kicker" bindtap="goMy">我的记录 ›</text>
+  </view>
+
+  <view class="poster-head">
+    <view class="poster-title">你的<text class="title-it">估价单</text></view>
+    <view class="poster-sub">只保存在本机 · 不上传服务器 · 可随时删除</view>
+  </view>
+
+  <view class="poster-frame">
+    <canvas type="2d" id="posterCanvas" class="poster-canvas" catchtouchmove="noop"></canvas>
+    <view wx:if="{{!canvasReady}}" class="poster-loading">估价单生成中…</view>
+  </view>
+
+  <view class="poster-actions">
+    <view class="btn btn-primary" bindtap="saveToAlbum" hover-class="pressed">{{saving ? '保存中…' : '保存到相册'}}</view>
+    <view class="btn btn-ghost" bindtap="shareToFriend" hover-class="pressed">分享给好友</view>
+  </view>
+
+  <view class="share-card">
+    <view class="share-title">分享到朋友圈</view>
+    <view class="share-copy">先保存图片，再打开朋友圈发布图片。<br/>小程序不做公开列表、评论或交易，图片由你自愿分享。</view>
+    <view class="share-guide" bindtap="guideShare">查看方式 ›</view>
+  </view>
+
+  <view class="poster-note">
+    <view>估价单里的价格是参考区间，不是成交承诺；实际交易请当面验机。</view>
+    <view>如需修改成色或心理价，返回上一页重新生成即可。</view>
+  </view>
+
+  <view class="footer-note">
+    <view>个人工具 · 非交易平台 · 非社交平台</view>
+  </view>
+</view>

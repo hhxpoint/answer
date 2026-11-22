@@ -1,0 +1,11 @@
+@import "../../common.wxss";
+
+.topline { display: flex; justify-content: space-between; padding-top: 8rpx; }
+.sources-head { padding: 40rpx 0 22rpx; }
+.sources-title { font-family: "Songti SC", "STSong", serif; font-size: 54rpx; font-weight: 600; color: #211b16; }
+.title-it { color: #8f5338; font-style: italic; }
+.sources-sub { margin-top: 8rpx; font-size: 19rpx; color: #9a836c; }
+.source-block { padding: 24rpx 0 22rpx; border-top: 1rpx solid rgba(74, 56, 39, 0.15); }
+.source-kicker { font-family: "SF Mono", Menlo, monospace; font-size: 15rpx; letter-spacing: 1.4rpx; color: #a28a73; }
+.source-title { margin-top: 7rpx; font-family: "Songti SC", "STSong", serif; font-size: 29rpx; color: #33281e; }
+.source-copy { margin-top: 10rpx; font-size: 21rpx; line-height: 1.85; color: #74624f; }

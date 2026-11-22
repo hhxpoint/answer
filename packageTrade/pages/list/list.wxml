@@ -1,0 +1,90 @@
+<view class="page">
+  <view class="topline">
+    <text class="kicker">GAMING LAPTOPS / {{updatedAt}}</text>
+    <text class="kicker" bindtap="onClear">{{total}} MODELS</text>
+  </view>
+
+  <view class="list-hero">
+    <view class="hero-eyebrow">FIND YOUR MACHINE</view>
+    <view class="hero-title">游戏本<text class="hero-it">行情</text></view>
+  </view>
+
+  <view class="search-box">
+    <text class="search-icon">⌕</text>
+    <input
+      class="search-input"
+      placeholder="搜品牌、型号、CPU、显卡"
+      placeholder-class="search-placeholder"
+      value="{{query}}"
+      confirm-type="search"
+      bindinput="onInput"
+      bindconfirm="onConfirm"
+    />
+    <text wx:if="{{query}}" class="search-clear" bindtap="onClear">×</text>
+  </view>
+
+  <scroll-view class="brand-scroll" scroll-x enable-flex>
+    <view class="brand-tab {{brand === 'all' ? 'on' : ''}}" data-key="all" bindtap="onBrand">全部品牌</view>
+    <view
+      wx:for="{{brands}}"
+      wx:key="key"
+      class="brand-tab {{brand === item.key ? 'on' : ''}}"
+      data-key="{{item.key}}"
+      bindtap="onBrand"
+    >{{item.name}}</view>
+  </scroll-view>
+
+  <view class="gpu-row">
+    <view
+      wx:for="{{gpuGroups}}"
+      wx:key="key"
+      class="gpu-tab {{gpu === item.key ? 'on' : ''}}"
+      data-key="{{item.key}}"
+      bindtap="onGpu"
+    >{{item.name}}</view>
+  </view>
+
+  <view class="sort-row">
+    <view
+      wx:for="{{sortOptions}}"
+      wx:key="key"
+      class="sort-tab {{sort === item.key ? 'on' : ''}}"
+      data-key="{{item.key}}"
+      bindtap="onSort"
+    >{{item.name}}</view>
+  </view>
+
+  <view class="list-count">{{total}} 款 · 参考价不是成交承诺</view>
+
+  <view class="model-list">
+    <view
+      wx:for="{{results}}"
+      wx:key="id"
+      class="model-card card-surface"
+      data-id="{{item.id}}"
+      bindtap="goDetail"
+      hover-class="pressed"
+    >
+      <image class="model-thumb" src="{{item.image}}" mode="aspectFit" lazy-load />
+      <view class="model-body">
+        <view class="model-eyebrow">{{item.brand}} · {{item.year}}</view>
+        <view class="model-name">{{item.model}}</view>
+        <view class="model-spec">{{item.specLine}}</view>
+        <view class="model-foot">
+          <view class="model-price price-band">{{item.priceText}}</view>
+          <view class="model-count">{{item.variantCount}} 个配置 ›</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{!results.length}}" class="empty">
+    <view class="empty-title">没有匹配的型号</view>
+    <view class="empty-copy">换个关键词，或清空筛选再看看。</view>
+    <view class="empty-btn btn btn-ghost" bindtap="onClear">清空筛选</view>
+  </view>
+
+  <view class="footer-note">
+    <view>价格参考范围由发售价与折旧模型估算，样本更新 2026-11；实际成交以验机结果为准。</view>
+  </view>
+</view>
