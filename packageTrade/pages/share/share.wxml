@@ -1,0 +1,56 @@
+<view wx:if="{{model}}" class="page share-page">
+  <view class="topline">
+    <text class="kicker">SHARED / APPRAISAL</text>
+    <text class="kicker">{{dateText}}</text>
+  </view>
+
+  <view class="share-head">
+    <view class="share-eyebrow">一张估价单，来自朋友</view>
+    <view class="share-title">{{model.brand}} {{model.model}}</view>
+    <view class="share-sub">{{variant.label}}</view>
+  </view>
+
+  <view class="share-image-wrap">
+    <image class="share-image" src="{{model.image}}" mode="aspectFit" />
+  </view>
+
+  <view class="share-price-card">
+    <view class="share-kicker">REFERENCE RANGE</view>
+    <view class="share-range price-band">{{result.rangeText}}</view>
+    <view class="share-price-row">
+      <view class="share-price-col"><view class="share-label">快速出手</view><view class="share-num">{{result.quickText}}</view></view>
+      <view class="share-price-col"><view class="share-label">合理挂价</view><view class="share-num share-accent">{{result.fairText}}</view></view>
+      <view class="share-price-col"><view class="share-label">耐心价</view><view class="share-num">{{result.patientText}}</view></view>
+    </view>
+    <view class="share-meta">按 {{result.condition.label}} / {{result.battery.label}} / {{result.repair.label}} 折算 · 参考价非成交承诺</view>
+  </view>
+
+  <view class="share-specs">
+    <view class="share-spec"><text class="share-k">CPU</text><text class="share-v">{{model.specs.cpu}}</text></view>
+    <view class="share-spec"><text class="share-k">GPU</text><text class="share-v">{{model.specs.gpu}}</text></view>
+    <view class="share-spec"><text class="share-k">内存</text><text class="share-v">{{model.specs.ram}}</text></view>
+    <view class="share-spec"><text class="share-k">硬盘</text><text class="share-v">{{model.specs.storage}}</text></view>
+    <view class="share-spec"><text class="share-k">屏幕</text><text class="share-v">{{model.specs.screen}} · {{model.specs.refresh}}</text></view>
+    <view class="share-spec"><text class="share-k">发售价</text><text class="share-v">¥{{variant.launchPrice}}</text></view>
+  </view>
+
+  <view class="share-cta">
+    <view class="btn btn-primary" bindtap="goEstimate">我也要估一个</view>
+    <view class="btn btn-ghost" bindtap="goHome">查看 38 款行情</view>
+  </view>
+
+  <view class="share-tip">
+    <view>这是一张个人参考估价单，不是交易、回收报价或验机结论。</view>
+    <view>页面由朋友直接分享，不含联系方式、照片或公开列表。</view>
+    <view class="share-tip-link" bindtap="goDetail">查看完整配置与数据边界 ›</view>
+  </view>
+</view>
+
+<view wx:if="{{invalid}}" class="page">
+  <view class="invalid-box">
+    <view class="invalid-mark">—</view>
+    <view class="invalid-title">这张估价单已失效</view>
+    <view class="invalid-copy">链接数据不完整，或版本过旧。</view>
+    <view class="btn btn-primary" bindtap="goHome">去看行情</view>
+  </view>
+</view>

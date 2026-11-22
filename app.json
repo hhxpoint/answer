@@ -36,7 +36,8 @@
         "pages/estimate/estimate",
         "pages/poster/poster",
         "pages/my/my",
-        "pages/sources/sources"
+        "pages/sources/sources",
+        "pages/share/share"
       ]
     },
     {

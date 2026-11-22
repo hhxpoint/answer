@@ -1,5 +1,6 @@
 const storage = require('../../utils/storage.js');
 const poster = require('../../utils/poster.js');
+const share = require('../../utils/share.js');
 
 Page({
   data: {
@@ -187,10 +188,35 @@ Page({
     wx.navigateTo({ url: '/packageTrade/pages/my/my' });
   },
 
-  onShareAppMessage: function () {
+  sharePayload: function () {
+    const d = this.data.draft;
     return {
-      title: '游戏本二手估价单 · 个人参考',
-      path: '/packageTrade/pages/home/home'
+      modelId: d.model.id,
+      variantId: d.variant.id,
+      answers: d.record.answers,
+      dateText: d.dateText
+    };
+  },
+
+  onShareAppMessage: function () {
+    if (!this.data.draft) {
+      return { title: '游戏本二手估价', path: '/packageTrade/pages/home/home' };
+    }
+    const d = share.encode(this.sharePayload());
+    return {
+      title: this.data.draft.model.brand + ' ' + this.data.draft.model.model + ' · ' + this.data.draft.result.rangeText,
+      path: '/packageTrade/pages/share/share?d=' + d,
+      imageUrl: this.data.draft.model.image
+    };
+  },
+
+  onShareTimeline: function () {
+    if (!this.data.draft) {
+      return { title: '游戏本二手估价' };
+    }
+    return {
+      title: this.data.draft.model.brand + ' ' + this.data.draft.model.model + ' · ' + this.data.draft.result.rangeText,
+      query: 'd=' + share.encode(this.sharePayload())
     };
   }
 });

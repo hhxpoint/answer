@@ -36,7 +36,7 @@
   <view class="source-block">
     <view class="source-kicker">05 / SHARING</view>
     <view class="source-title">分享边界</view>
-    <view class="source-copy">支持把估价单图片分享给好友，或保存后发布到朋友圈。本工具不做公开社区、不做评论/关注/私聊、不做交易撮合，也不提供支付或联系方式收集。</view>
+    <view class="source-copy">支持把估价单直接作为小程序卡片分享给好友，或通过右上角分享到朋友圈；也可以保存图片。分享页只带型号/配置/成色/价格，不带照片、联系方式或自由文本。本工具不做公开社区、不做评论/关注/私聊、不做交易撮合，也不提供支付或联系方式收集。</view>
   </view>
 
   <view class="source-block">
