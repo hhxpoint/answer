@@ -8,6 +8,7 @@
     <image class="device-image" src="{{model.image}}" mode="aspectFit" />
     <view wx:if="{{model.imageType === 'placeholder'}}" class="image-note">暂无授权实拍图 · 仅展示型号信息</view>
     <view wx:elif="{{model.imageType === 'illustration'}}" class="image-note">统一示意图 · 非真机实拍</view>
+    <view wx:elif="{{model.imageNote}}" class="image-note">{{model.imageNote}}<text wx:if="{{model.imageAuthor}}"> · {{model.imageAuthor}}</text></view>
     <view wx:elif="{{model.imageAuthor}}" class="image-note">实拍图 · {{model.imageAuthor}} · {{model.imageLicense}}</view>
   </view>
 
@@ -82,13 +83,15 @@
 
   <view class="basis-note">
     <view>价格参考：发售价 + 折旧模型；配置来自公开规格整理。</view>
-    <view>设备图片为统一示意图，非真机实拍；估价结果仅供参考。</view>
+    <view>设备图片来自公开产品图/实拍图；非 CC 图来源待购买，详见来源清单。</view>
     <view class="basis-link" bindtap="goSources">查看数据来源与边界 ›</view>
   </view>
 
   <view class="detail-cta">
+    <button class="btn btn-share" open-type="share" hover-class="pressed">分享小程序卡片</button>
     <view class="btn btn-primary" bindtap="goEstimate" hover-class="pressed">生成我的估价单</view>
   </view>
+  <view class="share-note">好友点开即可看到当前配置和二手参考价</view>
 </view>
 
 <view wx:if="{{notFound}}" class="page">

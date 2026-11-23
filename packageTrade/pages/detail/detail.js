@@ -18,6 +18,9 @@ Page({
   },
 
   onLoad: function (options) {
+    if (wx.showShareMenu) {
+      wx.showShareMenu({ menus: ['shareAppMessage', 'shareTimeline'], withShareTicket: false });
+    }
     const id = (options && options.id) || '';
     const model = catalog.getModel(id);
     if (!model) {
@@ -27,6 +30,9 @@ Page({
     const variant = decorateVariant(catalog.getVariant(model, (options && options.variant) || ''));
     const specs = (model.specItems || []).concat([{ k: '发售价', v: variant.launchText }]);
     this.setData({ model: model, variant: variant, variantId: variant.id, specs: specs });
+    if (wx.setNavigationBarTitle) {
+      wx.setNavigationBarTitle({ title: (model.categoryName || '设备') + '详情' });
+    }
   },
 
   selectVariant: function (e) {
@@ -53,9 +59,27 @@ Page({
 
   onShareAppMessage: function () {
     const m = this.data.model;
+    const v = this.data.variant;
+    if (!m) {
+      return { title: '二手估价 · 手机 / 游戏机 / 游戏本', path: '/packageTrade/pages/home/home' };
+    }
+    const price = v ? v.priceText : (m.priceText || '');
     return {
-      title: m ? (m.brand + ' ' + m.model + ' · 二手参考 ' + m.priceText) : '二手估价',
-      path: m ? '/packageTrade/pages/detail/detail?id=' + m.id : '/packageTrade/pages/home/home'
+      title: m.brand + ' ' + m.model + ' · 二手参考 ' + price,
+      path: '/packageTrade/pages/detail/detail?id=' + encodeURIComponent(m.id) +
+        (v ? '&variant=' + encodeURIComponent(v.id) : ''),
+      imageUrl: m.image || ''
+    };
+  },
+
+  onShareTimeline: function () {
+    const m = this.data.model;
+    const v = this.data.variant;
+    if (!m) return { title: '二手估价 · 手机 / 游戏机 / 游戏本' };
+    return {
+      title: m.brand + ' ' + m.model + ' · 二手参考 ' + (v ? v.priceText : ''),
+      query: 'id=' + encodeURIComponent(m.id) + (v ? '&variant=' + encodeURIComponent(v.id) : ''),
+      imageUrl: m.image || ''
     };
   }
 });
