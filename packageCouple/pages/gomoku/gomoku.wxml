@@ -11,7 +11,8 @@
         <view class="kicker">GOMOKU / FIVE IN A ROW</view>
         <view class="page-title">五子棋</view>
       </view>
-      <view class="conn-pill {{online && partnerOnline ? 'ok' : 'bad'}}">{{online && partnerOnline ? '双端在线' : connText}}</view>
+      <view class="conn-pill {{online && partnerOnline ? 'ok' : 'bad'}}" wx:if="{{mode === 'online'}}">{{online && partnerOnline ? '双端在线' : connText}}</view>
+      <view class="conn-pill ok" wx:else>{{mode === 'ai' ? 'RAPFI AI' : 'LOCAL'}}</view>
     </view>
 
     <view class="players">
@@ -22,14 +23,14 @@
         </view>
         <view class="player-info">
           <view class="player-name">{{myName}}</view>
-          <view class="player-side">{{myColor === 1 ? '执黑' : '执白'}}</view>
+          <view class="player-side">{{myColor === 1 ? '执黑' : '执白'}}{{mode === 'ai' ? ' · 你' : ''}}</view>
         </view>
       </view>
       <view class="vs">VS</view>
       <view class="player right {{current === 2 && stage === 'playing' ? 'active' : ''}}">
         <view class="player-info right">
           <view class="player-name">{{partnerName}}</view>
-          <view class="player-side">{{myColor === 1 ? '执白' : '执黑'}}</view>
+          <view class="player-side">{{myColor === 1 ? '执白' : '执黑'}}{{mode === 'ai' ? ' · ' + difficultyName : ''}}</view>
         </view>
         <view class="avatar-wrap {{myColor === 1 ? 'white' : 'black'}}">
           <image wx:if="{{partnerAvatar}}" class="avatar" src="{{partnerAvatar}}" mode="aspectFill"></image>
@@ -56,11 +57,43 @@
         <view wx:if="{{!boardReady}}" class="board-loading">棋盘准备中…</view>
 
         <view wx:if="{{stage === 'lobby'}}" class="board-cover">
-          <view class="cover-kicker">A QUIET MATCH</view>
-          <view class="cover-title">和 TA 下一局</view>
-          <view class="cover-copy">15 × 15 棋盘 · 黑先 · 五子连珠<br/>只属于你们两个人的安静对弈</view>
-          <view class="start-btn {{partnerOnline ? '' : 'disabled'}}" bindtap="startGame" hover-class="pressed">开始对局</view>
-          <view class="cover-hint">{{partnerOnline ? 'TA 已在线，开始后执黑先行' : '等 TA 上线后就可以开始'}}</view>
+          <view class="mode-tabs">
+            <view class="mode-tab {{mode === 'local' ? 'active' : ''}}" data-mode="local" catchtap="switchMode">本地双人</view>
+            <view class="mode-tab {{mode === 'ai' ? 'active' : ''}}" data-mode="ai" catchtap="switchMode">人机</view>
+            <view class="mode-tab {{mode === 'online' ? 'active' : ''}} {{!partnerId ? 'disabled' : ''}}" data-mode="online" catchtap="switchMode">在线</view>
+          </view>
+
+          <view wx:if="{{mode === 'ai'}}" class="difficulty">
+            <view class="difficulty-label">思考深度</view>
+            <view class="difficulty-list">
+              <view
+                wx:for="{{difficultyList}}"
+                wx:key="key"
+                class="difficulty-item {{difficulty === item.key ? 'active' : ''}}"
+                data-key="{{item.key}}"
+                catchtap="changeDifficulty"
+              >
+                <view class="difficulty-name">{{item.name}}</view>
+                <view class="difficulty-sub">{{item.ms}}</view>
+              </view>
+            </view>
+          </view>
+
+          <view class="cover-kicker">{{mode === 'ai' ? 'RAPFI ENGINE' : mode === 'local' ? 'SAME SCREEN' : 'TWO HEARTS, ONE BOARD'}}</view>
+          <view class="cover-title">{{mode === 'ai' ? '和 AI 下一局' : mode === 'local' ? '和 TA 下一局' : '和 TA 下一局'}}</view>
+          <view class="cover-copy">
+            <block wx:if="{{mode === 'ai'}}">调用 hhxpoint.me 的 Rapfi 引擎<br/>难度越高，思考越深</block>
+            <block wx:elif="{{mode === 'local'}}">同一台手机，两个人轮流落子<br/>15 × 15 · 黑先 · 五子连珠</block>
+            <block wx:else>两个人，两块屏幕，同一张棋盘<br/>轮到你时，点击棋盘落子</block>
+          </view>
+          <view class="start-btn {{mode === 'online' && !partnerOnline ? 'disabled' : ''}}" bindtap="startGame" hover-class="pressed">
+            {{mode === 'online' ? '开始对局' : '开始对局'}}
+          </view>
+          <view class="cover-hint">
+            <block wx:if="{{mode === 'ai'}}">你执黑先手 · {{difficultyName}}思考 {{difficultyMs}}</block>
+            <block wx:elif="{{mode === 'local'}}">黑先白后 · 轮流点击棋盘</block>
+            <block wx:else>{{partnerOnline ? 'TA 已在线，开始后执黑先行' : '等 TA 上线后就可以开始'}}</block>
+          </view>
         </view>
       </view>
     </view>
@@ -70,9 +103,19 @@
       <view class="control-link muted" bindtap="goLobby">回到大厅</view>
     </view>
 
+    <view wx:if="{{mode === 'online'}}" class="chat-strip" bindtap="toggleChat">
+      <view class="chat-strip-icon">💬</view>
+      <view class="chat-strip-main">
+        <view class="chat-strip-title">对局聊天 <text class="chat-sync">同步到悄悄话</text></view>
+        <view class="chat-strip-last">{{lastChat}}</view>
+      </view>
+      <view wx:if="{{chatUnread}}" class="chat-badge">{{chatUnread}}</view>
+      <view class="chat-strip-arrow">›</view>
+    </view>
+
     <view class="rules-note">
       <view>规则：黑先白后，横 / 竖 / 斜任意方向连成五子获胜；无禁手。</view>
-      <view>对局通过小火苗双人空间实时同步；聊天/评论/支付均不提供。</view>
+      <view>在线对局走小火苗实时同步；对局聊天与悄悄话是同一个消息窗口。</view>
     </view>
 
     <view wx:if="{{showResult}}" class="result-mask" catchtouchmove="noop">
@@ -86,6 +129,38 @@
         <view class="result-actions">
           <view class="result-btn primary" bindtap="again">再来一局</view>
           <view class="result-btn" bindtap="goLobby">回到大厅</view>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{chatOpen}}" class="chat-mask" bindtap="closeChat" catchtouchmove="noop">
+      <view class="chat-sheet" catchtap="noop">
+        <view class="chat-head">
+          <view>
+            <view class="chat-title">对局聊天</view>
+            <view class="chat-sub">和悄悄话是同一个窗口</view>
+          </view>
+          <view class="chat-close" bindtap="closeChat">×</view>
+        </view>
+        <scroll-view class="chat-list" scroll-y="{{true}}" scroll-into-view="{{chatScroll}}" enhanced="{{true}}">
+          <view wx:if="{{!chatMessages.length}}" class="chat-empty">还没有悄悄话，说点什么吧。</view>
+          <view wx:for="{{chatMessages}}" wx:key="id" id="gm-chat-{{item.id}}" class="chat-row {{item.mine ? 'mine' : 'them'}}">
+            <view class="chat-bubble {{item.mine ? 'bubble-mine' : 'bubble-them'}} {{item.recalled ? 'recalled' : ''}}">{{item.content}}</view>
+            <view class="chat-time">{{item.timeText}}</view>
+          </view>
+        </scroll-view>
+        <view class="chat-input-row">
+          <input
+            class="chat-input"
+            value="{{chatInput}}"
+            placeholder="对 TA 说点什么…"
+            bindinput="onChatInput"
+            bindconfirm="onChatConfirm"
+            confirm-type="send"
+            maxlength="500"
+            cursor-spacing="18"
+          />
+          <view class="chat-send {{chatSending ? 'disabled' : ''}}" bindtap="sendChat">{{chatSending ? '发送中' : '发送'}}</view>
         </view>
       </view>
     </view>
