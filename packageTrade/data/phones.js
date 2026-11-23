@@ -490,15 +490,16 @@ const DEVICES = [
       "可变光圈",
       "旗舰影像"
     ],
-    "image": "/packageTrade/assets/placeholder-device.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/xiaomi-14-ultra.jpg",
     "imageQuery": "Xiaomi 14 Ultra",
     "priceBasis": "guide",
-    "imageType": "placeholder",
-    "imageLicense": "",
+    "imageType": "photo",
+    "imageLicense": "待购买来源版权",
     "imageAuthor": "",
-    "imageSource": "",
+    "imageSource": "https://tech.ifeng.com/c/8XQm5cWIy1w",
     "source": "公开规格 + 发售价 + 2026-11 折旧模型",
-    "imageNote": "暂无授权实拍图"
+    "imageNote": "产品实拍/官方图，来源待购买版权",
+    "imageTitle": "代码显示小米14 Ultra手机将登陆印度市场"
   },
   {
     "id": "redmi-k70",
@@ -803,15 +804,16 @@ const DEVICES = [
       "8 Gen 3",
       "轻巧"
     ],
-    "image": "/packageTrade/assets/placeholder-device.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/samsung-s24.jpg",
     "imageQuery": "Samsung Galaxy S24",
     "priceBasis": "guide",
-    "imageType": "placeholder",
-    "imageLicense": "",
+    "imageType": "photo",
+    "imageLicense": "待购买来源版权",
     "imageAuthor": "",
-    "imageSource": "",
+    "imageSource": "https://www.samsung.com/tw/smartphones/galaxy-s24/buy/?msockid=0757cda0e79e65a728fedb03e6a96481",
     "source": "公开规格 + 发售价 + 2026-11 折旧模型",
-    "imageNote": "暂无授权实拍图"
+    "imageNote": "产品实拍/官方图，来源待购买版权",
+    "imageTitle": "Galaxy AI 來了 購買全新 Galaxy S24 & S24 5G  價格&優惠  台灣三星 Samsung Taiwan"
   },
   {
     "id": "honor-magic6-pro",
@@ -854,15 +856,16 @@ const DEVICES = [
       "鹰眼相机",
       "青海湖电池"
     ],
-    "image": "/packageTrade/assets/placeholder-device.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/honor-magic6-pro.jpg",
     "imageQuery": "Honor Magic6 Pro",
     "priceBasis": "guide",
-    "imageType": "placeholder",
-    "imageLicense": "",
+    "imageType": "photo",
+    "imageLicense": "待购买来源版权",
     "imageAuthor": "",
-    "imageSource": "",
+    "imageSource": "https://product.pconline.com.cn/mobile/honor/2054028.html",
     "source": "公开规格 + 发售价 + 2026-11 折旧模型",
-    "imageNote": "暂无授权实拍图"
+    "imageNote": "产品实拍/官方图，来源待购买版权",
+    "imageTitle": "荣耀Magic6 Pro手机"
   },
   {
     "id": "oneplus-12",
@@ -905,15 +908,16 @@ const DEVICES = [
       "5400mAh",
       "100W"
     ],
-    "image": "/packageTrade/assets/placeholder-device.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/oneplus-12.webp",
     "imageQuery": "OnePlus 12",
     "priceBasis": "guide",
-    "imageType": "placeholder",
-    "imageLicense": "",
+    "imageType": "photo",
+    "imageLicense": "待购买来源版权",
     "imageAuthor": "",
-    "imageSource": "",
+    "imageSource": "https://www.zhihu.com/tardis/zm/art/673729893",
     "source": "公开规格 + 发售价 + 2026-11 折旧模型",
-    "imageNote": "暂无授权实拍图"
+    "imageNote": "产品实拍/官方图，来源待购买版权",
+    "imageTitle": "多图预警！媲美相机的拍照手机？一加12影像深度体验"
   },
   {
     "id": "pixel-8-pro",

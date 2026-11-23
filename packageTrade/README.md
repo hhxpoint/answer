@@ -1,6 +1,6 @@
 # packageTrade · 全品类二手估价
 
-> 1.37.1 / 2026-11
+> 1.40.0 / 2026-11
 
 ## 定位
 
@@ -23,6 +23,7 @@
 | `pages/share/share` | 好友打开的估价单页，可直接再次分享 |
 | `pages/my/my` | 本机记录、删除、重新打开 |
 | `pages/sources/sources` | 价格/规格/图片/隐私/免责声明 |
+| `docs/TRADE_IMAGE_SOURCES.md` | 68 款实物图来源清单（采购版权用） |
 | `pages/publish/publish` | 带实拍图发布（提交审核） |
 | `pages/market/market` | 公开浏览（仅 approved） |
 | `pages/listing/listing` | 公开详情/举报/分享 |
@@ -61,7 +62,7 @@ patient = high × 1.04
 - 估价记录使用 `wx.setStorageSync` 存本机，最多 30 条
 - 估价单由 Canvas 生成，分享的是本地图片
 - 不提供评论区、私聊、支付或联系方式；公开列表只展示审核通过内容
-- 图片为自绘示意图，避免未授权品牌素材
+- 68 款均为真实产品图/实拍图；非 CC 图来源待购买，来源清单见 `docs/TRADE_IMAGE_SOURCES.md`
 
 ## 验证
 

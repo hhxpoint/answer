@@ -24,19 +24,19 @@
   <view class="source-block">
     <view class="source-kicker">03 / IMAGES</view>
     <view class="source-title">设备图片</view>
-    <view class="source-copy">目前 37 款设备使用 Wikimedia Commons 的开放授权实物图（部分为同系列参考图，详情页标注作者/许可证）；其余型号为统一示意图或“暂无授权实拍图”，不冒充实拍。找不到合法授权图时，也不会去盗抓电商图。</view>
+    <view class="source-copy">目前 68 款设备均使用真实产品图/实拍图：Wikimedia Commons 的 CC 授权图保留原许可证；品牌官方/媒体产品图在来源清单中标注，版权待购买。部分为同系列参考实拍，详情页标注；不再使用“暂无授权实拍图”占位。</view>
   </view>
 
   <view class="source-block">
     <view class="source-kicker">04 / PRIVACY</view>
     <view class="source-title">你的数据</view>
-    <view class="source-copy">估价记录和照片只保存在本机，不上传服务器，不建立公开列表。照片仅用于本机预览；你可以随时在“我的估价单”里删除记录。分享图片由你主动保存和发布。</view>
+    <view class="source-copy">估价记录默认保存在本机；只有你主动“发布到公开市场”时，实拍图才会上传服务器并进入审核。你可以随时在“我的发布”里删除。公开列表只展示审核通过内容。</view>
   </view>
 
   <view class="source-block">
     <view class="source-kicker">05 / SHARING</view>
     <view class="source-title">分享边界</view>
-    <view class="source-copy">支持把估价单直接作为小程序卡片分享给好友，或通过右上角分享到朋友圈；也可以保存图片。分享页只带型号/配置/成色/价格，不带照片、联系方式或自由文本。本工具不做公开社区、不做评论/关注/私聊、不做交易撮合，也不提供支付或联系方式收集。</view>
+    <view class="source-copy">支持把估价单直接作为小程序卡片分享给好友，或通过右上角分享到朋友圈；也可以保存图片。分享页只带型号/配置/成色/价格，不带照片、联系方式或自由文本。公开市场只展示审核通过的二手信息，不做评论/关注/私聊、不做交易撮合，也不提供支付或联系方式收集。</view>
   </view>
 
   <view class="source-block">

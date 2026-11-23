@@ -91,15 +91,16 @@ const DEVICES = [
       "掌机/主机",
       "本地双人"
     ],
-    "image": "/packageTrade/assets/placeholder-device.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/switch-v2.png",
     "imageQuery": "Nintendo Switch",
     "priceBasis": "guide",
-    "imageType": "placeholder",
-    "imageLicense": "",
+    "imageType": "photo",
+    "imageLicense": "待购买来源版权",
     "imageAuthor": "",
-    "imageSource": "",
+    "imageSource": "https://www.rrzu.com/item/252173",
     "source": "公开规格 + 发售价 + 2026-11 折旧模型",
-    "imageNote": "暂无授权实拍图"
+    "imageNote": "产品实拍/官方图，来源待购买版权",
+    "imageTitle": "任天堂Switch续航版游戏机 租期内可以免费更换游戏"
   },
   {
     "id": "ps5-slim",
@@ -142,15 +143,16 @@ const DEVICES = [
       "1TB",
       "光驱"
     ],
-    "image": "/packageTrade/assets/placeholder-device.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/ps5-slim.jpg",
     "imageQuery": "PlayStation 5 Slim",
     "priceBasis": "guide",
-    "imageType": "placeholder",
-    "imageLicense": "",
+    "imageType": "photo",
+    "imageLicense": "待购买来源版权",
     "imageAuthor": "",
-    "imageSource": "",
+    "imageSource": "https://zinggadget.com/sony-ps5-slim%E4%B8%BB%E6%9C%BA%E6%88%96%E5%9C%A8%E4%BB%8A%E5%B9%B4%E5%8F%91%E5%B8%83/",
     "source": "公开规格 + 发售价 + 2026-11 折旧模型",
-    "imageNote": "暂无授权实拍图"
+    "imageNote": "产品实拍/官方图，来源待购买版权",
+    "imageTitle": "等等党又赢了？Microsoft抛出重磅消息：Sony PS5 Slim主机或在今年发布！"
   },
   {
     "id": "ps5-pro",
@@ -192,15 +194,16 @@ const DEVICES = [
       "光追升级",
       "4K"
     ],
-    "image": "/packageTrade/assets/placeholder-device.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/ps5-pro.jpg",
     "imageQuery": "PlayStation 5 Pro",
     "priceBasis": "guide",
-    "imageType": "placeholder",
-    "imageLicense": "",
+    "imageType": "photo",
+    "imageLicense": "待购买来源版权",
     "imageAuthor": "",
-    "imageSource": "",
+    "imageSource": "https://www.playstation.com/en-us/ps5/ps5-pro/",
     "source": "公开规格 + 发售价 + 2026-11 折旧模型",
-    "imageNote": "暂无授权实拍图"
+    "imageNote": "官方产品图，来源待购买版权",
+    "imageTitle": "ps5-pro"
   },
   {
     "id": "ps5-disc",
@@ -243,15 +246,16 @@ const DEVICES = [
       "DualSense",
       "光驱"
     ],
-    "image": "/packageTrade/assets/placeholder-device.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/ps5-disc.jpg",
     "imageQuery": "PlayStation 5",
     "priceBasis": "guide",
-    "imageType": "placeholder",
-    "imageLicense": "",
+    "imageType": "photo",
+    "imageLicense": "待购买来源版权",
     "imageAuthor": "",
-    "imageSource": "",
+    "imageSource": "https://www.playstation.com/en-us/ps5/",
     "source": "公开规格 + 发售价 + 2026-11 折旧模型",
-    "imageNote": "暂无授权实拍图"
+    "imageNote": "官方产品图，来源待购买版权",
+    "imageTitle": "ps5-disc"
   },
   {
     "id": "xbox-series-x",
@@ -294,15 +298,16 @@ const DEVICES = [
       "4K 120Hz",
       "1TB"
     ],
-    "image": "/packageTrade/assets/placeholder-device.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/xbox-series-x.jpg",
     "imageQuery": "Xbox Series X",
     "priceBasis": "guide",
-    "imageType": "placeholder",
-    "imageLicense": "",
+    "imageType": "photo",
+    "imageLicense": "待购买来源版权",
     "imageAuthor": "",
-    "imageSource": "",
+    "imageSource": "https://www.pexels.com/zh-cn/photo/16776035/",
     "source": "公开规格 + 发售价 + 2026-11 折旧模型",
-    "imageNote": "暂无授权实拍图"
+    "imageNote": "产品实拍/官方图，来源待购买版权",
+    "imageTitle": "微软Xbox Series X主机"
   },
   {
     "id": "xbox-series-s",
@@ -345,15 +350,16 @@ const DEVICES = [
       "1440p",
       "小巧"
     ],
-    "image": "/packageTrade/assets/placeholder-device.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/xbox-series-s.jpg",
     "imageQuery": "Xbox Series S",
     "priceBasis": "guide",
-    "imageType": "placeholder",
-    "imageLicense": "",
+    "imageType": "photo",
+    "imageLicense": "待购买来源版权",
     "imageAuthor": "",
-    "imageSource": "",
+    "imageSource": "http://new.qq.com/omn/20210623/20210623A04B6U00.html",
     "source": "公开规格 + 发售价 + 2026-11 折旧模型",
-    "imageNote": "暂无授权实拍图"
+    "imageNote": "产品实拍/官方图，来源待购买版权",
+    "imageTitle": "为轻量级的卧室玩家打造：微软Xbox Series S游戏主机评测_腾讯新闻"
   },
   {
     "id": "steam-deck-oled",
@@ -396,15 +402,16 @@ const DEVICES = [
       "OLED 90Hz",
       "掌机"
     ],
-    "image": "/packageTrade/assets/placeholder-device.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/steam-deck-oled.jpg",
     "imageQuery": "Steam Deck OLED",
     "priceBasis": "guide",
-    "imageType": "placeholder",
-    "imageLicense": "",
+    "imageType": "photo",
+    "imageLicense": "待购买来源版权",
     "imageAuthor": "",
-    "imageSource": "",
+    "imageSource": "https://www.steamdeck.com/en/oled",
     "source": "公开规格 + 发售价 + 2026-11 折旧模型",
-    "imageNote": "暂无授权实拍图"
+    "imageNote": "官方产品图，来源待购买版权",
+    "imageTitle": "steam-deck-oled"
   },
   {
     "id": "rog-ally",
@@ -447,15 +454,16 @@ const DEVICES = [
       "120Hz",
       "Z1 Extreme"
     ],
-    "image": "/packageTrade/assets/placeholder-device.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/rog-ally.jpg",
     "imageQuery": "ROG Ally",
     "priceBasis": "guide",
-    "imageType": "placeholder",
-    "imageLicense": "",
+    "imageType": "photo",
+    "imageLicense": "待购买来源版权",
     "imageAuthor": "",
-    "imageSource": "",
+    "imageSource": "https://rog.asus.com/us/gaming-handhelds/rog-ally/rog-ally-2023/",
     "source": "公开规格 + 发售价 + 2026-11 折旧模型",
-    "imageNote": "暂无授权实拍图"
+    "imageNote": "官方产品图，来源待购买版权",
+    "imageTitle": "rog-ally"
   },
   {
     "id": "legion-go",
