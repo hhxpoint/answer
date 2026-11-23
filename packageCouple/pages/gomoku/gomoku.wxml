@@ -1,0 +1,93 @@
+<view class="page gomoku-page">
+  <view class="deco deco-a"></view>
+  <view class="deco deco-b"></view>
+
+  <view wx:if="{{!ready}}" class="state">正在进入棋局…</view>
+  <view wx:elif="{{errorText}}" class="state err">{{errorText}}</view>
+
+  <block wx:else>
+    <view class="topline">
+      <view>
+        <view class="kicker">GOMOKU / FIVE IN A ROW</view>
+        <view class="page-title">五子棋</view>
+      </view>
+      <view class="conn-pill {{online && partnerOnline ? 'ok' : 'bad'}}">{{online && partnerOnline ? '双端在线' : connText}}</view>
+    </view>
+
+    <view class="players">
+      <view class="player {{current === 1 && stage === 'playing' ? 'active' : ''}}">
+        <view class="avatar-wrap {{myColor === 1 ? 'black' : 'white'}}">
+          <image wx:if="{{myAvatar}}" class="avatar" src="{{myAvatar}}" mode="aspectFill"></image>
+          <view wx:else class="avatar avatar-fallback">{{myInitial}}</view>
+        </view>
+        <view class="player-info">
+          <view class="player-name">{{myName}}</view>
+          <view class="player-side">{{myColor === 1 ? '执黑' : '执白'}}</view>
+        </view>
+      </view>
+      <view class="vs">VS</view>
+      <view class="player right {{current === 2 && stage === 'playing' ? 'active' : ''}}">
+        <view class="player-info right">
+          <view class="player-name">{{partnerName}}</view>
+          <view class="player-side">{{myColor === 1 ? '执白' : '执黑'}}</view>
+        </view>
+        <view class="avatar-wrap {{myColor === 1 ? 'white' : 'black'}}">
+          <image wx:if="{{partnerAvatar}}" class="avatar" src="{{partnerAvatar}}" mode="aspectFill"></image>
+          <view wx:else class="avatar avatar-fallback">{{partnerInitial}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="turn-strip {{stage === 'playing' ? 'live' : ''}}">
+      <view class="turn-dot {{current === 1 ? 'black' : 'white'}}"></view>
+      <view class="turn-text">{{turnText}}</view>
+      <view class="move-count">{{movesCount}} 手</view>
+    </view>
+
+    <view class="board-wrap">
+      <view class="board-frame">
+        <canvas
+          type="2d"
+          id="gomokuBoard"
+          class="board-canvas"
+          style="width: {{boardW}}px; height: {{boardH}}px;"
+          bindtouchstart="onBoardTap"
+        ></canvas>
+        <view wx:if="{{!boardReady}}" class="board-loading">棋盘准备中…</view>
+
+        <view wx:if="{{stage === 'lobby'}}" class="board-cover">
+          <view class="cover-kicker">A QUIET MATCH</view>
+          <view class="cover-title">和 TA 下一局</view>
+          <view class="cover-copy">15 × 15 棋盘 · 黑先 · 五子连珠<br/>只属于你们两个人的安静对弈</view>
+          <view class="start-btn {{partnerOnline ? '' : 'disabled'}}" bindtap="startGame" hover-class="pressed">开始对局</view>
+          <view class="cover-hint">{{partnerOnline ? 'TA 已在线，开始后执黑先行' : '等 TA 上线后就可以开始'}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{stage === 'playing'}}" class="controls">
+      <view class="control-link" bindtap="resign">认输</view>
+      <view class="control-link muted" bindtap="goLobby">回到大厅</view>
+    </view>
+
+    <view class="rules-note">
+      <view>规则：黑先白后，横 / 竖 / 斜任意方向连成五子获胜；无禁手。</view>
+      <view>对局通过小火苗双人空间实时同步；聊天/评论/支付均不提供。</view>
+    </view>
+
+    <view wx:if="{{showResult}}" class="result-mask" catchtouchmove="noop">
+      <view class="result-card">
+        <view class="result-kicker">THE BOARD REMEMBERS</view>
+        <view class="result-seal {{winner === 1 ? 'black' : winner === 2 ? 'white' : 'draw'}}">
+          {{winner === 1 ? '黑' : winner === 2 ? '白' : '和'}}
+        </view>
+        <view class="result-title">{{resultTitle}}</view>
+        <view class="result-sub">{{resultSub}}</view>
+        <view class="result-actions">
+          <view class="result-btn primary" bindtap="again">再来一局</view>
+          <view class="result-btn" bindtap="goLobby">回到大厅</view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

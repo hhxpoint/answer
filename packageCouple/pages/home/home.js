@@ -274,6 +274,10 @@ Page({
     wx.navigateTo({ url: '/packageCouple/pages/draw-guess/draw-guess' });
   },
 
+  goGomoku: function () {
+    wx.navigateTo({ url: '/packageCouple/pages/gomoku/gomoku' });
+  },
+
   onPullDownRefresh: function () {
     this.load().then(function () { wx.stopPullDownRefresh(); });
   },

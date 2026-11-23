@@ -1,7 +1,7 @@
 # answer · 微信小程序
 
 > 一个以「AI 学习助手 + 工具箱」为主，并内置「我们的小火苗」双人私密空间的微信小程序。
-> 当前仓库快照：**2026-11-22**（小程序版本 **1.37.1**）
+> 当前仓库快照：**2026-11-22**（小程序版本 **1.38.0**）
 
 ---
 
@@ -119,7 +119,7 @@ answer/
 | [docs/modules/overview.md](docs/modules/overview.md) | 20 个子包的职责与状态 |
 | [docs/modules/recipe/README.md](docs/modules/recipe/README.md) | 纯本地菜谱模块详解（数据/检索/冰箱/图片许可） |
 | [packageTrade/README.md](packageTrade/README.md) | 游戏本二手估价模块（数据/算法/隐私/测试） |
-| [docs/modules/couple/README.md](docs/modules/couple/README.md) | 小火苗模块详解 |
+| [docs/modules/couple/README.md](docs/modules/couple/README.md) | 小火苗模块详解 |\n| [docs/modules/couple/gomoku.md](docs/modules/couple/gomoku.md) | 五子棋对弈（实时协议/UI/测试） |
 | [docs/modules/couple/server.md](docs/modules/couple/server.md) | 服务端、接口、数据库、后台、内容安全 |
 | [docs/modules/couple/release.md](docs/modules/couple/release.md) | 发布流程、审核注意事项、隐私合规 |
 | [docs/ops/deployment.md](docs/ops/deployment.md) | 服务端部署与配置全量说明 |

@@ -159,6 +159,14 @@
         </view>
         <view class="entry-arrow">›</view>
       </view>
+      <view class="entry" bindtap="goGomoku">
+        <view class="entry-emoji">⚫</view>
+        <view class="entry-text">
+          <view class="entry-title">五子棋对弈</view>
+          <view class="entry-sub">安静下一局 · 两个人，一张棋盘</view>
+        </view>
+        <view class="entry-arrow">›</view>
+      </view>
     </view>
 
     <view class="footer">每天来看看小火苗，它就会长得更好看一点</view>
