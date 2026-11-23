@@ -30,11 +30,19 @@
       <view class="quick-title">我的估价单</view>
       <view class="quick-sub">保存在本机 · 不上传</view>
     </view>
-    <view class="quick-card quick-card-sage" bindtap="goSources" hover-class="pressed">
+    <view class="quick-card quick-card-sage" bindtap="goMarket" hover-class="pressed">
       <view class="quick-mark">i</view>
-      <view class="quick-title">数据与边界</view>
-      <view class="quick-sub">来源 · 图片 · 免责声明</view>
+      <view class="quick-title">公开浏览</view>
+      <view class="quick-sub">审核通过 · 带实拍图 · 可分享</view>
     </view>
+  </view>
+
+  <view class="market-entry" bindtap="goMarket" hover-class="pressed">
+    <view class="market-entry-main">
+      <view class="market-entry-title">公开浏览 · 审核通过的二手信息</view>
+      <view class="market-entry-sub">带实拍图 · 可直接分享小程序 · 不做交易/评论</view>
+    </view>
+    <view class="market-entry-arrow">›</view>
   </view>
 
   <view class="filter-block">

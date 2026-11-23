@@ -52,13 +52,16 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/legion-y9000p-2024.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/legion-y9000p-2024.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
     "tagline": "拯救者 · Y9000P 2024",
     "categoryKey": "laptop",
     "categoryTitle": "游戏本二手估价单",
-    "imageType": "illustration",
-    "imageNote": "统一示意图，非真机实拍"
+    "imageType": "photo",
+    "imageNote": "同系列参考实拍，非本机实拍",
+    "imageLicense": "CC0",
+    "imageAuthor": "HuangWending18072009",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3ALenovo_Legion_Y7000P_Eclipse_Gray_Laptop.jpg"
   },
   {
     "id": "legion-y9000p-2025",
@@ -111,13 +114,16 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/legion-y9000p-2025.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/legion-y9000p-2025.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
     "tagline": "拯救者 · Y9000P 2025",
     "categoryKey": "laptop",
     "categoryTitle": "游戏本二手估价单",
-    "imageType": "illustration",
-    "imageNote": "统一示意图，非真机实拍"
+    "imageType": "photo",
+    "imageNote": "同系列参考实拍，非本机实拍",
+    "imageLicense": "CC0",
+    "imageAuthor": "HuangWending18072009",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3ALenovo_Legion_Y7000P_Eclipse_Gray_Laptop.jpg"
   },
   {
     "id": "legion-r9000p-2023",
@@ -169,13 +175,16 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/legion-r9000p-2023.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/legion-r9000p-2023.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
     "tagline": "拯救者 · R9000P 2023",
     "categoryKey": "laptop",
     "categoryTitle": "游戏本二手估价单",
-    "imageType": "illustration",
-    "imageNote": "统一示意图，非真机实拍"
+    "imageType": "photo",
+    "imageNote": "同系列参考实拍，非本机实拍",
+    "imageLicense": "CC0",
+    "imageAuthor": "HuangWending18072009",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3ALenovo_Legion_Y7000P_Eclipse_Gray_Laptop.jpg"
   },
   {
     "id": "legion-y7000p-2024",
@@ -220,13 +229,16 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/legion-y7000p-2024.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/legion-y7000p-2024.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
     "tagline": "拯救者 · Y7000P 2024",
     "categoryKey": "laptop",
     "categoryTitle": "游戏本二手估价单",
-    "imageType": "illustration",
-    "imageNote": "统一示意图，非真机实拍"
+    "imageType": "photo",
+    "imageNote": "同系列参考实拍，非本机实拍",
+    "imageLicense": "CC0",
+    "imageAuthor": "HuangWending18072009",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3ALenovo_Legion_Y7000P_Eclipse_Gray_Laptop.jpg"
   },
   {
     "id": "tuf-a15-2023",
@@ -279,13 +291,16 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/tuf-a15-2023.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/tuf-a15-2023.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
     "tagline": "天选 · 天选4 A15",
     "categoryKey": "laptop",
     "categoryTitle": "游戏本二手估价单",
-    "imageType": "illustration",
-    "imageNote": "统一示意图，非真机实拍"
+    "imageType": "photo",
+    "imageNote": "同系列参考实拍，非本机实拍",
+    "imageLicense": "CC0",
+    "imageAuthor": "HuangWending18072009",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3AASUS_TUF_Gaming_5_Pro_Laptop.jpg"
   },
   {
     "id": "tuf-f16-2025",
@@ -338,13 +353,16 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/tuf-f16-2025.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/tuf-f16-2025.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
     "tagline": "天选 · 天选6 Pro F16",
     "categoryKey": "laptop",
     "categoryTitle": "游戏本二手估价单",
-    "imageType": "illustration",
-    "imageNote": "统一示意图，非真机实拍"
+    "imageType": "photo",
+    "imageNote": "同系列参考实拍，非本机实拍",
+    "imageLicense": "CC0",
+    "imageAuthor": "HuangWending18072009",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3AASUS_TUF_Gaming_5_Pro_Laptop.jpg"
   },
   {
     "id": "tuf-a16-2025",
@@ -397,13 +415,16 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/tuf-a16-2025.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/tuf-a16-2025.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
     "tagline": "天选 · 天选6 Pro A16",
     "categoryKey": "laptop",
     "categoryTitle": "游戏本二手估价单",
-    "imageType": "illustration",
-    "imageNote": "统一示意图，非真机实拍"
+    "imageType": "photo",
+    "imageNote": "同系列参考实拍，非本机实拍",
+    "imageLicense": "CC0",
+    "imageAuthor": "HuangWending18072009",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3AASUS_TUF_Gaming_5_Pro_Laptop.jpg"
   },
   {
     "id": "rog-strix-g16-2024",
@@ -449,13 +470,16 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/rog-strix-g16-2024.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/rog-strix-g16-2024.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
     "tagline": "ROG · 魔霸新锐 G16",
     "categoryKey": "laptop",
     "categoryTitle": "游戏本二手估价单",
-    "imageType": "illustration",
-    "imageNote": "统一示意图，非真机实拍"
+    "imageType": "photo",
+    "imageNote": "",
+    "imageLicense": "CC BY 4.0",
+    "imageAuthor": "P1898",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3AROG_Strix_G16_2026-08-08_ASUS_01.jpg"
   },
   {
     "id": "rog-zephyrus-g14-2024",
@@ -501,13 +525,16 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/rog-zephyrus-g14-2024.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/rog-zephyrus-g14-2024.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
     "tagline": "ROG · 幻14 2024",
     "categoryKey": "laptop",
     "categoryTitle": "游戏本二手估价单",
-    "imageType": "illustration",
-    "imageNote": "统一示意图，非真机实拍"
+    "imageType": "photo",
+    "imageNote": "同系列参考实拍，非本机实拍",
+    "imageLicense": "CC BY-SA 4.0",
+    "imageAuthor": "D-Kuru",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3AASUS_ROG_Strix_G15_%28G513QY-HQ012T%29-top_keyboard_WASD_PNr%C2%B00888.jpg"
   },
   {
     "id": "omen-16-2023",
@@ -559,7 +586,10 @@ const MODELS = [
     "categoryKey": "laptop",
     "categoryTitle": "游戏本二手估价单",
     "imageType": "illustration",
-    "imageNote": "统一示意图，非真机实拍"
+    "imageNote": "统一示意图，非真机实拍",
+    "imageLicense": "",
+    "imageAuthor": "",
+    "imageSource": ""
   },
   {
     "id": "victus-16-2023",
@@ -618,7 +648,10 @@ const MODELS = [
     "categoryKey": "laptop",
     "categoryTitle": "游戏本二手估价单",
     "imageType": "illustration",
-    "imageNote": "统一示意图，非真机实拍"
+    "imageNote": "统一示意图，非真机实拍",
+    "imageLicense": "",
+    "imageAuthor": "",
+    "imageSource": ""
   },
   {
     "id": "predator-neo-16-2023",
@@ -670,7 +703,10 @@ const MODELS = [
     "categoryKey": "laptop",
     "categoryTitle": "游戏本二手估价单",
     "imageType": "illustration",
-    "imageNote": "统一示意图，非真机实拍"
+    "imageNote": "统一示意图，非真机实拍",
+    "imageLicense": "",
+    "imageAuthor": "",
+    "imageSource": ""
   },
   {
     "id": "nitro-v16-2024",
@@ -722,7 +758,10 @@ const MODELS = [
     "categoryKey": "laptop",
     "categoryTitle": "游戏本二手估价单",
     "imageType": "illustration",
-    "imageNote": "统一示意图，非真机实拍"
+    "imageNote": "统一示意图，非真机实拍",
+    "imageLicense": "",
+    "imageAuthor": "",
+    "imageSource": ""
   },
   {
     "id": "msi-katana-15-2023",
@@ -768,13 +807,16 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/msi-katana-15-2023.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/msi-katana-15-2023.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
     "tagline": "侠客 · 侠客 15",
     "categoryKey": "laptop",
     "categoryTitle": "游戏本二手估价单",
-    "imageType": "illustration",
-    "imageNote": "统一示意图，非真机实拍"
+    "imageType": "photo",
+    "imageNote": "同系列参考实拍，非本机实拍",
+    "imageLicense": "CC0",
+    "imageAuthor": "Kurt Kaiser",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3AMSI_Gaming_Laptop_on_wood_floor.jpg"
   },
   {
     "id": "msi-titan-18-2024",
@@ -820,13 +862,16 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/msi-titan-18-2024.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/msi-titan-18-2024.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
     "tagline": "泰坦 · 泰坦 18 HX",
     "categoryKey": "laptop",
     "categoryTitle": "游戏本二手估价单",
-    "imageType": "illustration",
-    "imageNote": "统一示意图，非真机实拍"
+    "imageType": "photo",
+    "imageNote": "同系列参考实拍，非本机实拍",
+    "imageLicense": "CC0",
+    "imageAuthor": "Kurt Kaiser",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3AMSI_Gaming_Laptop_on_wood_floor.jpg"
   },
   {
     "id": "mechrevo-jiaolong-16-pro-2023",
@@ -1191,13 +1236,16 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/dell-g16-2023.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/dell-g16-2023.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
     "tagline": "游匣 · G16 7630",
     "categoryKey": "laptop",
     "categoryTitle": "游戏本二手估价单",
-    "imageType": "illustration",
-    "imageNote": "统一示意图，非真机实拍"
+    "imageType": "photo",
+    "imageNote": "同系列参考实拍，非本机实拍",
+    "imageLicense": "CC BY-SA 4.0",
+    "imageAuthor": "SamITech Computers",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3ADell.._Laptop.jpg"
   },
   {
     "id": "alienware-m16-2024",
@@ -1243,13 +1291,16 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/alienware-m16-2024.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/alienware-m16-2024.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
     "tagline": "Alienware · m16 R2",
     "categoryKey": "laptop",
     "categoryTitle": "游戏本二手估价单",
-    "imageType": "illustration",
-    "imageNote": "统一示意图，非真机实拍"
+    "imageType": "photo",
+    "imageNote": "同系列参考实拍，非本机实拍",
+    "imageLicense": "CC BY-SA 3.0",
+    "imageAuthor": "Arnaud 25",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3AAlienware.JPG"
   },
   {
     "id": "razer-blade-16-2024",
@@ -1301,7 +1352,10 @@ const MODELS = [
     "categoryKey": "laptop",
     "categoryTitle": "游戏本二手估价单",
     "imageType": "illustration",
-    "imageNote": "统一示意图，非真机实拍"
+    "imageNote": "统一示意图，非真机实拍",
+    "imageLicense": "",
+    "imageAuthor": "",
+    "imageSource": ""
   },
   {
     "id": "legion-y9000x-2024",
@@ -1346,13 +1400,16 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/legion-y9000x-2024.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/legion-y9000x-2024.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
     "tagline": "拯救者 · Y9000X 2024",
     "categoryKey": "laptop",
     "categoryTitle": "游戏本二手估价单",
-    "imageType": "illustration",
-    "imageNote": "统一示意图，非真机实拍"
+    "imageType": "photo",
+    "imageNote": "同系列参考实拍，非本机实拍",
+    "imageLicense": "CC0",
+    "imageAuthor": "HuangWending18072009",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3ALenovo_Legion_Y7000P_Eclipse_Gray_Laptop.jpg"
   },
   {
     "id": "legion-geekpro-g5000-2024",
@@ -1403,7 +1460,10 @@ const MODELS = [
     "categoryKey": "laptop",
     "categoryTitle": "游戏本二手估价单",
     "imageType": "illustration",
-    "imageNote": "统一示意图，非真机实拍"
+    "imageNote": "统一示意图，非真机实拍",
+    "imageLicense": "",
+    "imageAuthor": "",
+    "imageSource": ""
   },
   {
     "id": "rog-zephyrus-g16-2024",
@@ -1449,13 +1509,16 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/rog-zephyrus-g16-2024.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/rog-zephyrus-g16-2024.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
     "tagline": "ROG · 幻16 2024",
     "categoryKey": "laptop",
     "categoryTitle": "游戏本二手估价单",
-    "imageType": "illustration",
-    "imageNote": "统一示意图，非真机实拍"
+    "imageType": "photo",
+    "imageNote": "同系列参考实拍，非本机实拍",
+    "imageLicense": "CC BY-SA 4.0",
+    "imageAuthor": "D-Kuru",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3AASUS_ROG_Strix_G15_%28G513QY-HQ012T%29-top_keyboard_WASD_PNr%C2%B00888.jpg"
   },
   {
     "id": "rog-strix-scar-18-2024",
@@ -1501,13 +1564,16 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/rog-strix-scar-18-2024.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/rog-strix-scar-18-2024.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
     "tagline": "ROG · 枪神8 Plus 18",
     "categoryKey": "laptop",
     "categoryTitle": "游戏本二手估价单",
-    "imageType": "illustration",
-    "imageNote": "统一示意图，非真机实拍"
+    "imageType": "photo",
+    "imageNote": "同系列参考实拍，非本机实拍",
+    "imageLicense": "CC BY-SA 4.0",
+    "imageAuthor": "D-Kuru",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3AASUS_ROG_Strix_G15_%28G513QY-HQ012T%29-top_keyboard_WASD_PNr%C2%B00888.jpg"
   },
   {
     "id": "omen-16-2024",
@@ -1559,7 +1625,10 @@ const MODELS = [
     "categoryKey": "laptop",
     "categoryTitle": "游戏本二手估价单",
     "imageType": "illustration",
-    "imageNote": "统一示意图，非真机实拍"
+    "imageNote": "统一示意图，非真机实拍",
+    "imageLicense": "",
+    "imageAuthor": "",
+    "imageSource": ""
   },
   {
     "id": "alienware-m18-2024",
@@ -1605,13 +1674,16 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/alienware-m18-2024.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/alienware-m18-2024.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
     "tagline": "Alienware · m18 R2",
     "categoryKey": "laptop",
     "categoryTitle": "游戏本二手估价单",
-    "imageType": "illustration",
-    "imageNote": "统一示意图，非真机实拍"
+    "imageType": "photo",
+    "imageNote": "同系列参考实拍，非本机实拍",
+    "imageLicense": "CC BY-SA 3.0",
+    "imageAuthor": "Arnaud 25",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3AAlienware.JPG"
   },
   {
     "id": "predator-helios-18-2024",
@@ -1663,7 +1735,10 @@ const MODELS = [
     "categoryKey": "laptop",
     "categoryTitle": "游戏本二手估价单",
     "imageType": "illustration",
-    "imageNote": "统一示意图，非真机实拍"
+    "imageNote": "统一示意图，非真机实拍",
+    "imageLicense": "",
+    "imageAuthor": "",
+    "imageSource": ""
   },
   {
     "id": "msi-raider-ge78-2024",
@@ -1709,13 +1784,16 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/msi-raider-ge78-2024.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/msi-raider-ge78-2024.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
     "tagline": "泰坦 · Raider GE78 HX",
     "categoryKey": "laptop",
     "categoryTitle": "游戏本二手估价单",
-    "imageType": "illustration",
-    "imageNote": "统一示意图，非真机实拍"
+    "imageType": "photo",
+    "imageNote": "同系列参考实拍，非本机实拍",
+    "imageLicense": "CC0",
+    "imageAuthor": "Kurt Kaiser",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3AMSI_Gaming_Laptop_on_wood_floor.jpg"
   },
   {
     "id": "gigabyte-aorus-16x-2024",
@@ -1767,7 +1845,10 @@ const MODELS = [
     "categoryKey": "laptop",
     "categoryTitle": "游戏本二手估价单",
     "imageType": "illustration",
-    "imageNote": "统一示意图，非真机实拍"
+    "imageNote": "统一示意图，非真机实拍",
+    "imageLicense": "",
+    "imageAuthor": "",
+    "imageSource": ""
   },
   {
     "id": "hasee-t8-2023",
@@ -2021,13 +2102,16 @@ const MODELS = [
     ],
     "priceBasis": "guide",
     "specConfidence": "公开资料核对",
-    "image": "/packageTrade/assets/devices/tuf-a14-2024.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/tuf-a14-2024.jpg",
     "source": "官方发售价 + 公开规格 + 2026-11 市场折旧模型",
     "tagline": "天选 · 天选 Air 14",
     "categoryKey": "laptop",
     "categoryTitle": "游戏本二手估价单",
-    "imageType": "illustration",
-    "imageNote": "统一示意图，非真机实拍"
+    "imageType": "photo",
+    "imageNote": "同系列参考实拍，非本机实拍",
+    "imageLicense": "CC0",
+    "imageAuthor": "HuangWending18072009",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3AASUS_TUF_Gaming_5_Pro_Laptop.jpg"
   }
 ];
 

@@ -93,6 +93,12 @@ Page({
     this.setData({ photos: photos });
   },
 
+  goPublish: function () {
+    if (!this.data.model || !this.data.variant) return;
+    const q = '?id=' + encodeURIComponent(this.data.model.id) + '&variant=' + encodeURIComponent(this.data.variant.id) + '&condition=' + encodeURIComponent(this.data.answers.condition || 'A');
+    wx.navigateTo({ url: '/packageTrade/pages/publish/publish' + q });
+  },
+
   generate: function () {
     if (this.data.generating || !this.data.result) return;
     this.setData({ generating: true });

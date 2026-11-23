@@ -157,6 +157,7 @@
     <view class="result-note">按 {{result.condition.label}} / {{result.battery.label}} / {{result.repair.label}} / {{result.accessory.label}} 折算</view>
   </view>
 
+  <view class="btn btn-ghost publish-btn" bindtap="goPublish" hover-class="pressed">带实拍图发布到公开市场</view>
   <view class="btn btn-primary generate-btn" bindtap="generate" hover-class="pressed">生成估价单</view>
   <view class="safe-note">不会上传照片或信息；估价单只保存在本机，可随时删除。</view>
 

@@ -1,0 +1,54 @@
+<view wx:if="{{listing}}" class="page listing-page">
+  <view class="topline">
+    <text class="kicker">{{listing.category}} / LISTING</text>
+    <text class="kicker">{{listing.dateText}}</text>
+  </view>
+
+  <view class="listing-head">
+    <view class="listing-title-big">{{listing.title}}</view>
+    <view class="listing-model-big">{{listing.model_name}} · {{listing.variant_label}}</view>
+    <view class="listing-price-big">{{listing.priceText}}</view>
+  </view>
+
+  <scroll-view class="gallery" scroll-x enable-flex>
+    <image
+      wx:for="{{listing.imageUrls}}"
+      wx:key="*this"
+      class="gallery-img"
+      src="{{item}}"
+      mode="aspectFill"
+      data-index="{{index}}"
+      bindtap="previewImage"
+    ></image>
+  </scroll-view>
+
+  <view class="facts">
+    <view class="fact"><text class="fact-k">成色</text><text class="fact-v">{{listing.condition || '未填'}}</text></view>
+    <view class="fact"><text class="fact-k">城市</text><text class="fact-v">{{listing.city || '未填'}}</text></view>
+    <view class="fact"><text class="fact-k">卖家</text><text class="fact-v">{{listing.seller.name}}</text></view>
+  </view>
+
+  <view wx:if="{{listing.description}}" class="desc">{{listing.description}}</view>
+
+  <view class="trade-note">
+    <view>本页只展示信息，不提供交易、支付、联系方式或私聊。</view>
+    <view>请自行核验设备与卖家；平台不参与交易，不承担交易责任。</view>
+  </view>
+
+  <view class="listing-actions">
+    <view class="btn btn-ghost" bindtap="report">举报</view>
+    <view class="btn btn-primary" bindtap="goMarket">看更多公开信息</view>
+  </view>
+
+  <view class="footer-note">
+    <view>审核通过的内容才展示；如发现违规请举报。</view>
+  </view>
+</view>
+
+<view wx:if="{{!listing}}" class="page">
+  <view class="empty">
+    <view class="empty-title">{{loading ? '加载中…' : '内容不存在'}}</view>
+    <view class="empty-copy">{{errorText || '可能已下架或未通过审核。'}}</view>
+    <view wx:if="{{!loading}}" class="btn btn-ghost" bindtap="goMarket">去公开浏览</view>
+  </view>
+</view>

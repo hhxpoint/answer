@@ -1,0 +1,47 @@
+<view class="page market-page">
+  <view class="topline">
+    <text class="kicker">PUBLIC / MARKET</text>
+    <text class="kicker" bindtap="goMy">我的发布 ›</text>
+  </view>
+
+  <view class="market-head">
+    <view class="market-title">公开<text class="title-it">浏览</text></view>
+    <view class="market-sub">审核通过的二手信息 · 不做交易、不做评论</view>
+  </view>
+
+  <view class="category-row">
+    <view class="category-tab {{active === 'all' ? 'on' : ''}}" data-key="all" bindtap="switchCategory">全部</view>
+    <view wx:for="{{categories}}" wx:key="key" class="category-tab {{active === item.key ? 'on' : ''}}" data-key="{{item.key}}" bindtap="switchCategory">{{item.name}}</view>
+  </view>
+
+  <view wx:if="{{loading}}" class="market-empty">加载中…</view>
+  <view wx:elif="{{errorText}}" class="market-empty">{{errorText}}</view>
+  <view wx:elif="{{!listings.length}}" class="market-empty">
+    <view>还没有审核通过的公开信息。</view>
+    <view class="market-empty-link" bindtap="goPublish">选一台设备，发布第一条 ›</view>
+  </view>
+
+  <view class="listing-grid">
+    <view wx:for="{{listings}}" wx:key="id" class="listing-card card-surface" data-id="{{item.id}}" bindtap="goDetail" hover-class="pressed">
+      <image class="listing-cover" src="{{item.cover}}" mode="aspectFill" lazy-load />
+      <view class="listing-body">
+        <view class="listing-category">{{item.category}} · {{item.condition}}</view>
+        <view class="listing-title">{{item.title}}</view>
+        <view class="listing-model">{{item.model_name}} · {{item.variant_label}}</view>
+        <view class="listing-foot">
+          <view class="listing-price">{{item.priceText}}</view>
+          <view class="listing-city">{{item.city || '未填城市'}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="market-tip">
+    <view>公开列表只展示审核通过的信息；不提供交易、支付、评论、私聊或联系方式。</view>
+    <view>如发现违规内容，请在详情页举报。</view>
+  </view>
+
+  <view class="market-actions">
+    <view class="btn btn-ghost" bindtap="goPublish">去发布</view>
+  </view>
+</view>

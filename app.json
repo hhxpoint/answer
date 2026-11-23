@@ -37,7 +37,11 @@
         "pages/poster/poster",
         "pages/my/my",
         "pages/sources/sources",
-        "pages/share/share"
+        "pages/share/share",
+        "pages/publish/publish",
+        "pages/market/market",
+        "pages/listing/listing",
+        "pages/mylist/mylist"
       ]
     },
     {

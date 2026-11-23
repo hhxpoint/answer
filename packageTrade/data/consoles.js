@@ -40,13 +40,13 @@ const DEVICES = [
       "掌机/主机",
       "本地双人"
     ],
-    "image": "/packageTrade/assets/real/switch-oled.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/switch-oled.jpg",
     "imageQuery": "Nintendo Switch OLED",
     "priceBasis": "guide",
     "imageType": "photo",
-    "imageLicense": "by-sa",
-    "imageAuthor": "Padgriffin",
-    "imageSource": "https://commons.wikimedia.org/w/index.php?curid=114717535",
+    "imageLicense": "CC BY 4.0",
+    "imageAuthor": "https://commons.wikimedia.org/wiki/User:PantheraLeo1359531",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3ANintendo-Switch-OLED-Docked.jpg",
     "source": "公开规格 + 发售价 + 2026-11 折旧模型",
     "imageNote": ""
   },
@@ -91,15 +91,15 @@ const DEVICES = [
       "掌机/主机",
       "本地双人"
     ],
-    "image": "/packageTrade/assets/real/switch-v2.jpg",
+    "image": "/packageTrade/assets/placeholder-device.jpg",
     "imageQuery": "Nintendo Switch",
     "priceBasis": "guide",
-    "imageType": "photo",
-    "imageLicense": "by-sa",
-    "imageAuthor": "matsuyuki",
-    "imageSource": "https://www.flickr.com/photos/12173213@N00/32380573284",
+    "imageType": "placeholder",
+    "imageLicense": "",
+    "imageAuthor": "",
+    "imageSource": "",
     "source": "公开规格 + 发售价 + 2026-11 折旧模型",
-    "imageNote": ""
+    "imageNote": "暂无授权实拍图"
   },
   {
     "id": "ps5-slim",
@@ -142,15 +142,15 @@ const DEVICES = [
       "1TB",
       "光驱"
     ],
-    "image": "/packageTrade/assets/real/ps5-slim.jpg",
+    "image": "/packageTrade/assets/placeholder-device.jpg",
     "imageQuery": "PlayStation 5 Slim",
     "priceBasis": "guide",
-    "imageType": "photo",
-    "imageLicense": "cc0",
-    "imageAuthor": "Back to our history",
-    "imageSource": "https://commons.wikimedia.org/w/index.php?curid=153080819",
+    "imageType": "placeholder",
+    "imageLicense": "",
+    "imageAuthor": "",
+    "imageSource": "",
     "source": "公开规格 + 发售价 + 2026-11 折旧模型",
-    "imageNote": ""
+    "imageNote": "暂无授权实拍图"
   },
   {
     "id": "ps5-pro",
@@ -192,15 +192,15 @@ const DEVICES = [
       "光追升级",
       "4K"
     ],
-    "image": "/packageTrade/assets/real/ps5-pro.jpg",
+    "image": "/packageTrade/assets/placeholder-device.jpg",
     "imageQuery": "PlayStation 5 Pro",
     "priceBasis": "guide",
-    "imageType": "photo",
-    "imageLicense": "by",
-    "imageAuthor": "BeatEmUps",
-    "imageSource": "https://commons.wikimedia.org/w/index.php?curid=195389127",
+    "imageType": "placeholder",
+    "imageLicense": "",
+    "imageAuthor": "",
+    "imageSource": "",
     "source": "公开规格 + 发售价 + 2026-11 折旧模型",
-    "imageNote": ""
+    "imageNote": "暂无授权实拍图"
   },
   {
     "id": "ps5-disc",
@@ -498,15 +498,15 @@ const DEVICES = [
       "2.5K",
       "可拆手柄"
     ],
-    "image": "/packageTrade/assets/placeholder-device.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/legion-go.jpg",
     "imageQuery": "Lenovo Legion Go",
     "priceBasis": "guide",
-    "imageType": "placeholder",
-    "imageLicense": "",
-    "imageAuthor": "",
-    "imageSource": "",
+    "imageType": "photo",
+    "imageLicense": "CC BY-SA 4.0",
+    "imageAuthor": "TaurusEmerald",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3ALenovo_Legion_Go.jpg",
     "source": "公开规格 + 发售价 + 2026-11 折旧模型",
-    "imageNote": "暂无授权实拍图"
+    "imageNote": ""
   }
 ];
 

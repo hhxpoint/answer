@@ -24,7 +24,7 @@
   <view class="source-block">
     <view class="source-kicker">03 / IMAGES</view>
     <view class="source-title">设备图片</view>
-    <view class="source-copy">当前只有部分游戏机使用了 Openverse/Wikimedia 的 CC 授权实拍图（已在详情页标注作者/许可证）；其余型号为统一示意图或“暂无授权实拍图”，不冒充实拍。找不到合法授权图时，也不会去盗抓电商图。</view>
+    <view class="source-copy">目前 37 款设备使用 Wikimedia Commons 的开放授权实物图（部分为同系列参考图，详情页标注作者/许可证）；其余型号为统一示意图或“暂无授权实拍图”，不冒充实拍。找不到合法授权图时，也不会去盗抓电商图。</view>
   </view>
 
   <view class="source-block">

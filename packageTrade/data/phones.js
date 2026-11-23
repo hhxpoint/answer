@@ -47,15 +47,15 @@ const DEVICES = [
       "USB-C",
       "4800万主摄"
     ],
-    "image": "/packageTrade/assets/placeholder-device.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/iphone-15.jpg",
     "imageQuery": "iPhone 15 back",
     "priceBasis": "guide",
-    "imageType": "placeholder",
-    "imageLicense": "",
-    "imageAuthor": "",
-    "imageSource": "",
+    "imageType": "photo",
+    "imageLicense": "Public domain",
+    "imageAuthor": "Ka Kit Pang",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3AApple_iPhone_15.jpeg",
     "source": "公开规格 + 发售价 + 2026-11 折旧模型",
-    "imageNote": "暂无授权实拍图"
+    "imageNote": ""
   },
   {
     "id": "iphone-15-pro",
@@ -105,15 +105,15 @@ const DEVICES = [
       "A17 Pro",
       "ProMotion"
     ],
-    "image": "/packageTrade/assets/placeholder-device.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/iphone-15-pro.jpg",
     "imageQuery": "iPhone 15 Pro",
     "priceBasis": "guide",
-    "imageType": "placeholder",
-    "imageLicense": "",
-    "imageAuthor": "",
-    "imageSource": "",
+    "imageType": "photo",
+    "imageLicense": "CC BY-SA 4.0",
+    "imageAuthor": "IPHONE 15",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3AApple_iPhone_15_Pro.jpg",
     "source": "公开规格 + 发售价 + 2026-11 折旧模型",
-    "imageNote": "暂无授权实拍图"
+    "imageNote": ""
   },
   {
     "id": "iphone-14",
@@ -163,15 +163,15 @@ const DEVICES = [
       "双摄",
       "轻薄"
     ],
-    "image": "/packageTrade/assets/placeholder-device.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/iphone-14.jpg",
     "imageQuery": "iPhone 14",
     "priceBasis": "guide",
-    "imageType": "placeholder",
-    "imageLicense": "",
-    "imageAuthor": "",
-    "imageSource": "",
+    "imageType": "photo",
+    "imageLicense": "CC BY-SA 4.0",
+    "imageAuthor": "Hajoon0102",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_iPhone_14_Pro.jpg",
     "source": "公开规格 + 发售价 + 2026-11 折旧模型",
-    "imageNote": "暂无授权实拍图"
+    "imageNote": ""
   },
   {
     "id": "iphone-13",
@@ -221,15 +221,15 @@ const DEVICES = [
       "续航稳",
       "经典款"
     ],
-    "image": "/packageTrade/assets/placeholder-device.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/iphone-13.jpg",
     "imageQuery": "iPhone 13",
     "priceBasis": "guide",
-    "imageType": "placeholder",
-    "imageLicense": "",
-    "imageAuthor": "",
-    "imageSource": "",
+    "imageType": "photo",
+    "imageLicense": "CC BY-SA 4.0",
+    "imageAuthor": "SimonWaldherr",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3AApple_iPhone_13_Pro.jpg",
     "source": "公开规格 + 发售价 + 2026-11 折旧模型",
-    "imageNote": "暂无授权实拍图"
+    "imageNote": ""
   },
   {
     "id": "iphone-15-pro-max",
@@ -279,15 +279,15 @@ const DEVICES = [
       "钛金属",
       "A17 Pro"
     ],
-    "image": "/packageTrade/assets/placeholder-device.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/iphone-15-pro-max.jpg",
     "imageQuery": "iPhone 15 Pro Max",
     "priceBasis": "guide",
-    "imageType": "placeholder",
-    "imageLicense": "",
-    "imageAuthor": "",
-    "imageSource": "",
+    "imageType": "photo",
+    "imageLicense": "CC BY-SA 4.0",
+    "imageAuthor": "Captainmorlypogi1959",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3AIPhone_15_Pro_Max_2024.jpg",
     "source": "公开规格 + 发售价 + 2026-11 折旧模型",
-    "imageNote": "暂无授权实拍图"
+    "imageNote": ""
   },
   {
     "id": "huawei-mate-60-pro",
@@ -330,15 +330,15 @@ const DEVICES = [
       "麒麟",
       "昆仑玻璃"
     ],
-    "image": "/packageTrade/assets/placeholder-device.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/huawei-mate-60-pro.jpg",
     "imageQuery": "Huawei Mate 60 Pro",
     "priceBasis": "guide",
-    "imageType": "placeholder",
-    "imageLicense": "",
-    "imageAuthor": "",
-    "imageSource": "",
+    "imageType": "photo",
+    "imageLicense": "CC BY-SA 4.0",
+    "imageAuthor": "メイド理世",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3AAbout_Huawei_Mate_60_Pro%2B_Black.jpg",
     "source": "公开规格 + 发售价 + 2026-11 折旧模型",
-    "imageNote": "暂无授权实拍图"
+    "imageNote": ""
   },
   {
     "id": "huawei-pura-70-pro",
@@ -381,15 +381,15 @@ const DEVICES = [
       "麒麟9010",
       "卫星通信"
     ],
-    "image": "/packageTrade/assets/placeholder-device.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/huawei-pura-70-pro.jpg",
     "imageQuery": "Huawei Pura 70 Pro",
     "priceBasis": "guide",
-    "imageType": "placeholder",
-    "imageLicense": "",
-    "imageAuthor": "",
-    "imageSource": "",
+    "imageType": "photo",
+    "imageLicense": "CC BY 4.0",
+    "imageAuthor": "X-SHLIED",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3AHUAWEI_Pura_70_Pro_Black_Back.jpg",
     "source": "公开规格 + 发售价 + 2026-11 折旧模型",
-    "imageNote": "暂无授权实拍图"
+    "imageNote": ""
   },
   {
     "id": "xiaomi-14",
@@ -439,15 +439,15 @@ const DEVICES = [
       "小屏旗舰",
       "8 Gen 3"
     ],
-    "image": "/packageTrade/assets/placeholder-device.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/xiaomi-14.png",
     "imageQuery": "Xiaomi 14",
     "priceBasis": "guide",
-    "imageType": "placeholder",
-    "imageLicense": "",
-    "imageAuthor": "",
-    "imageSource": "",
+    "imageType": "photo",
+    "imageLicense": "CC BY-SA 4.0",
+    "imageAuthor": "Uyiliu2",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3AXiaomi_14.png",
     "source": "公开规格 + 发售价 + 2026-11 折旧模型",
-    "imageNote": "暂无授权实拍图"
+    "imageNote": ""
   },
   {
     "id": "xiaomi-14-ultra",
@@ -548,15 +548,15 @@ const DEVICES = [
       "8 Gen 2",
       "性价比"
     ],
-    "image": "/packageTrade/assets/placeholder-device.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/redmi-k70.jpg",
     "imageQuery": "Redmi K70",
     "priceBasis": "guide",
-    "imageType": "placeholder",
-    "imageLicense": "",
-    "imageAuthor": "",
-    "imageSource": "",
+    "imageType": "photo",
+    "imageLicense": "CC BY-SA 4.0",
+    "imageAuthor": "Kcx36",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3ARedmi_K70_%E8%87%B3%E5%B0%8A%E7%89%88_-_2024-09-27_01.jpg",
     "source": "公开规格 + 发售价 + 2026-11 折旧模型",
-    "imageNote": "暂无授权实拍图"
+    "imageNote": ""
   },
   {
     "id": "oppo-find-x7",
@@ -599,15 +599,15 @@ const DEVICES = [
       "哈苏影像",
       "100W"
     ],
-    "image": "/packageTrade/assets/placeholder-device.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/oppo-find-x7.jpg",
     "imageQuery": "OPPO Find X7",
     "priceBasis": "guide",
-    "imageType": "placeholder",
-    "imageLicense": "",
-    "imageAuthor": "",
-    "imageSource": "",
+    "imageType": "photo",
+    "imageLicense": "CC BY-SA 4.0",
+    "imageAuthor": "メイド理世",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3AOPPO_Find_X7_Ultra%EF%BC%882024%E5%B9%B42%E6%9C%8820%E6%97%A5%EF%BC%89.jpg",
     "source": "公开规格 + 发售价 + 2026-11 折旧模型",
-    "imageNote": "暂无授权实拍图"
+    "imageNote": ""
   },
   {
     "id": "vivo-x100",
@@ -650,15 +650,15 @@ const DEVICES = [
       "天玑9300",
       "100W"
     ],
-    "image": "/packageTrade/assets/placeholder-device.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/vivo-x100.jpg",
     "imageQuery": "vivo X100",
     "priceBasis": "guide",
-    "imageType": "placeholder",
-    "imageLicense": "",
-    "imageAuthor": "",
-    "imageSource": "",
+    "imageType": "photo",
+    "imageLicense": "CC BY-SA 4.0",
+    "imageAuthor": "メイド理世",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3AVIVO_X100_and_X100_Pro%2C_January_28%2C_2024.jpg",
     "source": "公开规格 + 发售价 + 2026-11 折旧模型",
-    "imageNote": "暂无授权实拍图"
+    "imageNote": ""
   },
   {
     "id": "samsung-s23",
@@ -701,15 +701,15 @@ const DEVICES = [
       "8 Gen 2",
       "IP68"
     ],
-    "image": "/packageTrade/assets/placeholder-device.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/samsung-s23.jpg",
     "imageQuery": "Samsung Galaxy S23",
     "priceBasis": "guide",
-    "imageType": "placeholder",
-    "imageLicense": "",
-    "imageAuthor": "",
-    "imageSource": "",
+    "imageType": "photo",
+    "imageLicense": "CC BY-SA 4.0",
+    "imageAuthor": "Hajoon0102",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_Samsung_Galaxy_S23.jpg",
     "source": "公开规格 + 发售价 + 2026-11 折旧模型",
-    "imageNote": "暂无授权实拍图"
+    "imageNote": ""
   },
   {
     "id": "samsung-s23-ultra",
@@ -752,15 +752,15 @@ const DEVICES = [
       "S Pen",
       "长焦"
     ],
-    "image": "/packageTrade/assets/placeholder-device.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/samsung-s23-ultra.jpg",
     "imageQuery": "Samsung Galaxy S23 Ultra",
     "priceBasis": "guide",
-    "imageType": "placeholder",
-    "imageLicense": "",
-    "imageAuthor": "",
-    "imageSource": "",
+    "imageType": "photo",
+    "imageLicense": "CC BY-SA 4.0",
+    "imageAuthor": "メイド理世",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3ABack_view_of_Samsung_Galaxy_S23_Ultra_Green.jpg",
     "source": "公开规格 + 发售价 + 2026-11 折旧模型",
-    "imageNote": "暂无授权实拍图"
+    "imageNote": ""
   },
   {
     "id": "samsung-s24",
@@ -956,15 +956,15 @@ const DEVICES = [
       "Tensor G3",
       "AI 影像"
     ],
-    "image": "/packageTrade/assets/placeholder-device.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/pixel-8-pro.jpg",
     "imageQuery": "Google Pixel 8 Pro",
     "priceBasis": "guide",
-    "imageType": "placeholder",
-    "imageLicense": "",
-    "imageAuthor": "",
-    "imageSource": "",
+    "imageType": "photo",
+    "imageLicense": "CC0",
+    "imageAuthor": "Syced",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3AGoogle_Pixel_8_Pro%2C_shown_in_Shibuya_Stream.jpg",
     "source": "公开规格 + 发售价 + 2026-11 折旧模型",
-    "imageNote": "暂无授权实拍图"
+    "imageNote": ""
   },
   {
     "id": "sony-xperia-1-v",
@@ -1007,15 +1007,15 @@ const DEVICES = [
       "蔡司 T*",
       "3.5mm"
     ],
-    "image": "/packageTrade/assets/placeholder-device.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/sony-xperia-1-v.png",
     "imageQuery": "Sony Xperia 1 V",
     "priceBasis": "guide",
-    "imageType": "placeholder",
-    "imageLicense": "",
-    "imageAuthor": "",
-    "imageSource": "",
+    "imageType": "photo",
+    "imageLicense": "CC0",
+    "imageAuthor": "Paxsmith80",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3ASony_Xperia_1_V.png",
     "source": "公开规格 + 发售价 + 2026-11 折旧模型",
-    "imageNote": "暂无授权实拍图"
+    "imageNote": ""
   },
   {
     "id": "huawei-mate-60",
@@ -1058,15 +1058,15 @@ const DEVICES = [
       "卫星消息",
       "昆仑玻璃"
     ],
-    "image": "/packageTrade/assets/placeholder-device.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/huawei-mate-60.jpg",
     "imageQuery": "Huawei Mate 60",
     "priceBasis": "guide",
-    "imageType": "placeholder",
-    "imageLicense": "",
-    "imageAuthor": "",
-    "imageSource": "",
+    "imageType": "photo",
+    "imageLicense": "CC BY-SA 4.0",
+    "imageAuthor": "メイド理世",
+    "imageSource": "https://commons.wikimedia.org/wiki/File%3AAbout_Huawei_Mate_60_Pro%2B_Black.jpg",
     "source": "公开规格 + 发售价 + 2026-11 折旧模型",
-    "imageNote": "暂无授权实拍图"
+    "imageNote": ""
   }
 ];
 

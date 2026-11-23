@@ -122,3 +122,5 @@
 .empty { padding: 90rpx 20rpx; text-align: center; }
 .empty-title { font-family: "Songti SC", serif; font-size: 32rpx; color: #3a2e24; }
 .empty-copy { margin-top: 12rpx; font-size: 22rpx; color: #9a836c; }
+
+.publish-btn { margin-top: 26rpx; height: 82rpx; font-size: 22rpx; }

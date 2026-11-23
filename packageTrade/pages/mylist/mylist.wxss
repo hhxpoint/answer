@@ -1,0 +1,25 @@
+@import "../../common.wxss";
+
+.topline { display: flex; justify-content: space-between; padding-top: 8rpx; }
+.my-head { padding: 36rpx 0 22rpx; }
+.my-title { font-family: "Songti SC", "STSong", serif; font-size: 54rpx; font-weight: 600; color: #211b16; }
+.title-it { color: #8f5338; font-style: italic; }
+.my-sub { margin-top: 8rpx; font-size: 19rpx; line-height: 1.6; color: #9a836c; }
+.record-list { display: flex; flex-direction: column; gap: 12rpx; }
+.record-card { display: flex; padding: 12rpx; }
+.record-cover { width: 190rpx; height: 150rpx; flex-shrink: 0; border-radius: 6rpx; background: #e8e2d7; }
+.record-body { flex: 1; min-width: 0; padding: 6rpx 0 4rpx 16rpx; display: flex; flex-direction: column; }
+.record-top { display: flex; justify-content: space-between; gap: 8rpx; align-items: flex-start; }
+.record-title { font-size: 23rpx; line-height: 1.4; color: #2d251d; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+.status { flex-shrink: 0; font-size: 15rpx; padding: 3rpx 8rpx; border-radius: 3rpx; color: #8f7a65; background: rgba(74,56,39,.08); }
+.status-approved { color: #5d735f; background: rgba(98,115,99,.12); }
+.status-rejected, .status-hidden { color: #a54f3a; background: rgba(165,79,58,.09); }
+.record-model { margin-top: 6rpx; font-size: 16rpx; color: #9a836c; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.record-foot { margin-top: auto; display: flex; justify-content: space-between; align-items: baseline; }
+.record-price { font-family: "Songti SC", "STSong", serif; font-size: 26rpx; color: #8f5338; }
+.record-del { font-size: 16rpx; color: #a18b74; padding: 6rpx 0 0 14rpx; }
+.empty { padding: 70rpx 20rpx; text-align: center; font-size: 21rpx; line-height: 1.8; color: #9a836c; }
+.empty-title { font-family: "Songti SC", serif; font-size: 32rpx; color: #3a2e24; }
+.empty-copy { margin-top: 10rpx; }
+.empty .btn { margin-top: 22rpx; }
+.my-note { margin-top: 28rpx; font-size: 18rpx; line-height: 1.8; color: #9a836c; }

@@ -103,6 +103,14 @@ Page({
     wx.navigateTo({ url: '/packageTrade/pages/my/my' });
   },
 
+  goMarket: function () {
+    wx.navigateTo({ url: '/packageTrade/pages/market/market' });
+  },
+
+  goMylist: function () {
+    wx.navigateTo({ url: '/packageTrade/pages/mylist/mylist' });
+  },
+
   goSources: function () {
     wx.navigateTo({ url: '/packageTrade/pages/sources/sources' });
   },

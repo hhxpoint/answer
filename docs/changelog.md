@@ -39,6 +39,31 @@
 
 ## 二、小程序版本历史
 
+### 1.37.1 · 2026-11-22 · 公开市场图与审核链路
+
+- 服务器 trade-api 上线：上传、发布、公开列表、详情、举报、我的发布、审核
+- 客户端新增：带图发布、公开浏览、公开详情、我的发布
+- 图片：从 Wikimedia Commons 获取 37 张开放授权实物图（部分为同系列参考图，已标注作者/许可证）；其余保留示意图/占位图
+- 服务器部署 `trade-api` 到 hhxpoint.me，Nginx 增加 `/trade-api` 路由
+- 发布默认 pending，审核通过才公开；后台审核工具 `answer-couple-server/tools/trade_review.py`
+- 公开列表无评论/私聊/交易
+
+### 1.37.0 · 2026-11-22 · 公开二手市场（服务器端）
+
+- 新增 `trade-api`（Express/SQLite）部署到 `hhxpoint.me`：
+  - `/trade-api/upload`：实拍图上传到服务器（1.5MB 上限）
+  - `/trade-api/listings`：发布（pending 审核）
+  - `/trade-api/listings`：公开列表（仅 approved）
+  - `/trade-api/listings/:id`：详情/举报
+  - `/trade-api/listings/mine`：我的发布
+  - `/trade-api/admin/review`：审核通过/拒绝/隐藏
+- 新增客户端页面：发布、公开浏览、公开详情、我的发布
+- 复用 `couple-api/login` token 做鉴权；图片存 `/couple-api/files/trade-assets`
+- 公开列表不含评论、私聊、交易、联系方式
+- 发布默认待审核；审核工具：`answer-couple-server/tools/trade_review.py`
+- 目录仍为 68 款（38 游戏本 + 20 手机 + 10 游戏机）
+- 目录实物图仍以示意图/占位图为主；用户发布图是真实上传图
+
 ### 1.36.0 · 2026-11-22 · 全品类扩展
 
 - `packageTrade` 扩展为全品类：38 款游戏本 + 20 款手机 + 10 款游戏机，共 68 款、83 个配置

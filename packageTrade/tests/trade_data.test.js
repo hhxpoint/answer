@@ -10,7 +10,7 @@ catalog.ALL.forEach(function (m) {
   if (ids[m.id]) errors.push('duplicate id ' + m.id);
   ids[m.id] = 1;
   if (!m.image) errors.push('no image ' + m.id);
-  if (!fs.existsSync(path.join(root, '..', m.image.replace(/^\//, '')))) errors.push('missing image ' + m.id);
+  if (m.image.indexOf('http') !== 0 && !fs.existsSync(path.join(root, '..', m.image.replace(/^\//, '')))) errors.push('missing image ' + m.id);
   if (!m.variants || !m.variants.length) errors.push('no variants ' + m.id);
   m.variants.forEach(function (v) {
     if (!(v.priceLow > 0) || !(v.priceHigh >= v.priceLow)) errors.push('bad price ' + m.id + '/' + v.id);

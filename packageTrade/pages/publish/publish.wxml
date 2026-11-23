@@ -1,0 +1,88 @@
+<view wx:if="{{model}}" class="page publish-page">
+  <view class="topline">
+    <text class="kicker">PUBLISH / REVIEW</text>
+    <text class="kicker" bindtap="goMy">我的发布 ›</text>
+  </view>
+
+  <view class="publish-head">
+    <view class="publish-title">发布我的<text class="title-it">二手信息</text></view>
+    <view class="publish-sub">{{model.brand}} {{model.model}} · {{variant.label}}</view>
+  </view>
+
+  <view class="notice">
+    <view>提交后进入人工/内容审核；通过后才会出现在公开浏览，分享页也只展示审核通过的内容。</view>
+    <view>禁止发布盗抢、假冒、违禁物品；不提供交易、评论和私聊。</view>
+  </view>
+
+  <view class="section-head">
+    <text class="section-no">01</text>
+    <text class="section-title">Photos</text>
+    <text class="section-cn">实拍图（至少 1 张）</text>
+    <view class="section-line"></view>
+  </view>
+
+  <view class="photo-row">
+    <view wx:for="{{photos}}" wx:key="temp" class="photo-item">
+      <image class="photo-img" src="{{item.temp}}" mode="aspectFill" />
+      <view wx:if="{{item.status === 'uploading'}}" class="photo-status">上传中…</view>
+      <view wx:if="{{item.status === 'error'}}" class="photo-status error">失败</view>
+      <view class="photo-del" data-index="{{index}}" bindtap="removePhoto">×</view>
+    </view>
+    <view wx:if="{{photos.length < 6}}" class="photo-add" bindtap="choosePhotos">
+      <view class="photo-plus">＋</view>
+      <view class="photo-add-text">添加实拍图</view>
+    </view>
+  </view>
+
+  <view class="section-head">
+    <text class="section-no">02</text>
+    <text class="section-title">Listing</text>
+    <text class="section-cn">信息</text>
+    <view class="section-line"></view>
+  </view>
+
+  <view class="field">
+    <view class="field-label">标题</view>
+    <input class="field-input" data-field="title" value="{{title}}" maxlength="40" placeholder="例如：拯救者 Y9000P 2025 32G/1T 95新" placeholder-class="search-placeholder" bindinput="onInput" />
+  </view>
+
+  <view class="field">
+    <view class="field-label">价格（元）</view>
+    <input class="field-input" data-field="price" type="number" value="{{price}}" maxlength="7" placeholder="填写你的报价" placeholder-class="search-placeholder" bindinput="onInput" />
+  </view>
+
+  <view class="field">
+    <view class="field-label">城市（可选，不显示精确地址）</view>
+    <input class="field-input" data-field="city" value="{{city}}" maxlength="12" placeholder="例如：杭州" placeholder-class="search-placeholder" bindinput="onInput" />
+  </view>
+
+  <view class="field">
+    <view class="field-label">描述（可选）</view>
+    <textarea class="field-textarea" data-field="description" value="{{description}}" maxlength="200" placeholder="成色、维修、配件、出手原因…不要填写手机号/微信号" placeholder-class="search-placeholder" bindinput="onInput"></textarea>
+  </view>
+
+  <view class="publish-meta">
+    <text>成色：{{condition.label}}</text>
+    <text>审核通过后公开</text>
+  </view>
+
+  <view wx:if="{{errorText}}" class="error-text">{{errorText}}</view>
+
+  <view class="btn btn-primary submit-btn" bindtap="submit" hover-class="pressed">{{submitting ? '提交中…' : '提交审核'}}</view>
+
+  <view class="publish-foot">
+    <view class="link" bindtap="goMarket">先看看公开浏览 ›</view>
+    <view class="link" bindtap="goMy">我的发布 ›</view>
+  </view>
+
+  <view class="footer-note">
+    <view>本页不提供交易、支付、评论或私聊。发布内容由用户负责，平台审核后展示。</view>
+  </view>
+</view>
+
+<view wx:if="{{notFound}}" class="page">
+  <view class="empty">
+    <view class="empty-title">没有找到这款设备</view>
+    <view class="empty-copy">返回详情页重新选择。</view>
+  </view>
+</view>
