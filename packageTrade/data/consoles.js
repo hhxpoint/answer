@@ -40,7 +40,7 @@ const DEVICES = [
       "掌机/主机",
       "本地双人"
     ],
-    "image": "https://hhxpoint.me/couple-api/files/trade-assets/switch-oled.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/final/switch-oled.jpg",
     "imageQuery": "Nintendo Switch OLED",
     "priceBasis": "guide",
     "imageType": "photo",
@@ -91,7 +91,7 @@ const DEVICES = [
       "掌机/主机",
       "本地双人"
     ],
-    "image": "https://hhxpoint.me/couple-api/files/trade-assets/switch-v2.png",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/final/switch-v2.jpg",
     "imageQuery": "Nintendo Switch",
     "priceBasis": "guide",
     "imageType": "photo",
@@ -143,7 +143,7 @@ const DEVICES = [
       "1TB",
       "光驱"
     ],
-    "image": "https://hhxpoint.me/couple-api/files/trade-assets/ps5-slim.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/final/ps5-slim.jpg",
     "imageQuery": "PlayStation 5 Slim",
     "priceBasis": "guide",
     "imageType": "photo",
@@ -194,7 +194,7 @@ const DEVICES = [
       "光追升级",
       "4K"
     ],
-    "image": "https://hhxpoint.me/couple-api/files/trade-assets/ps5-pro.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/final/ps5-pro.jpg",
     "imageQuery": "PlayStation 5 Pro",
     "priceBasis": "guide",
     "imageType": "photo",
@@ -246,7 +246,7 @@ const DEVICES = [
       "DualSense",
       "光驱"
     ],
-    "image": "https://hhxpoint.me/couple-api/files/trade-assets/ps5-disc.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/final/ps5-disc.jpg",
     "imageQuery": "PlayStation 5",
     "priceBasis": "guide",
     "imageType": "photo",
@@ -298,7 +298,7 @@ const DEVICES = [
       "4K 120Hz",
       "1TB"
     ],
-    "image": "https://hhxpoint.me/couple-api/files/trade-assets/xbox-series-x.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/final/xbox-series-x.jpg",
     "imageQuery": "Xbox Series X",
     "priceBasis": "guide",
     "imageType": "photo",
@@ -350,7 +350,7 @@ const DEVICES = [
       "1440p",
       "小巧"
     ],
-    "image": "https://hhxpoint.me/couple-api/files/trade-assets/xbox-series-s.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/final/xbox-series-s.jpg",
     "imageQuery": "Xbox Series S",
     "priceBasis": "guide",
     "imageType": "photo",
@@ -402,7 +402,7 @@ const DEVICES = [
       "OLED 90Hz",
       "掌机"
     ],
-    "image": "https://hhxpoint.me/couple-api/files/trade-assets/steam-deck-oled.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/final/steam-deck-oled.jpg",
     "imageQuery": "Steam Deck OLED",
     "priceBasis": "guide",
     "imageType": "photo",
@@ -454,7 +454,7 @@ const DEVICES = [
       "120Hz",
       "Z1 Extreme"
     ],
-    "image": "https://hhxpoint.me/couple-api/files/trade-assets/rog-ally.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/final/rog-ally.jpg",
     "imageQuery": "ROG Ally",
     "priceBasis": "guide",
     "imageType": "photo",
@@ -506,7 +506,7 @@ const DEVICES = [
       "2.5K",
       "可拆手柄"
     ],
-    "image": "https://hhxpoint.me/couple-api/files/trade-assets/legion-go.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/final/legion-go.jpg",
     "imageQuery": "Lenovo Legion Go",
     "priceBasis": "guide",
     "imageType": "photo",

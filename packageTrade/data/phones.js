@@ -47,7 +47,7 @@ const DEVICES = [
       "USB-C",
       "4800万主摄"
     ],
-    "image": "https://hhxpoint.me/couple-api/files/trade-assets/iphone-15.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/final/iphone-15.jpg",
     "imageQuery": "iPhone 15 back",
     "priceBasis": "guide",
     "imageType": "photo",
@@ -105,7 +105,7 @@ const DEVICES = [
       "A17 Pro",
       "ProMotion"
     ],
-    "image": "https://hhxpoint.me/couple-api/files/trade-assets/iphone-15-pro.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/final/iphone-15-pro.jpg",
     "imageQuery": "iPhone 15 Pro",
     "priceBasis": "guide",
     "imageType": "photo",
@@ -163,7 +163,7 @@ const DEVICES = [
       "双摄",
       "轻薄"
     ],
-    "image": "https://hhxpoint.me/couple-api/files/trade-assets/iphone-14.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/final/iphone-14.jpg",
     "imageQuery": "iPhone 14",
     "priceBasis": "guide",
     "imageType": "photo",
@@ -221,7 +221,7 @@ const DEVICES = [
       "续航稳",
       "经典款"
     ],
-    "image": "https://hhxpoint.me/couple-api/files/trade-assets/iphone-13.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/final/iphone-13.jpg",
     "imageQuery": "iPhone 13",
     "priceBasis": "guide",
     "imageType": "photo",
@@ -279,7 +279,7 @@ const DEVICES = [
       "钛金属",
       "A17 Pro"
     ],
-    "image": "https://hhxpoint.me/couple-api/files/trade-assets/iphone-15-pro-max.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/final/iphone-15-pro-max.jpg",
     "imageQuery": "iPhone 15 Pro Max",
     "priceBasis": "guide",
     "imageType": "photo",
@@ -330,7 +330,7 @@ const DEVICES = [
       "麒麟",
       "昆仑玻璃"
     ],
-    "image": "https://hhxpoint.me/couple-api/files/trade-assets/huawei-mate-60-pro.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/final/huawei-mate-60-pro.jpg",
     "imageQuery": "Huawei Mate 60 Pro",
     "priceBasis": "guide",
     "imageType": "photo",
@@ -381,7 +381,7 @@ const DEVICES = [
       "麒麟9010",
       "卫星通信"
     ],
-    "image": "https://hhxpoint.me/couple-api/files/trade-assets/huawei-pura-70-pro.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/final/huawei-pura-70-pro.jpg",
     "imageQuery": "Huawei Pura 70 Pro",
     "priceBasis": "guide",
     "imageType": "photo",
@@ -439,7 +439,7 @@ const DEVICES = [
       "小屏旗舰",
       "8 Gen 3"
     ],
-    "image": "https://hhxpoint.me/couple-api/files/trade-assets/xiaomi-14.png",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/final/xiaomi-14.jpg",
     "imageQuery": "Xiaomi 14",
     "priceBasis": "guide",
     "imageType": "photo",
@@ -490,7 +490,7 @@ const DEVICES = [
       "可变光圈",
       "旗舰影像"
     ],
-    "image": "https://hhxpoint.me/couple-api/files/trade-assets/xiaomi-14-ultra.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/final/xiaomi-14-ultra.jpg",
     "imageQuery": "Xiaomi 14 Ultra",
     "priceBasis": "guide",
     "imageType": "photo",
@@ -549,7 +549,7 @@ const DEVICES = [
       "8 Gen 2",
       "性价比"
     ],
-    "image": "https://hhxpoint.me/couple-api/files/trade-assets/redmi-k70.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/final/redmi-k70.jpg",
     "imageQuery": "Redmi K70",
     "priceBasis": "guide",
     "imageType": "photo",
@@ -600,7 +600,7 @@ const DEVICES = [
       "哈苏影像",
       "100W"
     ],
-    "image": "https://hhxpoint.me/couple-api/files/trade-assets/oppo-find-x7.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/final/oppo-find-x7.jpg",
     "imageQuery": "OPPO Find X7",
     "priceBasis": "guide",
     "imageType": "photo",
@@ -651,7 +651,7 @@ const DEVICES = [
       "天玑9300",
       "100W"
     ],
-    "image": "https://hhxpoint.me/couple-api/files/trade-assets/vivo-x100.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/final/vivo-x100.jpg",
     "imageQuery": "vivo X100",
     "priceBasis": "guide",
     "imageType": "photo",
@@ -702,7 +702,7 @@ const DEVICES = [
       "8 Gen 2",
       "IP68"
     ],
-    "image": "https://hhxpoint.me/couple-api/files/trade-assets/samsung-s23.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/final/samsung-s23.jpg",
     "imageQuery": "Samsung Galaxy S23",
     "priceBasis": "guide",
     "imageType": "photo",
@@ -753,7 +753,7 @@ const DEVICES = [
       "S Pen",
       "长焦"
     ],
-    "image": "https://hhxpoint.me/couple-api/files/trade-assets/samsung-s23-ultra.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/final/samsung-s23-ultra.jpg",
     "imageQuery": "Samsung Galaxy S23 Ultra",
     "priceBasis": "guide",
     "imageType": "photo",
@@ -804,7 +804,7 @@ const DEVICES = [
       "8 Gen 3",
       "轻巧"
     ],
-    "image": "https://hhxpoint.me/couple-api/files/trade-assets/samsung-s24.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/final/samsung-s24.jpg",
     "imageQuery": "Samsung Galaxy S24",
     "priceBasis": "guide",
     "imageType": "photo",
@@ -856,7 +856,7 @@ const DEVICES = [
       "鹰眼相机",
       "青海湖电池"
     ],
-    "image": "https://hhxpoint.me/couple-api/files/trade-assets/honor-magic6-pro.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/final/honor-magic6-pro.jpg",
     "imageQuery": "Honor Magic6 Pro",
     "priceBasis": "guide",
     "imageType": "photo",
@@ -908,7 +908,7 @@ const DEVICES = [
       "5400mAh",
       "100W"
     ],
-    "image": "https://hhxpoint.me/couple-api/files/trade-assets/oneplus-12.webp",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/final/oneplus-12.jpg",
     "imageQuery": "OnePlus 12",
     "priceBasis": "guide",
     "imageType": "photo",
@@ -960,7 +960,7 @@ const DEVICES = [
       "Tensor G3",
       "AI 影像"
     ],
-    "image": "https://hhxpoint.me/couple-api/files/trade-assets/pixel-8-pro.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/final/pixel-8-pro.jpg",
     "imageQuery": "Google Pixel 8 Pro",
     "priceBasis": "guide",
     "imageType": "photo",
@@ -1011,7 +1011,7 @@ const DEVICES = [
       "蔡司 T*",
       "3.5mm"
     ],
-    "image": "https://hhxpoint.me/couple-api/files/trade-assets/sony-xperia-1-v.png",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/final/sony-xperia-1-v.jpg",
     "imageQuery": "Sony Xperia 1 V",
     "priceBasis": "guide",
     "imageType": "photo",
@@ -1062,7 +1062,7 @@ const DEVICES = [
       "卫星消息",
       "昆仑玻璃"
     ],
-    "image": "https://hhxpoint.me/couple-api/files/trade-assets/huawei-mate-60.jpg",
+    "image": "https://hhxpoint.me/couple-api/files/trade-assets/final/huawei-mate-60.jpg",
     "imageQuery": "Huawei Mate 60",
     "priceBasis": "guide",
     "imageType": "photo",
