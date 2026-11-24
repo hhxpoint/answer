@@ -333,7 +333,13 @@ node packageTrade/tests/trade_market_flow.test.js # 选型器 / 公开列表 / �
 
 ### 10.2 服务端端到端（真实环境，28 项）
 
-在服务器本机执行（避免外网限制），覆盖：
+脚本：服务端仓库 `tests/trade_e2e.js`（在服务器本机执行，避免外网限制）：
+
+```bash
+cd /home/point/couple && node /path/to/tests/trade_e2e.js   # 期望 TRADE_E2E_OK steps=28
+```
+
+覆盖：
 
 ```text
 创建测试用户 → 上传实拍图 → 未登录上传 401 → 发布得 pending
@@ -344,7 +350,7 @@ node packageTrade/tests/trade_market_flow.test.js # 选型器 / 公开列表 / �
 → 公开列表恢复 → 清理测试用户
 ```
 
-结论：`TRADE_E2E_OK steps=28`。
+结论：`TRADE_E2E_OK steps=28`。脚本自带测试用户清理，可重复执行。
 
 ### 10.3 上传与真机验收
 
