@@ -48,7 +48,18 @@ Page({
           method: 'POST',
           noRetry: true,
           data: { reason: reasons[res.tapIndex] || '其他' }
-        }).then(function () {
+        }).then(function (body) {
+          if (body && body.auto_hidden) {
+            wx.showModal({
+              title: '已提交举报',
+              content: '该内容因举报达到上限已被自动下架，等待人工复核。',
+              showCancel: false,
+              success: function () {
+                wx.navigateBack({ delta: 1 });
+              }
+            });
+            return;
+          }
           wx.showToast({ title: '已提交举报', icon: 'success' });
         }).catch(function () {
           wx.showToast({ title: '举报失败，稍后再试', icon: 'none' });

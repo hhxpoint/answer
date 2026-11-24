@@ -1,4 +1,4 @@
-# 二手估价与公开市场（packageTrade）
+﻿# 二手估价与公开市场（packageTrade）
 
 > 版本：1.41.0 · 2026-11-24
 > 代码：`packageTrade/`（小程序子包） + `answer-couple-server/src/trade.js`（服务端 `trade-api`）
@@ -228,7 +228,14 @@ python tools/trade_review.py hide 12
 ### 6.4 举报
 
 公开详情页提供「虚假信息 / 疑似盗抢假冒 / 违禁物品 / 联系方式广告 / 其他」，写入 `trade_reports` 并给 `trade_listings.report_count + 1`。
-举报**不会自动下架**（没有阈值自动隐藏），由人工结合举报量 `hide`。
+
+**阈值自动隐藏（1.41.2 起）**：
+
+- 阈值 `TRADE_REPORT_THRESHOLD`（默认 **3**，`0` 表示关闭）；
+- 只对**已公开（approved）**的发布生效，且只在刚好跨过阈值时触发一次；
+- 触发后自动 `hidden`，并写 `review_note = 系统自动隐藏：举报达到 N 次，等待人工复核`、记一条 `trade_review_logs`（`source=auto_report`、`actor=system`）；
+- 接口返回 `auto_hidden: true`，小程序弹告知框并返回上一页；
+- **不会自动封禁/删除**，仍需人工复核：可恢复 `approved`，也可改为 `rejected` 并写说明。
 
 ---
 
@@ -246,9 +253,10 @@ python tools/trade_review.py hide 12
 | GET | `/trade-api/listings` | — | — | 公开列表，仅 `approved`；`category`、`cursor`（上一页最后一个 id）、`limit` ≤30 |
 | GET | `/trade-api/listings/:id` | 可选 | — | `approved` 对所有人；非 `approved` 仅作者本人可见，其他人 404 |
 | DELETE | `/trade-api/listings/:id` | Bearer | — | 仅作者；删图片文件 + 举报行 + 记录（1.41.0 起同步清 `trade_reports`） |
-| POST | `/trade-api/listings/:id/report` | — | 20 次/分/IP | 举报，`reason` ≤80 字 |
+| POST | `/trade-api/listings/:id/report` | — | 20 次/分/IP | 举报，`reason` ≤80 字；返回 `report_count` 与 `auto_hidden`（达阈值时自动隐藏） |
 | GET | `/trade-api/admin/pending` | `x-admin-token` | — | 待审列表（≤100） |
-| POST | `/trade-api/admin/review` | `x-admin-token` | — | `{id,status,note?}`，status ∈ approved/rejected/hidden/expired；`note` ≤200 字，写入 `review_note` 并对发布者可见（1.41.1 起） |
+| POST | `/trade-api/admin/review` | `x-admin-token` | — | `{id,status,note?,actor?}`，status ∈ approved/rejected/hidden/expired；`note` ≤200 字，写入 `review_note` 并对发布者可见（1.41.1 起） |
+| GET | `/trade-api/admin/review-logs/:id` | `x-admin-token` | — | 审核审计（最近 100 条：前后状态 / 说明 / 操作人 / 来源 `admin_api`｜`auto_report`） |
 
 返回约定：成功 `{ok:true, ...}`；失败 `{ok:false, error:{code,msg}}`。
 文本统一做 `<>` 剥离与空白折叠，长度按字段截断（标题 40、描述 200、城市 16、标题 12 成色等）。
@@ -259,7 +267,7 @@ python tools/trade_review.py hide 12
 
 ## 8. 数据库
 
-迁移版本：`004_trade_market` + `005_trade_review_note`（均加法式，`src/db.js`）。
+迁移版本：`004_trade_market` + `005_trade_review_note` + `006_trade_review_logs`（均加法式，`src/db.js`）。
 
 ```sql
 CREATE TABLE trade_listings (
@@ -292,11 +300,24 @@ CREATE TABLE trade_reports (
   created_at INTEGER NOT NULL
 );
 CREATE INDEX idx_trade_reports_listing ON trade_reports(listing_id);
+
+-- 006：审核审计
+CREATE TABLE trade_review_logs (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  listing_id INTEGER NOT NULL,
+  from_status TEXT NOT NULL DEFAULT '',
+  to_status TEXT NOT NULL DEFAULT '',
+  note TEXT NOT NULL DEFAULT '',
+  actor TEXT NOT NULL DEFAULT '',        -- 管理员名 / system
+  source TEXT NOT NULL DEFAULT '',       -- admin_api | auto_report
+  created_at INTEGER NOT NULL
+);
+CREATE INDEX idx_trade_review_logs_listing ON trade_review_logs(listing_id, id);
 ```
 
 - 图片文件落在 `UPLOAD_DIR/trade/`（= `/home/point/couple/uploads/trade`），由 `express.static` 以 `/couple-api/files/trade/` 对外；
 - 数据在同一个 `data/app.db`，每日 04:10 cron 备份（`src/backup.js`，保留 7 份）；
-- 无级联外键，删除时由业务代码同步清理（1.41.0 起删除会一并清 `trade_reports`）。
+- 无级联外键，删除时由业务代码同步清理（1.41.0 清 `trade_reports`，1.41.2 起同时清 `trade_review_logs`）。
 
 ---
 
@@ -360,12 +381,12 @@ node packageTrade/tests/trade_market_flow.test.js # 选型器 / 公开列表 / �
 选型器默认 68 款、按品类过滤（手机 20 / 游戏机 10）、搜索与清空、选中型号后标题/价格/成色预填、
 公开列表相对路径补全为绝对 URL 与价格千分位、详情页分享 path/imageUrl、举报调用、我的发布状态文案与删除入口。
 
-### 10.2 服务端端到端（真实环境，38 项）
+### 10.2 服务端端到端（真实环境，53 项）
 
 脚本：服务端仓库 `tests/trade_e2e.js`（在服务器本机执行，避免外网限制）：
 
 ```bash
-cd /home/point/couple && node /path/to/tests/trade_e2e.js   # 期望 TRADE_E2E_OK steps=38
+cd /home/point/couple && node /path/to/tests/trade_e2e.js   # 期望 TRADE_E2E_OK steps=53
 ```
 
 覆盖：
@@ -378,11 +399,14 @@ cd /home/point/couple && node /path/to/tests/trade_e2e.js   # 期望 TRADE_E2E_O
 → 驳回并带说明：仅作者可见（mine 拿到 note + reviewed_at）、公开列表消失、他人详情 404
 → 重新通过：说明清空、公开恢复
 → 公开列表/品类过滤/详情/卖家昵称（不含头像）/公开详情不返回 note
-→ 举报 + report_count+1 → 删除（图片文件、记录、举报行都被清理）
+→ 举报 + report_count+1（低于阈值不自动隐藏）
+→ 举报到阈值 3：自动 hidden + 系统说明 + 公开列表移除 + 他人详情 404
+→ 审计表可查（人工/系统两条来源，无 token 403）→ 人工复核恢复公开
+→ 删除（图片文件、记录、举报行、审计行都被清理）
 → 公开列表恢复 → 清理测试用户
 ```
 
-结论：`TRADE_E2E_OK steps=38`。脚本自带测试用户清理，可重复执行。
+结论：`TRADE_E2E_OK steps=53`。脚本自带测试用户清理，可重复执行。
 
 ### 10.3 上传与真机验收
 
@@ -438,3 +462,4 @@ cd /home/point/couple && node /path/to/tests/trade_e2e.js   # 期望 TRADE_E2E_O
 | 1.40.2 | 详情页直接分享小程序卡片（带当前配置与参考价） |
 | 1.41.0 | 发布前选型器（修复「去发布」死胡同）、首页分享文案改全品类、删除同步清理举报记录 |
 | 1.41.1 | 驳回理由回传：`review_note`/`reviewed_at`（迁移 `005`），后台可填、发布者可见、公开侧不泄漏；OJ 后台「二手审核」 |
+| 1.41.2 | 举报阈值自动隐藏（默认 3，可配）+ 审核审计表 `trade_review_logs`（迁移 `006`）+ `review-logs` 接口；OJ 审核记录读库并标来源 |

@@ -345,7 +345,20 @@ node -e "const d=require('better-sqlite3')('data/app.db',{readonly:true});
 console.log(d.prepare('select id,title,report_count,status from trade_listings where report_count>0 order by report_count desc limit 20').all());"
 ```
 
-确认违规后 `python tools/trade_review.py hide <id>`（不做自动下架，避免恶意举报误伤）。
+**阈值自动隐藏（1.41.2 起）**：`TRADE_REPORT_THRESHOLD`（默认 3，`.env` 可改，0 = 关闭）；
+达到阈值且状态为 `approved` 时会自动变 `hidden`，说明写「系统自动隐藏：举报达到 N 次，等待人工复核」。
+
+复核：
+
+```bash
+# 看某条的全部审计（人工 + 系统）
+node -e "const d=require('better-sqlite3')('data/app.db',{readonly:true});
+console.log(d.prepare('select * from trade_review_logs where listing_id=? order by id desc').all(<id>));"
+```
+
+- 误举报 → 后台点「通过并公开」（或 `python tools/trade_review.py approve <id>`）恢复；
+- 确实违规 → 点「驳回」并写说明，发布者在「我的发布」能看到原因；
+- 审计行随发布删除一并清理（`delete from trade_review_logs where listing_id=...` 由服务端自动做）。
 
 ### 15.5 清理测试/脏数据
 

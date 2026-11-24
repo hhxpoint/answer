@@ -39,6 +39,19 @@
 
 ## 二、小程序版本历史
 
+### 1.41.2 · 2026-11-24 · 举报阈值自动下架 + 审核审计落表
+
+- 举报累计达到阈值（默认 **3** 次，`TRADE_REPORT_THRESHOLD` 可配，0 = 关闭）时，**自动把已公开的发布改为已隐藏**
+  并写入系统说明「系统自动隐藏：举报达到 N 次，等待人工复核」
+- 举报接口返回 `auto_hidden` / `report_count`；小程序在触发自动下架时弹告知框（不再只提示「已提交举报」）
+- 新增审核审计表 `trade_review_logs`（迁移 `006_trade_review_logs`）：记录 来源状态 → 目标状态、说明、操作人、来源（`admin_api` / `auto_report`）
+- 新增管理接口 `GET /trade-api/admin/review-logs/:id`（`x-admin-token`）；删除发布时同步清理审计行
+- OJ 后台「二手审核」的「审核记录」改为读该表，并显示「人工 / 系统自动」来源标签
+- 新增页面测试 `packageTrade/tests/trade_report_autohide.test.js`（5 项）
+- 验收：本地 8 个测试文件全过；服务端 E2E 扩到 **53 项**（含阈值触发、公开列表移除、审计来源、人工复核恢复）
+- 版本包体（上传实测）：总包 **6.9 MB**（7,256,295 字节）、main 755.9 KB、`packageTrade` **233.9 KB**
+- 已上传开发版 **1.41.2**，体验二维码 `answer-preview-1412.jpg`
+
 ### 1.41.1 · 2026-11-24 · 驳回理由回传
 
 - 「我的发布」：未通过 / 已隐藏且后台留了说明时，卡片直接显示「审核说明：…」（待审、已通过不显示）
@@ -438,6 +451,9 @@
 | 2026-11-24 | `trade-api` 删除语义修正 | 删除发布时同步删除 `trade_reports`，避免孤儿举报行；已部署并跑通 28 项端到端自检 |
 | 2026-11-24 | 测试数据清理 | 清理历史测试账号（`trade_local_test`）与测试发布/举报残留；线上 `trade_listings` / `trade_reports` 现为 0 条 |
 | 2026-11-24 | **OJ 后台「二手审核」** | `/admin/trade/`：`trade_admin.py` + `trade.html` / `trade_detail.html`，侧栏新增「二手审核」；**读**走只读 SQLite（`mode=ro`），**写**走 `trade-api/admin/review`（保持 Node 单写者），审核动作追加审计日志 `/home/point/pro/logs/trade_review.log`；已部署并跑通端到端（待审不可见 → 通过即公开 → 隐藏/驳回下架） |
+| 2026-11-24 | 审核意见 `review_note` | 迁移 `005`：`trade_listings.review_note/reviewed_at`；`admin/review` 支持 `note`，仅发布者可见；小程序「我的发布」展示 |
+| 2026-11-24 | **举报阈值自动隐藏 + 审计落表** | 迁移 `006`：`trade_review_logs`（含 `source: admin_api/auto_report`）；`TRADE_REPORT_THRESHOLD`（默认 3）达到即自动隐藏并留系统说明；`GET /trade-api/admin/review-logs/:id`；删除发布同步清审计行 |
+| 2026-11-24 | OJ 登录态持久化 | `app.py` 的 `SECRET_KEY` 改为从 `instance/.secret_key`（0600）持久读取，支持 `OJ_SECRET_KEY` 覆盖；**重启 myide 不再踢掉所有管理员** |
 
 > 服务端完整配置与接口见 [modules/couple/server.md](modules/couple/server.md)，
 > 部署与运维见 [ops/deployment.md](ops/deployment.md) / [ops/runbook.md](ops/runbook.md)。
