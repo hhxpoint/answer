@@ -26,10 +26,14 @@ Page({
       return api.request('/trade-api/listings/mine');
     }).then(function (body) {
       const list = (body.listings || []).map(function (x) {
+        const note = String(x.review_note || '').trim();
+        const showReason = !!note && (x.status === 'rejected' || x.status === 'hidden');
         return Object.assign({}, x, {
           statusText: STATUS_TEXT[x.status] || x.status,
           priceText: '¥' + String(x.price || 0).replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-          cover: x.images && x.images[0] ? (x.images[0].indexOf('http') === 0 ? x.images[0] : 'https://hhxpoint.me' + x.images[0]) : '/packageTrade/assets/placeholder-device.jpg'
+          cover: x.images && x.images[0] ? (x.images[0].indexOf('http') === 0 ? x.images[0] : 'https://hhxpoint.me' + x.images[0]) : '/packageTrade/assets/placeholder-device.jpg',
+          reasonText: note,
+          showReason: showReason
         });
       });
       that.setData({ listings: list, loading: false });

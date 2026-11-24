@@ -15,6 +15,7 @@
 .status-approved { color: #5d735f; background: rgba(98,115,99,.12); }
 .status-rejected, .status-hidden { color: #a54f3a; background: rgba(165,79,58,.09); }
 .record-model { margin-top: 6rpx; font-size: 16rpx; color: #9a836c; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.record-reason { margin-top: 8rpx; padding: 8rpx 12rpx; border-radius: 6rpx; font-size: 16rpx; line-height: 1.6; color: #a54f3a; background: rgba(165,79,58,.07); }
 .record-foot { margin-top: auto; display: flex; justify-content: space-between; align-items: baseline; }
 .record-price { font-family: "Songti SC", "STSong", serif; font-size: 26rpx; color: #8f5338; }
 .record-del { font-size: 16rpx; color: #a18b74; padding: 6rpx 0 0 14rpx; }

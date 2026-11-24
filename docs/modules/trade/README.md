@@ -184,6 +184,11 @@ pending ──approve──→ approved ──hide──→ hidden
 
 状态只有服务端 `POST /trade-api/admin/review` 能改；发布者只能删除自己的发布。
 
+审核时可附带一句 `note`（≤200 字），写入 `review_note` / `reviewed_at`：
+- **只对发布者本人返回**（`/listings/mine`、以及作者本人的详情请求）；
+- 公开列表与公开详情里恒为空字符串，不会泄漏；
+- 发布者在「我的发布」看到「审核说明：…」，改回 `approved` 时说明自动清空。
+
 ### 6.3 审核侧
 
 审核有三个入口，推荐用第一个：
@@ -197,7 +202,7 @@ https://hhxpoint.me/admin/trade/
 - 登录方式与 OJ 后台一致（`role=admin`），不用记第二套密码
 - 列表：状态标签（待审/已通过/未通过/已隐藏/全部）+ 品类筛选 + 标题/型号/描述搜索 + 缩略图
 - 详情：实拍图（点开原图）、卖家描述、设备档案、举报记录、审核记录
-- 动作：**通过并公开 / 驳回 / 隐藏**，可填写审核备注（只进审计日志，不展示给用户）
+- 动作：**通过并公开 / 驳回 / 隐藏**，可填审核说明（1.41.1 起会显示在发布者的「我的发布」）
 - 实现：`pro/trade_admin.py` + `templates/admin/trade*.html`
 - **读**：直接以 `mode=ro` 打开 `/home/point/couple/data/app.db`
 - **写**：不直接改库，调用 `POST /trade-api/admin/review`（`x-admin-token`），保持 Node 服务是唯一写者
@@ -243,7 +248,7 @@ python tools/trade_review.py hide 12
 | DELETE | `/trade-api/listings/:id` | Bearer | — | 仅作者；删图片文件 + 举报行 + 记录（1.41.0 起同步清 `trade_reports`） |
 | POST | `/trade-api/listings/:id/report` | — | 20 次/分/IP | 举报，`reason` ≤80 字 |
 | GET | `/trade-api/admin/pending` | `x-admin-token` | — | 待审列表（≤100） |
-| POST | `/trade-api/admin/review` | `x-admin-token` | — | `{id,status}`，status ∈ approved/rejected/hidden/expired |
+| POST | `/trade-api/admin/review` | `x-admin-token` | — | `{id,status,note?}`，status ∈ approved/rejected/hidden/expired；`note` ≤200 字，写入 `review_note` 并对发布者可见（1.41.1 起） |
 
 返回约定：成功 `{ok:true, ...}`；失败 `{ok:false, error:{code,msg}}`。
 文本统一做 `<>` 剥离与空白折叠，长度按字段截断（标题 40、描述 200、城市 16、标题 12 成色等）。
@@ -254,7 +259,7 @@ python tools/trade_review.py hide 12
 
 ## 8. 数据库
 
-迁移版本：`004_trade_market`（加法式，`src/db.js`）。
+迁移版本：`004_trade_market` + `005_trade_review_note`（均加法式，`src/db.js`）。
 
 ```sql
 CREATE TABLE trade_listings (
@@ -272,6 +277,8 @@ CREATE TABLE trade_listings (
   images TEXT NOT NULL DEFAULT '[]',      -- JSON 数组，存站内相对路径
   status TEXT NOT NULL DEFAULT 'pending',
   report_count INTEGER NOT NULL DEFAULT 0,
+  review_note TEXT DEFAULT '',          -- 后台审核说明，仅发布者可见（005）
+  reviewed_at INTEGER DEFAULT 0,        -- 最近一次审核时间（005）
   created_at INTEGER NOT NULL,
   updated_at INTEGER NOT NULL
 );
@@ -353,12 +360,12 @@ node packageTrade/tests/trade_market_flow.test.js # 选型器 / 公开列表 / �
 选型器默认 68 款、按品类过滤（手机 20 / 游戏机 10）、搜索与清空、选中型号后标题/价格/成色预填、
 公开列表相对路径补全为绝对 URL 与价格千分位、详情页分享 path/imageUrl、举报调用、我的发布状态文案与删除入口。
 
-### 10.2 服务端端到端（真实环境，28 项）
+### 10.2 服务端端到端（真实环境，38 项）
 
 脚本：服务端仓库 `tests/trade_e2e.js`（在服务器本机执行，避免外网限制）：
 
 ```bash
-cd /home/point/couple && node /path/to/tests/trade_e2e.js   # 期望 TRADE_E2E_OK steps=28
+cd /home/point/couple && node /path/to/tests/trade_e2e.js   # 期望 TRADE_E2E_OK steps=38
 ```
 
 覆盖：
@@ -367,23 +374,30 @@ cd /home/point/couple && node /path/to/tests/trade_e2e.js   # 期望 TRADE_E2E_O
 创建测试用户 → 上传实拍图 → 未登录上传 401 → 发布得 pending
 → 非法外站图片被拒 → pending 不出现在公开列表
 → 无 admin token 访问待审 403 → 有 token 可见
-→ 审核通过 → 公开列表/品类过滤/详情/卖家昵称（不含头像）
+→ 审核通过
+→ 驳回并带说明：仅作者可见（mine 拿到 note + reviewed_at）、公开列表消失、他人详情 404
+→ 重新通过：说明清空、公开恢复
+→ 公开列表/品类过滤/详情/卖家昵称（不含头像）/公开详情不返回 note
 → 举报 + report_count+1 → 删除（图片文件、记录、举报行都被清理）
 → 公开列表恢复 → 清理测试用户
 ```
 
-结论：`TRADE_E2E_OK steps=28`。脚本自带测试用户清理，可重复执行。
+结论：`TRADE_E2E_OK steps=38`。脚本自带测试用户清理，可重复执行。
 
 ### 10.3 上传与真机验收
 
 - CI 编译：`node tools/wx-ci/compile_check.js`（`miniprogram-ci`，本地编译产出 zip）；
-- 上传：`node tools/wx-ci/upload.js --version 1.41.0 --desc "..."`；
-  **上传密钥有 IP 白名单**，换网络会报 `invalid ip: <当前公网 IP>`，需要在小程序后台「开发管理 → 开发设置 → 小程序代码上传」把当前 IP 加进去（或选择不校验 IP）；
+- 上传两条路（推荐 B）：
+  - **A** `node tools/wx-ci/upload.js --version 1.41.1 --desc "..."`：受上传密钥 IP 白名单约束，
+    换网络会报 `invalid ip: <微信侧看到的公网 IP>`（注意：它可能和 `api.ipify.org` 显示的不一样）；
+  - **B** 开发者工具 CLI：`cli.bat upload --project <项目路径> --port <IDE 端口> --version 1.41.1 --desc "..."`，
+    走已登录账号、**不受白名单限制**；IDE 端口是动态的，先用 `cli.bat islogin --port <上次端口>` 探，报错信息里会给出真实端口；
 - 真机验收清单：
   1. 公开浏览 → 空态「选一台设备，发布第一条」→ 选型器能搜到型号；
   2. 选一台设备 → 传 2 张实拍图 → 提交 → 我的发布显示「审核中」；
-  3. 用 `tools/trade_review.py approve <id>` 审核 → 公开浏览出现该条 → 分享给好友/朋友圈；
-  4. 好友打开后图片、标题、价格一致；举报一次，后台 `report_count` +1；
+  3. 到 `https://hhxpoint.me/admin/trade/` 点「通过并公开」→ 公开浏览出现该条 → 分享给好友/朋友圈；
+  4. 再发一条，审核时点「驳回」并写一句说明 → 我的发布应显示「审核说明：…」；
+  5. 好友打开后图片、标题、价格一致；举报一次，后台「举报」列 +1；
   5. 我的发布删除 → 公开浏览消失。
 
 ---
@@ -398,7 +412,7 @@ cd /home/point/couple && node /path/to/tests/trade_e2e.js   # 期望 TRADE_E2E_O
 | 隐私 | 只显示昵称；城市为用户手填且不出精确地址；发布者可随时删除 |
 | 版权 | 68 款图片中非 CC 来源标注「待购买来源版权」，采购清单已给出；正式商用前需完成授权 |
 | 分类资质 | 不涉及需要资质的类目；如后续要加「交易/担保」必须重新评估 |
-| 审核留痕 | `status + updated_at`，审核动作未单独建审计表 |
+| 审核留痕 | `status + review_note + reviewed_at`；后台每次动作另写 `/home/point/pro/logs/trade_review.log`（JSONL，含操作人/前后状态/备注），未单独建 DB 审计表 |
 
 ---
 
@@ -409,7 +423,7 @@ cd /home/point/couple && node /path/to/tests/trade_e2e.js   # 期望 TRADE_E2E_O
 3. 无自动过期、无举报阈值自动隐藏、无审计日志表；
 4. 价格仍是模型参考，真实成交样本库未建立；
 5. 公开浏览依赖用户发布，未审核通过前为空态（当前线上 0 条）；
-6. 上传密钥 IP 白名单是 CI 的硬前置，换网络需重新加白。
+6. 上传密钥 IP 白名单是 `miniprogram-ci` 的硬前置，换网络需重新加白；改用微信开发者工具 CLI 可绕开（见 10.3）。
 
 ---
 
@@ -423,3 +437,4 @@ cd /home/point/couple && node /path/to/tests/trade_e2e.js   # 期望 TRADE_E2E_O
 | 1.40.0 / 1.40.1 | 68 款全量真实实物图、统一压缩与站内托管 |
 | 1.40.2 | 详情页直接分享小程序卡片（带当前配置与参考价） |
 | 1.41.0 | 发布前选型器（修复「去发布」死胡同）、首页分享文案改全品类、删除同步清理举报记录 |
+| 1.41.1 | 驳回理由回传：`review_note`/`reviewed_at`（迁移 `005`），后台可填、发布者可见、公开侧不泄漏；OJ 后台「二手审核」 |

@@ -29,6 +29,7 @@
           <text class="status status-{{item.status}}">{{item.statusText}}</text>
         </view>
         <view class="record-model">{{item.model_name}} · {{item.variant_label}}</view>
+        <view wx:if="{{item.showReason}}" class="record-reason">审核说明：{{item.reasonText}}</view>
         <view class="record-foot">
           <text class="record-price">{{item.priceText}}</text>
           <text class="record-del" data-id="{{item.id}}" catchtap="remove">删除</text>
@@ -38,7 +39,7 @@
   </view>
 
   <view class="my-note">
-    <view>审核由后台完成；未通过的发布不会出现在公开浏览。</view>
+    <view>审核由后台完成；未通过或已隐藏的发布不会出现在公开浏览，若审核留了说明会显示在上方。</view>
     <view>本工具不提供交易、支付、评论或私聊。</view>
   </view>
 </view>
