@@ -34,9 +34,18 @@
   "simulatorPluginLibVersion": {},
   "packOptions": {
     "ignore": [
-      { "type": "folder", "value": "tools" },
-      { "type": "folder", "value": "docs" },
-      { "type": "suffix", "value": ".md" }
+      {
+        "type": "folder",
+        "value": "tools"
+      },
+      {
+        "type": "folder",
+        "value": "docs"
+      },
+      {
+        "type": "suffix",
+        "value": ".md"
+      }
     ],
     "include": []
   },
