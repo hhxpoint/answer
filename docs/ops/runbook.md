@@ -297,12 +297,39 @@ node -e "const d=require('better-sqlite3')('data/app.db',{readonly:true});
 console.log(d.prepare('select id,status,title,created_at from trade_listings order by id desc limit 10').all());"
 ```
 
-审核（在服务端仓库目录，`TRADE_ADMIN_TOKEN` 与服务器 `.env` 一致）：
+审核（三选一）：
+
+```text
+① 浏览器：https://hhxpoint.me/admin/trade/   ← 推荐，OJ 管理员登录即可
+② 浏览器：https://hhxpoint.me/couple-admin/trade   ← 小火苗后台 Basic Auth
+③ 命令行：python tools/trade_review.py list / approve <id> / reject <id> / hide <id>
+```
+
+`/admin/trade/` 打不开时的排查顺序：
 
 ```bash
-python tools/trade_review.py list
-python tools/trade_review.py approve <id>
+# a. 蓝图是否注册（app.py 应有 trade_admin_bp 的 import 与 register）
+grep -n 'trade_admin_bp' /home/point/pro/app.py
+# b. 侧栏入口是否在
+grep -n 'trade_admin.index' /home/point/pro/templates/admin/base.html
+# c. 重启后是否有导入/渲染异常
+sudo journalctl -u myide -n 80 --no-pager | grep -iE 'traceback|trade'
+# d. 仅 302/308 是正常的（未登录 → 跳登录页；少了末尾斜杠 → Flask 308）
+curl -s -o /dev/null -w '%{http_code}\n' http://127.0.0.1:5001/admin/trade/
 ```
+
+审核动作写不进去（页面提示「操作失败」）时，按顺序查：
+
+```bash
+# 1. token 是否可读（OJ 从 couple 的 .env 读取）
+sudo grep -c '^TRADE_ADMIN_TOKEN=' /home/point/couple/.env
+# 2. trade-api 是否活着
+curl -s -o /dev/null -w '%{http_code}\n' http://127.0.0.1:5011/trade-api/health
+# 3. 非破坏性探针：应返回「内容不存在」而不是「没有审核权限」
+sudo /home/point/pro/venv/bin/python /tmp/trade_selfcheck.py
+```
+
+> 注意：OJ 的 `SECRET_KEY` 每次启动随机生成，`systemctl restart myide` 后所有管理员需重新登录。
 
 ### 15.3 上传图片失败
 

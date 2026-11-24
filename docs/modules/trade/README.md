@@ -186,7 +186,26 @@ pending ──approve──→ approved ──hide──→ hidden
 
 ### 6.3 审核侧
 
-`tools/trade_review.py`（服务端仓库）是审核命令行工具：
+审核有三个入口，推荐用第一个：
+
+**① OJ 管理后台「二手审核」（推荐，2026-11-24 新增）**
+
+```text
+https://hhxpoint.me/admin/trade/
+```
+
+- 登录方式与 OJ 后台一致（`role=admin`），不用记第二套密码
+- 列表：状态标签（待审/已通过/未通过/已隐藏/全部）+ 品类筛选 + 标题/型号/描述搜索 + 缩略图
+- 详情：实拍图（点开原图）、卖家描述、设备档案、举报记录、审核记录
+- 动作：**通过并公开 / 驳回 / 隐藏**，可填写审核备注（只进审计日志，不展示给用户）
+- 实现：`pro/trade_admin.py` + `templates/admin/trade*.html`
+- **读**：直接以 `mode=ro` 打开 `/home/point/couple/data/app.db`
+- **写**：不直接改库，调用 `POST /trade-api/admin/review`（`x-admin-token`），保持 Node 服务是唯一写者
+- **审计**：每次动作追加一行到 `/home/point/pro/logs/trade_review.log`（JSON Lines，含操作人/前后状态/备注）
+
+**② 小火苗后台 `/couple-admin/trade`**（Basic Auth，最早的一版，功能较简陋但可用）
+
+**③ 命令行 `tools/trade_review.py`**（服务端仓库，适合脚本化/应急）
 
 ```bash
 export TRADE_ADMIN_TOKEN=...      # 与服务器 .env 中同名变量一致
@@ -197,6 +216,9 @@ python tools/trade_review.py hide 12
 ```
 
 它只调用 `https://hhxpoint.me/trade-api/admin/{pending,review}`，不直接读库、不打印 token。
+
+> ⚠️ OJ 的 `SECRET_KEY` 是**每次启动随机生成**的（`secrets.token_hex(16)`），
+> 所以每次 `systemctl restart myide` 都会让所有已登录管理员掉线，需重新登录。这是 OJ 既有行为。
 
 ### 6.4 举报
 

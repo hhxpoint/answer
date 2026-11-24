@@ -425,6 +425,7 @@
 | 2026-11-23 | 五子棋 WS 中继 | 五子棋落子/局面同步复用 `couple-ws`，与悄悄话共享连接 |
 | 2026-11-24 | `trade-api` 删除语义修正 | 删除发布时同步删除 `trade_reports`，避免孤儿举报行；已部署并跑通 28 项端到端自检 |
 | 2026-11-24 | 测试数据清理 | 清理历史测试账号（`trade_local_test`）与测试发布/举报残留；线上 `trade_listings` / `trade_reports` 现为 0 条 |
+| 2026-11-24 | **OJ 后台「二手审核」** | `/admin/trade/`：`trade_admin.py` + `trade.html` / `trade_detail.html`，侧栏新增「二手审核」；**读**走只读 SQLite（`mode=ro`），**写**走 `trade-api/admin/review`（保持 Node 单写者），审核动作追加审计日志 `/home/point/pro/logs/trade_review.log`；已部署并跑通端到端（待审不可见 → 通过即公开 → 隐藏/驳回下架） |
 
 > 服务端完整配置与接口见 [modules/couple/server.md](modules/couple/server.md)，
 > 部署与运维见 [ops/deployment.md](ops/deployment.md) / [ops/runbook.md](ops/runbook.md)。
