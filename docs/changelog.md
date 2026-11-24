@@ -39,6 +39,17 @@
 
 ## 二、小程序版本历史
 
+### 1.41.0 · 2026-11-24 · 发布前选型器与链路修正
+
+- 新增**发布前型号选择器**：`pages/publish/publish` 在无 `id` 时进入选择器（68 款可搜索、按品类切换、显示配置摘要与参考区间），选中后自动带出配置、成色与参考价
+- 修复公开浏览页「去发布」的死胡同：原先跳转缺少 `id`，会落到「没有找到这款设备」；现在带上当前品类，`mylist` 的「去发布」进入全部品类选择器
+- 首页分享文案改为全品类（`onShareAppMessage` / `onShareTimeline`，不再写死「38 款游戏本」）
+- 服务端同步修复：删除发布时一并清理 `trade_reports`，避免孤儿举报记录累积（见第三节）
+- 新增页面级测试 `packageTrade/tests/trade_market_flow.test.js`：选型器、公开列表、详情分享、举报、我的发布
+- 新增模块文档 [modules/trade/README.md](modules/trade/README.md)，并补齐 `README.md`、`modules/overview.md`、`docs/README.md`、`packageTrade/README.md`
+- 版本包体：总包约 6.0MB（上传压缩后 6.26MB），`packageTrade` 仍远低于 2MB 分包上限
+- 验收：6 个本地测试文件全过；`miniprogram-ci` 编译通过；服务端 E2E 28 项通过（含发布→审核→公开→举报→删除全链路）
+
 ### 1.40.2 · 2026-11-23 · 详情页直接分享
 
 - 设备详情底部新增「分享小程序卡片」按钮（`open-type="share"`）
@@ -407,6 +418,11 @@
 | 2026-11-17 | 侧耳倾听 | `voice_messages` 表、语音上传/ffprobe 校验/静态 Range、撤回、后台播放器 |
 | 2026-11-17 | 音频内容安全 | `mediaCheckAsync` + 消息推送回调（安全模式签名、AES 解密、JSON/XML）、违规下架、后台审核状态 |
 | 2026-11-17 | 服务器清理 | 释放约 9GB（journal 4.1G→225M、pip 缓存 5.6G、npm 缓存、btmp 压缩），未重启业务服务，健康检查通过 |
+| 2026-11-19 | 你画我猜 WS 中继 | 双人对局事件经 `couple-ws` 中继，按空间隔离房间 |
+| 2026-11-22 | **二手公开市场 `trade-api`** | 新增 `src/trade.js`：图片上传、发布（`msgSecCheck`）、公开列表、我的发布、详情、删除、举报、待审、审核；表 `trade_listings` / `trade_reports`（迁移 `004_trade_market`）；nginx 新增 `location /trade-api`（`client_max_body_size 25m`）；`.env` 增加 `TRADE_ADMIN_TOKEN` |
+| 2026-11-23 | 五子棋 WS 中继 | 五子棋落子/局面同步复用 `couple-ws`，与悄悄话共享连接 |
+| 2026-11-24 | `trade-api` 删除语义修正 | 删除发布时同步删除 `trade_reports`，避免孤儿举报行；已部署并跑通 28 项端到端自检 |
+| 2026-11-24 | 测试数据清理 | 清理历史测试账号（`trade_local_test`）与测试发布/举报残留；线上 `trade_listings` / `trade_reports` 现为 0 条 |
 
 > 服务端完整配置与接口见 [modules/couple/server.md](modules/couple/server.md)，
 > 部署与运维见 [ops/deployment.md](ops/deployment.md) / [ops/runbook.md](ops/runbook.md)。

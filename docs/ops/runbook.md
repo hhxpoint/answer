@@ -270,3 +270,64 @@ curl -s -o /dev/null -w '%{http_code}\n' http://127.0.0.1:5011/couple-api/health
 - [ ] `journalctl` 无持续 error/traceback
 - [ ] 语音审核回调正常（检查最近 voice 的 check_status 是否为 pass）
 - [ ] 管理后台可登录，数据展示正常
+- [ ] 二手市场：`/trade-api/health` 200、待审队列无长时间积压、举报数无异常激增
+
+---
+
+## 15. 二手市场（trade-api）异常
+
+### 15.1 接口 502 / 发布失败
+
+`/trade-api` 与 `/couple-api` 是同一个 Node 进程，先按第 2 节排查 `couple.service`：
+
+```bash
+curl -s -o /dev/null -w 'trade %{http_code}\n' http://127.0.0.1:5011/trade-api/health
+sudo journalctl -u couple -n 120 --no-pager | grep -i trade
+```
+
+若只有 `/trade-api` 是 404/502，检查 nginx 的 `location /trade-api` 是否还在、`nginx -t` 是否通过。
+
+### 15.2 发布后公开浏览看不到
+
+这是**设计如此**：新发布是 `pending`，必须人工审核成 `approved`。检查：
+
+```bash
+cd /home/point/couple
+node -e "const d=require('better-sqlite3')('data/app.db',{readonly:true});
+console.log(d.prepare('select id,status,title,created_at from trade_listings order by id desc limit 10').all());"
+```
+
+审核（在服务端仓库目录，`TRADE_ADMIN_TOKEN` 与服务器 `.env` 一致）：
+
+```bash
+python tools/trade_review.py list
+python tools/trade_review.py approve <id>
+```
+
+### 15.3 上传图片失败
+
+- 客户端限制：单张 ≤1.5MB、png/jpg/webp、最多 6 张、40 次/分；
+- nginx `client_max_body_size` 需 ≥ 3MB（当前 25m）；
+- 文件落在 `uploads/trade/`，检查磁盘与权限（point 可写）。
+
+### 15.4 举报处理
+
+```bash
+cd /home/point/couple
+node -e "const d=require('better-sqlite3')('data/app.db',{readonly:true});
+console.log(d.prepare('select id,title,report_count,status from trade_listings where report_count>0 order by report_count desc limit 20').all());"
+```
+
+确认违规后 `python tools/trade_review.py hide <id>`（不做自动下架，避免恶意举报误伤）。
+
+### 15.5 清理测试/脏数据
+
+```bash
+# 删除某条发布（作者在端内删除会同时清图片与举报；后台手动删需自己清文件）
+node -e "const d=require('better-sqlite3')('data/app.db');
+const r=d.prepare('select images from trade_listings where id=?').get(<id>);
+d.prepare('delete from trade_reports where listing_id=?').run(<id>);
+d.prepare('delete from trade_listings where id=?').run(<id>);
+console.log('deleted', <id>, r);"
+rm -f /home/point/couple/uploads/trade/<文件名>
+```

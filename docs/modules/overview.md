@@ -1,6 +1,6 @@
 # 子包与主包总览
 
-> 来源：`app.json`（2026-11-18 快照）。每个子包在 `app.json.subPackages` 中注册，
+> 来源：`app.json`（2026-11-24 快照）。每个子包在 `app.json.subPackages` 中注册，
 > 页面路径为相对子包根目录的路径。
 
 ## 主包页面（10）
@@ -22,8 +22,9 @@
 
 | 子包 | 页面 | 职责 | 备注 |
 |---|---|---|---|
-| `packageCouple` | spaces / create / join / home / bind / chat / profile / timeline / timeline-edit / anniversary / anniversary-edit / listen / draw-guess | 多关系空间：双人关系大厅、小火苗、悄悄话、时光、纪念日、侧耳倾听、你画我猜 | 依赖 `couple-api` 服务端；每个空间数据隔离 |
+| `packageCouple` | spaces / create / join / home / bind / chat / profile / timeline / timeline-edit / anniversary / anniversary-edit / listen / draw-guess / gomoku | 多关系空间：双人关系大厅、小火苗、悄悄话、时光、纪念日、侧耳倾听、你画我猜、五子棋 | 依赖 `couple-api` 服务端；每个空间数据隔离 |
 | `packageRecipe` | home / detail / fridge / favorites / sources | 纯本地菜谱：检索/冰箱模式/收藏/图片来源 | **无服务端、无网络、无大模型**；数据与图片随包 |
+| `packageTrade` | home / list / detail / estimate / poster / my / sources / share / publish / market / listing / mylist | 二手 3C：行情、6 维估价、估价单海报、三种卡片直分享、带图发布与公开浏览 | 行情/估价**纯本地**；发布/公开浏览走 `trade-api`（人工审核后可见） |
 | `packagepdf` | hash / lab / puzzle / img2pdf / memo | 哈希、实验、拼图、图片转 PDF、备忘录 | 纯前端为主 |
 | `packagetoken` | word / algorithm / exam | 单词、算法、考试 | 题库数据在子包内 |
 | `packageWeather` | weather | 天气 | 需要定位权限 |
@@ -58,3 +59,4 @@
 2. 新子包注意包体积（主包 ≤ 2MB，总包 ≤ 20MB，具体以微信限制为准）
 3. 大文件（模型/视频/压缩包）不要入库，见 [../assets-and-models.md](../assets-and-models.md)
 4. 各子包第三方依赖的许可与来源见代码内注释/原仓库
+5. `packageTrade` 的公开浏览依赖服务端 `trade-api`；只改前端行情/估价时不需要部署

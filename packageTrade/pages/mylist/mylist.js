@@ -68,7 +68,7 @@ Page({
   },
 
   goPublish: function () {
-    wx.navigateTo({ url: '/packageTrade/pages/home/home?tab=laptop&publish=1' });
+    wx.navigateTo({ url: '/packageTrade/pages/publish/publish' });
   },
 
   goMarket: function () {

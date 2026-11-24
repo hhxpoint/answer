@@ -1,3 +1,70 @@
+<view wx:if="{{picking}}" class="page">
+  <view class="topline">
+    <text class="kicker">PUBLISH / PICK</text>
+    <text class="kicker" bindtap="goMarket">公开浏览 ›</text>
+  </view>
+
+  <view class="publish-head">
+    <view class="publish-title">选择要发布的<text class="title-it">设备</text></view>
+    <view class="publish-sub">先选型号，再填实拍图、成色和价格</view>
+  </view>
+
+  <view class="search-box">
+    <text class="search-icon">⌕</text>
+    <input
+      class="search-input"
+      placeholder="搜型号，如：iPhone 15 / Switch / 拯救者"
+      placeholder-class="search-placeholder"
+      value="{{pickQuery}}"
+      confirm-type="search"
+      bindinput="onPickInput"
+      bindconfirm="onPickConfirm"
+    />
+    <text wx:if="{{pickQuery}}" class="search-clear" bindtap="onPickClear">×</text>
+  </view>
+
+  <view class="pick-cats">
+    <view class="pick-cat {{pickCategory === 'all' ? 'on' : ''}}" data-key="all" bindtap="onPickCategory">全部</view>
+    <view
+      wx:for="{{pickCategories}}"
+      wx:key="key"
+      class="pick-cat {{pickCategory === item.key ? 'on' : ''}}"
+      data-key="{{item.key}}"
+      bindtap="onPickCategory"
+    >{{item.name}}</view>
+  </view>
+
+  <view class="pick-count">{{pickModels.length}} 款可选</view>
+
+  <view class="pick-list">
+    <view
+      wx:for="{{pickModels}}"
+      wx:key="id"
+      class="pick-row"
+      data-id="{{item.id}}"
+      bindtap="pickModel"
+      hover-class="pressed"
+    >
+      <image class="pick-thumb" src="{{item.image}}" mode="aspectFill" lazy-load />
+      <view class="pick-main">
+        <view class="pick-name">{{item.brand}} {{item.model}}</view>
+        <view class="pick-spec">{{item.specLine}}</view>
+        <view class="pick-price">{{item.priceText}}</view>
+      </view>
+      <view class="pick-arrow">›</view>
+    </view>
+  </view>
+
+  <view wx:if="{{!pickModels.length}}" class="empty">
+    <view class="empty-title">没有匹配的型号</view>
+    <view class="empty-copy">换个关键词，或切换上面的大类。</view>
+  </view>
+
+  <view class="footer-note">
+    <view>发布内容需人工审核后公开；不提供交易、支付、评论或私聊。</view>
+  </view>
+</view>
+
 <view wx:if="{{model}}" class="page publish-page">
   <view class="topline">
     <text class="kicker">PUBLISH / REVIEW</text>

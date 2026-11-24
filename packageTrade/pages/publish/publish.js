@@ -15,11 +15,21 @@ Page({
     uploading: false,
     submitting: false,
     notFound: false,
-    errorText: ''
+    errorText: '',
+    picking: false,
+    pickCategory: 'all',
+    pickQuery: '',
+    pickCategories: [],
+    pickModels: []
   },
 
   onLoad: function (options) {
-    const model = catalog.getModel((options && options.id) || '');
+    const id = (options && options.id) || '';
+    if (!id) {
+      this.startPicking((options && options.category) || 'all');
+      return;
+    }
+    const model = catalog.getModel(id);
     if (!model) {
       this.setData({ notFound: true });
       return;
@@ -34,6 +44,77 @@ Page({
       price: String(Math.round((variant.priceLow + variant.priceHigh) / 2)),
       city: ''
     });
+    const that = this;
+    api.ensureLogin().catch(function (err) {
+      that.setData({ errorText: (err && err.message) || '登录失败' });
+    });
+  },
+
+  startPicking: function (category) {
+    const cats = catalog.categories();
+    const known = cats.some(function (c) { return c.key === category; });
+    const active = known ? category : 'all';
+    this.setData({
+      picking: true,
+      pickCategories: cats,
+      pickCategory: active,
+      pickQuery: ''
+    });
+    this.refreshPick(active, '');
+    if (wx.setNavigationBarTitle) wx.setNavigationBarTitle({ title: '选择要发布的设备' });
+  },
+
+  refreshPick: function (category, query) {
+    const list = catalog.list({ category: category || 'all', query: query || '' }).slice(0, 80);
+    this.setData({
+      pickModels: list.map(function (m) {
+        return {
+          id: m.id,
+          brand: m.brand,
+          model: m.model,
+          specLine: m.specLine,
+          priceText: m.priceText,
+          categoryName: m.categoryName,
+          image: m.image || ''
+        };
+      }),
+      pickCategory: category || 'all',
+      pickQuery: query || ''
+    });
+  },
+
+  onPickCategory: function (e) {
+    this.refreshPick(e.currentTarget.dataset.key, this.data.pickQuery);
+  },
+
+  onPickInput: function (e) {
+    this.refreshPick(this.data.pickCategory, e.detail.value);
+  },
+
+  onPickConfirm: function () {
+    this.refreshPick(this.data.pickCategory, this.data.pickQuery);
+  },
+
+  onPickClear: function () {
+    this.refreshPick('all', '');
+  },
+
+  pickModel: function (e) {
+    const model = catalog.getModel(e.currentTarget.dataset.id);
+    if (!model) return;
+    const variant = catalog.getVariant(model, '');
+    const condition = estimate.CONDITIONS.find(function (c) { return c.id === 'A'; }) || estimate.CONDITIONS[1];
+    this.setData({
+      picking: false,
+      notFound: false,
+      model: model,
+      variant: variant,
+      condition: condition,
+      title: model.model + ' ' + variant.label,
+      price: String(Math.round((variant.priceLow + variant.priceHigh) / 2)),
+      city: ''
+    });
+    if (wx.setNavigationBarTitle) wx.setNavigationBarTitle({ title: '发布二手信息' });
     const that = this;
     api.ensureLogin().catch(function (err) {
       that.setData({ errorText: (err && err.message) || '登录失败' });

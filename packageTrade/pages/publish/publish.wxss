@@ -27,3 +27,74 @@
 .empty { padding: 90rpx 20rpx; text-align: center; }
 .empty-title { font-family: "Songti SC", serif; font-size: 32rpx; color: #3a2e24; }
 .empty-copy { margin-top: 12rpx; font-size: 22rpx; color: #9a836c; }
+
+/* ---- 型号选择（无 id 进入时） ---- */
+.pick-cats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10rpx;
+  margin: 26rpx 0 0;
+}
+.pick-cat {
+  padding: 10rpx 22rpx;
+  border: 1rpx solid rgba(74, 56, 39, 0.16);
+  border-radius: 6rpx;
+  background: rgba(255, 251, 245, 0.5);
+  font-size: 22rpx;
+  color: #7b6754;
+}
+.pick-cat.on {
+  background: #8f5338;
+  border-color: #8f5338;
+  color: #fffaf4;
+}
+.pick-count {
+  margin: 22rpx 0 6rpx;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 16rpx;
+  letter-spacing: 1.8rpx;
+  color: #a58b73;
+}
+.pick-list {
+  margin-top: 4rpx;
+}
+.pick-row {
+  display: flex;
+  align-items: center;
+  gap: 18rpx;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid rgba(74, 56, 39, 0.12);
+}
+.pick-thumb {
+  flex: none;
+  width: 116rpx;
+  height: 86rpx;
+  border-radius: 6rpx;
+  background: #e7dfd2;
+}
+.pick-main {
+  flex: 1;
+  min-width: 0;
+}
+.pick-name {
+  font-size: 26rpx;
+  color: #2a2119;
+}
+.pick-spec {
+  margin-top: 6rpx;
+  overflow: hidden;
+  font-size: 19rpx;
+  color: #8f7a65;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.pick-price {
+  margin-top: 6rpx;
+  font-size: 21rpx;
+  color: #8f5338;
+}
+.pick-arrow {
+  flex: none;
+  font-size: 26rpx;
+  color: #b09a83;
+}

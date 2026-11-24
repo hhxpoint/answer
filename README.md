@@ -1,7 +1,7 @@
 # answer · 微信小程序
 
 > 一个以「AI 学习助手 + 工具箱」为主，并内置「我们的小火苗」双人私密空间的微信小程序。
-> 当前仓库快照：**2026-11-22**（小程序版本 **1.40.2**）
+> 当前仓库快照：**2026-11-24**（小程序版本 **1.41.0**）
 
 ---
 
@@ -16,7 +16,7 @@
 | 特色模块 | **我们的小火苗**：双人绑定 + 虚拟小火苗 + 悄悄话 + 我们的时光 + 纪念日 + 侧耳倾听（语音信箱） |
 | 多关系空间 | 一人可拥有多个双人关系空间（家人/恋人/朋友/自定义），大厅切换，每个空间独立小火苗与数据 |
 | 新增模块 | **今天吃什么**：40 道家常菜、纯本地离线检索、冰箱模式、本地收藏（无服务端/无大模型） |
-| 新增模块 | **二手估价**：68 款全品类行情 + 公开二手信息、真实配置、本地个人估价单、导出图片分享（无交易/无公开列表） |
+| 新增模块 | **二手估价与公开市场**：68 款全品类行情、个人估价单、三类小程序卡片直分享、带实拍图的公开信息（人工审核后可见，不做交易/评论/私聊） |
 | 服务端 | 独立 Node.js 服务（Express + SQLite + WebSocket），部署在 `hhxpoint.me` |
 | 管理后台 | OJ Flask 管理后台的子模块 `/admin/couple/` + 独立备用面板 `/couple-admin/` |
 
@@ -49,7 +49,7 @@ answer/
 ├─ pages/                              # 主包页面（10 个）
 ├─ packageCouple/                      # ★「我们的小火苗」双人空间（含悄悄话/时光/纪念日/侧耳倾听/你画我猜）
 ├─ packageRecipe/                      # ★「今天吃什么」纯本地菜谱（独立子包）
-├─ packageTrade/                       # ★「游戏本二手估价」纯本地估价单（独立子包）
+├─ packageTrade/                       # ★「二手估价与公开市场」（行情/估价/海报/发布审核）
 ├─ packageAI/  packageAR/  packageDetect/
 ├─ packagepdf/ packageFinance/ packageSport/
 ├─ packageGame/ packageGithub/ packageJwzx/
@@ -108,6 +108,22 @@ answer/
 
 ---
 
+## 「二手估价与公开市场」模块
+
+子包 `packageTrade`（12 页）：**行情与估价纯本地，公开浏览走服务端**。
+
+- 68 款设备 / 83 个配置（游戏本 38、手机 20、游戏机 10），全部使用真实产品图并托管在 `hhxpoint.me`
+- 成色/电池/维修/屏幕/配件/保修 6 维系数估价，输出区间、快出价、慢出价与心理价对比
+- 三种原生小程序卡片分享：估价单（白名单载荷，无服务端）、设备详情（型号+配置+参考价）、公开信息（`listing?id=`）
+- 发布：选型器 → 最多 6 张实拍图 → `trade-api` 入库 `pending` → 人工审核 `approved` 后才公开
+- 合规边界：不做交易/支付/评论/私聊，公开列表只显示昵称，支持举报与作者删除
+- 模块文档：[docs/modules/trade/README.md](docs/modules/trade/README.md)
+- 图片来源与采购清单：[docs/TRADE_IMAGE_SOURCES.md](docs/TRADE_IMAGE_SOURCES.md)
+
+> 公开市场在服务端 `answer-couple-server` 的 `src/trade.js`，接口前缀 `/trade-api`，审核用 `tools/trade_review.py`。
+
+---
+
 ## 文档导航
 
 | 文档 | 内容 |
@@ -118,8 +134,11 @@ answer/
 | [docs/changelog.md](docs/changelog.md) | **按版本记录的详细变更历史（可回溯）** |
 | [docs/modules/overview.md](docs/modules/overview.md) | 20 个子包的职责与状态 |
 | [docs/modules/recipe/README.md](docs/modules/recipe/README.md) | 纯本地菜谱模块详解（数据/检索/冰箱/图片许可） |
-| [packageTrade/README.md](packageTrade/README.md) | 游戏本二手估价模块（数据/算法/隐私/测试） |
-| [docs/modules/couple/README.md](docs/modules/couple/README.md) | 小火苗模块详解 |\n| [docs/modules/couple/gomoku.md](docs/modules/couple/gomoku.md) | 五子棋对弈（实时协议/UI/测试） |
+| [docs/modules/trade/README.md](docs/modules/trade/README.md) | **二手估价与公开市场模块详解（页面/数据/算法/分享/发布审核/接口/DB/运维）** |
+| [docs/TRADE_IMAGE_SOURCES.md](docs/TRADE_IMAGE_SOURCES.md) | 68 款实物图来源、许可与版权采购清单 |
+| [packageTrade/README.md](packageTrade/README.md) | 子包速览（数据/算法/隐私/测试） |
+| [docs/modules/couple/README.md](docs/modules/couple/README.md) | 小火苗模块详解 |
+| [docs/modules/couple/gomoku.md](docs/modules/couple/gomoku.md) | 五子棋对弈（实时协议/UI/测试） |
 | [docs/modules/couple/server.md](docs/modules/couple/server.md) | 服务端、接口、数据库、后台、内容安全 |
 | [docs/modules/couple/release.md](docs/modules/couple/release.md) | 发布流程、审核注意事项、隐私合规 |
 | [docs/ops/deployment.md](docs/ops/deployment.md) | 服务端部署与配置全量说明 |
@@ -134,7 +153,7 @@ answer/
 
 - 默认分支：`main`（稳定可发布分支）
 - 版本号：`1.x.y`，每次上传开发版递增；对外发布以微信后台「体验版/正式版」为准
-- 当前模块版本：**1.33.1**
+- 当前模块版本：**1.41.0**
 - 历史版本与每次改动明细：[docs/changelog.md](docs/changelog.md)
 
 ---

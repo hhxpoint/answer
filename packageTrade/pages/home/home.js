@@ -117,12 +117,12 @@ Page({
 
   onShareAppMessage: function () {
     return {
-      title: '游戏本行情 · 个人二手估价单',
+      title: '手机 / 游戏机 / 游戏本 · 二手行情与估价',
       path: '/packageTrade/pages/home/home'
     };
   },
 
   onShareTimeline: function () {
-    return { title: '游戏本二手估价 · 38 款行情' };
+    return { title: '二手估价 · 手机 / 游戏机 / 游戏本 · ' + catalog.ALL.length + ' 款行情' };
   }
 });

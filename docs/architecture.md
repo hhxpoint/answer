@@ -82,6 +82,7 @@ pages/emotion-history/...   情绪历史
 
 - `packageCouple`：**双人私密空间**（小火苗/悄悄话/时光/纪念日/侧耳倾听），本文档核心
 - `packageRecipe`：**纯本地菜谱「今天吃什么」**（40 道菜、离线检索、冰箱模式、本地收藏），不依赖服务端
+- `packageTrade`：**二手估价与公开市场**（68 款行情、6 维估价、估价单海报、三种卡片直分享）；行情/估价纯本地，发布与公开浏览走 `/trade-api` 人工审核，详见 [modules/trade/README.md](modules/trade/README.md)
 - `packagetoken`：单词、算法、考试
 - `packagepdf`：哈希、实验、拼图、图片转 PDF、备忘录
 - `packageDetect` / `packageAI` / `packageAR`：模型与 AI 相关（独立分包）

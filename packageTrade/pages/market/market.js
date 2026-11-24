@@ -45,7 +45,8 @@ Page({
   },
 
   goPublish: function () {
-    wx.navigateTo({ url: '/packageTrade/pages/publish/publish?category=laptop' });
+    const category = this.data.active === 'all' ? 'all' : this.data.active;
+    wx.navigateTo({ url: '/packageTrade/pages/publish/publish?category=' + category });
   },
 
   goMy: function () {

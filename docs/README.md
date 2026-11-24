@@ -20,6 +20,7 @@ README.md（根目录）
        │    ├─ docs/modules/couple/multi-space.md  ← 多关系空间改造
        │    └─ docs/modules/couple/release.md
        ├─ docs/modules/recipe/README.md   ← 今天吃什么（纯本地菜谱）
+       ├─ docs/modules/trade/README.md    ← 二手估价与公开市场（行情/估价/分享/发布审核）
        ├─ docs/ops/deployment.md          ← 服务端怎么部、怎么配
        ├─ docs/ops/runbook.md             ← 出问题怎么排查、怎么恢复
        ├─ docs/security.md                ← 密钥与安全红线
@@ -43,6 +44,8 @@ README.md（根目录）
 | [modules/couple/ui-refinement.md](modules/couple/ui-refinement.md) | 小火苗 UI 协调性优化与逐页截图验收 |
 | [modules/couple/release.md](modules/couple/release.md) | 上传/预览/体验版/审核/隐私协议/发布检查单 |
 | [modules/recipe/README.md](modules/recipe/README.md) | 「今天吃什么」纯本地菜谱：数据、检索、冰箱模式、图片许可与构建 |
+| [modules/trade/README.md](modules/trade/README.md) | 二手估价与公开市场：页面、数据、估价算法、分享载荷、发布/审核链路、`/trade-api`、DB、部署与测试 |
+| [TRADE_IMAGE_SOURCES.md](TRADE_IMAGE_SOURCES.md) | 68 款设备真实图片来源、许可与版权采购清单 |
 | [ops/deployment.md](ops/deployment.md) | 服务器路径、systemd、nginx、环境变量、部署脚本 |
 | [ops/runbook.md](ops/runbook.md) | 故障排查、日志、重启、磁盘内存清理、备份恢复 |
 | [security.md](security.md) | 哪些东西绝对不能提交、密钥轮换、泄露处置 |

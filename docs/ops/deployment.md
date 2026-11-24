@@ -63,6 +63,18 @@ location /couple-admin {
     proxy_pass http://127.0.0.1:5011;
     proxy_set_header Host $host;
 }
+
+# 二手公开市场（trade-api，复用同一个 Node 服务）
+location /trade-api {
+    proxy_pass http://127.0.0.1:5011;
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_read_timeout 75s;
+    client_max_body_size 25m;   # 发布图片走 base64 JSON，需比 couple-api 更大
+}
 ```
 
 **修改前必须备份**：
@@ -103,6 +115,7 @@ ADMIN_PASS=<独立面板强密码>
 WX_MSG_TOKEN=<微信消息推送 Token，与公众平台一致>
 WX_MSG_AES_KEY=<43 位 EncodingAESKey>
 MULTI_SPACE_ENABLED=1   # 多关系空间开关：0=旧行为，1=启用空间大厅/ X-Space-Id
+TRADE_ADMIN_TOKEN=<二手市场审核 token，仅服务器与本地运维持有>
 ```
 
 生成随机密钥示例：
@@ -190,6 +203,18 @@ ls -lh backups/
 
 - 恢复：停服务 → 替换 `data/app.db` → 启服务 → 验证（详见 runbook）
 
+二手市场的表在同一个库里（迁移 `004_trade_market`）：
+
+```bash
+# 查看待审 / 各状态数量（只读）
+cd /home/point/couple
+node -e "const d=require('better-sqlite3')('data/app.db',{readonly:true});
+console.log(d.prepare('select status,count(*) c from trade_listings group by status').all());
+console.log('reports', d.prepare('select count(*) c from trade_reports').get());"
+```
+
+发布图片落在 `uploads/trade/`，设备实物图落在 `uploads/trade-assets/final/`（约 15MB，随 `uploads/` 一起迁移）。
+
 ---
 
 ## 9. 验证清单
@@ -201,6 +226,7 @@ ss -lntp | grep 5011
 
 # 接口
 curl -s -o /dev/null -w 'health %{http_code}\n' https://hhxpoint.me/couple-api/health
+curl -s -o /dev/null -w 'trade %{http_code}\n' https://hhxpoint.me/trade-api/health
 curl -s -o /dev/null -w 'panel %{http_code}\n' https://hhxpoint.me/couple-admin/
 curl -s -o /dev/null -w 'admin %{http_code}\n' https://hhxpoint.me/admin/couple/
 
