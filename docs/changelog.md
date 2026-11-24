@@ -47,8 +47,10 @@
 - 服务端同步修复：删除发布时一并清理 `trade_reports`，避免孤儿举报记录累积（见第三节）
 - 新增页面级测试 `packageTrade/tests/trade_market_flow.test.js`：选型器、公开列表、详情分享、举报、我的发布
 - 新增模块文档 [modules/trade/README.md](modules/trade/README.md)，并补齐 `README.md`、`modules/overview.md`、`docs/README.md`、`packageTrade/README.md`
-- 版本包体：总包约 6.0MB（上传压缩后 6.26MB），`packageTrade` 仍远低于 2MB 分包上限
-- 验收：6 个本地测试文件全过；`miniprogram-ci` 编译通过；服务端 E2E 28 项通过（含发布→审核→公开→举报→删除全链路）
+- 清理 `packageTrade/assets/devices/` 下 38 张无任何引用的占位图（326 KB）：图片已全部改为服务器外链，代码包同步减重
+- 版本包体（上传实测）：总包 **6.9 MB**（7,251,773 字节）、main 755.9 KB、`packageCouple` 555.5 KB、`packageTrade` **229.5 KB**（清理前 548 KB）
+- 验收：6 个本地测试文件全过；服务端 E2E 28 项通过（含发布→审核→公开→举报→删除全链路）
+- 已上传开发版 **1.41.0**（微信开发者工具 CLI，绕开上传密钥 IP 白名单），体验二维码 `answer-preview-1410.jpg`
 
 ### 1.40.2 · 2026-11-23 · 详情页直接分享
 
