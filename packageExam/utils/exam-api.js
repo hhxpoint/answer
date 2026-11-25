@@ -1,4 +1,4 @@
-﻿/**
+/**
  * 公考题库 · 数据访问层
  *
  * 数据全部放在服务器静态目录（不走接口）：
@@ -14,7 +14,9 @@ const IMG_BASE = BASE + '/img';
 const TTL_INDEX = 30 * 60 * 1000;
 const TTL_PAPER = 24 * 60 * 60 * 1000;
 
-const K_INDEX = 'exam:index';
+// 数据版本：题库内容有更新时 +1，旧的本地缓存自动失效
+const DATA_VERSION = 2;
+const K_INDEX = 'exam:index:v' + DATA_VERSION;
 const K_PAPER = 'exam:paper:';
 
 function now() {
@@ -66,7 +68,7 @@ function loadIndex(force) {
     const hit = readCache(K_INDEX, TTL_INDEX);
     if (hit) return Promise.resolve(hit);
   }
-  return getJSON(BASE + '/index.json').then(function (data) {
+  return getJSON(BASE + '/index.json?v=' + DATA_VERSION).then(function (data) {
     writeCache(K_INDEX, data);
     return data;
   });
@@ -167,7 +169,7 @@ function loadPoolIndex(force) {
     const hit = readCache(k, TTL_INDEX);
     if (hit) return Promise.resolve(hit);
   }
-  return getJSON(BASE + '/pools/index.json').then(function (data) {
+  return getJSON(BASE + '/pools/index.json?v=' + DATA_VERSION).then(function (data) {
     writeCache(k, data);
     return data;
   });
@@ -193,7 +195,7 @@ function loadEssayIndex(force) {
     const hit = readCache(k, TTL_INDEX);
     if (hit) return Promise.resolve(hit);
   }
-  return getJSON(BASE + '/essay/index.json').then(function (data) {
+  return getJSON(BASE + '/essay/index.json?v=' + DATA_VERSION).then(function (data) {
     writeCache(k, data);
     return data;
   });
