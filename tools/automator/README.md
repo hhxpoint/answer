@@ -1,4 +1,4 @@
-# 小程序自动化冒烟（miniprogram-automator）
+﻿# 小程序自动化冒烟（miniprogram-automator）
 
 在开发者工具的真机模拟器里逐页打开小程序，做 **渲染 + 路由 + 数据** 三层断言，替代人工点一遍。
 
@@ -52,9 +52,13 @@ mkdir miniprogram_npm            # project.config.json 是 packNpmManually: true
 pages 12 · PASS 9 · SKIP 3 · FAIL 0
 ```
 
-- **SKIP** 是「没法在本机验」，不是通过：`couple-home` / `couple-spaces` / `trade-share` 依赖
-  `hhxpoint.me` 接口与本机网络，本机连不上会挂起，已标记 `optional`。
+- **SKIP** 是「没法在本机验」，不是通过。当前 3 个 SKIP 的真实原因**不是网络**（本机到
+  `hhxpoint.me` 实测 200）：**`packageCouple` 子包的页面在自动化模式下打不开**——
+  `wx.navigateTo` 既不 success 也不 fail（一直 pending），页面生命周期一次都不触发，应用停在上一个页面。
+  `packageTrade` / `packageRecipe` 同样结构却能正常打开，所以不是 automator、也不是网络。
+  复现：`node tools/automator/diagnose-nav.js <端口> /packageCouple/pages/spaces/spaces`
 - SKIP 不计入 PASS，也不影响退出码；但**别把 SKIP 当成绿**。
+- 小火苗模块的真机可用性**未经自动化验证**，需要人工在体验版上点一次确认。
 
 ## 五、已知坑
 
