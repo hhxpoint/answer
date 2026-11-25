@@ -42,7 +42,8 @@ def fetch_text(rel):
 def main():
     sys.stdout.reconfigure(encoding='utf-8', errors='replace')
     os.makedirs(IMG, exist_ok=True)
-    papers = [x.strip() for x in open(os.path.join(CACHE, 'papers.txt'), encoding='utf-8') if x.strip()]
+    lst = sys.argv[sys.argv.index('--list') + 1] if '--list' in sys.argv else os.path.join(CACHE, 'papers.txt')
+    papers = [x.strip() for x in open(lst, encoding='utf-8') if x.strip()]
     print('卷数 %d' % len(papers))
 
     jobs = []

@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """公考题库数据管线 · 解析层
 
 md（每卷 6 个模块）→ 结构化 JSON。
@@ -146,6 +146,46 @@ def split_question(body):
     }
 
 
+
+JUDGE_HINT = re.compile(r'（\s*）\s*$')
+
+
+def clean_option_artifact(blocks):
+    """源数据判断题会留下「- （选项）[]」占位，清掉"""
+    out = []
+    for b in blocks or []:
+        parts = []
+        for p in b.get('parts') or []:
+            if p.get('t'):
+                t = re.sub(r'\s*-\s*（选项）\s*\[\]\s*', '', p['t'])
+                t = re.sub(r'\n{3,}', '\n\n', t).strip()
+                if t:
+                    parts.append({'t': t})
+            else:
+                parts.append(p)
+        if parts:
+            out.append({'parts': parts})
+    return out
+
+
+def fix_judgement(q):
+    """判断题：源数据无选项、答案为 A/B，题干以括号结尾 → 合成为 正确 / 错误"""
+    q['stem'] = clean_option_artifact(q.get('stem'))
+    if q.get('options'):
+        return q
+    if q.get('answer') not in ('A', 'B'):
+        return q
+    stem_text = ''.join(p.get('t', '') for b in q['stem'] for p in b.get('parts') or [])
+    if not JUDGE_HINT.search(stem_text) and '（    ）' not in stem_text:
+        return q
+    q['options'] = [
+        {'key': 'A', 'blocks': [{'parts': [{'t': '正确'}]}], 'marked': q['answer'] == 'A'},
+        {'key': 'B', 'blocks': [{'parts': [{'t': '错误'}]}], 'marked': q['answer'] == 'B'},
+    ]
+    q['type'] = '判断题'
+    q['synthesized'] = 'judgement'
+    return q
+
 def fix_type(q):
     """源数据偶有题型标错：无图但选项是「A：B」词项的「图形推理」其实是类比推理。"""
     if q.get('type') != '图形推理':
@@ -206,6 +246,7 @@ def parse_module(path, section_code):
             'type': qtype,
             'material': material,
         })
+        fix_judgement(parsed)
         fix_type(parsed)
         questions.append(parsed)
 
@@ -225,6 +266,40 @@ def parse_module(path, section_code):
     return meta, questions, materials
 
 
+
+PROV_CODE = {
+    '北京': 'bj', '上海': 'sh', '天津': 'tj', '重庆': 'cq', '河北': 'heb', '山西': 'sx',
+    '辽宁': 'ln', '吉林': 'jl', '黑龙江': 'hlj', '江苏': 'js', '浙江': 'zj', '安徽': 'ah',
+    '福建': 'fj', '江西': 'jx', '山东': 'sd', '河南': 'hn', '湖北': 'hb', '湖南': 'hun',
+    '广东': 'gd', '广西': 'gx', '海南': 'hai', '四川': 'sc', '贵州': 'gz', '云南': 'yn',
+    '陕西': 'sn', '甘肃': 'gs', '青海': 'qh', '宁夏': 'nx', '新疆': 'xj',
+    '内蒙古': 'nmg', '西藏': 'xz', '深圳': 'sz',
+}
+
+
+def province_key(name):
+    """省考卷：省份 + 类别 → 稳定短键"""
+    prov = None
+    for p, code in PROV_CODE.items():
+        if p in name:
+            prov = code
+            break
+    if not prov:
+        return None
+    cls = ''
+    m = re.search(r'（([ABC])类）', name)
+    if m:
+        cls = '-' + m.group(1).lower()
+    elif '乡镇' in name:
+        cls = '-xz'
+    elif '县级' in name:
+        cls = '-xj'
+    elif '省市' in name:
+        cls = '-ss'
+    elif '执法' in name:
+        cls = '-zf'
+    return prov + cls
+
 def paper_key(name, year):
     if '副省级' in name:
         suffix = 'fsx'
@@ -234,8 +309,13 @@ def paper_key(name, year):
         suffix = 'zf'
     else:
         suffix = re.sub(r'[^\w]+', '', name)[-8:]
-    kind = 'gk' if '国家公务员' in name else ('lk' if '联考' in name else 'sk')
-    return '%s%s-%s' % (kind, year, suffix)
+    if '国家公务员' in name:
+        return 'gk%s-%s' % (year, suffix)
+    if '联考' in name:
+        pk = province_key(name)
+        return 'lk%s-%s' % (year, pk or suffix)
+    pk = province_key(name)
+    return 'sk%s-%s' % (year, pk or suffix)
 
 
 def validate(q):
@@ -243,7 +323,7 @@ def validate(q):
     bad = []
     if not q['stem']:
         bad.append('empty_stem')
-    if len(q['options']) != 4:
+    if len(q['options']) != (2 if q.get('synthesized') == 'judgement' else 4):
         bad.append('options_%d' % len(q['options']))
     if q['answer'] not in ('A', 'B', 'C', 'D'):
         bad.append('no_answer')

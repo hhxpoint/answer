@@ -1,13 +1,21 @@
 const api = require('../../utils/exam-api.js');
 const store = require('../../utils/exam-store.js');
 
-const TYPE_ORDER = ['national'];
+const TABS = [
+  { key: 'all', label: '全部' },
+  { key: 'guokao', label: '国考' },
+  { key: 'shengkao', label: '省考' }
+];
 
 Page({
   data: {
+    tabs: TABS,
+    filter: 'all',
     groups: [],
     loading: true,
-    error: ''
+    error: '',
+    totalPapers: 0,
+    totalQuestions: 0
   },
 
   onLoad() {
@@ -20,39 +28,50 @@ Page({
     api.loadIndex()
       .then(function (data) {
         const papers = ((data && data.papers) || []).slice();
-        // 按年份倒序
         papers.sort(function (a, b) {
           return String(b.year).localeCompare(String(a.year)) || String(a.key).localeCompare(String(b.key));
         });
-        const groups = [];
-        const byYear = {};
-        papers.forEach(function (p) {
-          const y = String(p.year || '');
-          if (!byYear[y]) {
-            byYear[y] = { year: y, papers: [] };
-            groups.push(byYear[y]);
-          }
-          byYear[y].papers.push({
+        that.all = papers.map(function (p) {
+          return {
             key: p.key,
             title: p.title,
-            shortName: p.shortName || p.title,
-            questionCount: p.questionCount,
-            done: 0,
-            total: p.questionCount
-          });
+            year: String(p.year || ''),
+            examType: p.examType || 'guokao',
+            total: p.questionCount,
+            done: Object.keys(store.getProgress(p.key).answers || {}).length
+          };
         });
-        // 附上每卷进度
-        groups.forEach(function (g) {
-          g.papers.forEach(function (p) {
-            const prog = store.getProgress(p.key);
-            p.done = Object.keys(prog.answers || {}).length;
-          });
-        });
-        that.setData({ groups: groups, loading: false });
+        const nq = that.all.reduce(function (a, x) { return a + x.total; }, 0);
+        that.setData({ totalPapers: that.all.length, totalQuestions: nq, loading: false });
+        that.applyFilter(that.data.filter);
       })
       .catch(function (err) {
         that.setData({ loading: false, error: (err && err.message) || '加载失败' });
       });
+  },
+
+  applyFilter(filter) {
+    const list = (this.all || []).filter(function (p) {
+      if (filter === 'all') return true;
+      if (filter === 'shengkao') return p.examType === 'shengkao' || p.examType === 'liankao';
+      return p.examType === filter;
+    });
+    const groups = [];
+    const byYear = {};
+    list.forEach(function (p) {
+      if (!byYear[p.year]) {
+        byYear[p.year] = { year: p.year, papers: [] };
+        groups.push(byYear[p.year]);
+      }
+      byYear[p.year].papers.push(p);
+    });
+    this.setData({ groups: groups, filter: filter });
+  },
+
+  tapTab(e) {
+    const key = e.currentTarget.dataset.key;
+    if (key === this.data.filter) return;
+    this.applyFilter(key);
   },
 
   open(e) {

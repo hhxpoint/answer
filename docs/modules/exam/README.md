@@ -7,7 +7,7 @@
 
 ## 1. 定位
 
-行测真题刷题 + 申论精练（申论为 M3 交付）。当前已上线 **2025 国考行测（副省级）135 题**。
+行测真题刷题 + 申论精练 + 红领巾批改。当前已上线 **26 卷 / 3257 题**（国考 16 卷 2109 题 + 省考 10 卷 1148 题）与 **申论 6 套**。
 
 入口：首页「二手估价」下方「公考题库」。
 
@@ -93,7 +93,7 @@ python fetch.py --paper "<卷名>"        # 抓 6 个模块 md
 python fetch_images_fast.py all         # 并发补抓图片（限流时降并发）
 python parse.py --paper "<卷目录名>"     # md → JSON（含校验）
 python build_images.py                  # png → webp + 重写引用
-python build_index.py                   # 生成 index.json
+python build_index.py                   # 生成 index.json\npython build_pools.py                   # 生成题型池\npython verify_images.py                 # 图片零缺失闸门
 python deploy_exam.py                   # 上传到服务器静态目录
 python demo.py                          # 生成手机宽度视觉原型（本地验收用）
 ```
@@ -141,4 +141,4 @@ python tools/check_pages.py <项目根> --root packageExam
 | M1 | 入口 + 首页 + 2025 副省级 1 卷 + 做题页/答题卡 | ✅ |
 | M2 | 2020–2025 共 16 卷 ≈2080 题、专项练习、错题本、报告 | 进行中 |
 | M3 | 申论 6 套（材料/题目/作答三 Tab、字数统计与草稿、要点自评） | ✅ |
-| M4 | 申论「红领巾批改」（要点规则匹配批改，不出现 AI 字样）+ 省考扩展 | 批改 ✅ / 省考待做 |
+| M4 | 申论「红领巾批改」（要点规则匹配批改，不出现 AI 字样）+ 省考扩展 | ✅ |

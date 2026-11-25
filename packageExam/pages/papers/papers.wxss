@@ -55,3 +55,22 @@
   font-size: 22rpx;
   color: #2b4a8b;
 }
+
+.filters {
+  display: flex;
+  gap: 12rpx;
+  margin: 20rpx 40rpx 4rpx;
+}
+.filters .f {
+  padding: 10rpx 26rpx;
+  border-radius: 999rpx;
+  font-size: 23rpx;
+  color: #6b6558;
+  background: #fffefb;
+  border: 1rpx solid #e6e0d4;
+}
+.filters .f.on {
+  background: #2b4a8b;
+  border-color: #2b4a8b;
+  color: #fff;
+}

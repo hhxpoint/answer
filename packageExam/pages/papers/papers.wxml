@@ -2,7 +2,12 @@
   <view class="ex-hero">
     <view class="eyebrow">PAST PAPERS</view>
     <view class="title">历年<text class="title-it">真题</text></view>
-    <view class="sub">按年份归档 · 点开即做 · 进度自动保存</view>
+    <view class="sub" wx:if="{{!loading && !error}}">共 {{totalPapers}} 卷 · {{totalQuestions}} 题 · 进度自动保存</view>
+  </view>
+
+  <view class="filters" wx:if="{{!loading && !error}}">
+    <view class="f {{filter === t.key ? 'on' : ''}}" wx:for="{{tabs}}" wx:key="key" wx:for-item="t"
+          data-key="{{t.key}}" bindtap="tapTab">{{t.label}}</view>
   </view>
 
   <view wx:if="{{loading}}" class="ex-empty">
@@ -16,8 +21,8 @@
   </view>
 
   <view wx:elif="{{!groups.length}}" class="ex-empty">
-    <view class="t">题库正在整理</view>
-    <view class="d">第一批真题即将上线</view>
+    <view class="t">这个分类还没有卷</view>
+    <view class="d">换一个分类看看</view>
   </view>
 
   <block wx:else>
