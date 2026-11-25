@@ -40,7 +40,7 @@
 </view>
 
 <!-- 公考题库入口（行测刷题 + 申论精练） -->
-<view class="exam-entry" bindtap="goExam">
+<view class="exam-entry" bindtap="goGongkao">
   <view class="exam-entry-glow"></view>
   <view class="exam-entry-icon">
     <image class="exam-entry-img" src="/assets/exam-entry.png" mode="aspectFit"></image>

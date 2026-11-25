@@ -24,7 +24,8 @@ Page({
   },
 
   // 公考题库（行测刷题 + 申论精练）
-  goExam() {
+  // 注意：不能叫 goExam —— 下方「考研」卡片已占用该名字，同对象重复键会互相覆盖
+  goGongkao() {
     wx.navigateTo({
       url: '/packageExam/pages/home/home'
     })

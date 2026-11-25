@@ -39,6 +39,14 @@
 
 ## 二、小程序版本历史
 
+### 1.47.0 · 2026-11-25 · 修复：公考题库入口跳到了考研页
+
+- **根因**：`pages/index/index.js` 里原有考研卡片的 `goExam` 方法，新增公考入口时也用了 `goExam`；同一对象字面量中后者覆盖前者，且考研方法读 `data-type`（公考入口没有）→ 实际跳到 `/packagetoken/pages/exam/exam?type=undefined`
+- **修复**：公考入口方法改名 `goGongkao`，`index.wxml` 绑定同步；考研 `goExam` 原样保留
+- **防复发**：
+  - 新增 `tools/scan_dup_keys.js`：扫描全部页面 `Page({...})` 顶层重复键（已扫 87 页，0 问题；并用构造用例验证过它确实能抓到）
+  - 新增 `packageExam/tests/index-entry.test.js`：断言入口方法存在、跳转 URL 正确、考研方法未被破坏、WXML 绑定为 `goGongkao`、`goExam` 只定义一次
+  - 冒烟新增 `index-gongkao-entry` 端到端用例：在真实模拟器里调用入口方法，断言最终路由是 `packageExam/pages/home/home`
 ### 1.46.0 · 2026-11-25 · 内容质量核查：解析全覆盖 + 申论要点清洗
 
 - **内容审计**（26 卷 3257 题）：文字解析覆盖率 **100%**（中位 346 字、最短 35 字）；答案不在选项 0、空题干 0、空选项 0、重复选项 0、图推缺图 0、资料分析缺材料 0
