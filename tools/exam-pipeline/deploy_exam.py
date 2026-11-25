@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """把 dist 里的题库资源部署到服务器静态目录。
 
 远端：/home/point/couple/uploads/exam/
@@ -41,6 +41,7 @@ def main():
 
     ensure_dir(sftp, REMOTE)
     ensure_dir(sftp, REMOTE + '/papers')
+    ensure_dir(sftp, REMOTE + '/pools')
 
     uploaded = 0
     bytes_up = 0
@@ -61,6 +62,17 @@ def main():
         uploaded += 1
         bytes_up += os.path.getsize(os.path.join(pdir, fn))
         print('  papers/' + fn)
+
+    # pools
+    pool_dir = os.path.join(DIST, 'pools')
+    if os.path.isdir(pool_dir):
+        for fn in sorted(os.listdir(pool_dir)):
+            if not fn.endswith('.json'):
+                continue
+            sftp.put(os.path.join(pool_dir, fn), REMOTE + '/pools/' + fn)
+            uploaded += 1
+            bytes_up += os.path.getsize(os.path.join(pool_dir, fn))
+        print('  pools/ %d 个' % len([x for x in os.listdir(pool_dir) if x.endswith('.json')]))
 
     # images
     idir = os.path.join(DIST, 'img')

@@ -204,7 +204,10 @@
         "pages/home/home",
         "pages/papers/papers",
         "pages/practice/practice",
-        "pages/card/card"
+        "pages/card/card",
+        "pages/section/section",
+        "pages/wrong/wrong",
+        "pages/report/report"
       ]
     }
   ],

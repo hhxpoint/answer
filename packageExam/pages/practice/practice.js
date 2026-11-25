@@ -45,8 +45,10 @@ Page({
 
   onLoad(options) {
     this.paperKey = (options && options.paper) || '';
-    if (!this.paperKey) {
-      this.setData({ loading: false, error: '缺少试卷参数' });
+    this.poolSlug = (options && options.pool) || '';
+    this.jumpTo = parseInt(options && options.jump, 10);
+    if (!this.paperKey && !this.poolSlug) {
+      this.setData({ loading: false, error: '缺少练习参数' });
       return;
     }
     this.load();
@@ -69,21 +71,49 @@ Page({
   load() {
     const that = this;
     this.setData({ loading: true, error: '' });
-    api.loadPaper(this.paperKey)
-      .then(function (raw) {
-        that.paper = api.normalizePaper(raw);
-        that.progress = store.getProgress(that.paper.key);
-        const idx = Math.min(that.progress.idx || 0, that.paper.questions.length - 1);
+    const task = this.poolSlug ? this.loadPoolTask() : api.loadPaper(this.paperKey).then(function (raw) {
+      return api.normalizePaper(raw);
+    });
+
+    task
+      .then(function (paper) {
+        that.paper = paper;
+        that.progress = store.getProgress(paper.key);
+        let idx = Math.min(that.progress.idx || 0, paper.questions.length - 1);
+        if (typeof that.jumpTo === 'number' && that.jumpTo >= 0 && that.jumpTo < paper.questions.length) {
+          idx = that.jumpTo;
+        }
         that.setData({
-          paperTitle: that.paper.title,
-          total: that.paper.questions.length,
+          paperTitle: paper.title,
+          total: paper.questions.length,
           loading: false
         });
         that.render(idx < 0 ? 0 : idx, false);
       })
       .catch(function (err) {
-        that.setData({ loading: false, error: (err && err.message) || '试卷加载失败' });
+        that.setData({ loading: false, error: (err && err.message) || '题目加载失败' });
       });
+  },
+
+  /** 专项池 → 与试卷同构的对象（不含材料） */
+  loadPoolTask() {
+    const slug = this.poolSlug;
+    return api.loadPool(slug).then(function (pool) {
+      const questions = (pool.questions || []).map(function (q, i) {
+        return Object.assign({}, q, {
+          no: i + 1,
+          material: null,
+          needsReview: 0
+        });
+      });
+      return {
+        key: 'pool-' + slug,
+        title: (pool.type || '专项练习') + ' · 专项',
+        questionCount: questions.length,
+        materials: {},
+        questions: questions
+      };
+    });
   },
 
   /** 渲染第 i 题 */

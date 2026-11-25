@@ -35,22 +35,31 @@
     <view class="arrow">›</view>
   </view>
 
-  <view class="fn-card disabled" bindtap="goSection">
-    <view class="ico ink">专</view>
+  <view class="fn-card" bindtap="goSection">
+    <view class="ico indigo">专</view>
     <view class="body">
       <view class="ttl">专项练习</view>
-      <view class="desc">按题型逐项突破：图推 / 定义 / 类比 / 逻辑 / 言语 / 数量 / 资料</view>
+      <view class="desc">按题型跨年份抽题：图推 / 定义 / 类比 / 逻辑 / 言语 / 数量</view>
     </view>
-    <view class="tag">下一版</view>
+    <view class="arrow">›</view>
   </view>
 
-  <view class="fn-card disabled" bindtap="goWrong">
-    <view class="ico ink">错</view>
+  <view class="fn-card" bindtap="goWrong">
+    <view class="ico gold">错</view>
     <view class="body">
       <view class="ttl">错题本</view>
-      <view class="desc">做错的题自动收进来，按题型归类重做</view>
+      <view class="desc">做错的题自动收进来，按卷归类重做</view>
     </view>
-    <view class="tag">下一版</view>
+    <view class="arrow">›</view>
+  </view>
+
+  <view class="fn-card" bindtap="goReport">
+    <view class="ico ink">报</view>
+    <view class="body">
+      <view class="ttl">学习报告</view>
+      <view class="desc">各卷完成度、正确率、连续天数</view>
+    </view>
+    <view class="arrow">›</view>
   </view>
 
   <view class="sec-head">

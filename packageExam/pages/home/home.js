@@ -1,4 +1,4 @@
-const api = require('../../utils/exam-api.js');
+﻿const api = require('../../utils/exam-api.js');
 const store = require('../../utils/exam-store.js');
 
 Page({
@@ -36,11 +36,15 @@ Page({
   },
 
   goSection() {
-    wx.showToast({ title: '专项练习下一版开放', icon: 'none' });
+    wx.navigateTo({ url: '/packageExam/pages/section/section' });
   },
 
   goWrong() {
-    wx.showToast({ title: '错题本下一版开放', icon: 'none' });
+    wx.navigateTo({ url: '/packageExam/pages/wrong/wrong' });
+  },
+
+  goReport() {
+    wx.navigateTo({ url: '/packageExam/pages/report/report' });
   },
 
   goEssay() {

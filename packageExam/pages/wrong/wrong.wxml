@@ -1,0 +1,31 @@
+<view class="ex-page">
+  <view class="ex-hero">
+    <view class="eyebrow">WRONG ANSWERS</view>
+    <view class="title">错题<text class="title-it">本</text></view>
+    <view class="sub" wx:if="{{!loading && !empty}}">共 {{totalWrong}} 道待复盘</view>
+  </view>
+
+  <view wx:if="{{loading}}" class="ex-empty">
+    <view class="t">{{tip || '加载中…'}}</view>
+  </view>
+
+  <view wx:elif="{{empty}}" class="ex-empty">
+    <view class="t">还没有错题</view>
+    <view class="d">做错一道就会自动收进来</view>
+    <view class="btn-primary" style="margin-top:32rpx" bindtap="goPapers">去做真题</view>
+  </view>
+
+  <block wx:else>
+    <view class="group" wx:for="{{groups}}" wx:key="key" wx:for-item="g">
+      <view class="group-head">{{g.title}}</view>
+      <view class="row" wx:for="{{g.rows}}" wx:key="idx" wx:for-item="r"
+            data-key="{{g.key}}" data-idx="{{r.idx}}" bindtap="open">
+        <text class="no">第 {{r.no}} 题</text>
+        <text class="tp">{{r.type}}</text>
+        <text class="go">重做 ›</text>
+      </view>
+    </view>
+
+    <view class="foot-note">错题来自本机作答记录；重做答对后会自动移出。</view>
+  </block>
+</view>

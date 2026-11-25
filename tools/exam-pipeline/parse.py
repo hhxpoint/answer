@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """公考题库数据管线 · 解析层
 
 md（每卷 6 个模块）→ 结构化 JSON。
@@ -146,6 +146,26 @@ def split_question(body):
     }
 
 
+def fix_type(q):
+    """源数据偶有题型标错：无图但选项是「A：B」词项的「图形推理」其实是类比推理。"""
+    if q.get('type') != '图形推理':
+        return q
+    has_img = any('img' in p for b in q.get('stem') or [] for p in b.get('parts') or [])
+    if has_img:
+        return q
+    texts = []
+    for o in q.get('options') or []:
+        for b in o.get('blocks') or []:
+            for p in b.get('parts') or []:
+                if p.get('t'):
+                    texts.append(p['t'])
+    joined = ' '.join(texts)
+    if ('：' in joined) or (':' in joined):
+        q['type'] = '类比推理'
+        q['typeFixed'] = 'figure_to_analogy'
+    return q
+
+
 def parse_module(path, section_code):
     text = open(path, encoding='utf-8').read()
     meta, body = parse_front(text)
@@ -186,6 +206,7 @@ def parse_module(path, section_code):
             'type': qtype,
             'material': material,
         })
+        fix_type(parsed)
         questions.append(parsed)
 
     # 材料正文（材料标题到其下第一题之间）

@@ -159,9 +159,37 @@ function normalizePaper(paper) {
   };
 }
 
+
+/** 题型池索引（专项练习） */
+function loadPoolIndex(force) {
+  const k = 'exam:pools';
+  if (!force) {
+    const hit = readCache(k, TTL_INDEX);
+    if (hit) return Promise.resolve(hit);
+  }
+  return getJSON(BASE + '/pools/index.json').then(function (data) {
+    writeCache(k, data);
+    return data;
+  });
+}
+
+/** 单个题型池 */
+function loadPool(slug, force) {
+  const k = 'exam:pool:' + slug;
+  if (!force) {
+    const hit = readCache(k, TTL_PAPER);
+    if (hit) return Promise.resolve(hit);
+  }
+  return getJSON(BASE + '/pools/' + slug + '.json').then(function (data) {
+    writeCache(k, data);
+    return data;
+  });
+}
 module.exports = {
   BASE: BASE,
   loadIndex: loadIndex,
+  loadPoolIndex: loadPoolIndex,
+  loadPool: loadPool,
   loadPaper: loadPaper,
   normalizePaper: normalizePaper,
   imgUrl: imgUrl

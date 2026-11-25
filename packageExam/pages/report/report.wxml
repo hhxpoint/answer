@@ -1,0 +1,49 @@
+<view class="ex-page">
+  <view class="ex-hero">
+    <view class="eyebrow">MY PROGRESS</view>
+    <view class="title">学习<text class="title-it">报告</text></view>
+    <view class="sub">共 {{paperCount}} 卷 · {{questionTotal}} 题</view>
+  </view>
+
+  <view class="big-stats">
+    <view class="big">
+      <view class="n">{{stats.total}}</view>
+      <view class="l">累计作答</view>
+    </view>
+    <view class="big">
+      <view class="n">{{rate}}<text class="unit">%</text></view>
+      <view class="l">正确率</view>
+    </view>
+    <view class="big">
+      <view class="n">{{stats.streak}}</view>
+      <view class="l">连续天数</view>
+    </view>
+  </view>
+
+  <view class="sec-head">
+    <view class="bar"></view>
+    <text class="t">各卷进度</text>
+    <view class="line"></view>
+  </view>
+
+  <view wx:if="{{loading}}" class="ex-empty">
+    <view class="t">加载中…</view>
+  </view>
+
+  <block wx:else>
+    <view class="p-row" wx:for="{{papers}}" wx:key="key" wx:for-item="p"
+          data-key="{{p.key}}" bindtap="open">
+      <view class="p-top">
+        <text class="p-title">{{p.title}}</text>
+        <text class="p-num">{{p.done}}/{{p.total}}</text>
+      </view>
+      <view class="p-bar"><view class="p-fill" style="width:{{p.percent}}%"></view></view>
+      <view class="p-foot">
+        <text>正确率 {{p.accuracy}}%</text>
+        <text class="p-go">继续 ›</text>
+      </view>
+    </view>
+
+    <view class="foot-note">报告基于本机作答记录统计；换设备不会同步。</view>
+  </block>
+</view>

@@ -1,0 +1,38 @@
+<view class="ex-page">
+  <view class="ex-hero">
+    <view class="eyebrow">DRILL BY TYPE</view>
+    <view class="title">专项<text class="title-it">练习</text></view>
+    <view class="sub">按题型跨年份抽题 · 一次只攻一类</view>
+  </view>
+
+  <view wx:if="{{loading}}" class="ex-empty">
+    <view class="t">正在加载题型…</view>
+  </view>
+
+  <view wx:elif="{{error}}" class="ex-empty">
+    <view class="t">{{error}}</view>
+    <view class="btn-primary" style="margin-top:32rpx" bindtap="retry">重新加载</view>
+  </view>
+
+  <block wx:else>
+    <view class="type-grid">
+      <view class="type-card" wx:for="{{pools}}" wx:key="slug" wx:for-item="p"
+            data-slug="{{p.slug}}" bindtap="open">
+        <view class="type-name">{{p.type}}</view>
+        <view class="type-desc">{{p.desc}}</view>
+        <view class="type-count">{{p.count}} 题</view>
+      </view>
+    </view>
+
+    <view class="fn-card" bindtap="goPapers">
+      <view class="ico gold">料</view>
+      <view class="body">
+        <view class="ttl">资料分析</view>
+        <view class="desc">题目依赖共用材料与图表，请在套卷中练习</view>
+      </view>
+      <view class="arrow">›</view>
+    </view>
+
+    <view class="foot-note">专项题按题型跨卷抽取；作答记录与本卷练习分开统计。</view>
+  </block>
+</view>
