@@ -84,6 +84,32 @@ exam:essay:draft:<key>  { tab, qIndex, answers:{no:text}, checked:{no:[i]}, grad
 
 ---
 
+## 4.1 账号与数据同步
+
+**唯一标识**：服务端 `users.id`（微信 openid 唯一）。本地表现为 `userProfile.userId = 'u<id>'`，与「我的」页共用同一份资料，不另建用户体系。
+
+**首次进入**：点首页「公考题库」时，若 `userProfile` 缺头像或昵称 → 跳 `pages/setup/setup`（`chooseAvatar` + `type=nickname`），保存后 `redirectTo` 回原目标页。已完善资料直接进；直接打开子页面不拦截，只在公考首页顶部提示。
+
+**本地键**（按账号隔离）：
+
+```
+exam:p:<uid>:<paperKey>    套卷/专项进度
+exam:s:<uid>               累计统计
+exam:d:<uid>:<essayKey>    申论草稿
+```
+
+历史键（无 uid 段）与登录前的 `local` 数据在首次读写时自动迁移，迁移后旧键删除。
+
+**云端同步**（`/couple-api/exam/progress`）：
+
+| 动作 | 时机 | 说明 |
+|---|---|---|
+| 拉取 | 进模块时 | `GET /progress?since=0`，按 `updatedAt` 新者覆盖 |
+| 上传 | 作答后 2.5s | `PUT /progress`，失败进 `exam:sync:pending` 队列 |
+| 补传 | 下次进模块 | `flush()` 重试队列 |
+| 首传 | 首次登录 | `batch` 上传本地历史（最多 60 条） |
+
+冲突策略：服务端只认 `updatedAt` 更新者，允许 5 分钟时钟容差（手机时间偏差不至于永远写不进）。
 ## 5. 数据管线（tools/exam-pipeline）
 
 数据源：`ERRRC/xingcezhenti`（公开题库仓库，Markdown + 已切图片）。

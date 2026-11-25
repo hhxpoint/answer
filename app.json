@@ -201,6 +201,7 @@
     {
       "root": "packageExam",
       "pages": [
+        "pages/setup/setup",
         "pages/home/home",
         "pages/papers/papers",
         "pages/practice/practice",

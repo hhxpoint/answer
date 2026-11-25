@@ -1,5 +1,6 @@
-const api = require('../../utils/exam-api.js');
+﻿const api = require('../../utils/exam-api.js');
 const store = require('../../utils/exam-store.js');
+const sync = require('../../utils/exam-sync.js');
 
 const SECTION_LABEL = {
   zzll: '政治理论',
@@ -89,6 +90,7 @@ Page({
           loading: false
         });
         that.render(idx < 0 ? 0 : idx, false);
+        sync.auto();
       })
       .catch(function (err) {
         that.setData({ loading: false, error: (err && err.message) || '题目加载失败' });
@@ -191,6 +193,7 @@ Page({
       answered: n,
       correct: c
     });
+    sync.pushSoon('paper', this.paperKey, this.progress);
     if (wx.vibrateShort) wx.vibrateShort({ type: 'light' });
   },
 

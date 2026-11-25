@@ -1,5 +1,7 @@
 ﻿const api = require('../../utils/exam-api.js');
 const store = require('../../utils/exam-store.js');
+const identity = require('../../utils/exam-identity.js');
+const sync = require('../../utils/exam-sync.js');
 
 Page({
   data: {
@@ -7,10 +9,24 @@ Page({
     rate: 0,
     papers: [],
     loading: true,
+    profileReady: false,
+    nickName: '',
+    avatarUrl: '',
     error: ''
   },
 
   onShow() {
+    const p = identity.localProfile() || {};
+    this.setData({
+      profileReady: identity.profileReady(),
+      nickName: p.nickName || '',
+      avatarUrl: p.avatarUrl || ''
+    });
+    const that = this;
+    identity.ensureUid().then(function () { return sync.auto(); }).then(function () {
+      const s2 = store.getStats();
+      that.setData({ stats: s2, rate: s2.total > 0 ? Math.round((s2.correct * 100) / s2.total) : 0 });
+    });
     const s = store.getStats();
     this.setData({
       stats: s,
@@ -29,6 +45,10 @@ Page({
       .catch(function (err) {
         that.setData({ loading: false, error: (err && err.message) || '题库加载失败' });
       });
+  },
+
+  goSetup() {
+    wx.navigateTo({ url: '/packageExam/pages/setup/setup?from=' + encodeURIComponent('/packageExam/pages/home/home') });
   },
 
   goPapers() {

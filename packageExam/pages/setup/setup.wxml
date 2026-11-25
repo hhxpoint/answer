@@ -1,0 +1,37 @@
+<view class="ex-page">
+  <view class="ex-hero">
+    <view class="eyebrow">ONE IDENTITY</view>
+    <view class="title">完善<text class="title-it">资料</text></view>
+    <view class="sub">头像和昵称用于标识你的练习记录，换设备也能接着做</view>
+  </view>
+
+  <view class="setup-card">
+    <view class="avatar-row">
+      <button class="avatar-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+        <image wx:if="{{avatarUrl}}" class="avatar-img" src="{{avatarUrl}}" mode="aspectFill"></image>
+        <view wx:else class="avatar-empty">
+          <text class="plus">＋</text>
+          <text class="hint">选择头像</text>
+        </view>
+      </button>
+      <view class="avatar-tip">使用微信头像，或从相册选一张</view>
+    </view>
+
+    <view class="field">
+      <view class="label">昵称</view>
+      <input class="input" type="nickname" value="{{nickName}}" placeholder="点击填写微信昵称"
+             maxlength="24" bindinput="onNick" bindblur="onNick"></input>
+    </view>
+
+    <view class="tip" wx:if="{{tip}}">{{tip}}</view>
+
+    <view class="save-btn {{saving ? 'disabled' : ''}}" bindtap="save">
+      {{saving ? '保存中…' : '保存并开始'}}
+    </view>
+  </view>
+
+  <view class="foot-note">
+    <view>头像是你选择的图片，昵称可随时在「我的」里修改。</view>
+    <view>练习记录只与你的账号绑定，不会公开。</view>
+  </view>
+</view>

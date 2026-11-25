@@ -1,1 +1,32 @@
 @import "../../common.wxss";
+
+/* 账号绑定提示 */
+.id-banner {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin: 24rpx 40rpx 4rpx;
+  padding: 22rpx 26rpx;
+  border-radius: 22rpx;
+  background: linear-gradient(135deg, #fdf1ec, #f8e7e0);
+  border: 1rpx solid #e6c3b8;
+}
+.id-banner .ib-text { flex: 1; min-width: 0; }
+.id-banner .ib-t { display: block; font-size: 26rpx; font-weight: 600; color: #8f3520; }
+.id-banner .ib-d { display: block; margin-top: 6rpx; font-size: 20rpx; color: #a9735f; line-height: 1.5; }
+.id-banner .ib-go { flex-shrink: 0; font-size: 22rpx; color: #b5442c; }
+
+.id-row {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  margin: 24rpx 40rpx 4rpx;
+}
+.id-row .id-avatar {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  background: #f1efe9;
+}
+.id-row .id-name { font-size: 24rpx; color: #1d2530; }
+.id-row .id-bind { font-size: 19rpx; color: #a9a294; margin-left: auto; }

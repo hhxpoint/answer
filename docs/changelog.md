@@ -39,6 +39,15 @@
 
 ## 二、小程序版本历史
 
+### 1.48.0 · 2026-11-25 · 账号统一：作答数据绑定用户 + 首次完善资料
+
+- **统一身份**：公考作答数据绑定到 `users.id`（微信 openid 唯一），与「我的」页共用同一份 `userProfile`，不另造 ID
+- **首次进入门禁**：点「公考题库」时若没有头像/昵称 → 先跳「完善资料」页（微信头像选择 `chooseAvatar` + 昵称输入 `type=nickname`），保存后自动回到公考首页
+- **老用户不打扰**：资料已存在直接进模块；直接打开子页面（分享/历史栈）不拦，仅在公考首页顶部提示
+- **本地数据按账号隔离**：键改为 `exam:p:<uid>:<paperKey>` / `exam:s:<uid>` / `exam:d:<uid>:<essayKey>`；历史键（无 uid）与登录前的 `local` 数据在首次读写时自动迁移，内容不丢
+- **云端同步**：进模块 `GET /couple-api/exam/progress` 拉取并按 `updatedAt` 合并；作答后 2.5 秒防抖 `PUT` 上传；失败进待办队列下次重试；首次登录把本地历史 `batch` 上传一次
+- **服务端**：新增 `exam_user_progress` 表（迁移 007）与 4 个接口（GET / PUT / batch / DELETE），单条 256KB、批量 60 条上限，旧数据不覆盖新数据（5 分钟时钟容差）
+- **测试**：`exam-identity.test.js` 21 项（身份/迁移/隔离/拉取/上传/无 token）、`index-entry.test.js` 10 项（门禁分支 + 入口不串页）；服务端接口用签名 token 实测（PUT/GET/旧值不覆盖/401/batch）
 ### 1.47.0 · 2026-11-25 · 修复：公考题库入口跳到了考研页
 
 - **根因**：`pages/index/index.js` 里原有考研卡片的 `goExam` 方法，新增公考入口时也用了 `goExam`；同一对象字面量中后者覆盖前者，且考研方法读 `data-type`（公考入口没有）→ 实际跳到 `/packagetoken/pages/exam/exam?type=undefined`

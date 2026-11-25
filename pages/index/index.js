@@ -1,4 +1,4 @@
-const app = getApp();
+﻿const app = getApp();
 
 
 Page({
@@ -25,10 +25,10 @@ Page({
 
   // 公考题库（行测刷题 + 申论精练）
   // 注意：不能叫 goExam —— 下方「考研」卡片已占用该名字，同对象重复键会互相覆盖
+  // 门禁：首次进入先补头像昵称（老用户已有资料，直接进）
   goGongkao() {
-    wx.navigateTo({
-      url: '/packageExam/pages/home/home'
-    })
+    const identity = require('../../packageExam/utils/exam-identity.js');
+    identity.enter('/packageExam/pages/home/home');
   },
 
   // 1. 开始答题 (因为是底部的 Tab 之一，必须用 switchTab)

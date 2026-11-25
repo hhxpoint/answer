@@ -1,21 +1,33 @@
-﻿/**
- * 公考题库 · 本地进度层
+/**
+ * 公考题库 · 本地进度层（按账号隔离 + 旧数据迁移）
  *
- * 不依赖服务端：作答记录、进度、连续天数都存在本机。
- * 键：exam:progress:<paperKey>  exam:stats
+ * 键结构：
+ *   exam:p:<uid>:<paperKey>   套卷/专项进度 { answers, idx, updatedAt }
+ *   exam:s:<uid>              累计统计 { total, correct, todayCount, streak, day }
+ *   exam:d:<uid>:<essayKey>   申论草稿 { tab, qIndex, answers, checked, grades, startedAt }
+ *
+ * uid 来自 exam-identity（服务端 users.id），未登录时用 'local'。
+ * 历史版本的键（没有 uid 段）会在首次读写时迁移到当前账号名下。
  */
-const K_PROGRESS = 'exam:progress:';
-const K_STATS = 'exam:stats';
+const identity = require('./exam-identity.js');
 
-function today() {
-  const d = new Date();
-  return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+const P = 'exam:p:';
+const S = 'exam:s:';
+const D = 'exam:d:';
+const LEGACY_P = 'exam:progress:';
+const LEGACY_S = 'exam:stats';
+const LEGACY_D = 'exam:essay:draft:';
+
+const migrated = {};
+
+function uid() {
+  return identity.uid();
 }
 
 function read(key, def) {
   try {
     const v = wx.getStorageSync(key);
-    return v || def;
+    return v === '' || v === undefined ? def : v;
   } catch (e) {
     return def;
   }
@@ -25,22 +37,101 @@ function write(key, v) {
   try {
     wx.setStorageSync(key, v);
   } catch (e) {
+    // 存储满时静默失败
+  }
+}
+
+function remove(key) {
+  try {
+    wx.removeStorageSync(key);
+  } catch (e) {
     // ignore
   }
 }
 
-/** 单卷进度：{ answers: { qid: {pick, correct} }, idx, updatedAt } */
+function today() {
+  const d = new Date();
+  return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+}
+
+// ---------------- 迁移 ----------------
+
+/**
+ * 把历史键迁到当前账号名下：
+ *   exam:progress:<paperKey>      -> exam:p:<uid>:<paperKey>
+ *   exam:stats                    -> exam:s:<uid>
+ *   exam:essay:draft:<key>        -> exam:d:<uid>:<key>
+ *   exam:p:local:<...>            -> exam:p:<uid>:<...>（登录后接管本地数据）
+ */
+function migrate() {
+  const u = uid();
+  if (migrated[u]) return;
+  migrated[u] = 1;
+  if (u === identity.FALLBACK_UID) return;
+
+  let keys = [];
+  try {
+    keys = (wx.getStorageInfoSync().keys || []).slice();
+  } catch (e) {
+    return;
+  }
+
+  keys.forEach(function (k) {
+    try {
+      if (k.indexOf(LEGACY_P) === 0) {
+        const rest = k.slice(LEGACY_P.length);
+        if (rest.indexOf(':') >= 0) return; // 已是新格式
+        const nk = P + u + ':' + rest;
+        if (!read(nk, null)) write(nk, read(k, null));
+        remove(k);
+        return;
+      }
+      if (k === LEGACY_S) {
+        const nk = S + u;
+        if (!read(nk, null)) write(nk, read(k, null));
+        remove(k);
+        return;
+      }
+      if (k.indexOf(LEGACY_D) === 0) {
+        const rest = k.slice(LEGACY_D.length);
+        if (rest.indexOf(':') >= 0) return;
+        const nk = D + u + ':' + rest;
+        if (!read(nk, null)) write(nk, read(k, null));
+        remove(k);
+        return;
+      }
+      // local -> 真实账号
+      [P, S, D].forEach(function (prefix) {
+        if (k.indexOf(prefix + identity.FALLBACK_UID) !== 0) return;
+        const nk = prefix + u + k.slice((prefix + identity.FALLBACK_UID).length);
+        if (!read(nk, null)) write(nk, read(k, null));
+        remove(k);
+      });
+    } catch (e) {
+      // 单条迁移失败不影响其他
+    }
+  });
+}
+
+// ---------------- 套卷 / 专项 ----------------
+
+function progressKey(paperKey) {
+  return P + uid() + ':' + paperKey;
+}
+
 function getProgress(paperKey) {
-  const p = read(K_PROGRESS + paperKey, null);
+  migrate();
+  const p = read(progressKey(paperKey), null);
   return p || { answers: {}, idx: 0, updatedAt: 0 };
 }
 
 function saveProgress(paperKey, progress) {
+  migrate();
   progress.updatedAt = Date.now();
-  write(K_PROGRESS + paperKey, progress);
+  write(progressKey(paperKey), progress);
+  return progress;
 }
 
-/** 记录一次作答，同时累计当日统计 */
 function recordAnswer(paperKey, qid, pick, correct) {
   const p = getProgress(paperKey);
   const prev = p.answers[qid];
@@ -53,7 +144,6 @@ function recordAnswer(paperKey, qid, pick, correct) {
     stats.correct += correct ? 1 : 0;
     const t = today();
     if (stats.day !== t) {
-      // 新的一天：结算连续天数
       const y = new Date();
       y.setDate(y.getDate() - 1);
       const yKey = y.getFullYear() + '-' + (y.getMonth() + 1) + '-' + y.getDate();
@@ -62,57 +152,54 @@ function recordAnswer(paperKey, qid, pick, correct) {
       stats.todayCount = 0;
     }
     stats.todayCount += 1;
-    write(K_STATS, stats);
+    write(S + uid(), stats);
   } else if (prev.correct !== correct) {
-    // 重做改判：修正累计
     stats.correct += correct ? 1 : -1;
-    write(K_STATS, stats);
+    write(S + uid(), stats);
   }
   return p;
 }
 
 function getStats() {
-  const s = read(K_STATS, null);
+  migrate();
+  const s = read(S + uid(), null);
   const base = { total: 0, correct: 0, todayCount: 0, streak: 0, day: today() };
   if (!s) return base;
   if (s.day !== today()) {
-    // 跨天但还没做题：今日计数归零，streak 在首次作答时才结算
     s.todayCount = 0;
     s.day = today();
-    write(K_STATS, s);
+    write(S + uid(), s);
   }
   return Object.assign(base, s);
 }
 
-/** 清空某卷进度 */
 function resetPaper(paperKey) {
-  try {
-    wx.removeStorageSync(K_PROGRESS + paperKey);
-  } catch (e) {
-    // ignore
-  }
+  remove(progressKey(paperKey));
 }
 
+// ---------------- 申论 ----------------
 
-// ---------------- 申论：草稿 / 计时 / 自评 ----------------
-const K_ESSAY = 'exam:essay:draft:';
+function essayKey(key) {
+  return D + uid() + ':' + key;
+}
 
-/** 草稿：{ tab, qIndex, answers:{qNo:text}, startedAt, elapsedMs, checked:{qNo:[idx]} } */
 function getEssayDraft(key) {
-  const d = read(K_ESSAY + key, null);
+  migrate();
+  const d = read(essayKey(key), null);
   return d || { tab: 0, qIndex: 0, answers: {}, startedAt: 0, elapsedMs: 0, checked: {} };
 }
 
 function saveEssayDraft(key, draft) {
+  migrate();
   draft.updatedAt = Date.now();
-  write(K_ESSAY + key, draft);
+  write(essayKey(key), draft);
+  return draft;
 }
 
 function resetEssayDraft(key) {
-  try { wx.removeStorageSync(K_ESSAY + key); } catch (e) { /* ignore */ }
+  remove(essayKey(key));
 }
 
-/** 自评得分：勾选的要点分值之和（按要点数均分题目分值） */
 function scoreEssay(question, checkedIdx) {
   const pts = question.keyPoints || [];
   if (!pts.length) return 0;
@@ -121,7 +208,6 @@ function scoreEssay(question, checkedIdx) {
   return Math.round(each * (checkedIdx || []).length * 10) / 10;
 }
 
-/** 作答结构检查（规则，不涉及生成） */
 function inspectAnswer(text, question) {
   const t = String(text || '');
   const chars = t.replace(/\s/g, '').length;
@@ -140,6 +226,52 @@ function inspectAnswer(text, question) {
     empty: chars === 0
   };
 }
+
+// ---------------- 同步用 ----------------
+
+/** 本地全部进度（供首次上传） */
+function listLocal() {
+  migrate();
+  const u = uid();
+  let keys = [];
+  try {
+    keys = (wx.getStorageInfoSync().keys || []).slice();
+  } catch (e) {
+    return [];
+  }
+  const out = [];
+  keys.forEach(function (k) {
+    if (k.indexOf(P + u + ':') === 0) {
+      const v = read(k, null);
+      if (v) out.push({ kind: 'paper', key: k.slice((P + u + ':').length), payload: v, updatedAt: v.updatedAt || 0 });
+    } else if (k === S + u) {
+      const v = read(k, null);
+      if (v) out.push({ kind: 'stats', key: 'stats', payload: v, updatedAt: v.updatedAt || 0 });
+    } else if (k.indexOf(D + u + ':') === 0) {
+      const v = read(k, null);
+      if (v) out.push({ kind: 'essay', key: k.slice((D + u + ':').length), payload: v, updatedAt: v.updatedAt || 0 });
+    }
+  });
+  return out;
+}
+
+/** 远端记录合并到本地：只有远端更新才覆盖 */
+function applyRemote(kind, key, payload, updatedAt) {
+  migrate();
+  let k;
+  if (kind === 'paper') k = P + uid() + ':' + key;
+  else if (kind === 'stats') k = S + uid();
+  else if (kind === 'essay') k = D + uid() + ':' + key;
+  else return false;
+
+  const cur = read(k, null);
+  const curAt = (cur && cur.updatedAt) || 0;
+  if (cur && curAt >= updatedAt) return false;
+  payload.updatedAt = updatedAt;
+  write(k, payload);
+  return true;
+}
+
 module.exports = {
   getProgress: getProgress,
   saveProgress: saveProgress,
@@ -150,5 +282,9 @@ module.exports = {
   saveEssayDraft: saveEssayDraft,
   resetEssayDraft: resetEssayDraft,
   scoreEssay: scoreEssay,
-  inspectAnswer: inspectAnswer
+  inspectAnswer: inspectAnswer,
+  listLocal: listLocal,
+  applyRemote: applyRemote,
+  migrate: migrate,
+  uid: uid
 };

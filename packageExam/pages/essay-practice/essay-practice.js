@@ -1,5 +1,6 @@
-const api = require('../../utils/exam-api.js');
+﻿const api = require('../../utils/exam-api.js');
 const store = require('../../utils/exam-store.js');
+const sync = require('../../utils/exam-sync.js');
 
 function pad(n) {
   return n < 10 ? '0' + n : '' + n;
@@ -65,6 +66,7 @@ Page({
           total: paper.questions.length
         });
         that.render(that.draft.qIndex || 0);
+        sync.auto();
         that.startTimer();
       })
       .catch(function (err) {
@@ -128,6 +130,7 @@ Page({
     this.draft.answers[this.data.q.no] = this.data.answer;
     this.draft.elapsedMs = this.data.elapsedMs || this.draft.elapsedMs || 0;
     store.saveEssayDraft(this.key, this.draft);
+    sync.pushSoon('essay', this.key, this.draft);
     this.pendingSave = false;
     this.setData({ savedText: '已保存 ' + new Date().toTimeString().slice(0, 5) });
   },

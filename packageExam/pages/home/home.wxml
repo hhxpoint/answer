@@ -5,6 +5,19 @@
     <view class="sub">国考 · 省考 · 选调 · 行测与申论</view>
   </view>
 
+  <view wx:if="{{!profileReady}}" class="id-banner" bindtap="goSetup">
+    <view class="ib-text">
+      <text class="ib-t">完善头像昵称</text>
+      <text class="ib-d">练习记录会绑定到你的账号，换设备也能接着做</text>
+    </view>
+    <text class="ib-go">去完善 ›</text>
+  </view>
+  <view wx:else class="id-row">
+    <image wx:if="{{avatarUrl}}" class="id-avatar" src="{{avatarUrl}}" mode="aspectFill"></image>
+    <text class="id-name">{{nickName}}</text>
+    <text class="id-bind">已绑定账号</text>
+  </view>
+
   <view class="stat-row">
     <view class="stat">
       <text class="n">{{stats.todayCount}}</text>
