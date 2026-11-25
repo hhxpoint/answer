@@ -1,62 +1,67 @@
 # 小程序自动化冒烟（miniprogram-automator）
 
-用微信开发者工具的自动化接口，在真机模拟器里逐页打开小程序并截图，用来替代「靠人点一遍」。
+在开发者工具的真机模拟器里逐页打开小程序，做 **渲染 + 路由 + 数据** 三层断言，替代人工点一遍。
 
-## 一、一次性准备（关键，漏了会以「RPC 全部超时」的假象出现）
-
-```powershell
-cd D:\dsh\workplace\work\answer\hhxpoint-answer-1848759
-npm install                 # 项目 package.json 里有 crypto-js 等依赖
-# 必须先用开发者工具构建一次 npm：
-& 'D:\develop_tool\微信web开发者工具\cli.bat' build-npm --project <项目路径>
-```
-
-> `project.config.json` 里是 `"packNpmManually": true`，所以**输出目录 `miniprogram_npm` 要先存在**：
-> 先 `mkdir miniprogram_npm` 再 `build-npm`，否则报 `miniprogram_npm not found`。
-
-**为什么必须做**：`packageGithub/utils/tencent-translator.js` 里有
-`require('../../miniprogram_npm/crypto-js/…')`。目录不存在时 IDE 编译失败，
-模拟器停在欢迎页 → 自动化连得上 WebSocket 但**任何命令都不返回**（不是工具坏了）。
-
-## 二、跑一次
+## 一、一条命令
 
 ```powershell
-# 1) 先退出已有的开发者工具实例（避免 .cli 端口文件冲突）
-& 'D:\develop_tool\微信web开发者工具\cli.bat' quit
-Get-Process | Where-Object { $_.Path -like '*develop_tool*' } | Stop-Process -Force
-
-# 2) 以自动化模式启动（端口任选未被占用的）
-& 'D:\develop_tool\微信web开发者工具\cli.bat' auto --project <项目路径> --auto-port 9484 --trust-project
-
-# 3) 等 40~60 秒后执行
-node tools/wx-auto/smoke.js 9484
+cd D:\dsh\workplace\tools\wx-auto
+powershell -NoProfile -ExecutionPolicy Bypass -File .\run-smoke.ps1 -Port 9492
 ```
 
-输出形如：
+脚本会：退出旧实例 → 清残留进程 → `cli auto` 启动 → 等端口就绪 → 跑 `smoke.js` → 返回退出码。
+**为什么每次重启**：automator 实例跑久了会退化（`reLaunch` 不报错但不跳转、`getCurrentPages()` 停在旧页面），
+复用会得到「全部白屏」的假失败。
+
+> `.ps1` 必须存成 **UTF-8 with BOM**，否则 Windows PowerShell 5.1 会按 ANSI 解析中文注释而报语法错误。
+
+## 二、一次性准备（漏了会以「RPC 全部超时」的假象出现）
+
+```powershell
+cd <项目根>
+npm install
+mkdir miniprogram_npm            # project.config.json 是 packNpmManually: true，目录要先存在
+& 'D:\develop_tool\微信web开发者工具\cli.bat' build-npm --project <项目根>
+```
+
+`packageGithub/utils/tencent-translator.js` 里有 `require('../../miniprogram_npm/crypto-js/…')`。
+目录不存在 → IDE 编译失败 → 模拟器停在欢迎页 → 自动化连得上 WebSocket 但**任何命令都不返回**。
+
+## 三、判定标准
+
+| 层 | 判据 | 说明 |
+|---|---|---|
+| render | 截图 ≥ 15KB | 白屏约 2.5KB，正常页 40~260KB |
+| route | `getCurrentPages()` 末位 = 期望路径 | 防止 reLaunch 没生效却「跑过了」 |
+| data | 页面 `data` 语义断言 | 见下表；证明「内容加载成功」而不只是「页画出来了」 |
+
+| 页面 | data 断言 |
+|---|---|
+| `trade-home` | `categories.length ≥ 3` |
+| `trade-market` | `categories ≥ 3` 且 `listings` 是数组 |
+| `trade-mylist` | `listings` 是数组 |
+| `trade-publish` | `picking === true`（无 id 时进选型器） |
+| `trade-estimate` | `model` 存在、`notFound !== true` |
+| `trade-detail` | `model.model` 匹配 `Y9000P`、`specs.length > 0` |
+| `recipe-home` | `results.length > 0` |
+| `trade-sources` | 无 data（`sources.js` 是 `Page({})`，内容全在静态 WXML）→ 仅截图判定 |
+
+## 四、结果读法
 
 ```text
-PASS index           200571B pages/index/index
-PASS trade-detail    114549B packageTrade/pages/detail/detail
-...
-pages 12 · pass 12 · fail 0
-SMOKE_OK
+pages 12 · PASS 9 · SKIP 3 · FAIL 0
 ```
 
-## 三、判据与已知限制
+- **SKIP** 是「没法在本机验」，不是通过：`couple-home` / `couple-spaces` / `trade-share` 依赖
+  `hhxpoint.me` 接口与本机网络，本机连不上会挂起，已标记 `optional`。
+- SKIP 不计入 PASS，也不影响退出码；但**别把 SKIP 当成绿**。
 
-- **判据**：截图字节数 ≥ 15KB 视为「渲染成功」。白屏截图约 2.5KB，正常页面 40~250KB。
-  这是为了绕开本版本 automator 的 `page.$` / `page.waitFor` **会挂起**的问题。
-- **路径校验**：通过 `mp.evaluate(() => getCurrentPages().map(p => p.route))` 取真实路由
-  （`mp.currentPage()` 在本版本会返回陈旧页面，不可靠）。
-- **跳过项**：`couple-home` / `couple-spaces` / `trade-share` 依赖 `hhxpoint.me` 接口，
-  本机网络不通时会挂起，已标记 `optional` 并计为 SKIP，不影响退出码。
-- 每次跑之前最好重启自动化实例：上一轮挂起的连接会把模拟器留在白屏状态。
-
-## 四、常见故障对照
+## 五、已知坑
 
 | 现象 | 原因 | 处理 |
 |---|---|---|
-| `connect` 成功但所有命令超时 | 模拟器没在跑（编译失败/欢迎页） | 检查是否漏了 `npm install` + `build-npm` |
-| `LAUNCH_FAIL … EPERM … .cli` | 已有 IDE 实例占用端口文件 | 先 `cli quit` 并结束残留进程 |
-| 全部页面 2546B | 上一轮把模拟器搞白屏 | 重启自动化实例后再跑 |
-| `cliPath` 报错 | `automator.launch` 只接受可执行文件 | 用 `cli.bat auto` 手动起，再 `connect` |
+| 连上但所有命令超时 | 模拟器没在跑（编译失败/欢迎页） | 补 `npm install` + `build-npm` |
+| `LAUNCH_FAIL … EPERM … .cli` | 已有 IDE 实例占用端口文件 | 先 `cli quit` + 结束残留进程 |
+| 全部页面 2546B | 实例退化或上一轮挂起 | 用 `run-smoke.ps1` 重启实例 |
+| `cliPath` 报错 | `automator.launch` 只接受可执行文件 | 用 `cli auto` 手动起再 `connect` |
+| `page.$` / `waitFor` 挂起 | automator 0.13.0 + 当前工具版本 | 不用元素断言，改截图 + `mp.evaluate` |
