@@ -1,0 +1,120 @@
+<view class="ex-page">
+  <view class="ex-hero">
+    <view class="eyebrow">REVIEW & MARKING</view>
+    <view class="title">要点<text class="title-it">批改</text></view>
+    <view class="sub">{{q ? '第 ' + q.no + ' 题 · ' + q.type + ' · ' + maxScore + ' 分' : ''}}</view>
+  </view>
+
+  <view wx:if="{{loading}}" class="ex-empty"><view class="t">加载中…</view></view>
+  <view wx:elif="{{error}}" class="ex-empty"><view class="t">{{error}}</view></view>
+
+  <block wx:elif="{{q}}">
+    <view class="card">
+      <view class="cap">我的作答</view>
+      <view class="myans" wx:if="{{answer}}">{{answer}}</view>
+      <view class="myans empty" wx:else>还没有作答内容，可返回「作答」页写。</view>
+
+      <view class="checks">
+        <view class="chk {{inspect.chars ? 'ok' : ''}}">
+          <text class="k">字数</text><text class="v">{{inspect.chars}}{{q.wordMax ? ' / ' + q.wordMax : ''}}</text>
+          <text class="flag" wx:if="{{inspect.overLimit}}">超出</text>
+          <text class="flag" wx:elif="{{inspect.underLimit}}">偏少</text>
+        </view>
+        <view class="chk {{inspect.hasEnum ? 'ok' : ''}}">
+          <text class="k">分条</text><text class="v">{{inspect.lines}} 行</text>
+          <text class="flag" wx:if="{{!inspect.hasEnum}}">建议分条</text>
+        </view>
+        <view class="chk {{inspect.refMat ? 'ok' : ''}}">
+          <text class="k">扣材料</text><text class="v">{{inspect.refMat ? '已引用' : '未引用'}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 红领巾批改 -->
+    <view class="grade-wrap">
+      <view class="grade-btn" bindtap="runGrade">
+        <text class="gb-ico">批</text>
+        <text class="gb-txt">{{graded ? '重新批改' : '红领巾批改'}}</text>
+        <text class="gb-sub" wx:if="{{!graded}}">按参考要点逐条比对</text>
+      </view>
+
+      <view wx:if="{{graded}}" class="grade-card">
+        <view class="g-top">
+          <view class="g-score">{{graded.total}}</view>
+          <view class="g-full">/ {{graded.full}} 分</view>
+          <view class="g-hit">要点命中 {{graded.hitCount}}/{{graded.pointCount}}</view>
+        </view>
+
+        <view class="g-bars">
+          <view class="g-bar">
+            <text class="gl">要点</text>
+            <view class="gt"><view class="gf" style="width:{{graded.breakdown.content / graded.full * 100 / 0.6}}%"></view></view>
+            <text class="gv">{{graded.breakdown.content}}</text>
+          </view>
+          <view class="g-bar">
+            <text class="gl">结构</text>
+            <view class="gt"><view class="gf" style="width:{{graded.breakdown.structure / graded.full * 100 / 0.25}}%"></view></view>
+            <text class="gv">{{graded.breakdown.structure}}</text>
+          </view>
+          <view class="g-bar">
+            <text class="gl">表达</text>
+            <view class="gt"><view class="gf" style="width:{{graded.breakdown.expression / graded.full * 100 / 0.15}}%"></view></view>
+            <text class="gv">{{graded.breakdown.expression}}</text>
+          </view>
+        </view>
+
+        <view class="g-sec">要点比对</view>
+        <view class="g-pt {{p.hit ? 'on' : ''}}" wx:for="{{graded.points}}" wx:key="index" wx:for-item="p">
+          <text class="g-mark">{{p.hit ? '✓' : '✕'}}</text>
+          <view class="g-body">
+            <view class="g-label">{{p.label}}</view>
+            <view class="g-from">资料 {{p.from}}<text wx:if="{{p.matched.length}}" class="g-terms">命中：{{p.matched}}</text></view>
+          </view>
+        </view>
+
+        <block wx:if="{{graded.issues.length}}">
+          <view class="g-sec">待改进</view>
+          <view class="g-issue" wx:for="{{graded.issues}}" wx:key="*this" wx:for-item="it">· {{it}}</view>
+        </block>
+
+        <block wx:if="{{graded.suggestions.length}}">
+          <view class="g-sec">建议</view>
+          <view class="g-sug" wx:for="{{graded.suggestions}}" wx:key="*this" wx:for-item="s">· {{s}}</view>
+        </block>
+
+        <view class="g-note">批改依据为参考要点命中与作答结构，规则固定、结果可复现；不代表阅卷标准。</view>
+      </view>
+    </view>
+
+    <view class="sec-head">
+      <view class="bar"></view>
+      <text class="t">参考要点 · 自评</text>
+      <view class="line"></view>
+    </view>
+
+    <view class="pt-list">
+      <view class="pt {{p.on ? 'on' : ''}}" wx:for="{{points}}" wx:key="i" wx:for-item="p"
+            data-i="{{p.i}}" bindtap="toggle">
+        <view class="pt-box">{{p.on ? '✓' : ''}}</view>
+        <view class="pt-body">
+          <view class="pt-label">{{p.label}}</view>
+          <view class="pt-from">来自资料 {{p.from}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="score-card">
+      <view class="s-left">
+        <view class="s-num">{{estimated}}</view>
+        <view class="s-max">/ {{maxScore}} 分</view>
+      </view>
+      <view class="s-right">勾选命中的要点，按「题目分值 ÷ 要点数」折算自评分。</view>
+    </view>
+
+    <view class="foot-note">
+      参考要点由材料关键句按规则提取，供对照自评，非官方答案。
+    </view>
+
+    <view class="btn-primary" style="margin-top:24rpx" bindtap="backToWrite">返回作答</view>
+  </block>
+</view>

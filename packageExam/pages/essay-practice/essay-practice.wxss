@@ -1,0 +1,193 @@
+@import "../../common.wxss";
+
+.essay { padding-bottom: calc(160rpx + env(safe-area-inset-bottom)); }
+
+.tabs {
+  position: sticky;
+  top: 0;
+  z-index: 9;
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  padding: 14rpx 28rpx;
+  background: rgba(246, 244, 239, 0.97);
+  border-bottom: 1rpx solid #ece6da;
+  backdrop-filter: blur(10rpx);
+}
+.tab {
+  padding: 10rpx 26rpx;
+  border-radius: 999rpx;
+  font-size: 24rpx;
+  color: #6b6558;
+  background: #fffefb;
+  border: 1rpx solid #e6e0d4;
+}
+.tab.on {
+  background: #2b4a8b;
+  border-color: #2b4a8b;
+  color: #fff;
+}
+.tabs-meta {
+  margin-left: auto;
+  font-size: 19rpx;
+  color: #a9a294;
+}
+
+/* 材料 */
+.mat-block { margin: 26rpx 34rpx 0; }
+.mat-title {
+  font-family: "Songti SC", serif;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #2b4a8b;
+  margin-bottom: 12rpx;
+  padding-left: 14rpx;
+  border-left: 5rpx solid #2b4a8b;
+}
+.mat-p {
+  font-size: 27rpx;
+  line-height: 1.95;
+  color: #2b3038;
+  margin-bottom: 16rpx;
+  text-indent: 2em;
+}
+.tips {
+  margin: 26rpx 34rpx 0;
+  font-size: 20rpx;
+  color: #a9a294;
+}
+
+/* 题目 */
+.qbox {
+  margin: 26rpx 34rpx 0;
+  padding: 30rpx 30rpx 26rpx;
+  background: #fffefb;
+  border: 1rpx solid #e6e0d4;
+  border-radius: 26rpx;
+}
+.qhead { display: flex; align-items: center; gap: 12rpx; margin-bottom: 18rpx; }
+.qno {
+  font-family: "Songti SC", serif;
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #2b4a8b;
+}
+.chip {
+  font-size: 20rpx;
+  padding: 3rpx 14rpx;
+  border-radius: 999rpx;
+  background: #eef1f8;
+  color: #2b4a8b;
+}
+.chip.gold { background: #fbf4e3; color: #b8892f; }
+.qstem {
+  font-size: 30rpx;
+  line-height: 1.9;
+  color: #1d2530;
+}
+.qstem.small { font-size: 26rpx; color: #4a5568; margin: 16rpx 34rpx 0; line-height: 1.8; }
+.req {
+  margin-top: 12rpx;
+  font-size: 25rpx;
+  line-height: 1.8;
+  color: #4a5568;
+}
+.qmeta {
+  margin-top: 18rpx;
+  padding-top: 14rpx;
+  border-top: 1rpx dashed #e6e0d4;
+  font-size: 21rpx;
+  color: #8a8578;
+}
+.qmeta .refs { margin-left: 18rpx; color: #2b4a8b; }
+
+/* 作答 */
+.qbrief {
+  display: flex;
+  align-items: baseline;
+  gap: 12rpx;
+  margin: 24rpx 34rpx 0;
+}
+.qb-no {
+  font-family: "Songti SC", serif;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #2b4a8b;
+}
+.qb-tp { font-size: 20rpx; color: #8a8578; }
+.qb-sc { margin-left: auto; font-size: 20rpx; color: #b8892f; }
+.answer {
+  display: block;
+  margin: 18rpx 34rpx 0;
+  padding: 24rpx;
+  width: auto;
+  min-height: 520rpx;
+  background: #fffefb;
+  border: 1rpx solid #e6e0d4;
+  border-radius: 22rpx;
+  font-size: 28rpx;
+  line-height: 1.95;
+  color: #1d2530;
+  box-sizing: border-box;
+}
+.count {
+  margin: 12rpx 36rpx 0;
+  font-size: 21rpx;
+  color: #8a8578;
+}
+.count.over { color: #b5442c; }
+.count .saved { margin-left: 16rpx; color: #b8892f; }
+
+/* 底部 */
+.bottom-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 14rpx;
+  padding: 16rpx 30rpx calc(16rpx + env(safe-area-inset-bottom));
+  background: rgba(255, 254, 251, 0.97);
+  border-top: 1rpx solid #ece6da;
+  backdrop-filter: blur(10rpx);
+}
+.timer {
+  font-family: "Songti SC", serif;
+  font-size: 28rpx;
+  color: #2b4a8b;
+  min-width: 110rpx;
+}
+.bbtn {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  border-radius: 18rpx;
+  border: 1rpx solid #e0d9cb;
+  background: #fff;
+  font-size: 25rpx;
+  color: #4a5568;
+}
+.bbtn.primary {
+  background: #2b4a8b;
+  border-color: #2b4a8b;
+  color: #fff;
+}
+.qnav {
+  display: flex;
+  gap: 16rpx;
+  margin: 24rpx 34rpx 0;
+}
+.qbtn {
+  flex: 1;
+  height: 76rpx;
+  line-height: 76rpx;
+  text-align: center;
+  border-radius: 18rpx;
+  border: 1rpx solid #e0d9cb;
+  background: #fffefb;
+  font-size: 24rpx;
+  color: #4a5568;
+}
+.qbtn.primary { background: #2b4a8b; border-color: #2b4a8b; color: #fff; }

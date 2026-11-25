@@ -207,7 +207,10 @@
         "pages/card/card",
         "pages/section/section",
         "pages/wrong/wrong",
-        "pages/report/report"
+        "pages/report/report",
+        "pages/essay-home/essay-home",
+        "pages/essay-practice/essay-practice",
+        "pages/essay-review/essay-review"
       ]
     }
   ],

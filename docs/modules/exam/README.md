@@ -1,4 +1,4 @@
-# 公考题库（packageExam）
+﻿# 公考题库（packageExam）
 
 > 版本：1.42.0（M1）· 2026-11-25
 > 子包：`packageExam/`（4 页）· 数据：服务端静态资源 · 作答记录：本机
@@ -21,6 +21,12 @@
 | `pages/papers/papers` | 历年真题，按年份分组，显示已做进度 |
 | `pages/practice/practice` | 做题页：图文混排、图推整图、材料折叠、即时判对错、解析 |
 | `pages/card/card` | 答题卡：五列网格按对/错/未做着色，点击跳题 |
+| `pages/section/section` | 专项练习：10 个题型池，跨卷抽题 |
+| `pages/wrong/wrong` | 错题本：按卷归类，跳回原卷重做 |
+| `pages/report/report` | 学习报告：累计/正确率/连续天数 + 各卷进度 |
+| `pages/essay-home/essay-home` | 申论卷列表（6 套国考） |
+| `pages/essay-practice/essay-practice` | 材料/题目/作答三 Tab + 字数 + 草稿 + 计时 |
+| `pages/essay-review/essay-review` | 参考要点自评 + 红领巾批改 |
 
 ---
 
@@ -73,6 +79,7 @@ exam:paper:<key>      试卷缓存 {t,v}
 exam:progress:<key>   { answers:{ qid:{pick,correct} }, idx, updatedAt }
 exam:stats            { total, correct, todayCount, streak, day }
 exam:jump             答题卡跳转目标（一次性）
+exam:essay:draft:<key>  { tab, qIndex, answers:{no:text}, checked:{no:[i]}, grades:{no:grade}, startedAt }
 ```
 
 ---
@@ -105,6 +112,19 @@ python tools/check_pages.py <项目根> --root packageExam
 
 ---
 
+## 6.1 红领巾批改（规则引擎）
+
+实现：`utils/essay-grader.js`（纯函数，无网络、无生成式模型）
+
+| 维度 | 权重 | 判定 |
+|---|---|---|
+| 要点覆盖 | 60% | 每条参考要点取 2 字词元（去停用词），作答命中率 ≥ 34% 记为覆盖 |
+| 结构规范 | 25% | 分条 10% / 字数合规 10% / 明确扣材料 5% |
+| 表达完整 | 15% | 字数充实度（达上限 85% 计满），超字数按比例扣 |
+
+输出：总分、分项得分、逐条要点命中（含命中词）、待改进项、改进建议。
+同一份作答结果完全可复现。**界面与代码文案禁止出现 AI / 智能生成 / 大模型 等表述**，测试中有断言把关。
+
 ## 7. 视觉规范
 
 - 基调：纸感米色 `#f6f4ef` + 墨色文字 `#1d2530` + 靛蓝主色 `#2b4a8b` + 朱砂批注 `#b5442c`
@@ -120,5 +140,5 @@ python tools/check_pages.py <项目根> --root packageExam
 |---|---|---|
 | M1 | 入口 + 首页 + 2025 副省级 1 卷 + 做题页/答题卡 | ✅ |
 | M2 | 2020–2025 共 16 卷 ≈2080 题、专项练习、错题本、报告 | 进行中 |
-| M3 | 申论 5 套（材料/题目/作答三 Tab、字数统计与草稿、要点自评） | 待做 |
-| M4 | 申论「红领巾批改」（要点规则匹配批改，不出现 AI 字样）+ 省考扩展 | 待做 |
+| M3 | 申论 6 套（材料/题目/作答三 Tab、字数统计与草稿、要点自评） | ✅ |
+| M4 | 申论「红领巾批改」（要点规则匹配批改，不出现 AI 字样）+ 省考扩展 | 批改 ✅ / 省考待做 |

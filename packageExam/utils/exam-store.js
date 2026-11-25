@@ -1,4 +1,4 @@
-/**
+﻿/**
  * 公考题库 · 本地进度层
  *
  * 不依赖服务端：作答记录、进度、连续天数都存在本机。
@@ -93,10 +93,62 @@ function resetPaper(paperKey) {
   }
 }
 
+
+// ---------------- 申论：草稿 / 计时 / 自评 ----------------
+const K_ESSAY = 'exam:essay:draft:';
+
+/** 草稿：{ tab, qIndex, answers:{qNo:text}, startedAt, elapsedMs, checked:{qNo:[idx]} } */
+function getEssayDraft(key) {
+  const d = read(K_ESSAY + key, null);
+  return d || { tab: 0, qIndex: 0, answers: {}, startedAt: 0, elapsedMs: 0, checked: {} };
+}
+
+function saveEssayDraft(key, draft) {
+  draft.updatedAt = Date.now();
+  write(K_ESSAY + key, draft);
+}
+
+function resetEssayDraft(key) {
+  try { wx.removeStorageSync(K_ESSAY + key); } catch (e) { /* ignore */ }
+}
+
+/** 自评得分：勾选的要点分值之和（按要点数均分题目分值） */
+function scoreEssay(question, checkedIdx) {
+  const pts = question.keyPoints || [];
+  if (!pts.length) return 0;
+  const total = Number(question.score) || 0;
+  const each = total / pts.length;
+  return Math.round(each * (checkedIdx || []).length * 10) / 10;
+}
+
+/** 作答结构检查（规则，不涉及生成） */
+function inspectAnswer(text, question) {
+  const t = String(text || '');
+  const chars = t.replace(/\s/g, '').length;
+  const lines = t.split(/\n+/).filter(function (x) { return x.trim(); });
+  const hasEnum = /(^|\n)\s*([0-9]{1,2}[.、]|[一二三四五六七八九十][、.]|[①②③④⑤⑥⑦⑧⑨⑩])/.test(t);
+  const refMat = /资料|材料/.test(t);
+  const max = Number(question.wordMax) || 0;
+  const min = Number(question.wordMin) || 0;
+  return {
+    chars: chars,
+    lines: lines.length,
+    hasEnum: hasEnum,
+    refMat: refMat,
+    overLimit: max > 0 && chars > max,
+    underLimit: min > 0 && chars < min,
+    empty: chars === 0
+  };
+}
 module.exports = {
   getProgress: getProgress,
   saveProgress: saveProgress,
   recordAnswer: recordAnswer,
   getStats: getStats,
-  resetPaper: resetPaper
+  resetPaper: resetPaper,
+  getEssayDraft: getEssayDraft,
+  saveEssayDraft: saveEssayDraft,
+  resetEssayDraft: resetEssayDraft,
+  scoreEssay: scoreEssay,
+  inspectAnswer: inspectAnswer
 };

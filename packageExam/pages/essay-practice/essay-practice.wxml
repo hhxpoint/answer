@@ -1,0 +1,76 @@
+<view class="ex-page essay">
+  <view wx:if="{{loading}}" class="ex-empty">
+    <view class="t">正在加载申论卷…</view>
+  </view>
+
+  <view wx:elif="{{error}}" class="ex-empty">
+    <view class="t">{{error}}</view>
+    <view class="btn-primary" style="margin-top:32rpx" bindtap="retry">重新加载</view>
+  </view>
+
+  <block wx:elif="{{q}}">
+    <view class="tabs">
+      <view class="tab {{tab === 0 ? 'on' : ''}}" data-tab="0" bindtap="switchTab">材料</view>
+      <view class="tab {{tab === 1 ? 'on' : ''}}" data-tab="1" bindtap="switchTab">题目</view>
+      <view class="tab {{tab === 2 ? 'on' : ''}}" data-tab="2" bindtap="switchTab">作答</view>
+      <view class="tabs-meta">第 {{qIndex + 1}}/{{total}} 题 · {{score}} 分</view>
+    </view>
+
+    <!-- 材料 -->
+    <block wx:if="{{tab === 0}}">
+      <view class="mat-block" wx:for="{{materials}}" wx:key="no" wx:for-item="m">
+        <view class="mat-title">资料 {{m.no}}</view>
+        <view class="mat-p" wx:for="{{m.paras}}" wx:key="*this" wx:for-item="p">{{p}}</view>
+      </view>
+      <view class="tips">材料较长，可上下滚动；切到「题目」看本题要求。</view>
+    </block>
+
+    <!-- 题目 -->
+    <block wx:elif="{{tab === 1}}">
+      <view class="qbox">
+        <view class="qhead">
+          <text class="qno">第 {{q.no}} 题</text>
+          <text class="chip">{{typeLabel}}</text>
+          <text class="chip gold">{{score}} 分</text>
+        </view>
+        <view class="qstem">{{q.stem}}</view>
+        <view class="req" wx:for="{{q.requirement}}" wx:key="*this" wx:for-item="r">{{r}}</view>
+        <view class="qmeta">
+          <text wx:if="{{wordMax}}">字数要求：{{wordMin ? wordMin + '—' + wordMax : '不超过 ' + wordMax}} 字</text>
+          <text class="refs">参考材料：{{q.materialRefs}}</text>
+        </view>
+      </view>
+      <view class="qnav">
+        <view class="qbtn" bindtap="prevQ">上一题</view>
+        <view class="qbtn primary" bindtap="nextQ">下一题</view>
+      </view>
+    </block>
+
+    <!-- 作答 -->
+    <block wx:else>
+      <view class="qbrief">
+        <text class="qb-no">第 {{q.no}} 题</text>
+        <text class="qb-tp">{{typeLabel}}</text>
+        <text class="qb-sc">{{score}} 分</text>
+      </view>
+      <view class="qstem small">{{q.stem}}</view>
+      <textarea class="answer" value="{{answer}}" bindinput="onInput" maxlength="-1"
+                placeholder="在这里作答，可分条书写（1. 2. 3.），系统按回车换行" auto-height
+                show-confirm-bar="{{false}}" cursor-spacing="40"></textarea>
+      <view class="count {{wordMax && chars > wordMax ? 'over' : ''}}">
+        {{chars}} 字<text wx:if="{{wordMax}}"> / {{wordMin ? wordMin + '—' : '上限 '}}{{wordMax}}</text>
+        <text class="saved" wx:if="{{savedText}}">{{savedText}}</text>
+      </view>
+      <view class="qnav">
+        <view class="qbtn" bindtap="prevQ">上一题</view>
+        <view class="qbtn primary" bindtap="nextQ">下一题</view>
+      </view>
+    </block>
+
+    <view class="bottom-bar">
+      <view class="timer">{{timer}}</view>
+      <view class="bbtn" bindtap="saveTap">存草稿</view>
+      <view class="bbtn primary" bindtap="goReview">对要点</view>
+    </view>
+  </block>
+</view>

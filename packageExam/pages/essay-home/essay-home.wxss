@@ -1,0 +1,38 @@
+@import "../../common.wxss";
+
+.paper-card {
+  display: flex;
+  align-items: center;
+  margin: 0 40rpx 16rpx;
+  padding: 28rpx 30rpx;
+  border-radius: 26rpx;
+  background: #fffefb;
+  border: 1rpx solid #e6e0d4;
+  box-shadow: 0 10rpx 30rpx -26rpx rgba(29, 37, 48, 0.45);
+}
+.paper-card:active { transform: scale(0.988); }
+.p-main { flex: 1; min-width: 0; }
+.p-title {
+  font-family: "Songti SC", serif;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1d2530;
+}
+.p-meta {
+  margin-top: 10rpx;
+  font-size: 21rpx;
+  color: #a9a294;
+}
+.p-meta .p-q { margin-left: 18rpx; color: #2b4a8b; }
+.p-state {
+  margin-top: 10rpx;
+  font-size: 20rpx;
+  color: #b8892f;
+}
+.p-state.on { color: #2b4a8b; }
+.p-go {
+  flex-shrink: 0;
+  margin-left: 18rpx;
+  font-size: 22rpx;
+  color: #2b4a8b;
+}

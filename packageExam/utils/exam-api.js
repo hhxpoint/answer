@@ -185,11 +185,39 @@ function loadPool(slug, force) {
     return data;
   });
 }
+
+/** 申论卷索引 */
+function loadEssayIndex(force) {
+  const k = 'exam:essay:index';
+  if (!force) {
+    const hit = readCache(k, TTL_INDEX);
+    if (hit) return Promise.resolve(hit);
+  }
+  return getJSON(BASE + '/essay/index.json').then(function (data) {
+    writeCache(k, data);
+    return data;
+  });
+}
+
+/** 单套申论 */
+function loadEssay(key, force) {
+  const k = 'exam:essay:' + key;
+  if (!force) {
+    const hit = readCache(k, TTL_PAPER);
+    if (hit) return Promise.resolve(hit);
+  }
+  return getJSON(BASE + '/essay/' + key + '.json').then(function (data) {
+    writeCache(k, data);
+    return data;
+  });
+}
 module.exports = {
   BASE: BASE,
   loadIndex: loadIndex,
   loadPoolIndex: loadPoolIndex,
   loadPool: loadPool,
+  loadEssayIndex: loadEssayIndex,
+  loadEssay: loadEssay,
   loadPaper: loadPaper,
   normalizePaper: normalizePaper,
   imgUrl: imgUrl

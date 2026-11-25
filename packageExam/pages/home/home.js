@@ -48,7 +48,7 @@ Page({
   },
 
   goEssay() {
-    wx.showToast({ title: '申论模块正在整理中', icon: 'none' });
+    wx.navigateTo({ url: '/packageExam/pages/essay-home/essay-home' });
   },
 
   preview(e) {

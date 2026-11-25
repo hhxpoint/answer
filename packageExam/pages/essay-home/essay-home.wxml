@@ -1,0 +1,38 @@
+<view class="ex-page">
+  <view class="ex-hero">
+    <view class="eyebrow">ESSAY PRACTICE</view>
+    <view class="title">申论<text class="title-it">精练</text></view>
+    <view class="sub">材料 · 题目 · 作答 · 要点自评</view>
+  </view>
+
+  <view wx:if="{{loading}}" class="ex-empty">
+    <view class="t">正在加载申论卷…</view>
+  </view>
+
+  <view wx:elif="{{error}}" class="ex-empty">
+    <view class="t">{{error}}</view>
+    <view class="btn-primary" style="margin-top:32rpx" bindtap="retry">重新加载</view>
+  </view>
+
+  <block wx:else>
+    <view class="paper-card" wx:for="{{papers}}" wx:key="key" wx:for-item="p"
+          data-key="{{p.key}}" bindtap="open">
+      <view class="p-main">
+        <view class="p-title">{{p.title}}</view>
+        <view class="p-meta">
+          <text>材料 {{p.materialCount}} 篇 · 约 {{p.materialChars}} 字</text>
+          <text class="p-q">{{p.questionCount}} 题</text>
+        </view>
+        <view class="p-state {{p.started ? 'on' : ''}}">
+          {{p.started ? '已作答 ' + p.answered + '/' + p.questionCount + ' 题' : '未开始'}}
+        </view>
+      </view>
+      <view class="p-go">进入 ›</view>
+    </view>
+
+    <view class="foot-note">
+      <view>申论题目与材料来自公开整理的国考真题；「参考要点」由材料关键句按规则提取，供自评对照，非官方答案。</view>
+      <view>作答草稿与自评结果只保存在本机。</view>
+    </view>
+  </block>
+</view>

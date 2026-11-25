@@ -1,4 +1,4 @@
-<view class="ex-page">
+﻿<view class="ex-page">
   <view class="ex-hero">
     <view class="eyebrow">CIVIL SERVICE EXAM</view>
     <view class="title">公考<text class="title-it">题库</text></view>
@@ -68,13 +68,13 @@
     <view class="line"></view>
   </view>
 
-  <view class="fn-card disabled" bindtap="goEssay">
+  <view class="fn-card" bindtap="goEssay">
     <view class="ico gold">论</view>
     <view class="body">
       <view class="ttl">申论精练</view>
-      <view class="desc">材料 · 题干 · 作答三栏，字数统计与要点自评</view>
+      <view class="desc">国考 6 套 · 材料/题目/作答三栏 · 字数统计与要点自评</view>
     </view>
-    <view class="tag">整理中</view>
+
   </view>
 
   <view class="foot-note">
