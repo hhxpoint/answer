@@ -471,6 +471,22 @@ Page({
       const SECRET_KEY = ''
       const HOST = 'tmt.tencentcloudapi.com'
       const ACTION = 'ImageTranslateLLM'
+
+      if (!SECRET_ID || !SECRET_KEY) {
+        reject(new Error('图片翻译未配置密钥，暂不可用（建议改为服务端代理）'))
+        return
+      }
+
+      let CryptoJS
+      try {
+        CryptoJS = require('../../miniprogram_npm/crypto-js/core.js')
+        require('../../miniprogram_npm/crypto-js/sha256.js')
+        require('../../miniprogram_npm/crypto-js/hmac.js')
+        require('../../miniprogram_npm/crypto-js/enc-hex.js')
+      } catch (e) {
+        reject(new Error('图片翻译依赖未构建：请在开发者工具执行「构建 npm」后重试'))
+        return
+      }
       
       const timestamp = Math.floor(Date.now() / 1000)
       const date = new Date(timestamp * 1000).toISOString().split('T')[0]
@@ -481,11 +497,6 @@ Page({
       })
 
       // 生成签名
-      const CryptoJS = require('../../miniprogram_npm/crypto-js/core.js')
-      require('../../miniprogram_npm/crypto-js/sha256.js')
-      require('../../miniprogram_npm/crypto-js/hmac.js')
-      require('../../miniprogram_npm/crypto-js/enc-hex.js')
-      
       const sha256 = (msg) => CryptoJS.SHA256(msg).toString(CryptoJS.enc.Hex)
       
       const canonicalRequest = `POST\n/\n\ncontent-type:application/json; charset=utf-8\nhost:${HOST}\nx-tc-action:${ACTION.toLowerCase()}\n\ncontent-type;host;x-tc-action\n${sha256(payload)}`

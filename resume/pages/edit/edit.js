@@ -273,5 +273,8 @@ Page({
     ;[order[index], order[index + 1]] = [order[index + 1], order[index]]
     this.setData({ moduleOrder: order })
     this.saveToStorage()
-  }
+  },
+
+  // 弹窗内容区 catchtap 占位：只用于阻止冒泡到遮罩
+  noop() {}
 })

@@ -22,7 +22,7 @@
 
   <!-- 语言选择栏 -->
   <view class="lang-bar">
-    <view class="lang-selector" bindtap="showSourceLangPicker">
+    <view class="lang-selector">
       <picker mode="selector" range="{{languages}}" range-key="name" bindchange="onSourceLangChange">
         <view class="lang-name">{{sourceLangName}}</view>
       </picker>
@@ -32,7 +32,7 @@
       <text class="swap-icon">⇄</text>
     </view>
     
-    <view class="lang-selector" bindtap="showTargetLangPicker">
+    <view class="lang-selector">
       <picker mode="selector" range="{{targetLanguages}}" range-key="name" bindchange="onTargetLangChange">
         <view class="lang-name">{{targetLangName}}</view>
       </picker>

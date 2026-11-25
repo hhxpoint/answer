@@ -1,4 +1,4 @@
-# 变更历史（Changelog）
+﻿# 变更历史（Changelog）
 
 > 本文件用于**回溯与追溯**：每次功能上线/修复/文档更新都在这里记录。
 > 格式：版本 · 日期 · 类型 · 摘要 · 关键文件 · 验收方式。
@@ -38,6 +38,19 @@
 ---
 
 ## 二、小程序版本历史
+
+### 1.41.3 · 2026-11-25 · 历史接线修复与稳定性
+
+- 举报：**不能举报自己的发布**（服务端 `SELF_REPORT` 拒绝）；举报失败时展示服务端原文，不再笼统提示
+- 举报自动下架后：`navigateBack` 增加失败兜底 → 分享卡片冷启动也能回到市场页（原先会停在一个已下架的详情页）
+- `packageGithub/utils/tencent-translator.js`：`miniprogram_npm/crypto-js` 从**模块顶层 require** 改为**延迟加载 + try/catch**，
+  修复「未执行过『构建 npm』时翻译页与文章页直接白屏」；未配置密钥时返回可读提示，而不是发出无效签名请求
+- `packageGithub/pages/translate`：移除两个指向不存在方法的 `bindtap`（点语言条会报错）；图片翻译缺依赖时提示先「构建 npm」
+- `resume/pages/edit`：补齐 `noop` 占位方法（5 处 `catchtap` 之前点到会抛错）
+- 新增静态检查脚本 `tools/check_pages.py`（`python tools/check_pages.py <小程序根目录>`）：全项目 **78 页 / 832 个事件处理 / 127 处跳转 / 124 个 require** 全通过
+- 验收：服务端 E2E **54 项**；客户端 8 个测试文件全过；`tools/check_pages.py` 全项目通过
+- 版本包体（上传实测）：总包 **6.9 MB**（7,253,278 字节）、`packageTrade` **234.5 KB**
+- 已上传开发版 **1.41.3**，体验二维码 `answer-preview-1413.jpg`
 
 ### 1.41.2 · 2026-11-24 · 举报阈值自动下架 + 审核审计落表
 

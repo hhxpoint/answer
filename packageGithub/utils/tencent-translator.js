@@ -17,17 +17,34 @@ const ACTION = 'TextTranslate'
 const VERSION = '2018-03-21'
 const REGION = 'ap-guangzhou'
 
-// 获取CryptoJS - 只加载需要的模块
-const CryptoJS = require('../../miniprogram_npm/crypto-js/core.js')
-require('../../miniprogram_npm/crypto-js/sha256.js')
-require('../../miniprogram_npm/crypto-js/hmac.js')
-require('../../miniprogram_npm/crypto-js/enc-hex.js')
+// 获取 CryptoJS —— 延迟加载。
+// miniprogram_npm 由开发者工具「构建 npm」生成，不在仓库里；若在模块顶层 require，
+// 一旦缺失整个页面加载就会抛错（白屏），所以改成用到时再加载并给出可读提示。
+let _crypto = null
+function getCrypto() {
+  if (_crypto) return _crypto
+  try {
+    const core = require('../../miniprogram_npm/crypto-js/core.js')
+    require('../../miniprogram_npm/crypto-js/sha256.js')
+    require('../../miniprogram_npm/crypto-js/hmac.js')
+    require('../../miniprogram_npm/crypto-js/enc-hex.js')
+    _crypto = core
+    return core
+  } catch (e) {
+    throw new Error('翻译依赖未构建：请在微信开发者工具执行「构建 npm」后重试')
+  }
+}
+
+/** 是否已配置云 API 密钥（当前为空，翻译应走服务端代理） */
+function isConfigured() {
+  return !!(SECRET_ID && SECRET_KEY)
+}
 
 /**
  * 生成签名所需的哈希值
  */
 function sha256(message) {
-  return CryptoJS.SHA256(message).toString(CryptoJS.enc.Hex)
+  return getCrypto().SHA256(message).toString(getCrypto().enc.Hex)
 }
 
 /**
@@ -52,10 +69,11 @@ function getDate(timestamp) {
  * 生成TC3-HMAC-SHA256签名
  */
 function sign(secretKey, date, service, stringToSign) {
-  const kDate = CryptoJS.HmacSHA256(date, 'TC3' + secretKey)
-  const kService = CryptoJS.HmacSHA256(service, kDate)
-  const kSigning = CryptoJS.HmacSHA256('tc3_request', kService)
-  return CryptoJS.HmacSHA256(stringToSign, kSigning).toString(CryptoJS.enc.Hex)
+  const C = getCrypto()
+  const kDate = C.HmacSHA256(date, 'TC3' + secretKey)
+  const kService = C.HmacSHA256(service, kDate)
+  const kSigning = C.HmacSHA256('tc3_request', kService)
+  return C.HmacSHA256(stringToSign, kSigning).toString(C.enc.Hex)
 }
 
 /**
@@ -105,6 +123,11 @@ function translateText(text, source = 'auto', target = 'zh') {
   return new Promise((resolve, reject) => {
     if (!text || text.trim() === '') {
       reject(new Error('翻译文本不能为空'))
+      return
+    }
+
+    if (!isConfigured()) {
+      reject(new Error('翻译服务未配置密钥，暂不可用（建议改为服务端代理）'))
       return
     }
 
@@ -173,5 +196,6 @@ function smartTranslate(text) {
 
 module.exports = {
   translateText,
-  smartTranslate
+  smartTranslate,
+  isConfigured
 }

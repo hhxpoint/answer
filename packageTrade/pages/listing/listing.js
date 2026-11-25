@@ -55,14 +55,20 @@ Page({
               content: '该内容因举报达到上限已被自动下架，等待人工复核。',
               showCancel: false,
               success: function () {
-                wx.navigateBack({ delta: 1 });
+                // 分享卡片冷启动进来时页面栈为空，navigateBack 会静默失败，需要兜底
+                wx.navigateBack({
+                  delta: 1,
+                  fail: function () {
+                    wx.reLaunch({ url: '/packageTrade/pages/market/market' });
+                  }
+                });
               }
             });
             return;
           }
           wx.showToast({ title: '已提交举报', icon: 'success' });
-        }).catch(function () {
-          wx.showToast({ title: '举报失败，稍后再试', icon: 'none' });
+        }).catch(function (err) {
+          wx.showToast({ title: (err && err.message) || '举报失败，稍后再试', icon: 'none' });
         });
       }
     });
