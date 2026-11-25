@@ -39,6 +39,19 @@
   <view class="trade-entry-arrow">›</view>
 </view>
 
+<!-- 公考题库入口（行测刷题 + 申论精练） -->
+<view class="exam-entry" bindtap="goExam">
+  <view class="exam-entry-glow"></view>
+  <view class="exam-entry-icon">
+    <image class="exam-entry-img" src="/assets/exam-entry.png" mode="aspectFit"></image>
+  </view>
+  <view class="exam-entry-text">
+    <view class="exam-entry-title">公考题库</view>
+    <view class="exam-entry-sub">国考 · 省考 · 选调 · 行测刷题 + 申论精练</view>
+  </view>
+  <view class="exam-entry-arrow">›</view>
+</view>
+
 <swiper class="swiper" autoplay interval="3000" circular>
   <swiper-item>
     <image class="swiper-img" src="/assets/banner1.png"></image>

@@ -1,0 +1,94 @@
+<template name="blocks">
+  <block wx:for="{{blocks}}" wx:key="i" wx:for-item="b">
+    <view class="blk">
+      <block wx:for="{{b.parts}}" wx:key="i" wx:for-item="p">
+        <image wx:if="{{p.src}}" class="qimg {{p.tex ? 'tex' : ''}}" src="{{p.src}}"
+               mode="widthFix" data-src="{{p.src}}" bindtap="preview" lazy-load="{{true}}"></image>
+        <text wx:else>{{p.t}}</text>
+      </block>
+    </view>
+  </block>
+</template>
+
+<view class="ex-page practice">
+  <view class="pbar">
+    <view class="pbar-line"><view class="pbar-fill" style="width:{{total ? (idx + 1) * 100 / total : 0}}%"></view></view>
+    <view class="pbar-info">
+      <text class="cur">{{idx + 1}}</text><text class="sep">/</text><text>{{total}}</text>
+      <text class="ok" wx:if="{{answered > 0}}">已答 {{answered}} · 对 {{correct}}</text>
+    </view>
+  </view>
+
+  <view wx:if="{{loading}}" class="ex-empty">
+    <view class="t">正在加载试卷…</view>
+  </view>
+
+  <view wx:elif="{{error}}" class="ex-empty">
+    <view class="t">{{error}}</view>
+    <view class="d">试卷数据在服务器上，请检查网络</view>
+    <view class="btn-primary" style="margin-top:32rpx" bindtap="retry">重新加载</view>
+  </view>
+
+  <block wx:elif="{{q}}">
+    <view class="qcard">
+      <view class="qhead">
+        <text class="qno">第 {{q.no}} 题</text>
+        <text class="chip">{{typeLabel}}</text>
+        <text class="chip gold">{{sectionLabel}}</text>
+      </view>
+
+      <view wx:if="{{materials.length}}" class="mat">
+        <view class="mat-cap" bindtap="toggleMaterial">
+          <text>材料 {{q.material}}</text>
+          <text class="toggle">{{showMaterial ? '收起' : '展开'}}</text>
+        </view>
+        <view wx:if="{{showMaterial}}" class="mat-body">
+          <template is="blocks" data="{{blocks: materials}}" />
+        </view>
+      </view>
+
+      <view class="stem">
+        <template is="blocks" data="{{blocks: q.stem}}" />
+      </view>
+
+      <view class="opts">
+        <view wx:for="{{q.options}}" wx:key="key" wx:for-item="o"
+              class="opt {{revealed ? (o.key === q.answer ? 'ok' : (o.key === picked ? 'bad' : '')) : (o.key === picked ? 'pick' : '')}}"
+              data-key="{{o.key}}" bindtap="pick">
+          <view class="k">{{o.key}}</view>
+          <view class="v">
+            <text wx:if="{{o.text}}">{{o.text}}</text>
+            <text wx:elif="{{o.seeHint}}" class="see">见下图选项</text>
+            <block wx:else>
+              <template is="blocks" data="{{blocks: o.blocks}}" />
+            </block>
+          </view>
+        </view>
+      </view>
+
+      <view wx:if="{{revealed}}" class="ans">
+        <view class="ans-row">
+          <text class="lab">参考答案</text>
+          <text class="val">{{q.answer}}</text>
+          <text class="res {{isCorrect ? 'right' : 'wrong'}}">{{isCorrect ? '答对了' : (picked ? '答错了' : '看答案')}}</text>
+        </view>
+        <view wx:if="{{q.analysis.length}}" class="analysis">
+          <view class="ana-cap">解析</view>
+          <template is="blocks" data="{{blocks: q.analysis}}" />
+        </view>
+        <view wx:else class="analysis">
+          <view class="ana-cap">解析</view>
+          <view class="no-ana">这道题暂未收录解析，参考答案为 {{q.answer}}。</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="bottom-bar">
+      <view class="bbtn" bindtap="prev">上一题</view>
+      <view class="bbtn mid" bindtap="goCard">
+        <text class="mid-n">{{answered}}</text><text class="mid-d">/{{total}} 答题卡</text>
+      </view>
+      <view class="bbtn primary" bindtap="next">下一题</view>
+    </view>
+  </block>
+</view>

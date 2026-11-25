@@ -1,0 +1,52 @@
+@import "../../common.wxss";
+
+.legend {
+  display: flex;
+  gap: 36rpx;
+  margin: 20rpx 44rpx 10rpx;
+}
+.legend .lg {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  font-size: 20rpx;
+  color: #8a8578;
+}
+.legend .dot {
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 6rpx;
+}
+.dot.right { background: #e8f0e8; border: 1rpx solid #b7cdb7; }
+.dot.wrong { background: #fbeee9; border: 1rpx solid #dda99c; }
+.dot.todo { background: #faf8f4; border: 1rpx solid #e0d9cb; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 18rpx;
+  margin: 24rpx 40rpx 0;
+}
+.cell {
+  height: 92rpx;
+  line-height: 92rpx;
+  text-align: center;
+  border-radius: 18rpx;
+  font-size: 26rpx;
+  color: #4a5568;
+  background: #fffefb;
+  border: 1rpx solid #e6e0d4;
+}
+.cell.right {
+  background: #eef5ee;
+  border-color: #c3d6c3;
+  color: #3f6b3f;
+  font-weight: 600;
+}
+.cell.wrong {
+  background: #fbeee9;
+  border-color: #e2b3a6;
+  color: #b5442c;
+  font-weight: 600;
+}
+.cell:active { transform: scale(0.95); }

@@ -197,6 +197,15 @@
         "pages/scores/scores",
         "pages/timetable/timetable"
       ]
+    },
+    {
+      "root": "packageExam",
+      "pages": [
+        "pages/home/home",
+        "pages/papers/papers",
+        "pages/practice/practice",
+        "pages/card/card"
+      ]
     }
   ],
   "preloadRule": {

@@ -326,3 +326,44 @@ page[theme="dark"] {
 .trade-entry-title { font-size: 32rpx; font-weight: 700; color: #2f3a2e; letter-spacing: 1rpx; }
 .trade-entry-sub { margin-top: 6rpx; font-size: 22rpx; color: #71806b; }
 .trade-entry-arrow { position: relative; font-size: 40rpx; color: #a1b09b; }
+
+.exam-entry {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 20rpx 40rpx 8rpx;
+  padding: 24rpx 28rpx;
+  border-radius: 32rpx;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(238, 242, 250, 0.98), rgba(228, 234, 246, 0.96));
+  border: 1rpx solid rgba(178, 190, 214, 0.85);
+  box-shadow: 0 14rpx 34rpx rgba(70, 90, 130, 0.13);
+}
+.exam-entry:active { transform: scale(0.985); }
+.exam-entry-glow {
+  position: absolute;
+  right: -40rpx;
+  top: -70rpx;
+  width: 220rpx;
+  height: 220rpx;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(150, 172, 214, 0.42), rgba(150, 172, 214, 0));
+}
+.exam-entry-icon {
+  position: relative;
+  width: 76rpx;
+  height: 76rpx;
+  margin-right: 20rpx;
+  border-radius: 50%;
+  background: #f2f5fb;
+  box-shadow: 0 8rpx 18rpx rgba(70, 90, 130, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.exam-entry-img { width: 58rpx; height: 58rpx; }
+.exam-entry-text { position: relative; flex: 1; }
+.exam-entry-title { font-size: 32rpx; font-weight: 700; color: #232b3a; letter-spacing: 1rpx; }
+.exam-entry-sub { margin-top: 6rpx; font-size: 22rpx; color: #6b7488; }
+.exam-entry-arrow { position: relative; font-size: 40rpx; color: #9aa6bd; }

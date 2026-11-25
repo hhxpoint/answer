@@ -23,6 +23,13 @@ Page({
     })
   },
 
+  // 公考题库（行测刷题 + 申论精练）
+  goExam() {
+    wx.navigateTo({
+      url: '/packageExam/pages/home/home'
+    })
+  },
+
   // 1. 开始答题 (因为是底部的 Tab 之一，必须用 switchTab)
   goQuiz() {
     wx.switchTab({

@@ -1,0 +1,28 @@
+<view class="ex-page">
+  <view class="ex-hero">
+    <view class="eyebrow">ANSWER SHEET</view>
+    <view class="title">答题<text class="title-it">卡</text></view>
+    <view class="sub" wx:if="{{total}}">已答 {{answered}} / {{total}} · 正确 {{correct}}</view>
+  </view>
+
+  <view wx:if="{{loading}}" class="ex-empty">
+    <view class="t">加载中…</view>
+  </view>
+
+  <block wx:else>
+    <view class="legend">
+      <view class="lg"><view class="dot right"></view><text>答对</text></view>
+      <view class="lg"><view class="dot wrong"></view><text>答错</text></view>
+      <view class="lg"><view class="dot todo"></view><text>未做</text></view>
+    </view>
+
+    <view class="grid">
+      <view wx:for="{{cells}}" wx:key="i" wx:for-item="c"
+            class="cell {{c.state}}" data-i="{{c.i}}" bindtap="jump">
+        {{c.no}}
+      </view>
+    </view>
+
+    <view class="foot-note">点题号直接跳转；作答记录自动保存在本机。</view>
+  </block>
+</view>

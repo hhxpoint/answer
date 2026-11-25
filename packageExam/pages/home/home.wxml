@@ -1,0 +1,75 @@
+<view class="ex-page">
+  <view class="ex-hero">
+    <view class="eyebrow">CIVIL SERVICE EXAM</view>
+    <view class="title">公考<text class="title-it">题库</text></view>
+    <view class="sub">国考 · 省考 · 选调 · 行测与申论</view>
+  </view>
+
+  <view class="stat-row">
+    <view class="stat">
+      <text class="n">{{stats.todayCount}}</text>
+      <text class="l">今日已做</text>
+    </view>
+    <view class="stat">
+      <text class="n">{{rate}}%</text>
+      <text class="l">正确率</text>
+    </view>
+    <view class="stat">
+      <text class="n">{{stats.total}}</text>
+      <text class="l">累计</text>
+    </view>
+  </view>
+
+  <view class="sec-head">
+    <view class="bar"></view>
+    <text class="t">行测</text>
+    <view class="line"></view>
+  </view>
+
+  <view class="fn-card" bindtap="goPapers">
+    <view class="ico indigo">卷</view>
+    <view class="body">
+      <view class="ttl">历年真题</view>
+      <view class="desc">国考 2020–2025 · 副省级 / 地市级 / 行政执法{{papers.length ? ' · 已收录 ' + papers.length + ' 卷' : ''}}</view>
+    </view>
+    <view class="arrow">›</view>
+  </view>
+
+  <view class="fn-card disabled" bindtap="goSection">
+    <view class="ico ink">专</view>
+    <view class="body">
+      <view class="ttl">专项练习</view>
+      <view class="desc">按题型逐项突破：图推 / 定义 / 类比 / 逻辑 / 言语 / 数量 / 资料</view>
+    </view>
+    <view class="tag">下一版</view>
+  </view>
+
+  <view class="fn-card disabled" bindtap="goWrong">
+    <view class="ico ink">错</view>
+    <view class="body">
+      <view class="ttl">错题本</view>
+      <view class="desc">做错的题自动收进来，按题型归类重做</view>
+    </view>
+    <view class="tag">下一版</view>
+  </view>
+
+  <view class="sec-head">
+    <view class="bar"></view>
+    <text class="t">申论</text>
+    <view class="line"></view>
+  </view>
+
+  <view class="fn-card disabled" bindtap="goEssay">
+    <view class="ico gold">论</view>
+    <view class="body">
+      <view class="ttl">申论精练</view>
+      <view class="desc">材料 · 题干 · 作答三栏，字数统计与要点自评</view>
+    </view>
+    <view class="tag">整理中</view>
+  </view>
+
+  <view class="foot-note">
+    <view>题目来源为公开整理的历年真题（部分为网友回忆版），如发现题干或答案有误，可在题目页反馈。</view>
+    <view>作答记录仅保存在本机，不上传服务器。</view>
+  </view>
+</view>

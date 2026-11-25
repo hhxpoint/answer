@@ -1,0 +1,45 @@
+<view class="ex-page">
+  <view class="ex-hero">
+    <view class="eyebrow">PAST PAPERS</view>
+    <view class="title">历年<text class="title-it">真题</text></view>
+    <view class="sub">按年份归档 · 点开即做 · 进度自动保存</view>
+  </view>
+
+  <view wx:if="{{loading}}" class="ex-empty">
+    <view class="t">正在加载题库…</view>
+  </view>
+
+  <view wx:elif="{{error}}" class="ex-empty">
+    <view class="t">{{error}}</view>
+    <view class="d">请检查网络后重试</view>
+    <view class="btn-primary" style="margin-top:32rpx" bindtap="retry">重新加载</view>
+  </view>
+
+  <view wx:elif="{{!groups.length}}" class="ex-empty">
+    <view class="t">题库正在整理</view>
+    <view class="d">第一批真题即将上线</view>
+  </view>
+
+  <block wx:else>
+    <view wx:for="{{groups}}" wx:key="year" wx:for-item="g">
+      <view class="year-head">
+        <text class="year">{{g.year}}</text>
+        <view class="line"></view>
+        <text class="count">{{g.papers.length}} 卷</text>
+      </view>
+
+      <view class="paper-card" wx:for="{{g.papers}}" wx:key="key" wx:for-item="p"
+            bindtap="open" data-key="{{p.key}}">
+        <view class="paper-main">
+          <view class="paper-title">{{p.title}}</view>
+          <view class="paper-meta">
+            <text>{{p.total}} 题</text>
+            <text wx:if="{{p.done > 0}}" class="done">已做 {{p.done}}</text>
+            <text wx:else class="fresh">未开始</text>
+          </view>
+        </view>
+        <view class="paper-go">开始 ›</view>
+      </view>
+    </view>
+  </block>
+</view>
