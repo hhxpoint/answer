@@ -39,6 +39,16 @@
 
 ## 二、小程序版本历史
 
+### 1.49.0 · 2026-11-25 · 可靠性：离线兜底 + 备份还原 + 换机手册
+
+- **客户端离线兜底**：题库索引/试卷/题型池/申论全部改为「缓存优先」，网络失败但本地有旧缓存时**继续可用**（不再白屏报错）；无缓存时才提示失败，不假装成功
+- **应急换域名**：`wx.setStorageSync('exam:base', 'https://新域名/couple-api/files/exam')` 即可切数据源，不用重新发版（默认仍为 hhxpoint.me）
+- **服务端备份升级**：从「只备 app.db、只留 7 天、同盘」升级为 **tar.gz 归档**（db + manifest + 头像），保留 14 日备 + 8 周备，备份后自动 `integrity_check` 与关键表对账，失败退出码 1
+- **异地副本**：`ops/pull_backups.py` 拉到本机并校验 db sha256
+- **恢复演练**：`ops/restore_drill.py` 本地验归档；`ops/restore_to_host.py` 可先解到临时目录再切生产（自动留 `app.db.before-restore-*` 回滚点）
+- **健康巡检**：`src/healthcheck.js` 检查接口/备份新鲜度/磁盘/题库文件数，接 `ALERT_WEBHOOK` 可告警；新增公开端点 `GET /couple-api/status`
+- **运维文档**：`answer-couple-server/docs/ops/`（总览 / 备份恢复 / 换机手册 / 故障预案）
+- 实测：备份 44KB（users 27 / messages 87 / integrity ok）、异地拉取校验通过、恢复演练 `RESTORE_DRILL_OK`、服务器端还原到临时目录校验通过、巡检 `ok:true`
 ### 1.48.0 · 2026-11-25 · 账号统一：作答数据绑定用户 + 首次完善资料
 
 - **统一身份**：公考作答数据绑定到 `users.id`（微信 openid 唯一），与「我的」页共用同一份 `userProfile`，不另造 ID

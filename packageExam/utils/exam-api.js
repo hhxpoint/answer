@@ -1,4 +1,4 @@
-﻿/**
+/**
  * 公考题库 · 数据访问层
  *
  * 数据全部放在服务器静态目录（不走接口）：
@@ -6,32 +6,56 @@
  *   https://hhxpoint.me/couple-api/files/exam/papers/<key>.json
  *   https://hhxpoint.me/couple-api/files/exam/img/<key>/<hash>.webp
  *
- * 本地缓存：索引 30 分钟、试卷 24 小时（试卷是 200~400KB，重复拉不划算）
+ * 三层兜底：
+ *   1) 正常：命中本地缓存（索引 30 分钟、试卷 24 小时）直接返回
+ *   2) 网络失败但本地有旧缓存 → 用旧数据（stale），功能不中断
+ *   3) 需要应急切域名 → wx.setStorageSync('exam:base', 'https://新域名/couple-api/files/exam')
  */
-const BASE = 'https://hhxpoint.me/couple-api/files/exam';
-const IMG_BASE = BASE + '/img';
-
-const TTL_INDEX = 30 * 60 * 1000;
-const TTL_PAPER = 24 * 60 * 60 * 1000;
+const DEFAULT_BASE = 'https://hhxpoint.me/couple-api/files/exam';
 
 // 数据版本：题库内容有更新时 +1，旧的本地缓存自动失效
 const DATA_VERSION = 3;
 const K_INDEX = 'exam:index:v' + DATA_VERSION;
 const K_PAPER = 'exam:paper:';
+const K_BASE = 'exam:base';
+
+const TTL_INDEX = 30 * 60 * 1000;
+const TTL_PAPER = 24 * 60 * 60 * 1000;
 
 function now() {
   return Date.now();
 }
 
-function readCache(key, ttl) {
+/** 允许运维/应急通过本地存储改数据源（无需重新发版） */
+function base() {
+  try {
+    const v = wx.getStorageSync(K_BASE);
+    if (v && /^https?:\/\//.test(v)) return String(v).replace(/\/+$/, '');
+  } catch (e) {
+    // ignore
+  }
+  return DEFAULT_BASE;
+}
+
+function imgBase() {
+  return base() + '/img';
+}
+
+function readRaw(key) {
   try {
     const raw = wx.getStorageSync(key);
     if (!raw || !raw.t || !raw.v) return null;
-    if (now() - raw.t > ttl) return null;
-    return raw.v;
+    return raw;
   } catch (e) {
     return null;
   }
+}
+
+function readCache(key, ttl) {
+  const raw = readRaw(key);
+  if (!raw) return null;
+  if (ttl && now() - raw.t > ttl) return null;
+  return raw.v;
 }
 
 function writeCache(key, v) {
@@ -62,16 +86,34 @@ function getJSON(url) {
   });
 }
 
+/**
+ * 通用取数：先缓存 → 网络 → 网络失败回退到过期缓存
+ * @returns Promise<{data, stale}> stale=true 表示用的是过期缓存
+ */
+function fetchWithFallback(url, cacheKey, ttl) {
+  const fresh = readCache(cacheKey, ttl);
+  if (fresh) return Promise.resolve({ data: fresh, stale: false });
+
+  return getJSON(url)
+    .then(function (data) {
+      writeCache(cacheKey, data);
+      return { data: data, stale: false };
+    })
+    .catch(function (err) {
+      const any = readCache(cacheKey, 0); // 不过期检查
+      if (any) return { data: any, stale: true };
+      throw err;
+    });
+}
+
 /** 卷索引 */
 function loadIndex(force) {
   if (!force) {
     const hit = readCache(K_INDEX, TTL_INDEX);
     if (hit) return Promise.resolve(hit);
   }
-  return getJSON(BASE + '/index.json?v=' + DATA_VERSION).then(function (data) {
-    writeCache(K_INDEX, data);
-    return data;
-  });
+  return fetchWithFallback(base() + '/index.json?v=' + DATA_VERSION, K_INDEX, TTL_INDEX)
+    .then(function (r) { return r.data; });
 }
 
 /** 单卷（含题目、材料） */
@@ -81,15 +123,57 @@ function loadPaper(key, force) {
     const hit = readCache(cacheKey, TTL_PAPER);
     if (hit) return Promise.resolve(hit);
   }
-  return getJSON(BASE + '/papers/' + key + '.json').then(function (data) {
-    writeCache(cacheKey, data);
-    return data;
-  });
+  return fetchWithFallback(base() + '/papers/' + key + '.json?v=' + DATA_VERSION, cacheKey, TTL_PAPER)
+    .then(function (r) { return r.data; });
+}
+
+/** 题型池索引（专项练习） */
+function loadPoolIndex(force) {
+  const k = 'exam:pools:v' + DATA_VERSION;
+  if (!force) {
+    const hit = readCache(k, TTL_INDEX);
+    if (hit) return Promise.resolve(hit);
+  }
+  return fetchWithFallback(base() + '/pools/index.json?v=' + DATA_VERSION, k, TTL_INDEX)
+    .then(function (r) { return r.data; });
+}
+
+/** 单个题型池 */
+function loadPool(slug, force) {
+  const k = 'exam:pool:v' + DATA_VERSION + ':' + slug;
+  if (!force) {
+    const hit = readCache(k, TTL_PAPER);
+    if (hit) return Promise.resolve(hit);
+  }
+  return fetchWithFallback(base() + '/pools/' + slug + '.json?v=' + DATA_VERSION, k, TTL_PAPER)
+    .then(function (r) { return r.data; });
+}
+
+/** 申论卷索引 */
+function loadEssayIndex(force) {
+  const k = 'exam:essay:index:v' + DATA_VERSION;
+  if (!force) {
+    const hit = readCache(k, TTL_INDEX);
+    if (hit) return Promise.resolve(hit);
+  }
+  return fetchWithFallback(base() + '/essay/index.json?v=' + DATA_VERSION, k, TTL_INDEX)
+    .then(function (r) { return r.data; });
+}
+
+/** 单套申论 */
+function loadEssay(key, force) {
+  const k = 'exam:essay:v' + DATA_VERSION + ':' + key;
+  if (!force) {
+    const hit = readCache(k, TTL_PAPER);
+    if (hit) return Promise.resolve(hit);
+  }
+  return fetchWithFallback(base() + '/essay/' + key + '.json?v=' + DATA_VERSION, k, TTL_PAPER)
+    .then(function (r) { return r.data; });
 }
 
 /** 图片绝对地址 */
 function imgUrl(paperKey, name) {
-  return IMG_BASE + '/' + paperKey + '/' + name;
+  return imgBase() + '/' + paperKey + '/' + name;
 }
 
 /**
@@ -161,60 +245,9 @@ function normalizePaper(paper) {
   };
 }
 
-
-/** 题型池索引（专项练习） */
-function loadPoolIndex(force) {
-  const k = 'exam:pools';
-  if (!force) {
-    const hit = readCache(k, TTL_INDEX);
-    if (hit) return Promise.resolve(hit);
-  }
-  return getJSON(BASE + '/pools/index.json?v=' + DATA_VERSION).then(function (data) {
-    writeCache(k, data);
-    return data;
-  });
-}
-
-/** 单个题型池 */
-function loadPool(slug, force) {
-  const k = 'exam:pool:' + slug;
-  if (!force) {
-    const hit = readCache(k, TTL_PAPER);
-    if (hit) return Promise.resolve(hit);
-  }
-  return getJSON(BASE + '/pools/' + slug + '.json').then(function (data) {
-    writeCache(k, data);
-    return data;
-  });
-}
-
-/** 申论卷索引 */
-function loadEssayIndex(force) {
-  const k = 'exam:essay:index';
-  if (!force) {
-    const hit = readCache(k, TTL_INDEX);
-    if (hit) return Promise.resolve(hit);
-  }
-  return getJSON(BASE + '/essay/index.json?v=' + DATA_VERSION).then(function (data) {
-    writeCache(k, data);
-    return data;
-  });
-}
-
-/** 单套申论 */
-function loadEssay(key, force) {
-  const k = 'exam:essay:' + key;
-  if (!force) {
-    const hit = readCache(k, TTL_PAPER);
-    if (hit) return Promise.resolve(hit);
-  }
-  return getJSON(BASE + '/essay/' + key + '.json').then(function (data) {
-    writeCache(k, data);
-    return data;
-  });
-}
 module.exports = {
-  BASE: BASE,
+  BASE: DEFAULT_BASE,
+  base: base,
   loadIndex: loadIndex,
   loadPoolIndex: loadPoolIndex,
   loadPool: loadPool,
