@@ -1,4 +1,4 @@
-// 身份 / 账号隔离 / 旧数据迁移 / 云端同步 逻辑测试
+﻿// 身份 / 账号隔离 / 旧数据迁移 / 云端同步 逻辑测试
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
@@ -97,6 +97,12 @@ sync.pull().then(function (r) {
   delete storage.couple_token;
   check('无 token 时 canSync=false', sync.canSync() === false);
 
+  // ---------- 账号 id 优先级：服务端登录态 > 本地资料 ----------
+  storage.couple_user = { id: 7, nickname: '服务端账号' };
+  check('uid 优先取服务端账号', identity.uid() === 'u7', identity.uid());
+  storage['exam:p:u7:gk-x'] = { answers: {}, idx: 1, updatedAt: 1 };
+  store.getProgress('gk-x');
+  check('按服务端账号命名空间读取', storage['exam:p:u7:gk-x'].idx === 1);
   console.log(fails.length ? '\nIDENTITY_FAILED: ' + fails.join(', ') : '\nIDENTITY_OK');
   process.exit(fails.length ? 1 : 0);
 }).catch(function (e) {

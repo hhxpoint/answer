@@ -1,4 +1,4 @@
-/**
+﻿/**
  * 公考题库 · 身份
  *
  * 唯一标识：服务端 users.id（微信 openid 唯一），本地表现是 userProfile.userId = 'u<id>'。
@@ -27,8 +27,18 @@ function profileReady() {
   return !!(p && p.nickName && p.avatarUrl && String(p.avatarUrl).length > 8);
 }
 
-/** 已缓存的账号标识（'u5' / 'local'） */
+/**
+ * 已缓存的账号标识（'u5' / 'local'）
+ * 优先取服务端登录态 couple_user.id：同步用的是 token 所属账号，
+ * 两者若不一致会写错命名空间（例如本地残留旧账号的 userId）。
+ */
 function uid() {
+  try {
+    const u = wx.getStorageSync('couple_user');
+    if (u && u.id) return 'u' + u.id;
+  } catch (e) {
+    // ignore
+  }
   const p = localProfile();
   const id = p && p.userId ? String(p.userId) : '';
   if (!id) return FALLBACK_UID;
