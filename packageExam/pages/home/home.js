@@ -2,6 +2,7 @@
 const store = require('../../utils/exam-store.js');
 const identity = require('../../utils/exam-identity.js');
 const sync = require('../../utils/exam-sync.js');
+const share = require('../../utils/share.js');
 
 Page({
   data: {
@@ -16,6 +17,7 @@ Page({
   },
 
   onShow() {
+    share.enableMenu();
     const p = identity.localProfile() || {};
     this.setData({
       profileReady: identity.profileReady(),
@@ -74,5 +76,13 @@ Page({
   preview(e) {
     const src = e.currentTarget.dataset.src;
     if (src) wx.previewImage({ urls: [src], current: src });
+  },
+  onShareAppMessage: function () {
+    const s = share.home();
+    return { title: s.title, path: s.path, imageUrl: share.cover('home') };
+  },
+
+  onShareTimeline: function () {
+    return share.timeline(share.home(), 'home');
   }
 });

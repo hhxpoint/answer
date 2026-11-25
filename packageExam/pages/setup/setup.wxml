@@ -28,6 +28,8 @@
     <view class="save-btn {{saving ? 'disabled' : ''}}" bindtap="save">
       {{saving ? '保存中…' : '保存并开始'}}
     </view>
+
+    <view class="skip-link" bindtap="skip">先不设置，直接做题</view>
   </view>
 
   <view class="foot-note">

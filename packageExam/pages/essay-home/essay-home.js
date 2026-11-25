@@ -1,5 +1,6 @@
 const api = require('../../utils/exam-api.js');
 const store = require('../../utils/exam-store.js');
+const share = require('../../utils/share.js');
 
 Page({
   data: {
@@ -9,6 +10,7 @@ Page({
   },
 
   onShow() {
+    share.enableMenu();
     this.load();
   },
 
@@ -48,5 +50,13 @@ Page({
 
   retry() {
     this.load();
+  },
+  onShareAppMessage: function () {
+    const s = share.essayHome();
+    return { title: s.title, path: s.path, imageUrl: share.cover('essay') };
+  },
+
+  onShareTimeline: function () {
+    return share.timeline(share.essayHome(), 'essay');
   }
 });

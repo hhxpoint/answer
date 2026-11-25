@@ -1,7 +1,8 @@
-﻿const gp = require('../../../utils/global-profile.js');
+const gp = require('../../../utils/global-profile.js');
 const identity = require('../../utils/exam-identity.js');
 const store = require('../../utils/exam-store.js');
 const sync = require('../../utils/exam-sync.js');
+const share = require('../../utils/share.js');
 
 Page({
   data: {
@@ -13,6 +14,7 @@ Page({
   },
 
   onLoad(options) {
+    share.enableMenu();
     const from = (options && options.from) ? decodeURIComponent(options.from) : '';
     const p = identity.localProfile() || {};
     this.setData({
@@ -33,14 +35,11 @@ Page({
   },
 
   save() {
-    const avatarUrl = this.data.avatarUrl;
+    // 头像可以不选：用默认头像，避免「选头像」这一步把人卡死
+    const avatarUrl = this.data.avatarUrl || '/packageExam/assets/default-avatar.png';
     const nickName = String(this.data.nickName || '').trim();
-    if (!avatarUrl) {
-      this.setData({ tip: '请先选择头像' });
-      return;
-    }
     if (!nickName) {
-      this.setData({ tip: '请填写昵称' });
+      this.setData({ tip: '写个昵称就能开始；也可以点下面「先不设置」' });
       return;
     }
     if (this.data.saving) return;
@@ -104,5 +103,28 @@ Page({
         wx.navigateBack({ delta: 1 });
       }
     }, 350);
+  },
+
+  /** 先不设置：直接进目标页，之后在首页横幅还能补 */
+  skip() {
+    const from = this.data.from || '/packageExam/pages/home/home';
+    wx.redirectTo({
+      url: from,
+      fail: function () {
+        wx.navigateTo({
+          url: from,
+          fail: function () { wx.navigateBack({ delta: 1 }); }
+        });
+      }
+    });
+  },
+
+  onShareAppMessage: function () {
+    const s = share.fallback();
+    return { title: s.title, path: s.path, imageUrl: share.cover('home') };
+  },
+
+  onShareTimeline: function () {
+    return share.timeline(share.fallback(), 'home');
   }
 });

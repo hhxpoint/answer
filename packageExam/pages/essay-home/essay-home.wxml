@@ -1,8 +1,15 @@
-<view class="ex-page">
+﻿<view class="ex-page">
   <view class="ex-hero">
     <view class="eyebrow">ESSAY PRACTICE</view>
     <view class="title">申论<text class="title-it">精练</text></view>
     <view class="sub">材料 · 题目 · 作答 · 要点自评</view>
+  </view>
+
+  <view class="share-row">
+    <button class="share-btn" open-type="share" hover-class="none">
+      <text class="sb-ic">↗</text>
+      <text>分享给考友</text>
+    </button>
   </view>
 
   <view wx:if="{{loading}}" class="ex-empty">

@@ -245,3 +245,19 @@
   color: #fff;
 }
 .bbtn.primary:active { background: #24407a; }
+
+/* 分享按钮（底部栏） */
+.bbtn.share {
+  flex: 0 0 108rpx;
+  padding: 0;
+  margin: 0;
+  height: 84rpx;
+  line-height: 84rpx;
+  text-align: center;
+  border-radius: 20rpx;
+  border: 1rpx solid #d8d1c2;
+  background: #fffefb;
+  font-size: 24rpx;
+  color: #2b4a8b;
+}
+.bbtn.share::after { border: 0; }

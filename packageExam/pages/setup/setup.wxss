@@ -70,3 +70,12 @@
   letter-spacing: 2rpx;
 }
 .save-btn.disabled { opacity: 0.6; }
+
+.skip-link {
+  margin-top: 22rpx;
+  text-align: center;
+  font-size: 22rpx;
+  color: #8a8578;
+  text-decoration: underline;
+  text-underline-offset: 6rpx;
+}

@@ -30,3 +30,23 @@
 }
 .id-row .id-name { font-size: 24rpx; color: #1d2530; }
 .id-row .id-bind { font-size: 19rpx; color: #a9a294; margin-left: auto; }
+
+/* 分享 */
+.share-row { margin: 22rpx 40rpx 0; }
+.share-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  padding: 0;
+  margin: 0;
+  border-radius: 20rpx;
+  background: #fffefb;
+  border: 1rpx solid #d8d1c2;
+  font-size: 24rpx;
+  color: #2b4a8b;
+}
+.share-btn::after { border: 0; }
+.share-btn .sb-ic { font-size: 26rpx; }

@@ -1,4 +1,4 @@
-﻿const app = getApp();
+const app = getApp();
 
 
 Page({
@@ -27,8 +27,20 @@ Page({
   // 注意：不能叫 goExam —— 下方「考研」卡片已占用该名字，同对象重复键会互相覆盖
   // 门禁：首次进入先补头像昵称（老用户已有资料，直接进）
   goGongkao() {
-    const identity = require('../../packageExam/utils/exam-identity.js');
-    identity.enter('/packageExam/pages/home/home');
+    const target = '/packageExam/pages/home/home';
+    try {
+      const identity = require('../../packageExam/utils/exam-identity.js');
+      identity.enter(target);
+    } catch (e) {
+      // 兜底：身份/门禁模块异常时也必须能进题库，不能点了没反应
+      console.error('[gongkao] enter failed', e);
+      wx.navigateTo({
+        url: target,
+        fail: function () {
+          wx.showToast({ title: '打开失败，请重试', icon: 'none' });
+        }
+      });
+    }
   },
 
   // 1. 开始答题 (因为是底部的 Tab 之一，必须用 switchTab)

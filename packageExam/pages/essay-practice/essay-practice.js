@@ -1,6 +1,7 @@
 ﻿const api = require('../../utils/exam-api.js');
 const store = require('../../utils/exam-store.js');
 const sync = require('../../utils/exam-sync.js');
+const share = require('../../utils/share.js');
 
 function pad(n) {
   return n < 10 ? '0' + n : '' + n;
@@ -27,6 +28,7 @@ Page({
   },
 
   onLoad(options) {
+    share.enableMenu();
     this.key = (options && options.paper) || '';
     if (!this.key) {
       this.setData({ loading: false, error: '缺少试卷参数' });
@@ -172,5 +174,13 @@ Page({
 
   retry() {
     this.load();
+  },
+  onShareAppMessage: function () {
+    const s = share.essayPractice(this.key, this.data.q, this.data.qIndex);
+    return { title: s.title, path: s.path, imageUrl: share.cover('essay') };
+  },
+
+  onShareTimeline: function () {
+    return share.timeline(share.essayPractice(this.key, this.data.q, this.data.qIndex), 'essay');
   }
 });

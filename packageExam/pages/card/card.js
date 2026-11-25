@@ -1,5 +1,6 @@
 const api = require('../../utils/exam-api.js');
 const store = require('../../utils/exam-store.js');
+const share = require('../../utils/share.js');
 
 Page({
   data: {
@@ -12,6 +13,7 @@ Page({
   },
 
   onLoad(options) {
+    share.enableMenu();
     const key = (options && options.paper) || '';
     if (!key) {
       this.setData({ loading: false });
@@ -60,5 +62,13 @@ Page({
     const i = e.currentTarget.dataset.i;
     wx.setStorageSync('exam:jump', i);
     wx.navigateBack({ delta: 1 });
+  },
+  onShareAppMessage: function () {
+    const s = share.practice(this.key, null, -1);
+    return { title: '这套行测真题，来挑战一下', path: s.path, imageUrl: share.cover('practice') };
+  },
+
+  onShareTimeline: function () {
+    return share.timeline(share.practice(this.key, null, -1), 'practice');
   }
 });

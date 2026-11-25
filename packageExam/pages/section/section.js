@@ -1,4 +1,5 @@
 const api = require('../../utils/exam-api.js');
+const share = require('../../utils/share.js');
 
 const DESC = {
   tuxing: '九宫格 / 序列 / 分类，图像规律专项',
@@ -22,6 +23,7 @@ Page({
   },
 
   onLoad() {
+    share.enableMenu();
     this.load();
   },
 
@@ -57,5 +59,13 @@ Page({
 
   retry() {
     this.load();
+  },
+  onShareAppMessage: function () {
+    const s = share.section();
+    return { title: s.title, path: s.path, imageUrl: share.cover('section') };
+  },
+
+  onShareTimeline: function () {
+    return share.timeline(share.section(), 'section');
   }
 });

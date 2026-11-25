@@ -1,5 +1,6 @@
 const api = require('../../utils/exam-api.js');
 const store = require('../../utils/exam-store.js');
+const share = require('../../utils/share.js');
 
 const TABS = [
   { key: 'all', label: '全部' },
@@ -19,6 +20,7 @@ Page({
   },
 
   onLoad() {
+    share.enableMenu();
     this.load();
   },
 
@@ -82,5 +84,13 @@ Page({
 
   retry() {
     this.load();
+  },
+  onShareAppMessage: function () {
+    const s = share.papers({ total: this.data.totalPapers, questions: this.data.totalQuestions });
+    return { title: s.title, path: s.path, imageUrl: share.cover('papers') };
+  },
+
+  onShareTimeline: function () {
+    return share.timeline(share.papers({ total: this.data.totalPapers, questions: this.data.totalQuestions }), 'papers');
   }
 });

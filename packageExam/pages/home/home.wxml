@@ -18,6 +18,13 @@
     <text class="id-bind">已绑定账号</text>
   </view>
 
+  <view class="share-row">
+    <button class="share-btn" open-type="share" hover-class="none">
+      <text class="sb-ic">↗</text>
+      <text>分享给考友</text>
+    </button>
+  </view>
+
   <view class="stat-row">
     <view class="stat">
       <text class="n">{{stats.todayCount}}</text>

@@ -1,6 +1,7 @@
 ﻿const api = require('../../utils/exam-api.js');
 const store = require('../../utils/exam-store.js');
 const sync = require('../../utils/exam-sync.js');
+const share = require('../../utils/share.js');
 
 const SECTION_LABEL = {
   zzll: '政治理论',
@@ -45,6 +46,7 @@ Page({
   },
 
   onLoad(options) {
+    share.enableMenu();
     this.paperKey = (options && options.paper) || '';
     this.poolSlug = (options && options.pool) || '';
     this.jumpTo = parseInt(options && options.jump, 10);
@@ -238,5 +240,15 @@ Page({
 
   retry() {
     this.load();
+  },
+  onShareAppMessage: function () {
+    const key = this.paperKey || (this.paper && this.paper.key) || '';
+    const s = share.practice(key, this.data.q, this.data.idx);
+    return { title: s.title, path: s.path, imageUrl: share.cover('practice') };
+  },
+
+  onShareTimeline: function () {
+    const key = this.paperKey || (this.paper && this.paper.key) || '';
+    return share.timeline(share.practice(key, this.data.q, this.data.idx), 'practice');
   }
 });

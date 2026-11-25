@@ -1,4 +1,4 @@
-<template name="blocks">
+﻿<template name="blocks">
   <block wx:for="{{blocks}}" wx:key="i" wx:for-item="b">
     <view class="blk">
       <block wx:for="{{b.parts}}" wx:key="i" wx:for-item="p">
@@ -88,6 +88,7 @@
       <view class="bbtn mid" bindtap="goCard">
         <text class="mid-n">{{answered}}</text><text class="mid-d">/{{total}} 答题卡</text>
       </view>
+      <button class="bbtn share" open-type="share" hover-class="none">分享</button>
       <view class="bbtn primary" bindtap="next">下一题</view>
     </view>
   </block>

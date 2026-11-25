@@ -1,5 +1,6 @@
 const api = require('../../utils/exam-api.js');
 const store = require('../../utils/exam-store.js');
+const share = require('../../utils/share.js');
 
 Page({
   data: {
@@ -12,6 +13,7 @@ Page({
   },
 
   onShow() {
+    share.enableMenu();
     this.load();
   },
 
@@ -59,5 +61,13 @@ Page({
   open(e) {
     const key = e.currentTarget.dataset.key;
     wx.navigateTo({ url: '/packageExam/pages/practice/practice?paper=' + key });
+  },
+  onShareAppMessage: function () {
+    const s = share.fallback();
+    return { title: s.title, path: s.path, imageUrl: share.cover('home') };
+  },
+
+  onShareTimeline: function () {
+    return share.timeline(share.fallback(), 'home');
   }
 });

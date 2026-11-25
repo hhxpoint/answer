@@ -1,6 +1,7 @@
 const api = require('../../utils/exam-api.js');
 const store = require('../../utils/exam-store.js');
 const grader = require('../../utils/essay-grader.js');
+const share = require('../../utils/share.js');
 
 Page({
   data: {
@@ -19,6 +20,7 @@ Page({
   },
 
   onLoad(options) {
+    share.enableMenu();
     this.key = (options && options.paper) || '';
     this.qno = Number((options && options.q) || 1);
     this.load();
@@ -101,5 +103,13 @@ Page({
 
   backToWrite() {
     wx.navigateBack({ delta: 1 });
+  },
+  onShareAppMessage: function () {
+    const s = share.essayReview(this.key, this.data.q);
+    return { title: s.title, path: s.path, imageUrl: share.cover('review') };
+  },
+
+  onShareTimeline: function () {
+    return share.timeline(share.essayReview(this.key, this.data.q), 'review');
   }
 });
