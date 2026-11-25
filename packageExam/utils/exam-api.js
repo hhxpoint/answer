@@ -1,4 +1,4 @@
-/**
+﻿/**
  * 公考题库 · 数据访问层
  *
  * 数据全部放在服务器静态目录（不走接口）：
@@ -15,7 +15,7 @@ const TTL_INDEX = 30 * 60 * 1000;
 const TTL_PAPER = 24 * 60 * 60 * 1000;
 
 // 数据版本：题库内容有更新时 +1，旧的本地缓存自动失效
-const DATA_VERSION = 2;
+const DATA_VERSION = 3;
 const K_INDEX = 'exam:index:v' + DATA_VERSION;
 const K_PAPER = 'exam:paper:';
 

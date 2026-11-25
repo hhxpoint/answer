@@ -132,24 +132,67 @@ def cn_grams(s, n=2):
     return out
 
 
+LEAD_BAD = re.compile(r'^[，。、；：？！“”"\'’‘\s\-—…·]+')
+DIALOGUE = re.compile(r'(介绍|说道|表示|坦言|笑称|回忆|告诉记者|问他|他说|她说|问道|答复)')
+SUMMARY = re.compile(r'(要|应|需|必须|通过|实现|推动|建立|完善|加强|以.{0,6}为重点|关键|核心|重点)')
+
+
+def tidy(s):
+    """去掉引号与首尾标点，压掉多余空白"""
+    s = s.strip()
+    for ch in '“”"‘’':
+        s = s.replace(ch, '')
+    s = LEAD_BAD.sub('', s)
+    s = re.sub(r'\s+', '', s)
+    return s
+
+
+def is_dialogue(s):
+    """对话/转述句不适合当要点"""
+    if DIALOGUE.search(s):
+        return True
+    # 引号密度高、或「，」很多且没有结论词，多为叙述
+    if s.count('“') + s.count('”') >= 2:
+        return True
+    return False
+
+
+def make_label(s, n=30):
+    """截断到标点边界，避免半个词"""
+    if len(s) <= n:
+        return s
+    cut = s[:n]
+    for sep in ('，', '。', '；', '：'):
+        i = cut.rfind(sep)
+        if i >= n * 0.5:
+            return cut[:i] + '…'
+    return cut + '…'
+
+
 def extract_points(stem, materials, refs, limit=8):
-    """从对应材料中挑关键句作为参考要点"""
+    """从对应材料中挑关键句作为参考要点（结论句优先，排除对话句）"""
     stem_grams = cn_grams(stem)
     cands = []
     for no in refs:
         for para in materials.get(no, []):
             for sent in re.split(r'[。！？；]', para):
-                s = sent.strip()
+                s = tidy(sent)
                 if not (18 <= len(s) <= 160):
+                    continue
+                if is_dialogue(s):
                     continue
                 score = 0
                 for w in SIGNAL:
                     if w in s:
                         score += 2
+                if SUMMARY.search(s):
+                    score += 3
                 grams = cn_grams(s)
                 score += len(stem_grams & grams) * 1.0
                 if re.search(r'\d', s):
                     score += 1
+                if '，' in s:
+                    score += 0.5
                 cands.append((score, no, s))
     cands.sort(key=lambda x: (-x[0], x[1]))
     picked = []
@@ -160,7 +203,7 @@ def extract_points(stem, materials, refs, limit=8):
             continue
         seen.add(key)
         picked.append({
-            'label': s[:28] + ('…' if len(s) > 28 else ''),
+            'label': make_label(s),
             'detail': s,
             'from': no,
             'weight': 1
