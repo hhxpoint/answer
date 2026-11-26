@@ -114,10 +114,16 @@ function pull() {
     .then(function (res) {
       const items = (res && res.items) || [];
       let merged = 0;
+      let removed = 0;
       items.forEach(function (it) {
+        if (it.deleted) {
+          // 管理端已删除：本地同步删掉，否则下次作答会把旧记录再传上去
+          if (store.removeRemote(it.kind, it.key)) removed += 1;
+          return;
+        }
         if (store.applyRemote(it.kind, it.key, it.payload || {}, it.updatedAt || 0)) merged += 1;
       });
-      return { merged: merged, total: items.length };
+      return { merged: merged, removed: removed, total: items.length };
     })
     .catch(function () {
       return { merged: 0, error: true };

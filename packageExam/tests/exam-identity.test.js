@@ -120,6 +120,11 @@ sync.pull().then(function (r) {
   check('申论合并保留双方自评', !!dm.checked['1'] && !!dm.checked['2']);
   check('申论开始时间取更早', dm.startedAt === 300, String(dm.startedAt));
 
+  // 墓碑：管理端删除后，本地副本也要删掉
+  storage['exam:p:u7:gk-gone'] = { answers: { q1: { pick: 'A', correct: true } }, idx: 1, updatedAt: 100 };
+  check('removeRemote 能删本地记录', store.removeRemote('paper', 'gk-gone') === true);
+  check('本地记录已移除', !storage['exam:p:u7:gk-gone']);
+  check('删除不存在的返回 false', store.removeRemote('paper', 'gk-never') === false);
   console.log(fails.length ? '\nIDENTITY_FAILED: ' + fails.join(', ') : '\nIDENTITY_OK');
   process.exit(fails.length ? 1 : 0);
 }).catch(function (e) {

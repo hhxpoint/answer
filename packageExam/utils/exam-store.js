@@ -255,6 +255,19 @@ function listLocal() {
   return out;
 }
 
+/** 管理端在服务器删除了某条：本地也删掉，避免下次又传回去 */
+function removeRemote(kind, key) {
+  migrate();
+  let k;
+  if (kind === 'paper') k = P + uid() + ':' + key;
+  else if (kind === 'stats') k = S + uid();
+  else if (kind === 'essay') k = D + uid() + ':' + key;
+  else return false;
+  if (!read(k, null)) return false;
+  remove(k);
+  return true;
+}
+
 /** 远端记录合并到本地：只有远端更新才覆盖 */
 /** 套卷：按题目 id 合并答案，避免两台设备各自做了不同题时互相覆盖 */
 function mergePaper(cur, incoming, updatedAt, remoteNewer) {
@@ -326,6 +339,7 @@ module.exports = {
   inspectAnswer: inspectAnswer,
   listLocal: listLocal,
   applyRemote: applyRemote,
+  removeRemote: removeRemote,
   migrate: migrate,
   uid: uid
 };
