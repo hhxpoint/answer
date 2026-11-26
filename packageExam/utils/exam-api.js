@@ -1,4 +1,4 @@
-/**
+﻿/**
  * 公考题库 · 数据访问层
  *
  * 数据全部放在服务器静态目录（不走接口）：
@@ -16,7 +16,7 @@ const DEFAULT_BASE = 'https://hhxpoint.me/couple-api/files/exam';
 // 数据版本：题库内容有更新时 +1，旧的本地缓存自动失效
 const DATA_VERSION = 3;
 const K_INDEX = 'exam:index:v' + DATA_VERSION;
-const K_PAPER = 'exam:paper:';
+const K_PAPER = 'exam:paper:v' + DATA_VERSION + ':';
 const K_BASE = 'exam:base';
 
 const TTL_INDEX = 30 * 60 * 1000;
@@ -58,12 +58,38 @@ function readCache(key, ttl) {
   return raw.v;
 }
 
+const K_PAPER_PREFIX = 'exam:paper:';
+const MAX_CACHED_PAPERS = 8;
+
+/** 试卷缓存是几百 KB 一份，必须有上限，否则会撑爆本地 10MB 配额 */
+function prunePapers() {
+  try {
+    const keys = (wx.getStorageInfoSync().keys || []).filter(function (k) {
+      return k.indexOf(K_PAPER_PREFIX) === 0;
+    });
+    if (keys.length <= MAX_CACHED_PAPERS) return;
+    const items = keys.map(function (k) {
+      const raw = wx.getStorageSync(k) || {};
+      return { k: k, t: raw.t || 0 };
+    }).sort(function (a, b) { return b.t - a.t; });
+    items.slice(MAX_CACHED_PAPERS).forEach(function (it) {
+      try { wx.removeStorageSync(it.k); } catch (e) {}
+    });
+  } catch (e) {
+    // 清理失败不影响主流程
+  }
+}
+
 function writeCache(key, v) {
   try {
     wx.setStorageSync(key, { t: now(), v: v });
   } catch (e) {
-    // 存储满时静默失败，不影响使用
+    // 存储满：先清掉旧试卷再试一次，仍失败就放弃（下次还会从服务器取）
+    prunePapers();
+    try { wx.setStorageSync(key, { t: now(), v: v }); } catch (e2) {}
+    return;
   }
+  if (key.indexOf(K_PAPER_PREFIX) === 0) prunePapers();
 }
 
 function getJSON(url) {

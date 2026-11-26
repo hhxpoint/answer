@@ -103,6 +103,23 @@ sync.pull().then(function (r) {
   storage['exam:p:u7:gk-x'] = { answers: {}, idx: 1, updatedAt: 1 };
   store.getProgress('gk-x');
   check('按服务端账号命名空间读取', storage['exam:p:u7:gk-x'].idx === 1);
+
+  // ---------- 跨设备合并：两边各做了不同题，不能互相覆盖 ----------
+  storage['exam:p:u7:gk-merge'] = { answers: { q1: { pick: 'A', correct: true } }, idx: 2, updatedAt: 1000 };
+  store.applyRemote('paper', 'gk-merge', { answers: { q2: { pick: 'C', correct: false } }, idx: 5 }, 2000);
+  const merged = storage['exam:p:u7:gk-merge'];
+  check('合并后保留本机答案', !!merged.answers.q1);
+  check('合并后拿到对方答案', !!merged.answers.q2);
+  check('进度位置取较新', merged.idx === 5, String(merged.idx));
+  check('合并后时间取较大', merged.updatedAt === 2000, String(merged.updatedAt));
+
+  storage['exam:d:u7:sl-merge'] = { answers: { 1: '我的第一条' }, checked: { 1: [0] }, startedAt: 500, updatedAt: 1000 };
+  store.applyRemote('essay', 'sl-merge', { answers: { 2: '对方的第二条' }, checked: { 2: [1, 2] }, startedAt: 300 }, 2000);
+  const dm = storage['exam:d:u7:sl-merge'];
+  check('申论合并保留双方作答', !!dm.answers['1'] && !!dm.answers['2']);
+  check('申论合并保留双方自评', !!dm.checked['1'] && !!dm.checked['2']);
+  check('申论开始时间取更早', dm.startedAt === 300, String(dm.startedAt));
+
   console.log(fails.length ? '\nIDENTITY_FAILED: ' + fails.join(', ') : '\nIDENTITY_OK');
   process.exit(fails.length ? 1 : 0);
 }).catch(function (e) {

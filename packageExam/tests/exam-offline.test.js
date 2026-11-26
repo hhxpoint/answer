@@ -79,6 +79,19 @@ Promise.all([api.loadIndex(), api.loadPaper('gk1')]).then(function (r) {
     check('默认域名常量未变', api.BASE.indexOf('hhxpoint.me') > 0, api.BASE);
   });
 }).then(function () {
+
+  // 6) 试卷缓存上限：最多留 8 份，避免撑爆 10MB
+  storage['exam:base'] = 'https://hhxpoint.me/couple-api/files/exam';
+  const loads = [];
+  for (let i = 0; i < 10; i++) {
+    loads.push(api.loadPaper('cap-' + i, true));
+  }
+  return Promise.all(loads).then(function () {
+    const paperKeys = Object.keys(storage).filter(function (k) { return k.indexOf('exam:paper:') === 0; });
+    check('试卷缓存不超过 8 份', paperKeys.length <= 8, 'count=' + paperKeys.length);
+  });
+
+}).then(function () {
   console.log(fails.length ? '\nOFFLINE_FAILED: ' + fails.join(', ') : '\nOFFLINE_OK');
   process.exit(fails.length ? 1 : 0);
 }).catch(function (e) {

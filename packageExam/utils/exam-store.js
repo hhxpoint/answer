@@ -1,4 +1,4 @@
-/**
+﻿/**
  * 公考题库 · 本地进度层（按账号隔离 + 旧数据迁移）
  *
  * 键结构：
@@ -256,6 +256,35 @@ function listLocal() {
 }
 
 /** 远端记录合并到本地：只有远端更新才覆盖 */
+/** 套卷：按题目 id 合并答案，避免两台设备各自做了不同题时互相覆盖 */
+function mergePaper(cur, incoming, updatedAt, remoteNewer) {
+  const out = Object.assign({}, cur || {}, incoming || {});
+  out.answers = Object.assign({}, (cur && cur.answers) || {}, (incoming && incoming.answers) || {});
+  // 答案取并集；进度位置只认更新的那条，旧远端不能把本地进度拽回去
+  out.idx = remoteNewer
+    ? ((incoming && typeof incoming.idx === 'number') ? incoming.idx : ((cur && cur.idx) || 0))
+    : ((cur && typeof cur.idx === 'number') ? cur.idx : 0);
+  out.updatedAt = updatedAt;
+  return out;
+}
+
+/** 申论：作答/勾选/批改结果都按题号合并，取更早的开始时间 */
+function mergeEssay(cur, incoming, updatedAt, remoteNewer) {
+  const out = Object.assign({}, cur || {}, incoming || {});
+  out.answers = Object.assign({}, (cur && cur.answers) || {}, (incoming && incoming.answers) || {});
+  out.checked = Object.assign({}, (cur && cur.checked) || {}, (incoming && incoming.checked) || {});
+  out.grades = Object.assign({}, (cur && cur.grades) || {}, (incoming && incoming.grades) || {});
+  if (remoteNewer) {
+    if (incoming && typeof incoming.qIndex === 'number') out.qIndex = incoming.qIndex;
+    if (incoming && typeof incoming.tab === 'number') out.tab = incoming.tab;
+  }
+  const a = (cur && cur.startedAt) || 0;
+  const b = (incoming && incoming.startedAt) || 0;
+  out.startedAt = a && b ? Math.min(a, b) : (a || b);
+  out.updatedAt = updatedAt;
+  return out;
+}
+
 function applyRemote(kind, key, payload, updatedAt) {
   migrate();
   let k;
@@ -266,9 +295,21 @@ function applyRemote(kind, key, payload, updatedAt) {
 
   const cur = read(k, null);
   const curAt = (cur && cur.updatedAt) || 0;
-  if (cur && curAt >= updatedAt) return false;
-  payload.updatedAt = updatedAt;
-  write(k, payload);
+  const remoteNewer = !cur || updatedAt >= curAt;
+
+  let merged;
+  if (kind === 'paper') {
+    merged = mergePaper(cur, payload || {}, Math.max(curAt, updatedAt), remoteNewer);
+  } else if (kind === 'essay') {
+    merged = mergeEssay(cur, payload || {}, Math.max(curAt, updatedAt), remoteNewer);
+  } else {
+    // 统计是派生汇总，不能相加（会重复计数），只接受更新的整条
+    if (cur && curAt >= updatedAt) return false;
+    merged = Object.assign({}, payload || {}, { updatedAt: updatedAt });
+  }
+
+  if (cur && JSON.stringify(cur) === JSON.stringify(merged)) return false;
+  write(k, merged);
   return true;
 }
 
