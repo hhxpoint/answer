@@ -1,3 +1,4 @@
+@import "../../styles/boundary.wxss";
 page {
   background: #fbf6ef;
   height: 100%;

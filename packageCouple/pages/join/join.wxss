@@ -1,3 +1,4 @@
+@import "../../styles/boundary.wxss";
 page { background: linear-gradient(180deg, #fff9f4 0%, #fff0e7 58%, #ffe8e2 100%); min-height: 100%; }
 .page { position: relative; padding: 28rpx 34rpx 80rpx; overflow: hidden; color: #4a342b; }
 .deco { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(2rpx); }

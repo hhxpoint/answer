@@ -1,3 +1,4 @@
+@import "../../styles/boundary.wxss";
 ﻿page {
   background: linear-gradient(180deg, #fff7f2 0%, #ffece4 55%, #ffe3dd 100%);
   min-height: 100%;
