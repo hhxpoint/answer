@@ -1,5 +1,9 @@
 // pages/process/process.js
 Page({
+  onShow() {
+    if (typeof getApp === 'function' && getApp().profileGuard && getApp().profileGuard.guard()) return;
+  },
+
   data: {
     processing: false,
     mode: 'remove', // 'remove' 或 'add'

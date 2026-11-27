@@ -16,6 +16,7 @@
   "componentPlaceholder": {},
   "pages": [
     "pages/index/index",
+    "pages/welcome/welcome",
     "pages/search/search",
     "pages/quiz/quiz",
     "pages/calc/calc",
@@ -202,7 +203,6 @@
     {
       "root": "packageExam",
       "pages": [
-        "pages/setup/setup",
         "pages/home/home",
         "pages/papers/papers",
         "pages/practice/practice",

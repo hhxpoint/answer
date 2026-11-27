@@ -2,6 +2,7 @@
 // const math = require('../../utils/mathEngine.js');
 
 // Page({
+
 //   data: {
 //     expr: "",
 //     result: "0",
@@ -50,6 +51,10 @@
 const math = require('../../utils/mathEngine.js');
 
 Page({
+  onShow() {
+    if (typeof getApp === 'function' && getApp().profileGuard && getApp().profileGuard.guard()) return;
+  },
+
   data: {
     expr: "",      // 输入框显示的字符串
     result: "0",   // 结果

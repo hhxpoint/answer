@@ -9,6 +9,10 @@ const API_CONFIG = {
 // ====================================================================
 
 Page({
+  onShow() {
+    if (typeof getApp === 'function' && getApp().profileGuard && getApp().profileGuard.guard()) return;
+  },
+
   data: {
     sceneStr: "",
     avatarUrl: defaultAvatar,

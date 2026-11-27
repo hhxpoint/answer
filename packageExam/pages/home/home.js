@@ -17,6 +17,7 @@ Page({
   },
 
   onShow() {
+    if (typeof getApp === 'function' && getApp().profileGuard && getApp().profileGuard.guard()) return;
     share.enableMenu();
     const p = identity.localProfile() || {};
     this.setData({
@@ -50,7 +51,7 @@ Page({
   },
 
   goSetup() {
-    wx.navigateTo({ url: '/packageExam/pages/setup/setup?from=' + encodeURIComponent('/packageExam/pages/home/home') });
+    wx.navigateTo({ url: '/pages/welcome/welcome?from=' + encodeURIComponent('/packageExam/pages/home/home') });
   },
 
   goPapers() {

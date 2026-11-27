@@ -1,4 +1,8 @@
 Page({
+  onShow() {
+    if (typeof getApp === 'function' && getApp().profileGuard && getApp().profileGuard.guard()) return;
+  },
+
   /**
    * 页面的初始数据
    */

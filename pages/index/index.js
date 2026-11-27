@@ -2,6 +2,10 @@ const app = getApp();
 
 
 Page({
+  onShow() {
+    if (typeof getApp === 'function' && getApp().profileGuard && getApp().profileGuard.guard()) return;
+  },
+
   // 我们的小火苗（关系空间大厅）
   goCouple() {
     wx.navigateTo({

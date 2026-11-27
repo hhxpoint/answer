@@ -2,6 +2,10 @@ const { qaList } = require('../../data.js');
 const learningCenter = require('../../utils/learning-center.js');
 
 Page({
+  onShow() {
+    if (typeof getApp === 'function' && getApp().profileGuard && getApp().profileGuard.guard()) return;
+  },
+
   data: {
     currentIndex: 0,
     showAnswer: false,

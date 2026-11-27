@@ -5,6 +5,10 @@
 
 
 Page({
+  onShow() {
+    if (typeof getApp === 'function' && getApp().profileGuard && getApp().profileGuard.guard()) return;
+  },
+
   data: {
     // 状态机
     isRecording: false,

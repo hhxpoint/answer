@@ -1,4 +1,4 @@
-/**
+﻿/**
  * 公考题库 · 身份
  *
  * 唯一标识：服务端 users.id（微信 openid 唯一），本地表现是 userProfile.userId = 'u<id>'。
@@ -67,25 +67,17 @@ function ensureUid() {
  * @returns {boolean} 是否直接放行
  */
 function enter(target) {
-  const go = function (url) {
+  // 资料门禁由全局 profile-guard 在目标页 onShow 里统一处理
+  try {
     wx.navigateTo({
-      url: url,
+      url: target,
       fail: function () {
-        // 目标页跳不过去时退回到公考首页，绝不让入口变成死按钮
-        if (url !== target) wx.navigateTo({ url: target });
+        wx.showToast({ title: '打开失败，请重试', icon: 'none' });
       }
     });
-  };
-  try {
-    if (profileReady()) {
-      go(target);
-      return true;
-    }
-    go(SETUP_URL + '?from=' + encodeURIComponent(target));
-    return false;
-  } catch (e) {
-    go(target);
     return true;
+  } catch (e) {
+    return false;
   }
 }
 

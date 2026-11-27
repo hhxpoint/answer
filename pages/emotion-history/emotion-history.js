@@ -1,4 +1,8 @@
 Page({
+  onShow() {
+    if (typeof getApp === 'function' && getApp().profileGuard && getApp().profileGuard.guard()) return;
+  },
+
   data: {
     historyList: [],
     playingId: null // 当前正在播放的音频记录ID

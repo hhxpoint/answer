@@ -8,6 +8,10 @@ function normalizeKeyword(val) {
 }
 
 Page({
+  onShow() {
+    if (typeof getApp === 'function' && getApp().profileGuard && getApp().profileGuard.guard()) return;
+  },
+
   data: {
     hotKeywords: hotKeywords,
     searchResult: [],
