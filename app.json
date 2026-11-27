@@ -71,7 +71,7 @@
         "pages/listen/listen",
         "pages/draw-guess/draw-guess",
         "pages/gomoku/gomoku",
-        "pages/story/story"
+        "pages/intro/intro"
       ]
     },
     {
@@ -271,5 +271,25 @@
     ]
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "packOptions": {
+    "ignore": [
+      {
+        "type": "folder",
+        "value": "tests"
+      },
+      {
+        "type": "folder",
+        "value": "packageCouple/tests"
+      },
+      {
+        "type": "folder",
+        "value": "packageExam/tests"
+      },
+      {
+        "type": "folder",
+        "value": "node_modules"
+      }
+    ]
+  }
 }

@@ -69,10 +69,10 @@
   </block>
   <view wx:if="{{passModal}}" class="pass-mask" catchtouchmove="noop">
     <view class="pass-card">
-      <view class="pass-title">输入创建密码</view>
-      <view class="pass-sub">请输入密码后创建关系空间</view>
+      <view class="pass-title">输入创建口令</view>
+      <view class="pass-sub">请输入口令后创建关系空间</view>
       <input class="pass-input" type="number" password="{{true}}" value="{{passInput}}"
-             maxlength="8" focus="{{passModal}}" bindinput="onPassInput" placeholder="密码" />
+             maxlength="8" focus="{{passModal}}" bindinput="onPassInput" placeholder="口令" />
       <view class="pass-actions">
         <view class="pass-btn ghost" bindtap="cancelPass">取消</view>
         <view class="pass-btn primary" bindtap="confirmPass">确定</view>

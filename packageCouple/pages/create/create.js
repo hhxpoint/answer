@@ -1,7 +1,7 @@
-const api = require('../../utils/couple-api.js');
+﻿const api = require('../../utils/couple-api.js');
 const share = require('../../utils/share.js');
 const spaceCtx = require('../../utils/space.js');
-const gate = require('../../utils/create-gate.js');
+const entry = require('../../utils/entry-code.js');
 
 const TYPES = [
   { key: 'family', name: '家人', icon: '家', desc: '父亲、母亲、孩子、兄弟姐妹', cls: 't-family', labels: ['爸爸', '妈妈', '女儿', '儿子', '哥哥', '姐姐', '弟弟', '妹妹'] },
@@ -59,8 +59,8 @@ Page({
       wx.showToast({ title: '称呼最多 12 个字', icon: 'none' });
       return;
     }
-    // 列表页已经输过密码就直接创建；直接打开本页时才自己弹
-    const gated = gate.take();
+    // 已通过口令校验则直接创建；单独打开本页时在此输入
+    const gated = entry.take();
     if (gated) {
       this.setData({ creating: true });
       this.doCreate(gated);
@@ -82,13 +82,13 @@ Page({
   confirmPass() {
     const pass = String(this.data.passInput || '').trim();
     this.setData({ passModal: false, passInput: '', passErr: '' });
-    if (gate.check(pass)) {
+    if (entry.check(pass)) {
       this.setData({ creating: true });
       this.doCreate(pass);
       return;
     }
-    // 不是创建密码：不提示、不报错，进入「两个人的空间」静态页
-    wx.navigateTo({ url: '/packageCouple/pages/story/story' });
+    // 进入空间介绍页
+    wx.navigateTo({ url: '/packageCouple/pages/intro/intro' });
   },
 
   doCreate(pass) {

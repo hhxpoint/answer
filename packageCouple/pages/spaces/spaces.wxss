@@ -152,3 +152,13 @@ page {
 .pass-btn { flex: 1; height: 84rpx; line-height: 84rpx; text-align: center; border-radius: 18rpx; font-size: 28rpx; }
 .pass-btn.ghost { background: #f6f0ea; color: #8a7365; }
 .pass-btn.primary { background: linear-gradient(135deg, #f7a072, #f2795b); color: #fff; font-weight: 600; }
+
+.learn-link {
+  margin: 26rpx auto 0;
+  width: 420rpx;
+  text-align: center;
+  font-size: 22rpx;
+  color: #b08a76;
+  padding: 14rpx 0;
+  border-bottom: 1rpx solid rgba(176, 138, 118, 0.25);
+}

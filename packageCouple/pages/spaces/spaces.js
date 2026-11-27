@@ -1,7 +1,7 @@
-const api = require('../../utils/couple-api.js');
+﻿const api = require('../../utils/couple-api.js');
 const share = require('../../utils/share.js');
 const spaceCtx = require('../../utils/space.js');
-const gate = require('../../utils/create-gate.js');
+const entry = require('../../utils/entry-code.js');
 
 const TYPE_META = {
   family: { short: '家', name: '家人', desc: '父母、孩子、兄弟姐妹', cls: 'rel-family', icon: '☘' },
@@ -119,7 +119,7 @@ Page({
     wx.navigateTo({ url: '/packageCouple/pages/home/home?space=' + id });
   },
 
-  // 新建关系空间：跳转前先要密码
+  // 新建关系空间：口令校验
   goCreate() {
     this.setData({ passModal: true, passInput: '', passErr: '' });
   },
@@ -137,13 +137,17 @@ Page({
   confirmPass() {
     const pass = String(this.data.passInput || '').trim();
     this.setData({ passModal: false, passInput: '', passErr: '' });
-    if (gate.check(pass)) {
-      gate.grant();
+    if (entry.check(pass)) {
+      entry.grant();
       wx.navigateTo({ url: '/packageCouple/pages/create/create' });
       return;
     }
-    // 不是创建密码：不提示、不报错，进入「两个人的空间」静态页
-    wx.navigateTo({ url: '/packageCouple/pages/story/story' });
+    // 进入空间介绍页
+    wx.navigateTo({ url: '/packageCouple/pages/intro/intro' });
+  },
+
+  goIntro() {
+    wx.navigateTo({ url: '/packageCouple/pages/intro/intro' });
   },
 
   goJoin() {
