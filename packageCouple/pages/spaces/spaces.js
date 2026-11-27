@@ -1,6 +1,7 @@
 const api = require('../../utils/couple-api.js');
 const share = require('../../utils/share.js');
 const spaceCtx = require('../../utils/space.js');
+const gate = require('../../utils/create-gate.js');
 
 const TYPE_META = {
   family: { short: '家', name: '家人', desc: '父母、孩子、兄弟姐妹', cls: 'rel-family', icon: '☘' },
@@ -63,6 +64,9 @@ function decorate(s) {
 
 Page({
   data: {
+    passModal: false,
+    passInput: '',
+    passErr: '',
     ready: false,
     loading: true,
     errorText: '',
@@ -115,7 +119,33 @@ Page({
     wx.navigateTo({ url: '/packageCouple/pages/home/home?space=' + id });
   },
 
+  // 新建关系空间：跳转前先要密码
   goCreate() {
+    this.setData({ passModal: true, passInput: '', passErr: '' });
+  },
+
+  noop() {},
+
+  onPassInput(e) {
+    this.setData({ passInput: e.detail.value, passErr: '' });
+  },
+
+  cancelPass() {
+    this.setData({ passModal: false, passInput: '', passErr: '' });
+  },
+
+  confirmPass() {
+    const pass = String(this.data.passInput || '').trim();
+    if (!pass) {
+      this.setData({ passErr: '请输入密码' });
+      return;
+    }
+    if (!gate.check(pass)) {
+      this.setData({ passErr: '密码不正确' });
+      return;
+    }
+    gate.grant();
+    this.setData({ passModal: false, passInput: '', passErr: '' });
     wx.navigateTo({ url: '/packageCouple/pages/create/create' });
   },
 

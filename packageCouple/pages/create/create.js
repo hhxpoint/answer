@@ -1,9 +1,7 @@
 const api = require('../../utils/couple-api.js');
 const share = require('../../utils/share.js');
 const spaceCtx = require('../../utils/space.js');
-
-// 创建密码（不在任何界面展示，服务端同样校验）
-const CREATE_PASS = '1314';
+const gate = require('../../utils/create-gate.js');
 
 const TYPES = [
   { key: 'family', name: '家人', icon: '家', desc: '父亲、母亲、孩子、兄弟姐妹', cls: 't-family', labels: ['爸爸', '妈妈', '女儿', '儿子', '哥哥', '姐姐', '弟弟', '妹妹'] },
@@ -61,7 +59,13 @@ Page({
       wx.showToast({ title: '称呼最多 12 个字', icon: 'none' });
       return;
     }
-    // 先要密码：校验通过才真正创建
+    // 列表页已经输过密码就直接创建；直接打开本页时才自己弹
+    const gated = gate.take();
+    if (gated) {
+      this.setData({ creating: true });
+      this.doCreate(gated);
+      return;
+    }
     this.setData({ passModal: true, passInput: '', passErr: '' });
   },
 
@@ -81,7 +85,7 @@ Page({
       this.setData({ passErr: '请输入密码' });
       return;
     }
-    if (pass !== CREATE_PASS) {
+    if (!gate.check(pass)) {
       this.setData({ passErr: '密码不正确' });
       return;
     }
