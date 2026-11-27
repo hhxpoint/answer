@@ -52,3 +52,74 @@ page { background: linear-gradient(180deg, #fff9f4 0%, #fff0e7 58%, #ffe8e2 100%
 .share-btn::after { border: none; }
 .done-actions { margin-top: 28rpx; }
 .text-link { font-size: 23rpx; color: #b96f45; }
+
+/* 创建密码弹窗 */
+.pass-mask {
+  position: fixed;
+  left: 0; right: 0; top: 0; bottom: 0;
+  background: rgba(32, 24, 20, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 0 48rpx;
+}
+.pass-card {
+  width: 100%;
+  background: #fffdfb;
+  border-radius: 28rpx;
+  padding: 40rpx 36rpx 32rpx;
+  box-shadow: 0 30rpx 80rpx rgba(60, 40, 30, 0.25);
+}
+.pass-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #3d2b22;
+  text-align: center;
+}
+.pass-sub {
+  margin-top: 10rpx;
+  font-size: 22rpx;
+  color: #a08b80;
+  text-align: center;
+}
+.pass-input {
+  margin-top: 28rpx;
+  height: 92rpx;
+  padding: 0 24rpx;
+  background: #faf5f1;
+  border: 1rpx solid #eadfd7;
+  border-radius: 18rpx;
+  font-size: 32rpx;
+  letter-spacing: 8rpx;
+  text-align: center;
+  color: #3d2b22;
+}
+.pass-err {
+  margin-top: 14rpx;
+  font-size: 22rpx;
+  color: #d9584a;
+  text-align: center;
+}
+.pass-actions {
+  display: flex;
+  gap: 18rpx;
+  margin-top: 30rpx;
+}
+.pass-btn {
+  flex: 1;
+  height: 84rpx;
+  line-height: 84rpx;
+  text-align: center;
+  border-radius: 18rpx;
+  font-size: 28rpx;
+}
+.pass-btn.ghost {
+  background: #f6f0ea;
+  color: #8a7365;
+}
+.pass-btn.primary {
+  background: linear-gradient(135deg, #f7a072, #f2795b);
+  color: #fff;
+  font-weight: 600;
+}
