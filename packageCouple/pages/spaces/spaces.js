@@ -136,17 +136,14 @@ Page({
 
   confirmPass() {
     const pass = String(this.data.passInput || '').trim();
-    if (!pass) {
-      this.setData({ passErr: '请输入密码' });
-      return;
-    }
-    if (!gate.check(pass)) {
-      this.setData({ passErr: '密码不正确' });
-      return;
-    }
-    gate.grant();
     this.setData({ passModal: false, passInput: '', passErr: '' });
-    wx.navigateTo({ url: '/packageCouple/pages/create/create' });
+    if (gate.check(pass)) {
+      gate.grant();
+      wx.navigateTo({ url: '/packageCouple/pages/create/create' });
+      return;
+    }
+    // 不是创建密码：不提示、不报错，进入「两个人的空间」静态页
+    wx.navigateTo({ url: '/packageCouple/pages/story/story' });
   },
 
   goJoin() {

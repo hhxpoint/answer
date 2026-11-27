@@ -70,7 +70,8 @@
         "pages/anniversary-edit/anniversary-edit",
         "pages/listen/listen",
         "pages/draw-guess/draw-guess",
-        "pages/gomoku/gomoku"
+        "pages/gomoku/gomoku",
+        "pages/story/story"
       ]
     },
     {
